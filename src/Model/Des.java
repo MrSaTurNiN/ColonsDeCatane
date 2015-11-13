@@ -15,6 +15,6 @@ public class Des
 
     public int lancerDes()
     {
-        return 2+random.nextInt(10);
+        return 2+random.nextInt(11);
     }
 }
