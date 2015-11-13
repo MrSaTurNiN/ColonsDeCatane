@@ -7,16 +7,14 @@ import java.util.Random;
  */
 public class Des
 {
-    private static Random de1 = new Random();
-    private static Random de2 = new Random();
-
+    private static Random random = new Random();
     public Des()
     {
-
+    	//A remplir
     }
 
-    public int[] lancerDes()
+    public int lancerDes()
     {
-        return null;
+        return 2+random.nextInt(10);
     }
 }
