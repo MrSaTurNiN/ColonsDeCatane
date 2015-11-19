@@ -28,6 +28,7 @@ public class DeckRessource {
         List<Ressource> ble=new ArrayList<Ressource>();
         List<Ressource> argile=new ArrayList<Ressource>();
         List<Ressource> minerai=new ArrayList<Ressource>();
+       
 
         for (int i = 0; i < 18; i++) {
             bois.add(Ressource.Bois);
@@ -65,5 +66,9 @@ public class DeckRessource {
     public void obtenirRessource(Ressource r)
     {
         carteRessource.get(""+r.name()).add(r);
+    }
+    
+    public Map<String,List<Ressource>> getCarteRessource(){
+    	return this.carteRessource;
     }
 }

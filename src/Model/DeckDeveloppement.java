@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -14,7 +15,7 @@ public class DeckDeveloppement
 
     public DeckDeveloppement()
     {
-
+cartDeveloppement=new ArrayList<>();
     }
 
     public Developpement piocherDeveloppement()
@@ -26,4 +27,12 @@ public class DeckDeveloppement
     {
 
     }
+
+	public List<Developpement> getCartDeveloppement() {
+		return cartDeveloppement;
+	}
+
+	public void setCartDeveloppement(List<Developpement> cartDeveloppement) {
+		this.cartDeveloppement = cartDeveloppement;
+	}
 }
