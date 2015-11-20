@@ -25,15 +25,31 @@ public class Joueur
 
     public void obtenirCarte(Ressource r)
     {
+        if(mainRessource.containsKey(r.name()))
+        {
+            this.mainRessource.get(r.name()).add(r);
+        }
+        else
+        {
+            this.mainRessource.put(r.name(), new ArrayList<Ressource>());
+            this.mainRessource.get(r.name()).add(r);
+        }
 
     }
     public void obtenirCarte(Developpement d)
     {
-
+        this.mainDeveloppement.add(d);
     }
 
     public Ressource retirerCarte(String s)
     {
+        if(mainRessource.containsKey(s) && !mainRessource.get(s).isEmpty())
+        {
+            int size = mainRessource.get(s).size();
+            Ressource tmp = mainRessource.get(s).get(size-1);
+            mainRessource.get(s).remove(size-1);
+            return tmp;
+        }
         return null;
     }
     public int getPointJoueur() {
