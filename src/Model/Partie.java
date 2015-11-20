@@ -22,7 +22,7 @@ public class Partie {
 		deckRessource=new DeckRessource();
 		deckDeveloppement=new DeckDeveloppement();
 	}
-	public initMainJoueur(Joueur j)
+	public void initMainJoueur(Joueur j)
 	{
 		//TODO récupérer les cartes dans le deck ressource et ajouter le bon nombre de carte dans la main du joueur j
 	}
