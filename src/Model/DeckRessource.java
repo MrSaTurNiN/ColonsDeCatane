@@ -37,11 +37,11 @@ public class DeckRessource {
             argile.add(Ressource.Argile);
             minerai.add(Ressource.Minerai);
         }
-        carteRessource.put("Bois", bois);
-        carteRessource.put("Laine", laine);
-        carteRessource.put("Ble", ble);
-        carteRessource.put("Argile", argile);
-        carteRessource.put("Minerai", minerai);
+        carteRessource.put(Ressource.Bois.name(), bois);
+        carteRessource.put(Ressource.Laine.name(), laine);
+        carteRessource.put(Ressource.Ble.name(), ble);
+        carteRessource.put(Ressource.Argile.name(), argile);
+        carteRessource.put(Ressource.Minerai.name(), minerai);
 
     }
 

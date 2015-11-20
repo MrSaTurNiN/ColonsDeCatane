@@ -19,6 +19,8 @@ public class Joueur
     public Joueur(String nomJoueur, Color couleurJoueur) {
         this.setNomJoueur(nomJoueur);
         this.setCouleurJoueur(couleurJoueur);
+        mainRessource = new HashMap<String,List<Ressource>>();
+        mainDeveloppement=new ArrayList<Developpement>();
     }
 
     public void obtenirCarte(Ressource r)

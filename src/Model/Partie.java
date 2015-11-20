@@ -12,11 +12,13 @@ public class Partie {
 	private Des des;
 	private DeckRessource deckRessource;
 	private DeckDeveloppement deckDeveloppement;
+	private Joueur joueurActif;
 
 	public Partie() {
 		listeJoueur = new ArrayList<Joueur>();
 		Joueur j1 = new Joueur("joueur 1", new Color(0, 0, 200));
 		listeJoueur.add(j1);
+		setJoueurActif(j1);
 		deckRessource=new DeckRessource();
 		deckDeveloppement=new DeckDeveloppement();
 	}
@@ -50,5 +52,13 @@ public class Partie {
 	
 	public void setListeJoueur(List<Joueur> listeJoueur){
 		this.listeJoueur=listeJoueur;
+	}
+
+	public Joueur getJoueurActif() {
+		return joueurActif;
+	}
+
+	public void setJoueurActif(Joueur joueurActif) {
+		this.joueurActif = joueurActif;
 	}
 }
