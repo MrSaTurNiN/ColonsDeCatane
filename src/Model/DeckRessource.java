@@ -30,7 +30,7 @@ public class DeckRessource {
         List<Ressource> minerai=new ArrayList<Ressource>();
        
 
-        for (int i = 0; i < 18; i++) {
+        for (int i = 0; i < 19; i++) {
             bois.add(Ressource.Bois);
             laine.add(Ressource.Laine);
             ble.add(Ressource.Ble);
