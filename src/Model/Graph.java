@@ -13,9 +13,9 @@ public class Graph {
     Vertex root;
     Vertex[] vertices = new Vertex[54];
 
-    public Graph(Vertex root) throws RootNullException {
+    public Graph(Vertex root){
         this.root = root;
-        if(root == null)throw new RootNullException();
+        if(root == null)root = new Vertex();
         initVerticesAndEdges();
     }
 
