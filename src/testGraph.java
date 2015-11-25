@@ -17,7 +17,7 @@ public class testGraph {
                 g.getVertexIndex(2).getUpEdge().getRoute();
             }catch(NullPointerException e)
             {
-                System.out.println("OK");
+                System.out.println("OK ");
             }
         } catch (RootNullException e) {
             e.printStackTrace();
