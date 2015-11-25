@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Batiments.Route;
+
 /**
  * Created by Jip on 22/11/2015.
  */
@@ -22,17 +24,17 @@ public class Edge {
 
     public void setTop()
     {
-        vertexA.setUp(this);
-        vertexB.setUp(this);
+        vertexA.setUpEdge(this);
+        vertexB.setUpEdge(this);
     }
     public void setLeft()
     {
-        vertexA.setLeft(this);
-        vertexB.setLeft(this);
+        vertexA.setLeftEdge(this);
+        vertexB.setLeftEdge(this);
     }
 
     public void setRight(){
-        vertexA.setRight(this);
-        vertexB.setRight(this);
+        vertexA.setRightEdge(this);
+        vertexB.setRightEdge(this);
     }
 }

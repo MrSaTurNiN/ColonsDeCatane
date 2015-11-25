@@ -1,13 +1,16 @@
 package Model;
 
+import Model.Batiments.Batiment;
+
 /**
  * Created by Jip on 22/11/2015.
  */
 public class Vertex {
     Batiment batiment = null;
-    Edge up= null;
-    Edge left = null;
-    Edge right = null;
+    Edge upEdge = null;
+    Edge leftEdge = null;
+    Edge rightEdge = null;
+
     public Vertex()
     {
 
@@ -21,27 +24,27 @@ public class Vertex {
         this.batiment = batiment;
     }
 
-    public Edge getUp() {
-        return up;
+    public Edge getUpEdge() {
+        return upEdge;
     }
 
-    public void setUp(Edge up) {
-        this.up = up;
+    public void setUpEdge(Edge upEdge) {
+        this.upEdge = upEdge;
     }
 
-    public Edge getLeft() {
-        return left;
+    public Edge getLeftEdge() {
+        return leftEdge;
     }
 
-    public void setLeft(Edge left) {
-        this.left = left;
+    public void setLeftEdge(Edge leftEdge) {
+        this.leftEdge = leftEdge;
     }
 
-    public Edge getRight() {
-        return right;
+    public Edge getRightEdge() {
+        return rightEdge;
     }
 
-    public void setRight(Edge right) {
-        this.right = right;
+    public void setRightEdge(Edge rightEdge) {
+        this.rightEdge = rightEdge;
     }
 }
