@@ -47,4 +47,9 @@ public class Vertex {
     public void setRightEdge(Edge rightEdge) {
         this.rightEdge = rightEdge;
     }
+
+    public boolean isFreeToBuild()
+    {
+        return leftEdge.isLibre(this) && rightEdge.isLibre(this) && upEdge.isLibre(this);
+    }
 }

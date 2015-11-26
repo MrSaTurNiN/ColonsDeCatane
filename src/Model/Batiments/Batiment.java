@@ -11,4 +11,8 @@ public abstract class Batiment {
     public Batiment(Joueur joueur) {
         this.joueur = joueur;
     }
+
+    public Joueur getJoueur() {
+        return joueur;
+    }
 }

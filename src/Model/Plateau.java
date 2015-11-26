@@ -1,5 +1,9 @@
 package Model;
 
+import Exceptions.ColoniePositionException;
+import Exceptions.NoColonieException;
+import Model.Batiments.Colonie;
+import Model.Batiments.Ville;
 import Model.Tuile.*;
 
 import java.util.ArrayList;
@@ -19,6 +23,20 @@ public class Plateau {
         graph = new Graph(v);
         initTuiles();
         initVerticesTuiles();
+    }
+
+    public void creerColonie(Joueur j,Vertex v) throws ColoniePositionException {
+        if (!v.isFreeToBuild()) throw new ColoniePositionException();
+
+        v.setBatiment(new Colonie(j));
+    }
+
+    public void creerVille(Vertex v) throws NoColonieException
+    {
+        if(v.getBatiment() == null)throw new NoColonieException();
+
+        Joueur j = v.getBatiment().getJoueur();
+        v.setBatiment(new Ville(j));
     }
 
     private void initTuiles()
