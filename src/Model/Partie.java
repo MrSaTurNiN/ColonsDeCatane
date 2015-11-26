@@ -1,3 +1,4 @@
+
 package Model;
 
 import java.awt.Color;
@@ -16,9 +17,8 @@ public class Partie {
 
 	public Partie() {
 		listeJoueur = new ArrayList<Joueur>();
-		Joueur j1 = new Joueur("joueur 1", new Color(0, 0, 200));
-		listeJoueur.add(j1);
-		setJoueurActif(j1);
+		
+		
 		deckRessource=new DeckRessource();
 		deckDeveloppement=new DeckDeveloppement();
 	}
@@ -63,5 +63,13 @@ public class Partie {
 
 	public void setJoueurActif(Joueur joueurActif) {
 		this.joueurActif = joueurActif;
+	}
+	
+	public void creerJoueur(String nomJoueur, Color couleurJoueur ){
+		listeJoueur.add(new Joueur(nomJoueur, couleurJoueur));
+		if (joueurActif==null) {
+			setJoueurActif(listeJoueur.get(0));
+		}
+		
 	}
 }
