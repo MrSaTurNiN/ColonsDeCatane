@@ -2,7 +2,9 @@ package Model;
 
 import Exceptions.ColoniePositionException;
 import Exceptions.NoColonieException;
+import Exceptions.RoutePosirionException;
 import Model.Batiments.Colonie;
+import Model.Batiments.Route;
 import Model.Batiments.Ville;
 import Model.Tuile.*;
 
@@ -29,6 +31,13 @@ public class Plateau {
         if (!v.isFreeToBuild()) throw new ColoniePositionException();
 
         v.setBatiment(new Colonie(j));
+    }
+
+    public void creerRoute(Joueur j,Edge e) throws RoutePosirionException
+    {
+        if(!e.isLibreRoute(j))throw new RoutePosirionException();
+
+        e.setRoute(new Route(j));
     }
 
     public void creerVille(Vertex v) throws NoColonieException
