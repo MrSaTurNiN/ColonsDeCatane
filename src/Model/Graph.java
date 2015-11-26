@@ -50,8 +50,8 @@ public class Graph {
 
             edgeA = new Edge(topA,bottomA);
             edgeB = new Edge(topB,bottomB);
-            edgeA.setLeft();
-            edgeB.setLeft();
+            edgeA.setRight();
+            edgeB.setRight();
         }
         for(int i=0;i<4;i++)
         {
@@ -61,8 +61,8 @@ public class Graph {
             bottomB = toDo[43 + i];
             edgeA = new Edge(topA,bottomA);
             edgeB = new Edge(topB,bottomB);
-            edgeA.setLeft();
-            edgeB.setLeft();
+            edgeA.setRight();
+            edgeB.setRight();
         }
         for(int i=0;i<5;i++)
         {
@@ -72,8 +72,8 @@ public class Graph {
             bottomB = toDo[33 + i];
             edgeA = new Edge(topA,bottomA);
             edgeB = new Edge(topB,bottomB);
-            edgeA.setLeft();
-            edgeB.setLeft();
+            edgeA.setRight();
+            edgeB.setRight();
         }
 
 
