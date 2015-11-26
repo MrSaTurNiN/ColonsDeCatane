@@ -2,15 +2,14 @@ package Model;
 
 import Exceptions.ColoniePositionException;
 import Exceptions.NoColonieException;
-import Exceptions.RoutePosirionException;
+import Exceptions.NumberSevenException;
+import Exceptions.RoutePositionException;
 import Model.Batiments.Colonie;
 import Model.Batiments.Route;
 import Model.Batiments.Ville;
 import Model.Tuile.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by jpabegg on 25/11/15.
@@ -33,9 +32,9 @@ public class Plateau {
         v.setBatiment(new Colonie(j));
     }
 
-    public void creerRoute(Joueur j,Edge e) throws RoutePosirionException
+    public void creerRoute(Joueur j,Edge e) throws RoutePositionException
     {
-        if(!e.isLibreRoute(j))throw new RoutePosirionException();
+        if(!e.isLibreRoute(j))throw new RoutePositionException();
 
         e.setRoute(new Route(j));
     }
@@ -47,7 +46,18 @@ public class Plateau {
         Joueur j = v.getBatiment().getJoueur();
         v.setBatiment(new Ville(j));
     }
-
+    /*
+        retourne les tuiles avec le numéro number
+     */
+    public Set<Tuile> setTuileNumber(int number) throws NumberSevenException {
+        if(number == 7)throw new NumberSevenException();
+        Set<Tuile> result = new HashSet<Tuile>();
+        for(int i = 0;i<tuiles.length;i++)
+        {
+            if(tuiles[i].getNumero() == number)result.add(tuiles[i]);
+        }
+        return result;
+    }
     private void initTuiles()
     {
         List<Tuile> toDo = initToDo();
