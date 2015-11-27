@@ -82,17 +82,11 @@ public class Joueur
 		return mainRessource;
 	}
 
-	public void setMainRessource(Map<String,List<Ressource>> mainRessource) {
-		this.mainRessource = mainRessource;
-	}
 
 	public List<Developpement> getMainDeveloppement() {
 		return mainDeveloppement;
 	}
 
-	public void setMainDeveloppement(List<Developpement> mainDeveloppement) {
-		this.mainDeveloppement = mainDeveloppement;
-	}
 
     public List<Colonie> getListeDeColonie() {
         return listeDeColonie;

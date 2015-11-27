@@ -36,7 +36,7 @@ public class Plateau {
     {
         if(!e.isLibreRoute(j))throw new RoutePositionException();
 
-        e.setRoute(new Route(j));
+        e.creerRoute(j);
     }
 
     public void creerVille(Vertex v) throws NoColonieException
@@ -175,6 +175,9 @@ public class Plateau {
         return retour;
     }
 
+    /*
+        retour : les tuiles qui possèdent le Vertex v
+     */
     public Set<Tuile> getTuileFromVertex(Vertex v)
     {
         Set<Tuile> retour = new HashSet<Tuile>();

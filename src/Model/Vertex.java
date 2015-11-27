@@ -26,30 +26,24 @@ public class Vertex {
         this.batiment = batiment;
     }
 
-    public Edge getUpEdge() {
-        return upEdge;
-    }
 
     public void setUpEdge(Edge upEdge) {
         this.upEdge = upEdge;
     }
 
-    public Edge getLeftEdge() {
-        return leftEdge;
-    }
 
     public void setLeftEdge(Edge leftEdge) {
         this.leftEdge = leftEdge;
     }
 
-    public Edge getRightEdge() {
-        return rightEdge;
-    }
 
     public void setRightEdge(Edge rightEdge) {
         this.rightEdge = rightEdge;
     }
 
+    /*
+        retour vrai si ce point est connecté à une route du joueur J
+     */
     public boolean isConnectToRoad(Joueur j)
     {
         boolean left = false;
@@ -73,6 +67,9 @@ public class Vertex {
         return up || left ||right;
     }
 
+    /*
+        retourne vrai si on peut construire une colonie sur ce point
+     */
     public boolean isFreeToBuild()
     {
         boolean left = true;

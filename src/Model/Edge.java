@@ -32,6 +32,9 @@ public class Edge {
         vertexA.setLeftEdge(this);
         vertexB.setLeftEdge(this);
     }
+    /*
+        Retourne si le point opposÃ© Ã  v sur l'arrete ne possÃ¨de pas de colonie
+     */
     public boolean isLibreColonie(Vertex v)
     {
         if(v == vertexA)
@@ -45,14 +48,23 @@ public class Edge {
         /* Il serait mieux de faire une exception */
         return false;
     }
+
+    public void creerRoute(Joueur j)
+    {
+        route = new Route(j);
+    }
+
+    /*
+        retourne si on peut constuire une route pour le joueur J sur cette arrete.
+     */
     public boolean isLibreRoute(Joueur j)
     {
         //Si il y a deja une route la position est invalide
         if(route != null)return false;
-        //Sinon l'edge est connecté à une colonie ou une ville du joueur alors la position est valide
+        //Sinon l'edge est connectï¿½ ï¿½ une colonie ou une ville du joueur alors la position est valide
         if(vertexA.getBatiment() != null && vertexA.getBatiment().getJoueur() == j)return true;
         if(vertexB.getBatiment() != null && vertexB.getBatiment().getJoueur() == j)return true;
-        //Sinon on regarde si les points sont connecté à des arretes possédant une route du joueur
+        //Sinon on regarde si les points sont connectï¿½ ï¿½ des arretes possï¿½dant une route du joueur
         return vertexA.isConnectToRoad(j) || vertexB.isConnectToRoad(j);
     }
 
