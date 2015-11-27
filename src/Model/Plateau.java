@@ -29,7 +29,7 @@ public class Plateau {
     public void creerColonie(Joueur j,Vertex v) throws ColoniePositionException {
         if (!v.isFreeToBuild()) throw new ColoniePositionException();
 
-        v.setBatiment(new Colonie(j));
+        v.nouveauBatiment(j);
     }
 
     public void creerRoute(Joueur j,Edge e) throws RoutePositionException
@@ -44,10 +44,10 @@ public class Plateau {
         if(v.getBatiment() == null)throw new NoColonieException();
 
         Joueur j = v.getBatiment().getJoueur();
-        v.setBatiment(new Ville(j));
+        v.ameliorerBatiment(j);
     }
     /*
-        retourne les tuiles avec le numéro number
+        retourne les tuiles avec le numï¿½ro number
      */
     public Set<Tuile> setTuileNumber(int number) throws NumberSevenException {
         if(number == 7)throw new NumberSevenException();
