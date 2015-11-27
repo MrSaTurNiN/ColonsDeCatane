@@ -1,6 +1,8 @@
 package Model;
 
 import Model.Batiments.Batiment;
+import Model.Batiments.Colonie;
+import Model.Batiments.Ville;
 
 /**
  * Created by Jip on 22/11/2015.
@@ -89,5 +91,13 @@ public class Vertex {
             up = upEdge.isLibreColonie(this);
         }
         return left && right  && up;
+    }
+
+    public void nouveauBatiment(Joueur j) {
+        batiment = new Colonie(j,this);
+    }
+    public void ameliorerBatiment(Joueur j)
+    {
+        batiment = new Ville(j,this);
     }
 }

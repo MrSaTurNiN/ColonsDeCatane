@@ -32,7 +32,7 @@ public class InitJoueurView extends JDialog  {
 		this.mainControl=mainControl;
 		setSize(400, 400);
 		nomJoueur = new JTextField(20);
-		colorJoueur = new JComboBox<>();
+		colorJoueur = new JComboBox<Color>();
 		colorJoueur.addItem(Color.BLUE);
 		colorJoueur.addItem(Color.GREEN);
 		valide = new JButton("Valider");
@@ -56,6 +56,7 @@ public class InitJoueurView extends JDialog  {
 			public Component getListCellRendererComponent(
 					JList<? extends Color> list, Color value, int index,
 					boolean isSelected, boolean cellHasFocus) {
+				Renderer renderer = new Renderer();
 				renderer.color = value;
 
 				renderer.setPreferredSize(new Dimension(50, 20));

@@ -26,29 +26,15 @@ public class Partie {
 	{
 		//TODO récupérer les cartes dans le deck ressource et ajouter le bon nombre de carte dans la main du joueur j
 	}
-	public Des getDes() {
-		return des;
-	}
-
-	public void setDes(Des des) {
-		this.des = des;
-	}
-
 	public DeckRessource getDeckRessource() {
 		return deckRessource;
 	}
 
-	public void setDeckRessource(DeckRessource deckRessource) {
-		this.deckRessource = deckRessource;
-	}
 
 	public DeckDeveloppement getDeckDeveloppement() {
 		return deckDeveloppement;
 	}
 
-	public void setDeckDeveloppement(DeckDeveloppement deckDeveloppement) {
-		this.deckDeveloppement = deckDeveloppement;
-	}
 	public List<Joueur> getListeJoueur(){
 		return listeJoueur;
 	}
@@ -70,6 +56,5 @@ public class Partie {
 		if (joueurActif==null) {
 			setJoueurActif(listeJoueur.get(0));
 		}
-		
 	}
 }

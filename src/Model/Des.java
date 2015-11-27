@@ -10,7 +10,6 @@ public class Des
     private static Random random = new Random();
     public Des()
     {
-    	//A remplir
     }
 
     public int lancerDes()
