@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Batiments.Colonie;
+
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -14,7 +16,7 @@ public class Joueur
     private int pointJoueur = 0;
     private Map<String,List<Ressource>> mainRessource;
     private List<Developpement> mainDeveloppement;
-
+    private List<Colonie> listeDeColonie = new ArrayList<Colonie>();
 
     public Joueur(String nomJoueur, Color couleurJoueur) {
         this.setNomJoueur(nomJoueur);
@@ -91,7 +93,8 @@ public class Joueur
 	public void setMainDeveloppement(List<Developpement> mainDeveloppement) {
 		this.mainDeveloppement = mainDeveloppement;
 	}
-    
 
-
+    public List<Colonie> getListeDeColonie() {
+        return listeDeColonie;
+    }
 }
