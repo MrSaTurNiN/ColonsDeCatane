@@ -35,4 +35,9 @@ public class Tuile {
     {
        sommets.add(v);
     }
+
+    public boolean hasVertex(Vertex v)
+    {
+        return sommets.contains(v);
+    }
 }

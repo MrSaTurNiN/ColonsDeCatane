@@ -174,4 +174,14 @@ public class Plateau {
         retour.add(11);
         return retour;
     }
+
+    public Set<Tuile> getTuileFromVertex(Vertex v)
+    {
+        Set<Tuile> retour = new HashSet<Tuile>();
+        for(int i = 0 ; i<tuiles.length;i++)
+        {
+            if(tuiles[i].hasVertex(v))retour.add(tuiles[i]);
+        }
+        return retour;
+    }
 }
