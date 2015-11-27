@@ -72,4 +72,8 @@ public class Partie {
 		}
 		
 	}
+	
+	public void setOrdreJoueur(){
+		//TODO définir l'ordre dans lequel les joueurs vont jouer
+	}
 }
