@@ -57,4 +57,8 @@ public class Partie {
 			setJoueurActif(listeJoueur.get(0));
 		}
 	}
+	
+	public void setOrdreJoueur(){
+		//TODO définir l'ordre dans lequel les joueurs vont jouer
+	}
 }
