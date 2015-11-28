@@ -36,6 +36,10 @@ public class Tuile {
        sommets.add(v);
     }
 
+    public Set<Vertex> getSommets() {
+        return sommets;
+    }
+
     public boolean hasVertex(Vertex v)
     {
         return sommets.contains(v);
