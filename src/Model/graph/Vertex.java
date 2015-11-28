@@ -1,5 +1,6 @@
-package Model;
+package Model.graph;
 
+import Model.Joueur;
 import Model.Batiments.Batiment;
 import Model.Batiments.Colonie;
 import Model.Batiments.Ville;

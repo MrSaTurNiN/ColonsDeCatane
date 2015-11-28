@@ -1,6 +1,7 @@
 
 package Model;
 
+import Model.graph.Vertex;
 import Model.Tuile.Tuile;
 
 import java.awt.*;
@@ -62,7 +63,7 @@ public class Partie {
 		}
 	}
 	/*
-		Transforme la tuile donnée en paramètre en un Polygon qu'on peut dessiner avec l'objet Graphics
+		Transforme la Tuile donnée en paramètre en un Polygon qu'on peut dessiner avec l'objet Graphics
 	 */
 	public Polygon transformTuile(Tuile t)
 	{

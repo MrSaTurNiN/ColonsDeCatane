@@ -1,12 +1,9 @@
 package Model;
 
-import Exceptions.ColoniePositionException;
-import Exceptions.NoColonieException;
-import Exceptions.NumberSevenException;
-import Exceptions.RoutePositionException;
-import Model.Batiments.Colonie;
-import Model.Batiments.Route;
-import Model.Batiments.Ville;
+import Exceptions.*;
+import Model.graph.Edge;
+import Model.graph.Graph;
+import Model.graph.Vertex;
 import Model.Tuile.*;
 
 import java.util.*;
@@ -18,7 +15,7 @@ public class Plateau {
     private Graph graph;
     private Tuile[] tuiles = new Tuile[19];
 
-    public Plateau()
+    public Plateau () throws RootNullException
     {
         Vertex v = new Vertex();
         graph = new Graph(v);

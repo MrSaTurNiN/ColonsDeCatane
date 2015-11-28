@@ -1,8 +1,7 @@
 package Model.Batiments;
 
-import Model.Batiments.Batiment;
 import Model.Joueur;
-import Model.Vertex;
+import Model.graph.Vertex;
 
 /**
  * Created by jpabegg on 25/11/15.

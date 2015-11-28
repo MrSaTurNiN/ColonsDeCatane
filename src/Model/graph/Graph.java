@@ -1,10 +1,7 @@
-package Model;
+package Model.graph;
 
 import Exceptions.RootNullException;
 import Model.Batiments.Batiment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Jip on 22/11/2015.
@@ -13,9 +10,9 @@ public class Graph {
     Vertex root;
     Vertex[] vertices = new Vertex[54];
 
-    public Graph(Vertex root){
+    public Graph(Vertex root)throws RootNullException{
         this.root = root;
-        if(root == null)root = new Vertex();
+        if(root == null)throw new RootNullException();
         initVerticesAndEdges();
     }
 
@@ -29,7 +26,7 @@ public class Graph {
         initSetTopEges(vertices);
         initSetLeftEdges(vertices);
         initSetRightEdges(vertices);
-
+        initPositionVertices();
     }
 
     private void initSetRightEdges(Vertex[] toDo)
@@ -159,6 +156,78 @@ public class Graph {
         }
     }
 
+
+    /*
+        Initialise la position de l'intégralité des verties.
+     */
+    private void initPositionVertices()
+    {
+        for(int i =0;i<3;i++){
+            Vertex top = vertices[0 + i];
+            Vertex[] tab = {vertices[3 + i],vertices[4 + i],vertices[7 + i],vertices[8 + i],vertices[12 + i]};
+            setXYVertices(top,tab);
+        }
+        for(int i =0;i<4;i++){
+            Vertex top = vertices[7 + i];
+            Vertex[] tab = {vertices[11 + i],vertices[12 + i],vertices[16 + i],vertices[17 + i],vertices[22 + i]};
+            setXYVertices(top,tab);
+        }
+        for(int i =0;i<5;i++){
+            Vertex top = vertices[16 + i];
+            Vertex[] tab = {vertices[21 + i],vertices[22 + i],vertices[27+ i],vertices[28 + i],vertices[33 + i]};
+            setXYVertices(top, tab);
+        }
+        for(int i =0;i<4;i++){
+            Vertex top = vertices[28 + i];
+            Vertex[] tab = {vertices[33 + i],vertices[34 + i],vertices[38+ i],vertices[39 + i],vertices[43 + i]};
+            setXYVertices(top, tab);
+        }
+        for(int i =0;i<3;i++){
+            Vertex top = vertices[39 + i];
+            Vertex[] tab = {vertices[43 + i],vertices[44 + i],vertices[47+ i],vertices[48 + i],vertices[51 + i]};
+            setXYVertices(top, tab);
+        }
+    }
+    /*
+        Initialise la position des Vertex du tableau à partir de la position de top.
+        Attention la position des vertex dans le tableau a une importance.
+        Position:
+            top
+        0           1
+        2           3
+            4
+     */
+    private void setXYVertices(Vertex top,Vertex[] toDo) {
+        int xO = top.getX();
+        int yO = top.getY();
+        for(int i=0;i<toDo.length;i++) {
+            Vertex v = toDo[i];
+            switch (i) {
+                case 0:
+                    v.setX(xO - 30);
+                    v.setY(yO + 20);
+                    break;
+                case 1:
+                    v.setX(xO + 30);
+                    v.setY(yO + 20);
+                    break;
+                case 2:
+                    v.setX(xO - 30);
+                    v.setY(yO + 50);
+                    break;
+                case 3:
+                    v.setX(xO + 30);
+                    v.setY(yO + 50);
+                    break;
+                case 4:
+                    v.setX(xO);
+                    v.setY(yO + 70);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
     public Vertex getVertexIndex(int index)
     {
         return vertices[index];

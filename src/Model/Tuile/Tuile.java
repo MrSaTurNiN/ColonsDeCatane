@@ -1,6 +1,6 @@
 package Model.Tuile;
 
-import Model.Vertex;
+import Model.graph.Vertex;
 import Model.Voleur;
 
 import java.util.HashSet;
