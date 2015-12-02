@@ -1,6 +1,7 @@
 
 package Model;
 
+import Exceptions.RootNullException;
 import Model.graph.Vertex;
 import Model.Tuile.Tuile;
 
@@ -19,11 +20,21 @@ public class Partie {
 	private DeckRessource deckRessource;
 	private DeckDeveloppement deckDeveloppement;
 	private Joueur joueurActif;
+	private Plateau plateau;
 
 	public Partie() {
 		listeJoueur = new ArrayList<Joueur>();
-		
-		
+		Vertex racine = new Vertex();
+		racine.setX(200);
+		racine.setY(200);
+
+		try {
+			plateau = new Plateau(racine);
+		} catch (RootNullException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+
 		deckRessource=new DeckRessource();
 		deckDeveloppement=new DeckDeveloppement();
 	}

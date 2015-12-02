@@ -15,9 +15,8 @@ public class Plateau {
     private Graph graph;
     private Tuile[] tuiles = new Tuile[19];
 
-    public Plateau () throws RootNullException
+    public Plateau (Vertex v) throws RootNullException
     {
-        Vertex v = new Vertex();
         graph = new Graph(v);
         initTuiles();
         initVerticesTuiles();
@@ -55,6 +54,11 @@ public class Plateau {
         }
         return result;
     }
+
+    public Tuile[] getTuiles() {
+        return tuiles;
+    }
+
     private void initTuiles()
     {
         List<Tuile> toDo = initToDo();
