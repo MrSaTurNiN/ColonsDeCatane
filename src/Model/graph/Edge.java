@@ -3,10 +3,13 @@ package Model.graph;
 import Model.Joueur;
 import Model.Batiments.Route;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * Created by Jip on 22/11/2015.
  */
-public class Edge {
+public class Edge{
     Vertex vertexA;
     Vertex vertexB;
     Route route = null;
@@ -79,5 +82,13 @@ public class Edge {
     public void setRight(){
         vertexA.setRightEdge(this);
         vertexB.setRightEdge(this);
+    }
+
+    public Vertex getVertexA() {
+        return vertexA;
+    }
+
+    public Vertex getVertexB() {
+        return vertexB;
     }
 }

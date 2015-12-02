@@ -53,39 +53,31 @@ public class PanelGame extends JPanel implements ViewConstants {
 		Tuile[] tuiles = plat.getTuiles();
 
 		int index = tuiles.length;
-
+		//On déssine les Tuile
 		for (int i =0; i < index; i++)
 		{
 			g2.setColor(getColorTuile(tuiles[i]));
 			g2.fillPolygon(transformTuile(tuiles[i]));
+			g2.setColor(Color.BLACK);
+			Vertex v = tuiles[i].getSommets().get(0);
+			if(!(tuiles[i] instanceof Desert))g2.drawString(tuiles[i].getNumero()+"",v.getX()-10,v.getY()+40);
+			if (tuiles[i].getVoleur() != null)
+			{
+				g2.setColor(Color.RED);
+				g2.drawString("Voleur",v.getX()-5,v.getY()+60);
+			}
 		}
-		/*Vertex[] vertices = partie.getPlateau().getGraph().getVertices();
-		for(int i =0;i<vertices.length;i++)
-		{
-			Vertex a = vertices[i];
-			System.out.println("Vertex "+i+" X="+a.getX()+"  Y="+a.getY());
-			g2.drawOval(vertices[i].getX(),vertices[i].getY(),1,1);
-			Edge e;
-			Vertex autre;
-			e = vertices[i].getLeftEdge();
-			if(e != null)
-			{
-				autre = e.getOther(vertices[i]);
-				g2.drawLine(a.getX(),a.getY(),autre.getX(),autre.getY());
+		//On déssine les Edges:
+		List<Edge> edges = plat.getGraph().getEdges();
+		for(Edge e : edges){
+			if(e.getRoute() == null) {
+				g2.setColor(Color.BLACK);
 			}
-			e = vertices[i].getRightEdge();
-			if(e != null)
-			{
-				autre = e.getOther(vertices[i]);
-				g2.drawLine(a.getX(),a.getY(),autre.getX(),autre.getY());
+			else{
+				g2.setColor(e.getRoute().getJoueur().getCouleurJoueur());
 			}
-			e = vertices[i].getUpEdge();
-			if(e != null)
-			{
-				autre = e.getOther(vertices[i]);
-				g2.drawLine(a.getX(),a.getY(),autre.getX(),autre.getY());
-			}
-		}*/
+			g2.drawLine(e.getVertexA().getX(), e.getVertexA().getY(), e.getVertexB().getX(), e.getVertexB().getY());
+		}
 
 	}
 

@@ -3,12 +3,16 @@ package Model.graph;
 import Exceptions.RootNullException;
 import Model.Batiments.Batiment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Jip on 22/11/2015.
  */
 public class Graph {
     Vertex root;
     Vertex[] vertices = new Vertex[54];
+    List<Edge> edges = new ArrayList<Edge>();
 
     public Graph(Vertex root)throws RootNullException{
         this.root = root;
@@ -48,6 +52,8 @@ public class Graph {
 
             edgeA = new Edge(topA,bottomA);
             edgeB = new Edge(topB,bottomB);
+            edges.add(edgeA);
+            edges.add(edgeB);
             edgeA.setRight();
             edgeB.setRight();
         }
@@ -59,6 +65,8 @@ public class Graph {
             bottomB = toDo[43 + i];
             edgeA = new Edge(topA,bottomA);
             edgeB = new Edge(topB,bottomB);
+            edges.add(edgeA);
+            edges.add(edgeB);
             edgeA.setRight();
             edgeB.setRight();
         }
@@ -70,6 +78,8 @@ public class Graph {
             bottomB = toDo[33 + i];
             edgeA = new Edge(topA,bottomA);
             edgeB = new Edge(topB,bottomB);
+            edges.add(edgeA);
+            edges.add(edgeB);
             edgeA.setRight();
             edgeB.setRight();
         }
@@ -95,6 +105,8 @@ public class Graph {
 
             edgeA = new Edge(topA,bottomA);
             edgeB = new Edge(topB,bottomB);
+            edges.add(edgeA);
+            edges.add(edgeB);
             edgeA.setLeft();
             edgeB.setLeft();
         }
@@ -106,6 +118,8 @@ public class Graph {
             bottomB = toDo[43 + i];
             edgeA = new Edge(topA,bottomA);
             edgeB = new Edge(topB,bottomB);
+            edges.add(edgeA);
+            edges.add(edgeB);
             edgeA.setLeft();
             edgeB.setLeft();
         }
@@ -117,6 +131,8 @@ public class Graph {
             bottomB = toDo[33 + i];
             edgeA = new Edge(topA,bottomA);
             edgeB = new Edge(topB,bottomB);
+            edges.add(edgeA);
+            edges.add(edgeB);
             edgeA.setLeft();
             edgeB.setLeft();
         }
@@ -134,6 +150,8 @@ public class Graph {
 
             Edge edgeA = new Edge(topA,bottomA);
             Edge edgeB = new Edge(topB,bottomB);
+            edges.add(edgeA);
+            edges.add(edgeB);
             edgeA.setTop();
             edgeB.setTop();
         }
@@ -145,6 +163,8 @@ public class Graph {
             Vertex bottomB = toDo[38 + i];
             Edge edgeA = new Edge(topA,bottomA);
             Edge edgeB = new Edge(topB,bottomB);
+            edges.add(edgeA);
+            edges.add(edgeB);
             edgeA.setTop();
             edgeB.setTop();
         }
@@ -153,6 +173,7 @@ public class Graph {
             Vertex topA = toDo[21+i];
             Vertex bottomA = toDo[27+i];
             Edge edgeA = new Edge(topA,bottomA);
+            edges.add(edgeA);
             edgeA.setTop();
         }
     }
@@ -244,6 +265,10 @@ public class Graph {
     public Vertex getVertexIndex(int index)
     {
         return vertices[index];
+    }
+
+    public List<Edge> getEdges() {
+        return edges;
     }
 
     public void addBatiment(Batiment batiment, Vertex vertex)
