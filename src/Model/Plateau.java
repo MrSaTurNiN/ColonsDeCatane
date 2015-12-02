@@ -67,7 +67,15 @@ public class Plateau {
         int i = 0;
         while(!toDo.isEmpty())
         {
-            Tuile t = toDo.remove(random.nextInt(toDo.size()));
+            Tuile t;
+            if(toDo.size() == 1){
+                t = toDo.remove(0);
+            }
+            else
+            {
+                t = toDo.remove(random.nextInt(toDo.size()));
+            }
+
             int nombre;
             if(t instanceof Desert)
             {
@@ -82,6 +90,7 @@ public class Plateau {
                 i++;
             }
         }
+        System.out.println(toDo.size());
     }
     private void initVerticesTuiles()
     {
@@ -125,7 +134,7 @@ public class Plateau {
         }
         for(int i=0;i<5;i++)
         {
-            tuileA = tuiles[3 + i];
+            tuileA = tuiles[7 + i];
             tuileA.addSommet(graph.getVertexIndex(16 + i));
             tuileA.addSommet(graph.getVertexIndex(21 + i));
             tuileA.addSommet(graph.getVertexIndex(22 + i));
@@ -133,6 +142,7 @@ public class Plateau {
             tuileA.addSommet(graph.getVertexIndex(28 + i));
             tuileA.addSommet(graph.getVertexIndex(33 + i));
         }
+
     }
 
     private List<Tuile> initToDo()
@@ -187,5 +197,9 @@ public class Plateau {
             if(tuiles[i].hasVertex(v))retour.add(tuiles[i]);
         }
         return retour;
+    }
+
+    public Graph getGraph() {
+        return graph;
     }
 }

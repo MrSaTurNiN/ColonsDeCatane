@@ -14,6 +14,7 @@ public class Graph {
         this.root = root;
         if(root == null)throw new RootNullException();
         initVerticesAndEdges();
+
     }
 
     public void initVerticesAndEdges()
@@ -162,6 +163,13 @@ public class Graph {
      */
     private void initPositionVertices()
     {
+        for(int i=1;i<3;i++)
+        {
+            Vertex v = vertices[i];
+            v.setX(root.getX()+60*i);
+            v.setY(root.getY());
+        }
+
         for(int i =0;i<3;i++){
             Vertex top = vertices[0 + i];
             Vertex[] tab = {vertices[3 + i],vertices[4 + i],vertices[7 + i],vertices[8 + i],vertices[12 + i]};
@@ -228,6 +236,11 @@ public class Graph {
             }
         }
     }
+
+    public Vertex[] getVertices() {
+        return vertices;
+    }
+
     public Vertex getVertexIndex(int index)
     {
         return vertices[index];

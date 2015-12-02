@@ -53,10 +53,16 @@ public class PanelGame extends JPanel implements ViewConstants {
 
 		int index = tuiles.length;
 
-		for (int i =0; i < index; i++)
+		/*for (int i =0; i < index; i++)
 		{
 			g2.setColor(getColorTuile(tuiles[i]));
 			g2.drawPolygon(transformTuile(tuiles[i]));
+		}*/
+		Vertex[] vertices = partie.getPlateau().getGraph().getVertices();
+		for(int i =0;i<vertices.length;i++)
+		{
+			System.out.println("Vertex "+i+" X="+vertices[i].getX()+"  Y="+vertices[i].getY());
+			g2.drawOval(vertices[i].getX(),vertices[i].getY(),1,1);
 		}
 
 	}

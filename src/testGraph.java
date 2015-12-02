@@ -12,8 +12,12 @@ public class testGraph {
         v.setY(0);
         try {
             Graph g = new Graph(v);
-            v =g.getVertexIndex(34);
-            if(v.getY() == 170)System.out.println("Hello");
+            Vertex[] vertices = g.getVertices();
+            for(int i =0;i<vertices.length;i++)
+            {
+                System.out.println("Vertex "+i+" X="+vertices[i].getX()+"  Y="+vertices[i].getY());
+            }
+
         } catch (RootNullException e) {
             e.printStackTrace();
         }
