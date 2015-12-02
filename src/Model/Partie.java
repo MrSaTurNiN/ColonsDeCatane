@@ -25,8 +25,8 @@ public class Partie {
 	public Partie() {
 		listeJoueur = new ArrayList<Joueur>();
 		Vertex racine = new Vertex();
-		racine.setX(200);
-		racine.setY(200);
+		racine.setX(300);
+		racine.setY(100);
 
 		try {
 			plateau = new Plateau(racine);
@@ -46,6 +46,9 @@ public class Partie {
 		return deckRessource;
 	}
 
+	public Plateau getPlateau() {
+		return plateau;
+	}
 
 	public DeckDeveloppement getDeckDeveloppement() {
 		return deckDeveloppement;
@@ -73,25 +76,7 @@ public class Partie {
 			setJoueurActif(listeJoueur.get(0));
 		}
 	}
-	/*
-		Transforme la Tuile donnée en paramètre en un Polygon qu'on peut dessiner avec l'objet Graphics
-	 */
-	public Polygon transformTuile(Tuile t)
-	{
-		Set<Vertex> sommets = t.getSommets();
-		int[] x = new int[sommets.size()];
-		int[] y = new int[sommets.size()];
-		Iterator<Vertex> iterator = sommets.iterator();
-		int i = 0;
-		while(iterator.hasNext())
-		{
-			Vertex v = iterator.next();
-			x[i] = v.getX();
-			y[i] = v.getY();
-			i++;
-		}
-		return new Polygon(x,y,x.length);
-	}
+
 
 	public void setOrdreJoueur(){
 		//TODO définir l'ordre dans lequel les joueurs vont jouer

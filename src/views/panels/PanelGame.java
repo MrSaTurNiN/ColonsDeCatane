@@ -1,15 +1,22 @@
 package views.panels;
 
+
+
+import Model.graph.Vertex;
 import views.ViewConstants;
 import java.awt.*;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.swing.*;
 
 import Model.Developpement;
 import Model.Partie;
 import Model.Ressource;
+import Model.Plateau;
+import Model.Tuile.*;
 
 public class PanelGame extends JPanel implements ViewConstants {
 	public Color seaColor;
@@ -40,6 +47,17 @@ public class PanelGame extends JPanel implements ViewConstants {
 		g2.fillRect(MAP_X, MAP_Y, MAP_WIDTH, MAP_HEIGHT);
 		g2.setColor(BLACK);
 		g2.drawRect(MAP_X, MAP_Y, MAP_WIDTH, MAP_HEIGHT);
+
+		Plateau plat = partie.getPlateau();
+		Tuile[] tuiles = plat.getTuiles();
+
+		int index = tuiles.length;
+
+		for (int i =0; i < index; i++)
+		{
+			g2.setColor(getColorTuile(tuiles[i]));
+			g2.drawPolygon(transformTuile(tuiles[i]));
+		}
 
 	}
 
@@ -95,4 +113,36 @@ public class PanelGame extends JPanel implements ViewConstants {
 		g2.drawRect(JOUEUR_INFO_X, JOUEUR_INFO_Y, JOUEUR_INFO_WIDTH, JOUEUR_INFO_HEIGHT);
 	}
 
+	/*
+		Transforme la Tuile donnée en paramètre en un Polygon qu'on peut dessiner avec l'objet Graphics
+	 */
+	public Polygon transformTuile(Tuile t)
+	{
+		Set<Vertex> sommets = t.getSommets();
+		int[] x = new int[sommets.size()];
+		int[] y = new int[sommets.size()];
+		Iterator<Vertex> iterator = sommets.iterator();
+		int i = 0;
+		while(iterator.hasNext())
+		{
+			Vertex v = iterator.next();
+			x[i] = v.getX();
+			y[i] = v.getY();
+			i++;
+		}
+		return new Polygon(x,y,x.length);
+	}
+
+	private Color getColorTuile(Tuile t){
+
+		if (t instanceof Colline) return Color.green;
+		if (t instanceof Desert) return Color.YELLOW;
+		if (t instanceof Foret) return Color.darkGray;
+		if (t instanceof Montagne) return Color.gray;
+		if (t instanceof Paturage) return Color.ORANGE;
+		if (t instanceof TerreCultivable) return Color.WHITE;
+
+		return Color.black;
+
+	}
 }
