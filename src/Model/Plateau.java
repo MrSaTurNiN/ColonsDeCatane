@@ -102,17 +102,20 @@ public class Plateau {
             tuileB = tuiles[16 + i];
             tuileA.addSommet(graph.getVertexIndex(i));
             tuileA.addSommet(graph.getVertexIndex(3 + i));
-            tuileA.addSommet(graph.getVertexIndex(4 + i));
             tuileA.addSommet(graph.getVertexIndex(7 + i));
-            tuileA.addSommet(graph.getVertexIndex(8 + i));
             tuileA.addSommet(graph.getVertexIndex(12 + i));
+            tuileA.addSommet(graph.getVertexIndex(8 + i));
+            tuileA.addSommet(graph.getVertexIndex(4 + i));
+
 
             tuileB.addSommet(graph.getVertexIndex(39 + i));
             tuileB.addSommet(graph.getVertexIndex(43 + i));
-            tuileB.addSommet(graph.getVertexIndex(44 + i));
             tuileB.addSommet(graph.getVertexIndex(47 + i));
-            tuileB.addSommet(graph.getVertexIndex(48 + i));
             tuileB.addSommet(graph.getVertexIndex(51 + i));
+            tuileB.addSommet(graph.getVertexIndex(48 + i));
+            tuileB.addSommet(graph.getVertexIndex(44 + i));
+
+
         }
         for(int i=0;i<4;i++)
         {
@@ -120,27 +123,27 @@ public class Plateau {
             tuileB = tuiles[12 + i];
             tuileA.addSommet(graph.getVertexIndex(7 + i));
             tuileA.addSommet(graph.getVertexIndex(11 + i));
-            tuileA.addSommet(graph.getVertexIndex(12 + i));
             tuileA.addSommet(graph.getVertexIndex(16 + i));
-            tuileA.addSommet(graph.getVertexIndex(17 + i));
             tuileA.addSommet(graph.getVertexIndex(22 + i));
+            tuileA.addSommet(graph.getVertexIndex(17 + i));
+            tuileA.addSommet(graph.getVertexIndex(12 + i));
 
             tuileB.addSommet(graph.getVertexIndex(28 + i));
             tuileB.addSommet(graph.getVertexIndex(33 + i));
-            tuileB.addSommet(graph.getVertexIndex(34 + i));
             tuileB.addSommet(graph.getVertexIndex(38 + i));
-            tuileB.addSommet(graph.getVertexIndex(39 + i));
             tuileB.addSommet(graph.getVertexIndex(43 + i));
+            tuileB.addSommet(graph.getVertexIndex(39 + i));
+            tuileB.addSommet(graph.getVertexIndex(34 + i));
         }
         for(int i=0;i<5;i++)
         {
             tuileA = tuiles[7 + i];
             tuileA.addSommet(graph.getVertexIndex(16 + i));
             tuileA.addSommet(graph.getVertexIndex(21 + i));
-            tuileA.addSommet(graph.getVertexIndex(22 + i));
             tuileA.addSommet(graph.getVertexIndex(27 + i));
-            tuileA.addSommet(graph.getVertexIndex(28 + i));
             tuileA.addSommet(graph.getVertexIndex(33 + i));
+            tuileA.addSommet(graph.getVertexIndex(28 + i));
+            tuileA.addSommet(graph.getVertexIndex(22 + i));
         }
 
     }

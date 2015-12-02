@@ -3,7 +3,9 @@ package Model.Tuile;
 import Model.graph.Vertex;
 import Model.Voleur;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -11,7 +13,7 @@ import java.util.Set;
  */
 public class Tuile {
     protected Voleur voleur = null;
-    protected Set<Vertex> sommets = new HashSet<Vertex>();
+    protected List<Vertex> sommets = new ArrayList<Vertex>();
     protected int numero;
 
     public Voleur getVoleur() {
@@ -36,7 +38,7 @@ public class Tuile {
        sommets.add(v);
     }
 
-    public Set<Vertex> getSommets() {
+    public List<Vertex> getSommets() {
         return sommets;
     }
 

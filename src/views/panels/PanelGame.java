@@ -54,12 +54,12 @@ public class PanelGame extends JPanel implements ViewConstants {
 
 		int index = tuiles.length;
 
-		/*for (int i =0; i < index; i++)
+		for (int i =0; i < index; i++)
 		{
 			g2.setColor(getColorTuile(tuiles[i]));
-			g2.drawPolygon(transformTuile(tuiles[i]));
-		}*/
-		Vertex[] vertices = partie.getPlateau().getGraph().getVertices();
+			g2.fillPolygon(transformTuile(tuiles[i]));
+		}
+		/*Vertex[] vertices = partie.getPlateau().getGraph().getVertices();
 		for(int i =0;i<vertices.length;i++)
 		{
 			Vertex a = vertices[i];
@@ -85,7 +85,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 				autre = e.getOther(vertices[i]);
 				g2.drawLine(a.getX(),a.getY(),autre.getX(),autre.getY());
 			}
-		}
+		}*/
 
 	}
 
@@ -146,14 +146,11 @@ public class PanelGame extends JPanel implements ViewConstants {
 	 */
 	public Polygon transformTuile(Tuile t)
 	{
-		Set<Vertex> sommets = t.getSommets();
+		List<Vertex> sommets = t.getSommets();
 		int[] x = new int[sommets.size()];
 		int[] y = new int[sommets.size()];
-		Iterator<Vertex> iterator = sommets.iterator();
 		int i = 0;
-		while(iterator.hasNext())
-		{
-			Vertex v = iterator.next();
+		for(Vertex v:sommets) {
 			x[i] = v.getX();
 			y[i] = v.getY();
 			i++;
