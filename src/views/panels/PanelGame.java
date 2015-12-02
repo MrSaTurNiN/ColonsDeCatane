@@ -2,6 +2,7 @@ package views.panels;
 
 
 
+import Model.graph.Edge;
 import Model.graph.Vertex;
 import views.ViewConstants;
 import java.awt.*;
@@ -61,8 +62,29 @@ public class PanelGame extends JPanel implements ViewConstants {
 		Vertex[] vertices = partie.getPlateau().getGraph().getVertices();
 		for(int i =0;i<vertices.length;i++)
 		{
-			System.out.println("Vertex "+i+" X="+vertices[i].getX()+"  Y="+vertices[i].getY());
+			Vertex a = vertices[i];
+			System.out.println("Vertex "+i+" X="+a.getX()+"  Y="+a.getY());
 			g2.drawOval(vertices[i].getX(),vertices[i].getY(),1,1);
+			Edge e;
+			Vertex autre;
+			e = vertices[i].getLeftEdge();
+			if(e != null)
+			{
+				autre = e.getOther(vertices[i]);
+				g2.drawLine(a.getX(),a.getY(),autre.getX(),autre.getY());
+			}
+			e = vertices[i].getRightEdge();
+			if(e != null)
+			{
+				autre = e.getOther(vertices[i]);
+				g2.drawLine(a.getX(),a.getY(),autre.getX(),autre.getY());
+			}
+			e = vertices[i].getUpEdge();
+			if(e != null)
+			{
+				autre = e.getOther(vertices[i]);
+				g2.drawLine(a.getX(),a.getY(),autre.getX(),autre.getY());
+			}
 		}
 
 	}

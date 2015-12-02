@@ -108,6 +108,18 @@ public class Vertex {
         this.x = x;
     }
 
+    public Edge getUpEdge() {
+        return upEdge;
+    }
+
+    public Edge getLeftEdge() {
+        return leftEdge;
+    }
+
+    public Edge getRightEdge() {
+        return rightEdge;
+    }
+
     public void nouveauBatiment(Joueur j) {
         batiment = new Colonie(j,this);
     }

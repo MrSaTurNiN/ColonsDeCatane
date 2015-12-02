@@ -50,6 +50,13 @@ public class Edge {
         return false;
     }
 
+    public Vertex getOther(Vertex v)
+    {
+        if(v == vertexA)return vertexB;
+        if(v == vertexB)return  vertexA;
+        return null;
+    }
+
     public void creerRoute(Joueur j)
     {
         route = new Route(j);
