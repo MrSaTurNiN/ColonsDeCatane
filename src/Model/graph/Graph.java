@@ -6,10 +6,16 @@ import Model.Batiments.Batiment;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 /**
  * Created by Jip on 22/11/2015.
  */
+
 public class Graph {
+    static final int DECLALAGE_COTE = 60;
+    static final int PETIT_DECALAGE = 40;
+    static final int GRAND_DECALAGE = 100;
     Vertex root;
     Vertex[] vertices = new Vertex[54];
     List<Edge> edges = new ArrayList<Edge>();
@@ -187,7 +193,7 @@ public class Graph {
         for(int i=1;i<3;i++)
         {
             Vertex v = vertices[i];
-            v.setX(root.getX()+60*i);
+            v.setX(root.getX()+2*DECLALAGE_COTE*i);
             v.setY(root.getY());
         }
 
@@ -233,24 +239,24 @@ public class Graph {
             Vertex v = toDo[i];
             switch (i) {
                 case 0:
-                    v.setX(xO - 30);
-                    v.setY(yO + 20);
+                    v.setX(xO - DECLALAGE_COTE);
+                    v.setY(yO + PETIT_DECALAGE);
                     break;
                 case 1:
-                    v.setX(xO + 30);
-                    v.setY(yO + 20);
+                    v.setX(xO + DECLALAGE_COTE);
+                    v.setY(yO + PETIT_DECALAGE);
                     break;
                 case 2:
-                    v.setX(xO - 30);
-                    v.setY(yO + 50);
+                    v.setX(xO - DECLALAGE_COTE);
+                    v.setY(yO + GRAND_DECALAGE);
                     break;
                 case 3:
-                    v.setX(xO + 30);
-                    v.setY(yO + 50);
+                    v.setX(xO + DECLALAGE_COTE);
+                    v.setY(yO + GRAND_DECALAGE);
                     break;
                 case 4:
                     v.setX(xO);
-                    v.setY(yO + 70);
+                    v.setY(yO +PETIT_DECALAGE + GRAND_DECALAGE);
                     break;
                 default:
                     break;
