@@ -10,4 +10,8 @@ public class Desert extends Tuile{
     {
         voleur = new Voleur();
     }
+
+    public String getName(){
+        return "Desert";
+    }
 }

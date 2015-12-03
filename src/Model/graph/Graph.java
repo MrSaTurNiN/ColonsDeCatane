@@ -7,8 +7,6 @@ import views.ViewConstants;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 /**
  * Created by Jip on 22/11/2015.
  */
@@ -25,7 +23,6 @@ public class Graph implements ViewConstants{
         this.root = root;
         if(root == null)throw new RootNullException();
         initVerticesAndEdges();
-
     }
 
     public void initVerticesAndEdges()
@@ -35,7 +32,7 @@ public class Graph implements ViewConstants{
         for(int i = 1;i<54;i++) {
            vertices[i] = new Vertex();
         }
-        initSetTopEges(vertices);
+        initSetTopEdges(vertices);
         initSetLeftEdges(vertices);
         initSetRightEdges(vertices);
         initPositionVertices();
@@ -146,7 +143,7 @@ public class Graph implements ViewConstants{
     }
 
 
-    private void initSetTopEges(Vertex[] toDo)
+    private void initSetTopEdges(Vertex[] toDo)
     {
         for(int i=0;i<4;i++)
         {

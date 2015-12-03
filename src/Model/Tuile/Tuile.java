@@ -46,4 +46,9 @@ public class Tuile {
     {
         return sommets.contains(v);
     }
+
+    public String getName()
+    {
+        return null;
+    }
 }

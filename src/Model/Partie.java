@@ -2,6 +2,8 @@
 package Model;
 
 import Exceptions.RootNullException;
+import Model.Batiments.Colonie;
+import Model.Tuile.Colline;
 import Model.graph.Vertex;
 import Model.Tuile.Tuile;
 
@@ -40,8 +42,29 @@ public class Partie {
 	}
 	public void initMainJoueur(Joueur j)
 	{
-		//TODO récupérer les cartes dans le deck ressource et ajouter le bon nombre de carte dans la main du joueur j
-	}
+		List<Colonie> listDeColonie =  j.getListeDeColonie();
+        Colonie c = listDeColonie.get(0);
+        Set<Tuile> setTuile = plateau.getTuileFromVertex(c.getPosition());
+        for(Tuile t : setTuile){
+
+            if(t.getName() == "Colline") {
+                j.obtenirCarte(Ressource.Argile);
+            }
+            else if (t.getName() == "Paturage") {
+                j.obtenirCarte(Ressource.Laine);
+            }
+            else if (t.getName() == "Montagne") {
+                j.obtenirCarte(Ressource.Minerai);
+            }
+            else if (t.getName() == "TerreCultivable") {
+                j.obtenirCarte(Ressource.Ble);
+            }
+            else if (t.getName() == "Foret") {
+                j.obtenirCarte(Ressource.Bois);
+            }
+        }
+    }
+
 	public DeckRessource getDeckRessource() {
 		return deckRessource;
 	}
@@ -76,7 +99,6 @@ public class Partie {
 			setJoueurActif(listeJoueur.get(0));
 		}
 	}
-
 
 	public void setOrdreJoueur(){
 		//TODO définir l'ordre dans lequel les joueurs vont jouer
