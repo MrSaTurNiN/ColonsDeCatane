@@ -6,10 +6,8 @@ import Model.graph.Edge;
 import Model.graph.Vertex;
 import views.ViewConstants;
 import java.awt.*;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import javax.swing.*;
 
@@ -24,10 +22,8 @@ public class PanelGame extends JPanel implements ViewConstants {
 	public Color deckRessourceColor;
 	private Partie partie;
 	private Graphics2D g2;
-
 	public PanelGame(Partie partie) {
 		this.partie = partie;
-		
 
 	}
 
@@ -77,6 +73,14 @@ public class PanelGame extends JPanel implements ViewConstants {
 				g2.setColor(e.getRoute().getJoueur().getCouleurJoueur());
 			}
 			g2.drawLine(e.getVertexA().getX(), e.getVertexA().getY(), e.getVertexB().getX(), e.getVertexB().getY());
+		}
+		//On déssine les points
+		Vertex[] vertices = plat.getGraph().getVertices();
+		for(int i =0;i<vertices.length;i++){
+			Vertex v = vertices[i];
+			if(v.getBatiment() == null)g2.setColor(Color.BLACK);
+			else g2.setColor(v.getBatiment().getJoueur().getCouleurJoueur());
+			g2.fillOval(v.getX()-5,v.getY()-5,10,10);
 		}
 
 	}
