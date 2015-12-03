@@ -4,6 +4,7 @@ package views.panels;
 
 import Model.graph.Edge;
 import Model.graph.Vertex;
+import controllers.ClickListener;
 import views.ViewConstants;
 import java.awt.*;
 import java.util.List;
@@ -24,7 +25,6 @@ public class PanelGame extends JPanel implements ViewConstants {
 	private Graphics2D g2;
 	public PanelGame(Partie partie) {
 		this.partie = partie;
-
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 			Vertex v = vertices[i];
 			if(v.getBatiment() == null)g2.setColor(Color.BLACK);
 			else g2.setColor(v.getBatiment().getJoueur().getCouleurJoueur());
-			g2.fillOval(v.getX()-5,v.getY()-5,10,10);
+			g2.fillOval(v.getX()-TAILLEVERTEX/2,v.getY()-TAILLEVERTEX/2,TAILLEVERTEX,TAILLEVERTEX);
 		}
 
 	}

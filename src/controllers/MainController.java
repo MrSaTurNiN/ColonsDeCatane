@@ -16,12 +16,10 @@ public class MainController {
 	public MainController(Partie partie){
 		this.partie = partie;
 		initJoueur();
-		
 		currentWindow = new MainWindow(this.partie, this);
 		currentWindow.setVisible(true);
-	
-	
-		
+		currentWindow.addMouseListener(new ClickListener(this.partie));
+
 	}
 	
 	public void creerJoueur(String nomJoueur, Color colorJoueur){

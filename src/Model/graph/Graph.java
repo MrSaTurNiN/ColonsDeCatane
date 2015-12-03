@@ -2,6 +2,7 @@ package Model.graph;
 
 import Exceptions.RootNullException;
 import Model.Batiments.Batiment;
+import views.ViewConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * Created by Jip on 22/11/2015.
  */
 
-public class Graph {
+public class Graph implements ViewConstants{
     static final int DECLALAGE_COTE = 60;
     static final int PETIT_DECALAGE = 40;
     static final int GRAND_DECALAGE = 100;
@@ -285,5 +286,19 @@ public class Graph {
     public void addBatiment(Batiment batiment,int index)
     {
         vertices[index].setBatiment(batiment);
+    }
+
+    public Vertex converstionXY(int x,int y){
+        //TODO a corriger
+        for(int i = 0;i<vertices.length;i++){
+            Vertex v = vertices[i];
+            int decalage = TAILLEVERTEX ;
+            if( x<=v.getX()+decalage && x >=v.getX()-decalage){
+                if(y <=v.getY()+decalage && y>=v.getY()-decalage){
+                    return v;
+                }
+            }
+        }
+        return null;
     }
 }

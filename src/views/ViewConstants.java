@@ -19,5 +19,6 @@ final int MAP_WIDTH=700;
 final int MAP_HEIGHT=700;
 final Color BLACK = new Color(0,0,0);
 final Color SEA = new Color(0, 0, 255);
+	final int TAILLEVERTEX = 10;
 
 }
