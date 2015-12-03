@@ -7,11 +7,10 @@ import Model.Tuile.Colline;
 import Model.graph.Vertex;
 import Model.Tuile.Tuile;
 
+import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by jpabegg on 13/11/15.
@@ -101,6 +100,14 @@ public class Partie {
 	}
 
 	public void setOrdreJoueur(){
-		//TODO définir l'ordre dans lequel les joueurs vont jouer
+		List<Joueur> joueurtmp=new ArrayList<Joueur>();
+		Random r=new Random();
+		for (int i = 0; i <listeJoueur.size(); i++) {
+			joueurtmp.add(listeJoueur.get(r.nextInt()*listeJoueur.size()));
+		}
+		listeJoueur=joueurtmp;
+	}
+	public void initFicheConstruct(Joueur joueur){
+		//TODO initialiser une fiche de construction pour chaque joueur
 	}
 }

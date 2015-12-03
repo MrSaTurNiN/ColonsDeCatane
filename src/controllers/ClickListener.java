@@ -22,7 +22,7 @@ public class ClickListener implements MouseListener{
         int X = e.getX();
         int Y = e.getY();
         Vertex v = partie.getPlateau().getGraph().converstionXY(X,Y);
-        System.out.println(v);
+        System.out.println(v.getX()+"  "+v.getY());
     }
 
     @Override

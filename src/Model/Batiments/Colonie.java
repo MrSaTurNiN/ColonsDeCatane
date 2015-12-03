@@ -11,6 +11,7 @@ public class Colonie extends Batiment {
     public Colonie(Joueur joueur,Vertex position) {
         super(joueur);
         this.position = position;
+        position.setBatiment(this);
     }
 
     public Vertex getPosition() {

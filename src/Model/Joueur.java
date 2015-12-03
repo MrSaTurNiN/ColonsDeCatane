@@ -78,6 +78,10 @@ public class Joueur
 		this.nomJoueur = nomJoueur;
 	}
 
+    public void creerColonie(){
+
+    }
+
 	public Map<String,List<Ressource>> getMainRessource() {
 		return mainRessource;
 	}
@@ -90,5 +94,9 @@ public class Joueur
 
     public List<Colonie> getListeDeColonie() {
         return listeDeColonie;
+    }
+
+    public void placerColonie(Colonie colo){
+        listeDeColonie.add(colo);
     }
 }

@@ -19,6 +19,7 @@ public class MainController {
 		currentWindow = new MainWindow(this.partie, this);
 		currentWindow.setVisible(true);
 		currentWindow.addMouseListener(new ClickListener(this.partie));
+		Tours tours=new Tours(this.partie);
 
 	}
 	
