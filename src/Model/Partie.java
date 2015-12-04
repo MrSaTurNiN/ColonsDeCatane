@@ -1,11 +1,11 @@
 
 package Model;
 
-import Exceptions.OutOfCardException;
 import Exceptions.RootNullException;
 import Model.Batiments.Colonie;
-import Model.Tuile.*;
+import Model.Tuile.Colline;
 import Model.graph.Vertex;
+import Model.Tuile.Tuile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,9 +16,6 @@ import java.util.List;
  * Created by jpabegg on 13/11/15.
  */
 public class Partie {
-	private List<Color> listCouleur;
-	private int nbTour;
-	private int nbJoueur;
 	private List<Joueur> listeJoueur;
 	private Des des;
 	private DeckRessource deckRessource;
@@ -27,9 +24,16 @@ public class Partie {
 	private Plateau plateau;
 
 
+	private Vertex vertexclique;
+	private Boolean joueurclick;
+
+
+
+	private Boolean actionDone;
+
+
+
 	public Partie() {
-		setNbTour(0);
-		initListCouleur();
 		listeJoueur = new ArrayList<Joueur>();
 		Vertex racine = new Vertex();
 		racine.setX(300);
@@ -44,36 +48,32 @@ public class Partie {
 
 		deckRessource=new DeckRessource();
 		deckDeveloppement=new DeckDeveloppement();
+		joueurclick=false;
+		vertexclique=null;
+		actionDone=false;
 	}
-	public void initMainJoueur(Joueur j) {
+	public void initMainJoueur(Joueur j)
+	{
 		List<Colonie> listDeColonie =  j.getListeDeColonie();
         Colonie c = listDeColonie.get(0);
         Set<Tuile> setTuile = plateau.getTuileFromVertex(c.getPosition());
         for(Tuile t : setTuile){
-			Ressource r;
-			if(t.getVoleur() == null) {
-				try {
-					if (t instanceof Colline) {
-						r = deckRessource.piocherRessource(Ressource.Argile.name());
-						j.obtenirCarte(r);
-					} else if (t instanceof Paturage) {
-						r = deckRessource.piocherRessource(Ressource.Laine.name());
-						j.obtenirCarte(r);
-					} else if (t instanceof Montagne) {
-						r = deckRessource.piocherRessource(Ressource.Minerai.name());
-						j.obtenirCarte(r);
-					} else if (t instanceof TerreCultivable) {
-						r = deckRessource.piocherRessource(Ressource.Ble.name());
-						j.obtenirCarte(r);
-					} else if (t instanceof Foret) {
-						r = deckRessource.piocherRessource(Ressource.Bois.name());
-						j.obtenirCarte(r);
-					}
-				}
-				catch(Exception e){
-					System.exit(1);
-				}
-			}
+
+            if(t.getName() == "Colline") {
+                j.obtenirCarte(Ressource.Argile);
+            }
+            else if (t.getName() == "Paturage") {
+                j.obtenirCarte(Ressource.Laine);
+            }
+            else if (t.getName() == "Montagne") {
+                j.obtenirCarte(Ressource.Minerai);
+            }
+            else if (t.getName() == "TerreCultivable") {
+                j.obtenirCarte(Ressource.Ble);
+            }
+            else if (t.getName() == "Foret") {
+                j.obtenirCarte(Ressource.Bois);
+            }
         }
     }
 
@@ -107,11 +107,10 @@ public class Partie {
 	
 	public void creerJoueur(String nomJoueur, Color couleurJoueur ){
 		listeJoueur.add(new Joueur(nomJoueur, couleurJoueur));
-		
-			setJoueurActif(listeJoueur.get(listeJoueur.size()-1));
-		
+		if (joueurActif==null) {
+			setJoueurActif(listeJoueur.get(0));
+		}
 	}
-
 
 	public void setOrdreJoueur(){
 		List<Joueur> joueurtmp=new ArrayList<Joueur>();
@@ -120,36 +119,31 @@ public class Partie {
 			joueurtmp.add(listeJoueur.get(r.nextInt()*listeJoueur.size()));
 		}
 		listeJoueur=joueurtmp;
+		//on peut améliorer
 	}
 	public void initFicheConstruct(Joueur joueur){
 		//TODO initialiser une fiche de construction pour chaque joueur
 	}
-	
-	public int getNbJoueur() {
-		return nbJoueur;
-	}
-	public void setNbJoueur(int nbJoueur) {
-		this.nbJoueur = nbJoueur;
-	}
-	public List<Color> getListCouleur() {
-		return listCouleur;
-	}
-	public void setListCouleur(List<Color> listCouleur) {
-		this.listCouleur = listCouleur;
+	public Boolean isJoueurclick() {
+		return joueurclick;
 	}
 
-	public void initListCouleur(){
-		listCouleur = new ArrayList<>();
-		listCouleur.add(Color.BLUE);
-		listCouleur.add(Color.GREEN);
-		listCouleur.add(Color.RED);
-		listCouleur.add(Color.YELLOW);
+	public void setJoueurclick(Boolean joueurclick) {
+		this.joueurclick = joueurclick;
 	}
-	public int getNbTour() {
-		return nbTour;
+	public Vertex getVertexclique() {
+		return vertexclique;
 	}
-	public void setNbTour(int nbTour) {
-		this.nbTour = nbTour;
+
+	public void setVertexclique(Vertex vertexclique) {
+		this.vertexclique = vertexclique;
+	}
+
+	public Boolean getActionDone() {
+		return actionDone;
+	}
+
+	public void setActionDone(Boolean actionDone) {
+		this.actionDone = actionDone;
 	}
 }
-

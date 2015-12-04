@@ -23,6 +23,8 @@ public class ClickListener implements MouseListener{
         int Y = e.getY();
         Vertex v = partie.getPlateau().getGraph().converstionXY(X,Y);
         System.out.println(v.getX()+"  "+v.getY());
+        partie.setJoueurclick(true);
+        partie.setVertexclique(v);
     }
 
     @Override
