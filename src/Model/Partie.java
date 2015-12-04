@@ -1,11 +1,11 @@
 
 package Model;
 
+import Exceptions.OutOfCardException;
 import Exceptions.RootNullException;
 import Model.Batiments.Colonie;
-import Model.Tuile.Colline;
+import Model.Tuile.*;
 import Model.graph.Vertex;
-import Model.Tuile.Tuile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,6 +23,7 @@ public class Partie {
 	private Joueur joueurActif;
 	private Plateau plateau;
 
+
 	public Partie() {
 		listeJoueur = new ArrayList<Joueur>();
 		Vertex racine = new Vertex();
@@ -39,28 +40,35 @@ public class Partie {
 		deckRessource=new DeckRessource();
 		deckDeveloppement=new DeckDeveloppement();
 	}
-	public void initMainJoueur(Joueur j)
-	{
+	public void initMainJoueur(Joueur j) {
 		List<Colonie> listDeColonie =  j.getListeDeColonie();
         Colonie c = listDeColonie.get(0);
         Set<Tuile> setTuile = plateau.getTuileFromVertex(c.getPosition());
         for(Tuile t : setTuile){
-
-            if(t.getName() == "Colline") {
-                j.obtenirCarte(Ressource.Argile);
-            }
-            else if (t.getName() == "Paturage") {
-                j.obtenirCarte(Ressource.Laine);
-            }
-            else if (t.getName() == "Montagne") {
-                j.obtenirCarte(Ressource.Minerai);
-            }
-            else if (t.getName() == "TerreCultivable") {
-                j.obtenirCarte(Ressource.Ble);
-            }
-            else if (t.getName() == "Foret") {
-                j.obtenirCarte(Ressource.Bois);
-            }
+			Ressource r;
+			if(t.getVoleur() == null) {
+				try {
+					if (t instanceof Colline) {
+						r = deckRessource.piocherRessource(Ressource.Argile.name());
+						j.obtenirCarte(r);
+					} else if (t instanceof Paturage) {
+						r = deckRessource.piocherRessource(Ressource.Laine.name());
+						j.obtenirCarte(r);
+					} else if (t instanceof Montagne) {
+						r = deckRessource.piocherRessource(Ressource.Minerai.name());
+						j.obtenirCarte(r);
+					} else if (t instanceof TerreCultivable) {
+						r = deckRessource.piocherRessource(Ressource.Ble.name());
+						j.obtenirCarte(r);
+					} else if (t instanceof Foret) {
+						r = deckRessource.piocherRessource(Ressource.Bois.name());
+						j.obtenirCarte(r);
+					}
+				}
+				catch(Exception e){
+					System.exit(1);
+				}
+			}
         }
     }
 
