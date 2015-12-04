@@ -16,6 +16,9 @@ import java.util.List;
  * Created by jpabegg on 13/11/15.
  */
 public class Partie {
+	private List<Color> listCouleur;
+	private int nbTour;
+	private int nbJoueur;
 	private List<Joueur> listeJoueur;
 	private Des des;
 	private DeckRessource deckRessource;
@@ -25,6 +28,8 @@ public class Partie {
 
 
 	public Partie() {
+		setNbTour(0);
+		initListCouleur();
 		listeJoueur = new ArrayList<Joueur>();
 		Vertex racine = new Vertex();
 		racine.setX(300);
@@ -102,10 +107,11 @@ public class Partie {
 	
 	public void creerJoueur(String nomJoueur, Color couleurJoueur ){
 		listeJoueur.add(new Joueur(nomJoueur, couleurJoueur));
-		if (joueurActif==null) {
-			setJoueurActif(listeJoueur.get(0));
-		}
+		
+			setJoueurActif(listeJoueur.get(listeJoueur.size()-1));
+		
 	}
+
 
 	public void setOrdreJoueur(){
 		List<Joueur> joueurtmp=new ArrayList<Joueur>();
@@ -118,4 +124,32 @@ public class Partie {
 	public void initFicheConstruct(Joueur joueur){
 		//TODO initialiser une fiche de construction pour chaque joueur
 	}
+	
+	public int getNbJoueur() {
+		return nbJoueur;
+	}
+	public void setNbJoueur(int nbJoueur) {
+		this.nbJoueur = nbJoueur;
+	}
+	public List<Color> getListCouleur() {
+		return listCouleur;
+	}
+	public void setListCouleur(List<Color> listCouleur) {
+		this.listCouleur = listCouleur;
+	}
+
+	public void initListCouleur(){
+		listCouleur = new ArrayList<>();
+		listCouleur.add(Color.BLUE);
+		listCouleur.add(Color.GREEN);
+		listCouleur.add(Color.RED);
+		listCouleur.add(Color.YELLOW);
+	}
+	public int getNbTour() {
+		return nbTour;
+	}
+	public void setNbTour(int nbTour) {
+		this.nbTour = nbTour;
+	}
 }
+

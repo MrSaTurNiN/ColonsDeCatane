@@ -33,8 +33,10 @@ public class InitJoueurView extends JDialog  {
 		setSize(400, 400);
 		nomJoueur = new JTextField(20);
 		colorJoueur = new JComboBox<Color>();
-		colorJoueur.addItem(Color.BLUE);
-		colorJoueur.addItem(Color.GREEN);
+		for (Color c : mainControl.getPartie().getListCouleur()) {
+			colorJoueur.addItem(c);
+		}
+		
 		valide = new JButton("Valider");
 		valide.addActionListener(new ActionListener() {
 			
@@ -80,5 +82,6 @@ public class InitJoueurView extends JDialog  {
 	public void valideActionPerform(){
 		mainControl.creerJoueur(nomJoueur.getText(), (Color) colorJoueur.getSelectedItem());
 		setVisible(false);
+		
 	}
 }
