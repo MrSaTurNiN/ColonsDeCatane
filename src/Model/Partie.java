@@ -23,7 +23,9 @@ public class Partie {
 	private DeckDeveloppement deckDeveloppement;
 	private Joueur joueurActif;
 	private Plateau plateau;
-
+	private List<Color> listCouleur;
+	private int nbTour;
+	private int nbJoueur;
 
 	private Vertex vertexclique;
 	private Boolean joueurclick;
@@ -35,6 +37,8 @@ public class Partie {
 
 
 	public Partie() {
+		setNbTour(0);
+		initListCouleur();
 		listeJoueur = new ArrayList<Joueur>();
 		Vertex racine = new Vertex();
 		racine.setX(300);
@@ -124,16 +128,14 @@ public class Partie {
 	
 	public void creerJoueur(String nomJoueur, Color couleurJoueur ){
 		listeJoueur.add(new Joueur(nomJoueur, couleurJoueur));
-		if (joueurActif==null) {
-			setJoueurActif(listeJoueur.get(0));
-		}
+		setJoueurActif(listeJoueur.get(listeJoueur.size() - 1));
 	}
 
 	public void setOrdreJoueur(){
 		List<Joueur> joueurtmp=new ArrayList<Joueur>();
 		Random r=new Random();
 		for (int i = 0; i <listeJoueur.size(); i++) {
-			joueurtmp.add(listeJoueur.get(r.nextInt()*listeJoueur.size()));
+			//joueurtmp.add(listeJoueur.get(r.nextInt()*listeJoueur.size()));
 		}
 		listeJoueur=joueurtmp;
 		//on peut améliorer
@@ -162,5 +164,31 @@ public class Partie {
 
 	public void setActionDone(Boolean actionDone) {
 		this.actionDone = actionDone;
+	}
+
+	public int getNbJoueur() {
+		return nbJoueur;
+	}
+	public void setNbJoueur(int nbJoueur) {
+		this.nbJoueur = nbJoueur;
+	}
+	public List<Color> getListCouleur() {
+		return listCouleur;
+	}
+	public void setListCouleur(List<Color> listCouleur) {
+		this.listCouleur = listCouleur;
+	}
+	public void initListCouleur(){
+		listCouleur = new ArrayList<Color>();
+		listCouleur.add(Color.BLUE);
+		listCouleur.add(Color.GREEN);
+		listCouleur.add(Color.RED);
+		listCouleur.add(Color.YELLOW);
+	}
+	public int getNbTour() {
+		return nbTour;
+	}
+	public void setNbTour(int nbTour) {
+		this.nbTour = nbTour;
 	}
 }

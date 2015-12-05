@@ -31,7 +31,7 @@ public class InitNbJoueurView extends JDialog {
 	
 	valide= new JButton("valider");
 	message = new JLabel("Veuillez choisir le nombre de joueur");
-	nbJoueur = new JComboBox<>();
+	nbJoueur = new JComboBox<Integer>();
 	nbJoueur.addItem(3);
 	nbJoueur.addItem(4);
 	valide.addActionListener(new ActionListener() {
@@ -50,7 +50,7 @@ public class InitNbJoueurView extends JDialog {
 	}
 	
 	public void valideActionPerform(){
-		mainControl.setNbJoueur((int)nbJoueur.getSelectedItem());
+		mainControl.setNbJoueur((Integer)nbJoueur.getSelectedItem());
 		setVisible(false);
 	}
 }
