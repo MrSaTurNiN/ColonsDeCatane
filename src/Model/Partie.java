@@ -1,13 +1,14 @@
 
 package Model;
 
+import Exceptions.OutOfCardException;
 import Exceptions.RootNullException;
+import Exceptions.UnKnownRessource;
 import Model.Batiments.Colonie;
-import Model.Tuile.Colline;
+import Model.Tuile.*;
+import Model.*;
 import Model.graph.Vertex;
-import Model.Tuile.Tuile;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -52,30 +53,46 @@ public class Partie {
 		vertexclique=null;
 		actionDone=false;
 	}
+	/*
+		Initialise les ressources du joueur j à partir des Colonies qu'il possède.
+		Il faut appeler cette fonction qu'une seule fois par partie.
+	 */
 	public void initMainJoueur(Joueur j)
 	{
 		List<Colonie> listDeColonie =  j.getListeDeColonie();
-        Colonie c = listDeColonie.get(0);
-        Set<Tuile> setTuile = plateau.getTuileFromVertex(c.getPosition());
-        for(Tuile t : setTuile){
-
-            if(t.getName() == "Colline") {
-                j.obtenirCarte(Ressource.Argile);
-            }
-            else if (t.getName() == "Paturage") {
-                j.obtenirCarte(Ressource.Laine);
-            }
-            else if (t.getName() == "Montagne") {
-                j.obtenirCarte(Ressource.Minerai);
-            }
-            else if (t.getName() == "TerreCultivable") {
-                j.obtenirCarte(Ressource.Ble);
-            }
-            else if (t.getName() == "Foret") {
-                j.obtenirCarte(Ressource.Bois);
-            }
-        }
+        for(Colonie c : listDeColonie) {
+			Set<Tuile> setTuile = plateau.getTuileFromVertex(c.getPosition());
+			for (Tuile t : setTuile) {
+				if (t.getVoleur() == null) {
+					try {
+						obtenirRessourceTuile(t,j);
+					} catch (OutOfCardException e) {
+						e.printStackTrace();
+					} catch (UnKnownRessource unKnownRessource) {
+						unKnownRessource.printStackTrace();
+					}
+				}
+			}
+		}
     }
+	/*
+		Ajoute les ressources au joueur j en fonction du type de la tuile t
+	 */
+	public void obtenirRessourceTuile (Tuile t,Joueur j) throws OutOfCardException, UnKnownRessource{
+		Ressource r = null;
+		if (t instanceof Colline) {
+			r = deckRessource.piocherRessource(Ressource.Argile.name());
+		} else if (t instanceof Paturage) {
+			r = deckRessource.piocherRessource(Ressource.Laine.name());
+		} else if (t instanceof Montagne) {
+			r = deckRessource.piocherRessource(Ressource.Minerai.name());
+		} else if (t instanceof TerreCultivable) {
+			r = deckRessource.piocherRessource(Ressource.Ble.name());
+		} else if (t instanceof Foret) {
+			r = deckRessource.piocherRessource(Ressource.Bois.name());
+		}
+		if(r != null)j.obtenirCarte(r);
+	}
 
 	public DeckRessource getDeckRessource() {
 		return deckRessource;
