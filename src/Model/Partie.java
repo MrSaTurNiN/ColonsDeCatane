@@ -135,7 +135,7 @@ public class Partie {
 		List<Joueur> joueurtmp=new ArrayList<Joueur>();
 		Random r=new Random();
 		for (int i = 0; i <listeJoueur.size(); i++) {
-			//joueurtmp.add(listeJoueur.get(r.nextInt()*listeJoueur.size()));
+			joueurtmp.add(listeJoueur.get(r.nextInt()*listeJoueur.size()));
 		}
 		listeJoueur=joueurtmp;
 		//on peut améliorer
