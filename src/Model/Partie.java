@@ -133,12 +133,14 @@ public class Partie {
 
 	public void setOrdreJoueur(){
 		List<Joueur> joueurtmp=new ArrayList<Joueur>();
-		Random r=new Random();
-		for (int i = 0; i <listeJoueur.size(); i++) {
-			//joueurtmp.add(listeJoueur.get(r.nextInt()*listeJoueur.size()));
-		}
-		listeJoueur=joueurtmp;
-		//on peut améliorer
+		Random r = new Random();
+        int ran;
+        while (listeJoueur.size()!=0) {
+            ran = r.nextInt(listeJoueur.size());
+            joueurtmp.add(listeJoueur.get(ran));
+            listeJoueur.remove(ran);
+        }
+        listeJoueur=joueurtmp;
 	}
 	public void initFicheConstruct(Joueur joueur){
 		//TODO initialiser une fiche de construction pour chaque joueur
