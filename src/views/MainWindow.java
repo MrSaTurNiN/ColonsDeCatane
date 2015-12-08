@@ -17,6 +17,7 @@ public class MainWindow extends JFrame implements ViewConstants {
 		this.mainControl=mainControl;
 		
 		game = new PanelGame(partie);
+		game.initImage();
 		setContentPane(game);
 		setTitle("Catane");
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

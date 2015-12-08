@@ -38,8 +38,8 @@ public class Partie {
 		initListCouleur();
 		listeJoueur = new ArrayList<Joueur>();
 		Vertex racine = new Vertex();
-		racine.setX(300);
-		racine.setY(100);
+		racine.setX(280);
+		racine.setY(130);
 
 		try {
 			plateau = new Plateau(racine);
