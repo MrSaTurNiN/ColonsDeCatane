@@ -72,7 +72,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 			else{
 				g2.setColor(e.getRoute().getJoueur().getCouleurJoueur());
 			}
-			g2.drawLine(e.getVertexA().getX(), e.getVertexA().getY(), e.getVertexB().getX(), e.getVertexB().getY());
+			g2.drawLine(e.getVertexA().getX()-TAILLEVERTEX/2, e.getVertexA().getY()-TAILLEVERTEX/2, e.getVertexB().getX()-TAILLEVERTEX/2, e.getVertexB().getY()-TAILLEVERTEX/2);
 		}
 		//On déssine les points
 		Vertex[] vertices = plat.getGraph().getVertices();
@@ -80,7 +80,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 			Vertex v = vertices[i];
 			if(v.getBatiment() == null)g2.setColor(Color.BLACK);
 			else g2.setColor(v.getBatiment().getJoueur().getCouleurJoueur());
-			g2.fillOval(v.getX()-TAILLEVERTEX/2,v.getY()-TAILLEVERTEX/2,TAILLEVERTEX,TAILLEVERTEX);
+			g2.fillOval(v.getX()-TAILLEVERTEX,v.getY()-TAILLEVERTEX,TAILLEVERTEX,TAILLEVERTEX);
 		}
 
 	}
@@ -147,8 +147,8 @@ public class PanelGame extends JPanel implements ViewConstants {
 		int[] y = new int[sommets.size()];
 		int i = 0;
 		for(Vertex v:sommets) {
-			x[i] = v.getX();
-			y[i] = v.getY();
+			x[i] = v.getX()-TAILLEVERTEX/2;
+			y[i] = v.getY()-TAILLEVERTEX/2;
 			i++;
 		}
 		return new Polygon(x,y,x.length);

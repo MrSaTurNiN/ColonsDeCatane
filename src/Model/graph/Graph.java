@@ -287,15 +287,19 @@ public class Graph implements ViewConstants{
 
     public Vertex converstionXY(int x,int y){
         //TODO a corriger
-        for(int i = 0;i<vertices.length;i++){
-            Vertex v = vertices[i];
+        for(int i = 0; i < vertices.length; i++){
+
             int decalage = TAILLEVERTEX ;
-            if( x<=v.getX()+decalage && x >=v.getX()-decalage){
-                if(y <=v.getY()+decalage && y>=v.getY()-decalage){
-                    return v;
-                }
-            }
+
+            //if( x <= v.getX()+decalage && x >= v.getX()-decalage){
+                //if(y <= v.getY()+decalage && y>=v.getY()-decalage){
+
+
+                //}
+           // }
         }
-        return null;
+
+        Vertex v = vertices[0];
+        return v;
     }
 }

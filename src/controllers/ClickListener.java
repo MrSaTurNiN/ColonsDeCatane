@@ -20,11 +20,14 @@ public class ClickListener implements MouseListener{
     @Override
     public void mouseClicked(MouseEvent e) {
         int X = e.getX();
-        int Y = e.getY();
+        int Y = e.getY() - 20; //plus 20 pour pas que la barre de titre soit prise en compte
         Vertex v = partie.getPlateau().getGraph().converstionXY(X,Y);
-        System.out.println(v.getX()+"  "+v.getY());
+        int xu = v.getX();
+        int xv = v.getY() ;
+        System.out.println( xu + "  " + xv);
         partie.setJoueurclick(true);
         partie.setVertexclique(v);
+        System.out.println(X + " " + Y + "SOURIS ");
     }
 
     @Override
