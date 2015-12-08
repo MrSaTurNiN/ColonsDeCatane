@@ -1,5 +1,6 @@
 package controllers;
 
+import Model.Joueur;
 import Model.Partie;
 import Model.graph.Vertex;
 import views.panels.PanelGame;
@@ -30,10 +31,12 @@ public class ClickListener extends MainController implements MouseListener{
         Vertex v = partie.getPlateau().getGraph().converstionXY(X,Y);
         int xu = v.getX();
         int xv = v.getY() ;
-        System.out.println( xu + "  " + xv);
+        v.nouveauBatiment(partie.getJoueurActif());
+        System.out.println(v.getBatiment());
         partie.setJoueurclick(true);
         partie.setVertexclique(v);
         System.out.println(X + " " + Y + "SOURIS ");
+        currentWindow.getPanel().repaint();
     }
 
     @Override

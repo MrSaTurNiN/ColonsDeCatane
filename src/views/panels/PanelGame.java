@@ -77,11 +77,17 @@ public class PanelGame extends JPanel implements ViewConstants {
 			g2.drawLine(e.getVertexA().getX(), e.getVertexA().getY(), e.getVertexB().getX(), e.getVertexB().getY());
 		}
 		//On déssine les points
-		Vertex[] vertices = plat.getGraph().getVertices();
+        System.out.println("test");
+        Vertex[] vertices = plat.getGraph().getVertices();
 		for(int i =0;i<vertices.length;i++){
 			Vertex v = vertices[i];
-			if(v.getBatiment() == null)g2.setColor(Color.BLACK);
-			else g2.setColor(v.getBatiment().getJoueur().getCouleurJoueur());
+			if(v.getBatiment() == null){
+                g2.setColor(Color.BLACK);
+            }
+			else {
+                System.out.println("lol");
+                g2.setColor(Color.YELLOW);
+            }
 			g2.fillOval(v.getX()-TAILLEVERTEX/2,v.getY()-TAILLEVERTEX/2,TAILLEVERTEX,TAILLEVERTEX);
 		}
 
