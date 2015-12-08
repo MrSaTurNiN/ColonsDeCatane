@@ -24,6 +24,7 @@ public class MainController {
 		currentWindow.setVisible(true);
 		partie.setOrdreJoueur();
         partie.setJoueurActif(partie.getListeJoueur().get(0));
+		partie.setLaunched();
 
 	}
 

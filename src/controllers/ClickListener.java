@@ -62,9 +62,9 @@ public class ClickListener extends MainController implements MouseListener, Mous
         if (partie.getNbTour()<=partie.getNbJoueur()*2-1){
             phaseinit(v);
         }
-
-        partie.setJoueurclick(true);
-        partie.setVertexclique(v);
+        else {
+            //phasejeu();
+        }
         currentWindow.getPanel().repaint();
     }
 
@@ -146,7 +146,7 @@ public class ClickListener extends MainController implements MouseListener, Mous
         else {
             try {
                 Batiment b=partie.getPlateau().creerColonie(joueur,v);
-                joueur.getListeDeColonie().add((Colonie) b);
+                joueur.placerColonie((Colonie) b);
                 if (partie.getNbTour()>partie.getNbJoueur()-1){
                     partie.initMainJoueur(joueur);
                 }

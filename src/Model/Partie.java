@@ -6,12 +6,16 @@ import Exceptions.RootNullException;
 import Exceptions.UnKnownRessource;
 import Model.Batiments.Colonie;
 import Model.Tuile.*;
-import Model.*;
 import Model.graph.Vertex;
+import controllers.Timer.GameTimer;
 
+import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 /**
  * Created by jpabegg on 13/11/15.
@@ -26,15 +30,8 @@ public class Partie {
 	private List<Color> listCouleur;
 	private int nbTour;
 	private int nbJoueur;
-
-	private Vertex vertexclique;
-	private Boolean joueurclick;
-
-
-
-	private Boolean actionDone;
-
-
+	private Timer timer;
+	private List<Laser> listelaser;
 
 	public Partie() {
 		setNbTour(0);
@@ -53,14 +50,16 @@ public class Partie {
 
 		deckRessource=new DeckRessource();
 		deckDeveloppement=new DeckDeveloppement();
-		joueurclick=false;
-		vertexclique=null;
-		actionDone=false;
+
+		timer=new Timer(16, new GameTimer());
 	}
 	/*
 		Initialise les ressources du joueur j à partir des Colonies qu'il possède.
 		Il faut appeler cette fonction qu'une seule fois par partie.
 	 */
+	public void setLaunched(){
+		timer.start();
+	}
 	public void initMainJoueur(Joueur j)
 	{
 		List<Colonie> listDeColonie =  j.getListeDeColonie();
@@ -145,16 +144,6 @@ public class Partie {
 	public void initFicheConstruct(Joueur joueur){
 		//TODO initialiser une fiche de construction pour chaque joueur
 	}
-	public void setJoueurclick(Boolean joueurclick) {
-		this.joueurclick = joueurclick;
-	}
-	public Vertex getVertexclique() {
-		return vertexclique;
-	}
-
-	public void setVertexclique(Vertex vertexclique) {
-		this.vertexclique = vertexclique;
-	}
 
 	public int getNbJoueur() {
 		return nbJoueur;
@@ -187,6 +176,9 @@ public class Partie {
 			joueurtmp.add(listeJoueur.get(i));
 		}
 		listeJoueur=joueurtmp;
+	}
+	public void update(){
+
 	}
 
 

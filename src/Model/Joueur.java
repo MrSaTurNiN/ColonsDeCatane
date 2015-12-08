@@ -59,7 +59,7 @@ public class Joueur
     }
 
     public void setPointJoueur(int pointJoueur) {
-        this.pointJoueur = pointJoueur;
+        this.pointJoueur += pointJoueur;
     }
 
 	public Color getCouleurJoueur() {
@@ -94,5 +94,6 @@ public class Joueur
 
     public void placerColonie(Colonie colo){
         listeDeColonie.add(colo);
+        setPointJoueur(1);
     }
 }
