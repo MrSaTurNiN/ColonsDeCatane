@@ -1,7 +1,11 @@
 package controllers;
 
+import Exceptions.ColoniePositionException;
+import Exceptions.RoutePositionException;
+import Model.Batiments.Colonie;
 import Model.Joueur;
 import Model.Partie;
+import Model.graph.Edge;
 import Model.graph.Vertex;
 import views.panels.PanelGame;
 import controllers.MainController;
@@ -18,6 +22,10 @@ public class ClickListener extends MainController implements MouseListener{
 
     private Partie partie;
     private PanelGame panel;
+    private boolean placecolo1;
+    private Vertex rout1;
+    private Vertex rout2;
+
 
     public ClickListener(Partie partie){
         this.partie = partie;
@@ -31,11 +39,14 @@ public class ClickListener extends MainController implements MouseListener{
         Vertex v = partie.getPlateau().getGraph().converstionXY(X,Y);
         int xu = v.getX();
         int xv = v.getY() ;
-        v.nouveauBatiment(partie.getJoueurActif());
-        System.out.println(v.getBatiment());
+
+        if (partie.getNbTour()<=partie.getNbJoueur()-1){
+            phaseinit(v);
+        }
+
         partie.setJoueurclick(true);
         partie.setVertexclique(v);
-        System.out.println(X + " " + Y + "SOURIS ");
+
         currentWindow.getPanel().repaint();
     }
 
@@ -58,4 +69,51 @@ public class ClickListener extends MainController implements MouseListener{
     public void mouseExited(MouseEvent e) {
 
     }
+
+    public void phaseinit(Vertex v){
+        Joueur joueur;
+
+
+        joueur=partie.getJoueurActif();
+        if (placecolo1==true){
+            if (rout1!=null){
+                rout2=v;
+                try {
+                    partie.getPlateau().creerRoute(joueur,partie.getPlateau().getGraph().convertEdge(rout1,rout2));
+
+                    joueurSuivant();
+                    placecolo1 = false;
+
+
+                }catch (RoutePositionException r){
+                    r.printStackTrace();
+                }
+            }
+            else {
+                rout1=v;
+            }
+
+        }
+        else {
+            try {
+                partie.getPlateau().creerColonie(joueur,v);
+                placecolo1=true;
+
+
+            } catch (ColoniePositionException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+    }
+    public void joueurSuivant(){
+        partie.setJoueurActif(partie.getListeJoueur().get((partie.getNbTour()+1)%partie.getNbJoueur()));
+        partie.setNbTour(partie.getNbTour()+1);
+
+
+    }
+
+
 }

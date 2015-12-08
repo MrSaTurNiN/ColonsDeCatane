@@ -13,16 +13,17 @@ public class MainController {
 	protected static Partie partie;
 	private InitJoueurView initJoueurView;
 	private InitNbJoueurView initNbJoueurView;
-	
+	private ClickListener click;
 	
 	public MainController(Partie partie){
 		this.partie = partie;
 		initNbJoueur();
 		initAllJoueur();
 		currentWindow = new MainWindow(this.partie, this);
-        new ClickListener(partie);
+        click=new ClickListener(partie);
 		currentWindow.setVisible(true);
-        Tours tours = new Tours(this.partie);
+		partie.setOrdreJoueur();
+        partie.setJoueurActif(partie.getListeJoueur().get(0));
 
 	}
 
@@ -51,14 +52,13 @@ public class MainController {
 	public void initAllJoueur(){
 		for (int i = 0; i < partie.getNbJoueur(); i++) {
 			initJoueur();
+            partie.initMainJoueur(partie.getListeJoueur().get(i));
+            partie.initFicheConstruct(partie.getListeJoueur().get(i));
 		}
 	}
-	public void joueurSuivant(){
-		partie.setJoueurActif(partie.getListeJoueur().get(partie.getNbTour()%partie.getNbJoueur()));
-		partie.setNbTour(partie.getNbTour()+1);
-		System.out.println(partie.getJoueurActif().getNomJoueur());
-	}
+
 	public Partie getPartie(){
 		return partie;
 	}
+
 }

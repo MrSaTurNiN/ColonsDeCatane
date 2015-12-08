@@ -30,7 +30,7 @@ public class Plateau {
 
     public void creerRoute(Joueur j,Edge e) throws RoutePositionException
     {
-        if(!e.isLibreRoute(j))throw new RoutePositionException();
+        if(!e.isLibreRoute(j)||e==null)throw new RoutePositionException();
 
         e.creerRoute(j);
     }

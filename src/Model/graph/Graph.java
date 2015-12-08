@@ -298,4 +298,14 @@ public class Graph implements ViewConstants{
         }
         return null;
     }
+    public Edge convertEdge(Vertex v1, Vertex v2){
+        Edge tmp=new Edge(v1,v2);
+            for (Edge e:getEdges()) {
+                if ((e.vertexA==v1 && e.vertexB==v2)||(e.vertexA==v2 && e.vertexB==v1)){
+                    return e;
+                }
+            }
+
+        return null;
+    }
 }
