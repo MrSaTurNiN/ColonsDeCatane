@@ -60,7 +60,7 @@ public class PanelGame extends JPanel implements ViewConstants {
             colline = ImageIO.read(PanelGame.class.getResource("/assets/img/colline.png"));
             foret = ImageIO.read(PanelGame.class.getResource("/assets/img/foret.png"));
             paturage = ImageIO.read(PanelGame.class.getResource("/assets/img/paturage.png"));
-            fond = ImageIO.read(PanelGame.class.getResource("/assets/img/fond.png"));
+            fond = ImageIO.read(PanelGame.class.getResource("/assets/img/background.png"));
             barUp = ImageIO.read(PanelGame.class.getResource("/assets/img/barUp.png"));
         } catch (IOException e) {
             e.printStackTrace();
