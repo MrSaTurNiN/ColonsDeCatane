@@ -1,24 +1,25 @@
 package controllers;
 
 import Exceptions.ColoniePositionException;
+import Exceptions.NoColonieException;
+import Model.Batiments.Colonie;
+import Exceptions.ColoniePositionException;
 import Exceptions.RoutePositionException;
 import Model.Batiments.Colonie;
 import Model.Joueur;
 import Model.Partie;
 import Model.graph.Edge;
 import Model.graph.Vertex;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import views.panels.PanelGame;
 import controllers.MainController;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 /**
  * Created by jpabegg on 03/12/15.
  */
-public class ClickListener extends MainController implements MouseListener{
+public class ClickListener extends MainController implements MouseListener, MouseMotionListener {
 
     private Partie partie;
     private PanelGame panel;
@@ -39,6 +40,24 @@ public class ClickListener extends MainController implements MouseListener{
         Vertex v = partie.getPlateau().getGraph().converstionXY(X,Y);
         int xu = v.getX();
         int xv = v.getY() ;
+        if(v.getBatiment() instanceof Colonie)
+        {
+            try {
+                partie.getPlateau().creerVille(v);
+            } catch (NoColonieException e1) {
+                e1.printStackTrace();
+            }
+        }
+        else
+        {
+            try {
+                partie.getPlateau().creerColonie(partie.getJoueurActif(), v);
+            } catch (ColoniePositionException e1) {
+                e1.printStackTrace();
+            }
+        }
+
+        System.out.println(v.getBatiment());
 
         if (partie.getNbTour()<=partie.getNbJoueur()-1){
             phaseinit(v);
@@ -46,7 +65,7 @@ public class ClickListener extends MainController implements MouseListener{
 
         partie.setJoueurclick(true);
         partie.setVertexclique(v);
-
+        System.out.println(X + " " + Y + "SOURIS ");
         currentWindow.getPanel().repaint();
     }
 
@@ -68,6 +87,30 @@ public class ClickListener extends MainController implements MouseListener{
     @Override
     public void mouseExited(MouseEvent e) {
 
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e){
+        final int X = e.getX();
+        final int Y = e.getY();
+
+        Vertex v = partie.getPlateau().getGraph().converstionXY(X,Y);
+
+        for (int i = 0; i < partie.getPlateau().getGraph().getVertices().length; i++) {
+            partie.getPlateau().getGraph().getVertices()[i].setHoverFalse();
+        }
+        if(v != null) {
+            v.setHoverTrue();
+        }
+
+
+        currentWindow.getPanel().repaint();
     }
 
     public void phaseinit(Vertex v){

@@ -1,6 +1,7 @@
 package Model;
 
 import Exceptions.*;
+import Model.Batiments.Ville;
 import Model.graph.Edge;
 import Model.graph.Graph;
 import Model.graph.Vertex;
@@ -38,9 +39,10 @@ public class Plateau {
     public void creerVille(Vertex v) throws NoColonieException
     {
         if(v.getBatiment() == null)throw new NoColonieException();
-
+        System.out.println(v.getBatiment() instanceof Ville);
         Joueur j = v.getBatiment().getJoueur();
         v.ameliorerBatiment(j);
+        System.out.println(v.getBatiment() instanceof Ville);
     }
     /*
         retourne les tuiles avec le num�ro number

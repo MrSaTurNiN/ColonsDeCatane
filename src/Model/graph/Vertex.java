@@ -13,11 +13,12 @@ public class Vertex {
     private Edge upEdge = null;
     private Edge leftEdge = null;
     private Edge rightEdge = null;
+    boolean isHover;
     private int x;
     private int y;
     public Vertex()
     {
-
+        isHover=false;
     }
 
     public Batiment getBatiment() {
@@ -126,5 +127,19 @@ public class Vertex {
     public void ameliorerBatiment(Joueur j)
     {
         batiment = new Ville(j,this);
+    }
+
+    public void setHoverTrue() {
+        isHover = true;
+    }
+
+    public void setHoverFalse()
+    {
+        isHover = false;
+    }
+
+    public boolean isHover()
+    {
+        return isHover;
     }
 }

@@ -2,11 +2,14 @@ package views.panels;
 
 
 
+import Model.Batiments.Colonie;
+import Model.Batiments.Ville;
 import Model.graph.Edge;
 import Model.graph.Vertex;
 import controllers.ClickListener;
 import views.ViewConstants;
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -78,15 +81,36 @@ public class PanelGame extends JPanel implements ViewConstants {
 		}
 	//On déssine les points
         Vertex[] vertices = plat.getGraph().getVertices();
-		for(int i =0;i<vertices.length;i++){
+        Rectangle2D[] rect = new Rectangle2D[vertices.length];
+        for (int i = 0; i < vertices.length; i++) {
+            Vertex v = vertices[i];
+            rect[i] = new Rectangle2D.Double(v.getX()-TAILLEVERTEX/2, v.getY()-TAILLEVERTEX/2,
+                    TAILLEVERTEX, TAILLEVERTEX);
+        }
+        for(int i =0;i<vertices.length;i++){
 			Vertex v = vertices[i];
 			if(v.getBatiment() == null){
                 g2.setColor(Color.BLACK);
+                g2.fillOval(v.getX()-TAILLEVERTEX/2,v.getY()-TAILLEVERTEX/2,TAILLEVERTEX,TAILLEVERTEX);
             }
 			else {
-                g2.setColor(v.getBatiment().getJoueur().getCouleurJoueur());
+				g2.setColor(v.getBatiment().getJoueur().getCouleurJoueur());
+                if(v.getBatiment() instanceof Ville)
+				{
+					g2.fillRect(v.getX()-TAILLEVERTEX/2,v.getY()-TAILLEVERTEX/2,TAILLEVERTEX,TAILLEVERTEX);
+				}
+				else if (v.getBatiment() instanceof Colonie){
+					g2.fillOval(v.getX()-TAILLEVERTEX/2,v.getY()-TAILLEVERTEX/2,TAILLEVERTEX,TAILLEVERTEX);
+				}
             }
-			g2.fillOval(v.getX()-TAILLEVERTEX/2,v.getY()-TAILLEVERTEX/2,TAILLEVERTEX,TAILLEVERTEX);
+
+            if(v.isHover())
+            {
+                g2.setColor(Color.YELLOW);
+                g2.drawOval(v.getX()-TAILLEVERTEX/2-5,v.getY()-TAILLEVERTEX/2-5,TAILLEVERTEX+10,TAILLEVERTEX+10);
+            }
+
+
 		}
 
 	}
@@ -176,5 +200,6 @@ public class PanelGame extends JPanel implements ViewConstants {
     public void setControler(ClickListener listener)
     {
         this.addMouseListener(listener);
+        this.addMouseMotionListener(listener);
     }
 }
