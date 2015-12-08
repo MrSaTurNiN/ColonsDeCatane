@@ -2,6 +2,8 @@ package controllers;
 
 import Model.Partie;
 import Model.graph.Vertex;
+import views.panels.PanelGame;
+import controllers.MainController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,16 +13,20 @@ import java.awt.event.MouseListener;
 /**
  * Created by jpabegg on 03/12/15.
  */
-public class ClickListener implements MouseListener{
+public class ClickListener extends MainController implements MouseListener{
 
     private Partie partie;
+    private PanelGame panel;
+
     public ClickListener(Partie partie){
         this.partie = partie;
+        currentWindow.getPanel().setControler(this);
+
     }
     @Override
     public void mouseClicked(MouseEvent e) {
         int X = e.getX();
-        int Y = e.getY() - 20; //plus 20 pour pas que la barre de titre soit prise en compte
+        int Y = e.getY();
         Vertex v = partie.getPlateau().getGraph().converstionXY(X,Y);
         int xu = v.getX();
         int xv = v.getY() ;

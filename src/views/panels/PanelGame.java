@@ -31,6 +31,8 @@ public class PanelGame extends JPanel implements ViewConstants {
 	public void paintComponent(Graphics g) {
 		g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        this.setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
+        this.setLayout(null);
 		drawMap();
 		drawDeckRessource();
 		drawInfoJoueur();
@@ -49,7 +51,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 		Tuile[] tuiles = plat.getTuiles();
 
 		int index = tuiles.length;
-		//On déssine les Tuile
+		//On dessine les Tuile
 		for (int i =0; i < index; i++)
 		{
 			g2.setColor(getColorTuile(tuiles[i]));
@@ -72,7 +74,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 			else{
 				g2.setColor(e.getRoute().getJoueur().getCouleurJoueur());
 			}
-			g2.drawLine(e.getVertexA().getX()-TAILLEVERTEX/2, e.getVertexA().getY()-TAILLEVERTEX/2, e.getVertexB().getX()-TAILLEVERTEX/2, e.getVertexB().getY()-TAILLEVERTEX/2);
+			g2.drawLine(e.getVertexA().getX(), e.getVertexA().getY(), e.getVertexB().getX(), e.getVertexB().getY());
 		}
 		//On déssine les points
 		Vertex[] vertices = plat.getGraph().getVertices();
@@ -80,7 +82,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 			Vertex v = vertices[i];
 			if(v.getBatiment() == null)g2.setColor(Color.BLACK);
 			else g2.setColor(v.getBatiment().getJoueur().getCouleurJoueur());
-			g2.fillOval(v.getX()-TAILLEVERTEX,v.getY()-TAILLEVERTEX,TAILLEVERTEX,TAILLEVERTEX);
+			g2.fillOval(v.getX()-TAILLEVERTEX/2,v.getY()-TAILLEVERTEX/2,TAILLEVERTEX,TAILLEVERTEX);
 		}
 
 	}
@@ -147,8 +149,8 @@ public class PanelGame extends JPanel implements ViewConstants {
 		int[] y = new int[sommets.size()];
 		int i = 0;
 		for(Vertex v:sommets) {
-			x[i] = v.getX()-TAILLEVERTEX/2;
-			y[i] = v.getY()-TAILLEVERTEX/2;
+			x[i] = v.getX();
+			y[i] = v.getY();
 			i++;
 		}
 		return new Polygon(x,y,x.length);
@@ -166,4 +168,9 @@ public class PanelGame extends JPanel implements ViewConstants {
 		return Color.black;
 
 	}
+
+    public void setControler(ClickListener listener)
+    {
+        this.addMouseListener(listener);
+    }
 }

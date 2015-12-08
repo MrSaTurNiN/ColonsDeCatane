@@ -20,13 +20,16 @@ public class MainController {
 		initNbJoueur();
 		initAllJoueur();
 		currentWindow = new MainWindow(this.partie, this);
+        new ClickListener(partie);
 		currentWindow.setVisible(true);
-		currentWindow.addMouseListener(new ClickListener(this.partie));
-		Tours tours=new Tours(this.partie);
+        Tours tours = new Tours(this.partie);
 
 	}
-	
-	public void creerJoueur(String nomJoueur, Color colorJoueur){
+
+    public MainController() {
+    }
+
+    public void creerJoueur(String nomJoueur, Color colorJoueur){
 		partie.creerJoueur(nomJoueur, colorJoueur);
 		partie.getListCouleur().remove(partie.getJoueurActif().getCouleurJoueur());
 		
