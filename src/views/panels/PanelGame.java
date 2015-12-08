@@ -39,6 +39,7 @@ public class PanelGame extends JPanel implements ViewConstants {
     private BufferedImage colline;
     private BufferedImage foret;
     private BufferedImage fond;
+    private BufferedImage barUp;
 
 
 
@@ -60,6 +61,7 @@ public class PanelGame extends JPanel implements ViewConstants {
             foret = ImageIO.read(PanelGame.class.getResource("/assets/img/foret.png"));
             paturage = ImageIO.read(PanelGame.class.getResource("/assets/img/paturage.png"));
             fond = ImageIO.read(PanelGame.class.getResource("/assets/img/fond.png"));
+            barUp = ImageIO.read(PanelGame.class.getResource("/assets/img/barUp.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -74,6 +76,7 @@ public class PanelGame extends JPanel implements ViewConstants {
         clear();
         drawBackground();
 		drawMap();
+        drawBarUp();
 		drawDeckRessource();
 		drawInfoJoueur();
 		drawBank();
@@ -254,6 +257,16 @@ public class PanelGame extends JPanel implements ViewConstants {
         else if (t instanceof TerreCultivable) g2.drawImage(terreCultivable, x - 60, y - 60, this);
         else if (t instanceof Montagne) g2.drawImage(montagne, x - 60, y - 60, this);
         else if (t instanceof Colline) g2.drawImage(colline, x - 60, y - 60, this);
+    }
+
+    public void drawBarUp()
+    {
+
+        Rectangle r = new Rectangle(0, 0, 64, 64);
+        g2.setPaint(new TexturePaint(barUp, r));
+        Rectangle rect = new Rectangle(0,0,WINDOW_WIDTH,64);
+        g2.fill(rect);
+
     }
 
 	private Color getColorTuile(Tuile t){
