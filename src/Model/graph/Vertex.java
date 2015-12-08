@@ -78,6 +78,7 @@ public class Vertex {
         boolean left = true;
         boolean right = true;
         boolean up = true;
+        boolean center=true;
         if(leftEdge != null)
         {
             left = leftEdge.isLibreColonie(this);
@@ -90,7 +91,10 @@ public class Vertex {
         {
             up = upEdge.isLibreColonie(this);
         }
-        return left && right  && up;
+        if (this.batiment!=null){
+            center =false;
+        }
+        return left && right  && up && center;
     }
 
     public int getY() {
@@ -121,8 +125,9 @@ public class Vertex {
         return rightEdge;
     }
 
-    public void nouveauBatiment(Joueur j) {
+    public Batiment nouveauBatiment(Joueur j) {
         batiment = new Colonie(j,this);
+        return batiment;
     }
     public void ameliorerBatiment(Joueur j)
     {

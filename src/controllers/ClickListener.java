@@ -2,6 +2,7 @@ package controllers;
 
 import Exceptions.ColoniePositionException;
 import Exceptions.NoColonieException;
+import Model.Batiments.Batiment;
 import Model.Batiments.Colonie;
 import Exceptions.ColoniePositionException;
 import Exceptions.RoutePositionException;
@@ -40,7 +41,7 @@ public class ClickListener extends MainController implements MouseListener, Mous
         Vertex v = partie.getPlateau().getGraph().converstionXY(X,Y);
         int xu = v.getX();
         int xv = v.getY() ;
-        if(v.getBatiment() instanceof Colonie)
+        /*if(v.getBatiment() instanceof Colonie)
         {
             try {
                 partie.getPlateau().creerVille(v);
@@ -55,17 +56,15 @@ public class ClickListener extends MainController implements MouseListener, Mous
             } catch (ColoniePositionException e1) {
                 e1.printStackTrace();
             }
-        }
+        }*/
 
-        System.out.println(v.getBatiment());
 
-        if (partie.getNbTour()<=partie.getNbJoueur()-1){
+        if (partie.getNbTour()<=partie.getNbJoueur()*2-1){
             phaseinit(v);
         }
 
         partie.setJoueurclick(true);
         partie.setVertexclique(v);
-        System.out.println(X + " " + Y + "SOURIS ");
         currentWindow.getPanel().repaint();
     }
 
@@ -122,14 +121,21 @@ public class ClickListener extends MainController implements MouseListener, Mous
             if (rout1!=null){
                 rout2=v;
                 try {
-                    partie.getPlateau().creerRoute(joueur,partie.getPlateau().getGraph().convertEdge(rout1,rout2));
+                    partie.getPlateau().creerRoute(joueur, partie.getPlateau().getGraph().convertEdge(rout1, rout2));
+                    if (joueur.equals(partie.getListeJoueur().get(partie.getListeJoueur().size()-1))){
+                        partie.inversOrdre();
+                    }
 
                     joueurSuivant();
                     placecolo1 = false;
+                    rout1=null;
+                    rout2=null;
 
 
                 }catch (RoutePositionException r){
-                    r.printStackTrace();
+                    rout1=null;
+                    rout2=null;
+                    r.getMessage();
                 }
             }
             else {
@@ -139,12 +145,16 @@ public class ClickListener extends MainController implements MouseListener, Mous
         }
         else {
             try {
-                partie.getPlateau().creerColonie(joueur,v);
+                Batiment b=partie.getPlateau().creerColonie(joueur,v);
+                joueur.getListeDeColonie().add((Colonie) b);
+                if (partie.getNbTour()>partie.getNbJoueur()-1){
+                    partie.initMainJoueur(joueur);
+                }
                 placecolo1=true;
 
 
             } catch (ColoniePositionException e) {
-                e.printStackTrace();
+                e.getMessage();
             }
 
         }

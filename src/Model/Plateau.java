@@ -1,6 +1,7 @@
 package Model;
 
 import Exceptions.*;
+import Model.Batiments.Batiment;
 import Model.Batiments.Ville;
 import Model.graph.Edge;
 import Model.graph.Graph;
@@ -23,15 +24,17 @@ public class Plateau {
         initVerticesTuiles();
     }
 
-    public void creerColonie(Joueur j,Vertex v) throws ColoniePositionException {
+    public Batiment creerColonie(Joueur j,Vertex v) throws ColoniePositionException {
         if (!v.isFreeToBuild()) throw new ColoniePositionException();
 
-        v.nouveauBatiment(j);
+        Batiment b=v.nouveauBatiment(j);
+        return b;
+
     }
 
     public void creerRoute(Joueur j,Edge e) throws RoutePositionException
     {
-        if(!e.isLibreRoute(j)||e==null)throw new RoutePositionException();
+        if(e==null||!e.isLibreRoute(j))throw new RoutePositionException();
 
         e.creerRoute(j);
     }

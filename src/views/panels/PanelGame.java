@@ -106,7 +106,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 
             if(v.isHover())
             {
-                g2.setColor(Color.YELLOW);
+                g2.setColor(partie.getJoueurActif().getCouleurJoueur());
                 g2.drawOval(v.getX()-TAILLEVERTEX/2-5,v.getY()-TAILLEVERTEX/2-5,TAILLEVERTEX+10,TAILLEVERTEX+10);
             }
 

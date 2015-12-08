@@ -52,7 +52,6 @@ public class MainController {
 	public void initAllJoueur(){
 		for (int i = 0; i < partie.getNbJoueur(); i++) {
 			initJoueur();
-            partie.initMainJoueur(partie.getListeJoueur().get(i));
             partie.initFicheConstruct(partie.getListeJoueur().get(i));
 		}
 	}

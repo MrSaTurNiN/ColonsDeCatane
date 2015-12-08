@@ -64,7 +64,7 @@ public class Partie {
 	public void initMainJoueur(Joueur j)
 	{
 		List<Colonie> listDeColonie =  j.getListeDeColonie();
-        for(Colonie c : listDeColonie) {
+        Colonie c=listDeColonie.get(listDeColonie.size()-1);
 			Set<Tuile> setTuile = plateau.getTuileFromVertex(c.getPosition());
 			for (Tuile t : setTuile) {
 				if (t.getVoleur() == null) {
@@ -77,7 +77,7 @@ public class Partie {
 					}
 				}
 			}
-		}
+
     }
 	/*
 		Ajoute les ressources au joueur j en fonction du type de la tuile t
@@ -145,10 +145,6 @@ public class Partie {
 	public void initFicheConstruct(Joueur joueur){
 		//TODO initialiser une fiche de construction pour chaque joueur
 	}
-	public Boolean isJoueurclick() {
-		return joueurclick;
-	}
-
 	public void setJoueurclick(Boolean joueurclick) {
 		this.joueurclick = joueurclick;
 	}
@@ -158,14 +154,6 @@ public class Partie {
 
 	public void setVertexclique(Vertex vertexclique) {
 		this.vertexclique = vertexclique;
-	}
-
-	public Boolean getActionDone() {
-		return actionDone;
-	}
-
-	public void setActionDone(Boolean actionDone) {
-		this.actionDone = actionDone;
 	}
 
 	public int getNbJoueur() {
@@ -193,4 +181,14 @@ public class Partie {
 	public void setNbTour(int nbTour) {
 		this.nbTour = nbTour;
 	}
+	public void inversOrdre(){
+		List<Joueur> joueurtmp=new ArrayList<Joueur>();
+		for (int i = listeJoueur.size()-1; i >=0; i--) {
+			joueurtmp.add(listeJoueur.get(i));
+		}
+		listeJoueur=joueurtmp;
+	}
+
+
+
 }
