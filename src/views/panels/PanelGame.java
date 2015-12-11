@@ -117,7 +117,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 
 			//g2.fillPolygon(transformTuile(tuiles[i]));
 			g2.setColor(Color.BLACK);
-
+			drawImageTuile(tuiles[i]);
 			Vertex v = tuiles[i].getSommets().get(0);
 			if(!(tuiles[i] instanceof Desert))g2.drawString(tuiles[i].getNumero()+"",v.getX()-10,v.getY()+40);
 			if (tuiles[i].getVoleur() != null)
@@ -125,7 +125,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 				g2.setColor(Color.RED);
 				g2.drawString("Voleur",v.getX()-5,v.getY()+60);
 			}
-            drawImageTuile(tuiles[i]);
+            
 		}
 		//On déssine les Edges:
 		List<Edge> edges = plat.getGraph().getEdges();
