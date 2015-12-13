@@ -1,9 +1,11 @@
 package Model.graph;
 
+import Exceptions.PositionsInvalidesException;
 import Exceptions.RootNullException;
 import Model.Batiments.Batiment;
 import views.ViewConstants;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -285,7 +287,7 @@ public class Graph implements ViewConstants{
         vertices[index].setBatiment(batiment);
     }
 
-    public Vertex converstionXY(int x,int y){
+    public Vertex converstionXY(int x,int y)throws PositionsInvalidesException {
         for(int i = 0; i < vertices.length; i++){
 
             int decalage = 20 ;
@@ -296,7 +298,7 @@ public class Graph implements ViewConstants{
                     }
             }
         }
-        return null;
+        throw new PositionsInvalidesException();
     }
     public Edge convertEdge(Vertex v1, Vertex v2){
         Edge tmp=new Edge(v1,v2);
@@ -308,4 +310,6 @@ public class Graph implements ViewConstants{
 
         return null;
     }
+
+
 }

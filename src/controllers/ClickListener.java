@@ -1,11 +1,9 @@
 package controllers;
 
-import Exceptions.ColoniePositionException;
-import Exceptions.NoColonieException;
+import Exceptions.*;
 import Model.Batiments.Batiment;
 import Model.Batiments.Colonie;
 import Exceptions.ColoniePositionException;
-import Exceptions.RoutePositionException;
 import Model.Batiments.Colonie;
 import Model.Joueur;
 import Model.Partie;
@@ -38,9 +36,9 @@ public class ClickListener extends MainController implements MouseListener, Mous
     public void mouseClicked(MouseEvent e) {
         int X = e.getX();
         int Y = e.getY();
-        Vertex v = partie.getPlateau().getGraph().converstionXY(X,Y);
-        int xu = v.getX();
-        int xv = v.getY() ;
+        Vertex v;
+        //int xu = v.getX();
+        //int xv = v.getY() ;
         /*if(v.getBatiment() instanceof Colonie)
         {
             try {
@@ -57,14 +55,18 @@ public class ClickListener extends MainController implements MouseListener, Mous
                 e1.printStackTrace();
             }
         }*/
-
-
-        if (partie.getNbTour()<=partie.getNbJoueur()*2-1){
-            phaseinit(v);
-        }
-        else {
+        try{
+            v = partie.getPlateau().getGraph().converstionXY(X,Y);
+            if (partie.getNbTour()<=partie.getNbJoueur()*2-1){
+                phaseinit(v);
+            }
+            else {
             //phasejeu();
+            }
+        }catch (PositionsInvalidesException exc){
+
         }
+
         currentWindow.getPanel().repaint();
     }
 
@@ -98,17 +100,16 @@ public class ClickListener extends MainController implements MouseListener, Mous
     public void mouseMoved(MouseEvent e){
         final int X = e.getX();
         final int Y = e.getY();
-
-        Vertex v = partie.getPlateau().getGraph().converstionXY(X,Y);
-
+        Vertex v;
         for (int i = 0; i < partie.getPlateau().getGraph().getVertices().length; i++) {
             partie.getPlateau().getGraph().getVertices()[i].setHoverFalse();
         }
-        if(v != null) {
+       try {
+            v =partie.getPlateau().getGraph().converstionXY(X,Y);
             v.setHoverTrue();
+        } catch (PositionsInvalidesException e1) {
+            //e1.printStackTrace();
         }
-
-
         currentWindow.getPanel().repaint();
     }
 

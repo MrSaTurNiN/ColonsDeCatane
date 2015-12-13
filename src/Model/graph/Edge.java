@@ -3,8 +3,8 @@ package Model.graph;
 import Model.Joueur;
 import Model.Batiments.Route;
 
-import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 /**
  * Created by Jip on 22/11/2015.
@@ -90,5 +90,15 @@ public class Edge{
 
     public Vertex getVertexB() {
         return vertexB;
+    }
+
+    public Point middleOfTheEdge(){
+        Point p = new Point();
+        double x1 = vertexA.getX();
+        double y1 = vertexA.getY();
+        double x2 = vertexB.getX();
+        double y2 = vertexB.getY();
+        p.setLocation((x1+x2)/2,(y1+y2)/2);
+        return p;
     }
 }
