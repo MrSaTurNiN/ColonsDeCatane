@@ -5,9 +5,18 @@ package Model;
  */
 public enum Ressource
 {
-    Bois,
-    Laine,
-    Ble,
-    Argile,
-    Minerai
+
+    Bois("Supraconducteur"),
+    Laine("Cristaux"),
+    Ble("Cellule Energetique"),
+    Argile("Gas Tibanna"),
+    Minerai("Duracier");
+    private String nom;
+    Ressource(String nom){
+        this.nom = nom;
+    }
+
+    public String getNom(){
+        return nom;
+    }
 }
