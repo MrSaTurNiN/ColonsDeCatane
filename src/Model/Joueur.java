@@ -14,6 +14,9 @@ public class Joueur
     private Color couleurJoueur;
     private String nomJoueur;
     private int pointJoueur = 0;
+    private int colonieDispo;
+    private int villeDispo;
+    private int routeDispo;
     private Map<String,List<Ressource>> mainRessource;
     private List<Developpement> mainDeveloppement;
     private List<Colonie> listeDeColonie = new ArrayList<Colonie>();
@@ -23,6 +26,9 @@ public class Joueur
         this.setCouleurJoueur(couleurJoueur);
         mainRessource = new HashMap<String,List<Ressource>>();
         mainDeveloppement=new ArrayList<Developpement>();
+        setColonieDispo(5);
+        setVilleDispo(4);
+        setRouteDispo(15);
     }
 
     public void obtenirCarte(Ressource r)
@@ -96,4 +102,28 @@ public class Joueur
         listeDeColonie.add(colo);
         setPointJoueur(1);
     }
+
+	public int getColonieDispo() {
+		return colonieDispo;
+	}
+
+	public void setColonieDispo(int colonieDispo) {
+		this.colonieDispo = colonieDispo;
+	}
+
+	public int getVilleDispo() {
+		return villeDispo;
+	}
+
+	public void setVilleDispo(int villeDispo) {
+		this.villeDispo = villeDispo;
+	}
+
+	public int getRouteDispo() {
+		return routeDispo;
+	}
+
+	public void setRouteDispo(int routeDispo) {
+		this.routeDispo = routeDispo;
+	}
 }

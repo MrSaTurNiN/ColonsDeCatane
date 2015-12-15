@@ -209,11 +209,11 @@ public class PanelGame extends JPanel implements ViewConstants {
 		g2.setColor(partie.getJoueurActif().getCouleurJoueur());
 		g2.drawString(partie.getJoueurActif().getNomJoueur(), x, y);
 		y+=40;
-		g2.drawString("Point de Victoire :"+ partie.getListeJoueur().get(0).getPointJoueur(), x, y);
+		g2.drawString("Point de Victoire :"+ partie.getJoueurActif().getPointJoueur(), x, y);
 		
 		y+=20;
 		g2.setColor(BLACK);
-		for (Entry<String, List<Ressource>> entry : partie.getListeJoueur().get(0).getMainRessource().entrySet()) {
+		for (Entry<String, List<Ressource>> entry : partie.getJoueurActif().getMainRessource().entrySet()) {
 			String cle = entry.getKey();
 			Ressource r = Ressource.valueOf(cle);
 			List<Ressource> valeur = entry.getValue();
@@ -221,9 +221,13 @@ public class PanelGame extends JPanel implements ViewConstants {
 			y += 20;
 		}
 		
-		for (Developpement d : partie.getListeJoueur().get(0).getMainDeveloppement()) {
+		for (Developpement d : partie.getJoueurActif().getMainDeveloppement()) {
 			g2.drawString(d.name(), x+50, y+50);
 		}
+		
+		g2.drawString("Colonie disponible "+partie.getJoueurActif().getColonieDispo(), x, y+50);
+		g2.drawString("Ville disponible "+partie.getJoueurActif().getVilleDispo(), x, y+70);
+		g2.drawString("Route disponible "+partie.getJoueurActif().getRouteDispo(), x, y+90);
 
 	}
 

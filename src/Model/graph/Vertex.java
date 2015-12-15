@@ -127,11 +127,14 @@ public class Vertex {
 
     public Batiment nouveauBatiment(Joueur j) {
         batiment = new Colonie(j,this);
+        j.setColonieDispo(j.getColonieDispo()-1);
         return batiment;
     }
     public void ameliorerBatiment(Joueur j)
     {
         batiment = new Ville(j,this);
+        j.setColonieDispo(j.getColonieDispo()+1);
+        j.setVilleDispo(j.getVilleDispo()-1);
     }
 
     public void setHoverTrue() {

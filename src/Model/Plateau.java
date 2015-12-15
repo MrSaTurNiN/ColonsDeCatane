@@ -24,28 +24,32 @@ public class Plateau {
         initVerticesTuiles();
     }
 
-    public Batiment creerColonie(Joueur j,Vertex v) throws ColoniePositionException {
+    public Batiment creerColonie(Joueur j,Vertex v) throws ColoniePositionException, NoColonieDispoException {
         if (!v.isFreeToBuild()) throw new ColoniePositionException();
-
+        if(j.getColonieDispo()==0) throw new NoColonieDispoException();
         Batiment b=v.nouveauBatiment(j);
         return b;
 
     }
 
-    public void creerRoute(Joueur j,Edge e) throws RoutePositionException
+    public void creerRoute(Joueur j,Edge e) throws RoutePositionException, NoRouteDispoException
     {
         if(e==null||!e.isLibreRoute(j))throw new RoutePositionException();
-
+        if(j.getRouteDispo()==0) throw new NoRouteDispoException();
         e.creerRoute(j);
+        j.setRouteDispo(j.getRouteDispo()-1);
     }
 
-    public void creerVille(Vertex v) throws NoColonieException
+    public void creerVille(Vertex v) throws NoColonieException, NoVilleDispoException
     {
         if(v.getBatiment() == null)throw new NoColonieException();
+        
         System.out.println(v.getBatiment() instanceof Ville);
         Joueur j = v.getBatiment().getJoueur();
+        if(j.getRouteDispo()==0) throw new NoVilleDispoException();
         v.ameliorerBatiment(j);
         System.out.println(v.getBatiment() instanceof Ville);
+        j.setVilleDispo(j.getVilleDispo()-1);
     }
     /*
         retourne les tuiles avec le num�ro number

@@ -3,7 +3,6 @@ package controllers;
 import Exceptions.*;
 import Model.Batiments.Batiment;
 import Model.Batiments.Colonie;
-import Exceptions.ColoniePositionException;
 import Model.Batiments.Colonie;
 import Model.Joueur;
 import Model.Partie;
@@ -133,7 +132,7 @@ public class ClickListener extends MainController implements MouseListener, Mous
                     rout2=null;
 
 
-                }catch (RoutePositionException r){
+                }catch (RoutePositionException | NoRouteDispoException r){
                     rout1=null;
                     rout2=null;
                     r.getMessage();
@@ -154,7 +153,7 @@ public class ClickListener extends MainController implements MouseListener, Mous
                 placecolo1=true;
 
 
-            } catch (ColoniePositionException e) {
+            } catch (ColoniePositionException | NoColonieDispoException e) {
                 e.getMessage();
             }
 
