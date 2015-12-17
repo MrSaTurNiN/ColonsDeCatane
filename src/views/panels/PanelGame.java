@@ -10,6 +10,7 @@ import controllers.ClickListener;
 import views.ViewConstants;
 import java.awt.*;
 import java.awt.TexturePaint;
+import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -51,11 +52,14 @@ public class PanelGame extends JPanel implements ViewConstants {
     private BufferedImage icone_minerai;
     private BufferedImage icone_cristaux;
     private BufferedImage icone_supraconducteur;
-
+    
     private BufferedImage colonie_rouge;
     private BufferedImage colonie_jaune;
     private BufferedImage colonie_vert;
     private BufferedImage colonie_bleu;
+    
+    private JButton des;
+	private JButton skip;
 
     private BufferedImage colonie_rouge_hover;
     private BufferedImage colonie_jaune_hover;
@@ -269,6 +273,11 @@ public class PanelGame extends JPanel implements ViewConstants {
 				}
             }
 
+            if(v.isHover())
+            {
+                g2.setColor(partie.getJoueurActif().getCouleurJoueur());
+                g2.drawOval(v.getX()-TAILLEVERTEX/2-5,v.getY()-TAILLEVERTEX/2-5,TAILLEVERTEX+10,TAILLEVERTEX+10);
+            }
 
 
 
@@ -278,6 +287,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 
 	public void drawBank() {
         g2.setColor(Color.WHITE);
+        g2.fillRect(XBANK, YBANK, BANK_WIDTH, BANK_HEIGHT);
 		g2.setColor(BLACK);
         g2.drawImage(banque_fond, XBANK - 200, YBANK - 200, this );
 		drawDeckRessource();
@@ -432,4 +442,14 @@ public class PanelGame extends JPanel implements ViewConstants {
         this.addMouseListener(listener);
         this.addMouseMotionListener(listener);
     }
+	public JButton getDes() {
+		return des;
+	}
+	public JButton getSkip(){
+		return skip;
+	}
+	public void setButtonController(ActionListener al){
+		des.addActionListener(al);
+		skip.addActionListener(al);
+	}
 }
