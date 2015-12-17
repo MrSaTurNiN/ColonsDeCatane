@@ -10,6 +10,7 @@ import controllers.ClickListener;
 import views.ViewConstants;
 import java.awt.*;
 import java.awt.TexturePaint;
+import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -40,45 +41,33 @@ public class PanelGame extends JPanel implements ViewConstants {
     private BufferedImage foret;
     private BufferedImage fond;
     private BufferedImage barUp;
-    private BufferedImage barUpRight;
-    private BufferedImage stormtrooper;
-    private BufferedImage rond_point;
-    private BufferedImage banque_fond;
 
 
-    private BufferedImage icone_cellule_energetique;
-    private BufferedImage icone_gaz;
-    private BufferedImage icone_minerai;
-    private BufferedImage icone_cristaux;
-    private BufferedImage icone_supraconducteur;
 
-    private BufferedImage colonie_rouge;
-    private BufferedImage colonie_jaune;
-    private BufferedImage colonie_vert;
-    private BufferedImage colonie_bleu;
+	private JButton des;
+	private JButton skip;
 
-    private BufferedImage colonie_rouge_hover;
-    private BufferedImage colonie_jaune_hover;
-    private BufferedImage colonie_vert_hover;
-    private BufferedImage colonie_bleu_hover;
-
-
-	private Font mainFont;
-    private Font mainFontSize;
-    private Font BanqueFontSize;
-    private Font fontPointVictoireSize;
 
 
 
     public PanelGame(Partie partie) {
 
         initImage();
-        initFont();
+		initButton();
 
         this.partie = partie;
     }
 
-    public void  initImage()
+	private void initButton() {
+		des=new JButton();
+		des.setBounds(100, 100, 100, 100);
+		skip=new JButton();
+		skip.setBounds(100, 600, 100, 100);
+		this.add(des);
+		this.add(skip);
+	}
+
+	public void  initImage()
     {
         try {
             desert = ImageIO.read(PanelGame.class.getResource("/assets/img/desert.png"));
@@ -88,47 +77,11 @@ public class PanelGame extends JPanel implements ViewConstants {
             foret = ImageIO.read(PanelGame.class.getResource("/assets/img/foret.png"));
             paturage = ImageIO.read(PanelGame.class.getResource("/assets/img/paturage.png"));
             fond = ImageIO.read(PanelGame.class.getResource("/assets/img/background.png"));
-            barUp = ImageIO.read(PanelGame.class.getResource("/assets/img/bar_up.png"));
-            barUpRight = ImageIO.read(PanelGame.class.getResource("/assets/img/bar_up_right.png"));
-            rond_point = ImageIO.read(PanelGame.class.getResource("/assets/img/rond_point.png"));
-            stormtrooper = ImageIO.read(PanelGame.class.getResource("/assets/img/stormtrooper.png"));
-            banque_fond = ImageIO.read(PanelGame.class.getResource("/assets/img/banque_fond.png"));
-
-
-            icone_cellule_energetique = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_cellule_energetique.png"));
-            icone_gaz = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_gaz.png"));
-            icone_minerai = ImageIO.read(PanelGame.class.getResource("/assets/img/minerai.png"));
-            icone_supraconducteur = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_supraconducteur.png"));
-            icone_cristaux = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_icone_cristaux.png"));
-
-
-            colonie_bleu = ImageIO.read(PanelGame.class.getResource("/assets/img/colonie_bleu.png"));
-            colonie_rouge = ImageIO.read(PanelGame.class.getResource("/assets/img/colonie_rouge.png"));
-            colonie_jaune = ImageIO.read(PanelGame.class.getResource("/assets/img/colonie_jaune.png"));
-            colonie_vert = ImageIO.read(PanelGame.class.getResource("/assets/img/colonie_vert.png"));
-
-            colonie_bleu_hover = ImageIO.read(PanelGame.class.getResource("/assets/img/colonie_bleu_hover.png"));
-            colonie_rouge_hover = ImageIO.read(PanelGame.class.getResource("/assets/img/colonie_rouge_hover.png"));
-            colonie_jaune_hover = ImageIO.read(PanelGame.class.getResource("/assets/img/colonie_jaune_hover.png"));
-            colonie_vert_hover = ImageIO.read(PanelGame.class.getResource("/assets/img/colonie_vert_hover.png"));
+            barUp = ImageIO.read(PanelGame.class.getResource("/assets/img/barUp.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-	public void initFont()
-	{
-		try {
-			Font mainFont = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"));
-			mainFontSize = mainFont.deriveFont(24f);
-            fontPointVictoireSize = mainFont.deriveFont(40f);
-            BanqueFontSize = mainFont.deriveFont(40f);
-		} catch (FontFormatException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -143,18 +96,13 @@ public class PanelGame extends JPanel implements ViewConstants {
 		drawDeckRessource();
 		drawInfoJoueur();
 		drawBank();
+		System.out.println("fgfff");
 
 	}
 
-    public void drawStringCenter(String s, int x, int y) {
-        FontMetrics fm = g2.getFontMetrics();
-
-        g2.drawString(s, x - (fm.stringWidth(s) / 2), y + (fm.getDescent() + fm.getAscent()) / 4);
-    }
-
     public void clear()
     {
-        g2.fillRect(0,0,WINDOW_WIDTH,WINDOW_HEIGHT);
+        g2.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
     public void drawBackground()
@@ -186,7 +134,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 
 			//g2.fillPolygon(transformTuile(tuiles[i]));
 			g2.setColor(Color.BLACK);
-
+			drawImageTuile(tuiles[i]);
 			Vertex v = tuiles[i].getSommets().get(0);
 			if(!(tuiles[i] instanceof Desert))g2.drawString(tuiles[i].getNumero()+"",v.getX()-10,v.getY()+40);
 			if (tuiles[i].getVoleur() != null)
@@ -194,13 +142,13 @@ public class PanelGame extends JPanel implements ViewConstants {
 				g2.setColor(Color.RED);
 				g2.drawString("Voleur",v.getX()-5,v.getY()+60);
 			}
-            drawImageTuile(tuiles[i]);
+            
 		}
 		//On déssine les Edges:
 		List<Edge> edges = plat.getGraph().getEdges();
 		for(Edge e : edges){
 			if(e.getRoute() == null) {
-				g2.setColor(Color.gray);
+				g2.setColor(Color.YELLOW);
 			}
 			else{
 				g2.setColor(e.getRoute().getJoueur().getCouleurJoueur());
@@ -217,13 +165,8 @@ public class PanelGame extends JPanel implements ViewConstants {
         }
         for(int i =0;i<vertices.length;i++){
 			Vertex v = vertices[i];
-
-            if(v.isHover()) {
-                g2.setColor(partie.getJoueurActif().getCouleurJoueur());
-                g2.drawOval(v.getX()-TAILLEVERTEX/2-5,v.getY()-TAILLEVERTEX/2-5,TAILLEVERTEX+10,TAILLEVERTEX+10);
-            }
 			if(v.getBatiment() == null){
-                g2.setColor(Color.gray);
+                g2.setColor(Color.YELLOW);
                 g2.fillOval(v.getX()-TAILLEVERTEX/2,v.getY()-TAILLEVERTEX/2,TAILLEVERTEX,TAILLEVERTEX);
             }
 			else {
@@ -234,42 +177,14 @@ public class PanelGame extends JPanel implements ViewConstants {
 				}
 				else if (v.getBatiment() instanceof Colonie){
 					g2.fillOval(v.getX()-TAILLEVERTEX/2,v.getY()-TAILLEVERTEX/2,TAILLEVERTEX,TAILLEVERTEX);
-
-                    if(v.isHover())
-                    {
-                        if(v.getBatiment().getJoueur().getCouleurJoueur() == Color.cyan){
-                            g2.drawImage(colonie_bleu_hover, v.getX()-25, v.getY()-25,this);
-                        }
-                        else if(v.getBatiment().getJoueur().getCouleurJoueur() == Color.red){
-                            g2.drawImage(colonie_rouge_hover, v.getX()-25, v.getY()-25,this);
-                        }
-                        else if(v.getBatiment().getJoueur().getCouleurJoueur() == Color.yellow){
-                            g2.drawImage(colonie_jaune_hover, v.getX()-25, v.getY()-25,this);
-                        }
-                        else if(v.getBatiment().getJoueur().getCouleurJoueur() == Color.green){
-                            g2.drawImage(colonie_vert_hover, v.getX()-25, v.getY()-25,this);
-                        }
-                    }
-                    else{
-                        if(v.getBatiment().getJoueur().getCouleurJoueur() == Color.cyan){
-                            g2.drawImage(colonie_bleu, v.getX()-25, v.getY()-25,this);
-                        }
-                        else if(v.getBatiment().getJoueur().getCouleurJoueur() == Color.red){
-                            g2.drawImage(colonie_rouge, v.getX()-25, v.getY()-25,this);
-                        }
-                        else if(v.getBatiment().getJoueur().getCouleurJoueur() == Color.yellow){
-                            g2.drawImage(colonie_jaune, v.getX()-25, v.getY()-25,this);
-                        }
-                        else if(v.getBatiment().getJoueur().getCouleurJoueur() == Color.green){
-                            g2.drawImage(colonie_vert, v.getX()-25, v.getY()-25,this);
-                        }
-                    }
-
-
 				}
             }
 
-
+            if(v.isHover())
+            {
+                g2.setColor(partie.getJoueurActif().getCouleurJoueur());
+                g2.drawOval(v.getX()-TAILLEVERTEX/2-5,v.getY()-TAILLEVERTEX/2-5,TAILLEVERTEX+10,TAILLEVERTEX+10);
+            }
 
 
 		}
@@ -278,95 +193,59 @@ public class PanelGame extends JPanel implements ViewConstants {
 
 	public void drawBank() {
         g2.setColor(Color.WHITE);
+        g2.fillRect(XBANK, YBANK, BANK_WIDTH, BANK_HEIGHT);
 		g2.setColor(BLACK);
-        g2.drawImage(banque_fond, XBANK - 200, YBANK - 200, this );
+		drawDeveloppement();
 		drawDeckRessource();
-        g2.setFont(BanqueFontSize);
-		drawStringCenter("BANQUE", XBANK , YBANK - banque_fond.getHeight()/ 2 + 60);
+		g2.drawString("Banque", XBANK + 50, YBANK + 50);
 	}
 
 	public void drawDeckRessource() {
-		int x = XBANK;
-		int y = YBANK - banque_fond.getHeight()/ 2 + 250;
-        g2.setFont(mainFontSize);
-        g2.setColor(Color.white);
+		int x = XBANK + 20;
+		int y = YBANK + 100;
 		for (Entry<String, List<Ressource>> entry : partie.getDeckRessource().getCarteRessource().entrySet()) {
 			String cle = entry.getKey();
 			List<Ressource> valeur = entry.getValue();
-			drawStringCenter(cle + " : " + valeur.size(), x, y);
-			y += 25;
+			g2.drawString(cle + " : " + valeur.size(), x, y);
+			y += 20;
 		}
-
-        int dispo = YBANK - banque_fond.getHeight()/ 2 + 125;
-        drawStringCenter("Colonie disponible  : " + partie.getJoueurActif().getColonieDispo(), XBANK,dispo);
-        drawStringCenter("Ville disponible : " + partie.getJoueurActif().getVilleDispo(), XBANK, dispo + 25);
-        drawStringCenter("Route disponible : " + partie.getJoueurActif().getRouteDispo(), XBANK, dispo+50);
-        int size = partie.getDeckDeveloppement().getCartDeveloppement().size();
-        drawStringCenter("Développpement : " + size, XBANK , dispo + 75);
 
 	}
 
+	public void drawDeveloppement() {
+		int size = partie.getDeckDeveloppement().getCartDeveloppement().size();
+		g2.drawString("Carte de développpement : " + size, XBANK + 20, YBANK + 225);
+	}
+
 	public void drawInfoJoueur() {
-		int x = 300;
+		int x = JOUEUR_INFO_X + 50;
 		int y = JOUEUR_INFO_Y + 50;
         g2.setColor(Color.WHITE);
-        //g2.fillRect(JOUEUR_INFO_X, JOUEUR_INFO_Y, JOUEUR_INFO_WIDTH, JOUEUR_INFO_HEIGHT);
+        g2.fillRect(JOUEUR_INFO_X, JOUEUR_INFO_Y, JOUEUR_INFO_WIDTH, JOUEUR_INFO_HEIGHT);
 
 		g2.setColor(partie.getJoueurActif().getCouleurJoueur());
 		g2.drawString(partie.getJoueurActif().getNomJoueur(), x, y);
 		y+=40;
-
-        drawPointVictoire();
-        drawBulleJoueur();
+		g2.drawString("Point de Victoire :"+ partie.getJoueurActif().getPointJoueur(), x, y);
 		
 		y+=20;
-		g2.setColor(Color.WHITE);
-        g2.drawString("Vos ressources : ", 20, 25);
-		for (Entry<String, List<Ressource>> entry : partie.getListeJoueur().get(0).getMainRessource().entrySet()) {
+		g2.setColor(BLACK);
+		for (Entry<String, List<Ressource>> entry : partie.getJoueurActif().getMainRessource().entrySet()) {
 			String cle = entry.getKey();
 			Ressource r = Ressource.valueOf(cle);
 			List<Ressource> valeur = entry.getValue();
-           	if(cle == "Bois") {
-                g2.drawImage(icone_supraconducteur, x-25, 0, this);
-                g2.drawString(" -> " + valeur.size(), x + 5, 28);}
-           	else if(cle == "Laine") {
-                g2.drawImage(icone_cristaux, x-25, 0, this);
-                g2.drawString(" -> " + valeur.size(), x + 5, 28);}
-           	else if(cle == "Ble") {
-                g2.drawImage(icone_cellule_energetique, x - 25, 0,this);
-                g2.drawString(" -> " + valeur.size(), x + 5, 28);
-            }//cellule energetique
-           	else if(cle == "Argile") {
-                g2.drawImage(icone_gaz, x-25, 0, this);
-                g2.drawString(" -> " + valeur.size(), x + 5, 28);}
-           	else if(cle == "Minerai") {
-                g2.drawImage(icone_minerai, x-25, 0, this);
-                g2.drawString(" -> " + valeur.size(), x + 5, 28);}
-
-			x += 100;
+			g2.drawString(r.getNom() +" "+ valeur.size(), x, y);
+			y += 20;
 		}
 		
 		for (Developpement d : partie.getJoueurActif().getMainDeveloppement()) {
 			g2.drawString(d.name(), x+50, y+50);
 		}
+		
+		g2.drawString("Colonie disponible "+partie.getJoueurActif().getColonieDispo(), x, y+50);
+		g2.drawString("Ville disponible "+partie.getJoueurActif().getVilleDispo(), x, y+70);
+		g2.drawString("Route disponible "+partie.getJoueurActif().getRouteDispo(), x, y+90);
 
-
-	}
-
-    public void drawPointVictoire()
-    {
-        int x = WINDOW_WIDTH - 70;
-        int y = 250 ;
-        g2.setFont(fontPointVictoireSize);
-
-        g2.drawImage(rond_point, x-40, y-42, this);
-        drawStringCenter(Integer.toString(partie.getListeJoueur().get(0).getPointJoueur()), x, y);
-        g2.setFont(mainFontSize);
-    }
-
-	public void drawBulleJoueur()
-	{
-		g2.drawImage(stormtrooper, WINDOW_WIDTH-240, 10, this);
 	}
 
 	/*
@@ -405,12 +284,10 @@ public class PanelGame extends JPanel implements ViewConstants {
     public void drawBarUp()
     {
 
-        Rectangle r = new Rectangle(0, 0, 80, 50);
+        Rectangle r = new Rectangle(0, 0, 64, 64);
         g2.setPaint(new TexturePaint(barUp, r));
-        Rectangle rect = new Rectangle(0,0,1000 ,50);
+        Rectangle rect = new Rectangle(0,0,WINDOW_WIDTH,64);
         g2.fill(rect);
-
-		g2.drawImage(barUpRight, 1000, 0, this);
 
     }
 
@@ -432,4 +309,14 @@ public class PanelGame extends JPanel implements ViewConstants {
         this.addMouseListener(listener);
         this.addMouseMotionListener(listener);
     }
+	public JButton getDes() {
+		return des;
+	}
+	public JButton getSkip(){
+		return skip;
+	}
+	public void setButtonController(ActionListener al){
+		des.addActionListener(al);
+		skip.addActionListener(al);
+	}
 }
