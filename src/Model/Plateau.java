@@ -210,6 +210,15 @@ public class Plateau {
         }
         return retour;
     }
+    
+    public Set<Tuile> getTuile(int numero){
+    	Set<Tuile> retour = new HashSet<Tuile>();
+    	for (int i = 0; i < tuiles.length; i++) {
+			if(tuiles[i].getNumero()==numero) retour.add(tuiles[i]);
+		}
+    	return retour;
+    }
+    
 
     public Graph getGraph() {
         return graph;
