@@ -1,6 +1,7 @@
 package Model;
 
 import Model.Batiments.Colonie;
+import sun.security.util.Resources_zh_CN;
 
 import java.awt.*;
 import java.util.*;
@@ -126,4 +127,47 @@ public class Joueur
 	public void setRouteDispo(int routeDispo) {
 		this.routeDispo = routeDispo;
 	}
+
+    public int nombreCarteRessource(){
+        int i = 0;
+        Set<String> clef = mainRessource.keySet();
+        Iterator<String> iterator = clef.iterator();
+        while(iterator.hasNext()){
+            i = i + mainRessource.get(iterator.next()).size();
+        }
+        return i;
+    }
+
+    public void retireRessource(DeckRessource deckRessource){
+        int i = 0;
+        int nbRetire;
+        int nb = nombreCarteRessource()/2;
+        Random random = new Random();
+        String[] clefs = new String[mainRessource.size()];
+        Set<String> clef = mainRessource.keySet();
+        Iterator<String> iterator = clef.iterator();
+
+        while(iterator.hasNext()){
+            clefs[i] = iterator.next();
+            i++;
+        }
+        while (nb>=0){
+            //On sélectionne aléatoirement un type de ressource
+            i = random.nextInt(clefs.length);
+            List<Ressource> ressource = mainRessource.get(clefs[i]);
+            //On vérifie qu'on peut retirer des ressources de ce type
+            if(ressource.size()>0){
+                //Sélection du nombre de carte à enlever
+                nbRetire = random.nextInt(ressource.size());
+                if(nbRetire <= nb){
+                    nb-=nbRetire;
+                    //On retire les cartes et on les ajoute à la banque
+                    for(int j = 0;j<nbRetire;j++){
+                        Ressource r = retirerCarte(clefs[i]);
+                        deckRessource.obtenirRessource(r);
+                    }
+                }
+            }
+        }
+    }
 }

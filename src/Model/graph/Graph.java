@@ -17,9 +17,9 @@ public class Graph implements ViewConstants{
     static final int DECLALAGE_COTE = 60;
     static final int PETIT_DECALAGE = 40;
     static final int GRAND_DECALAGE = 100;
-    Vertex root;
-    Vertex[] vertices = new Vertex[54];
-    List<Edge> edges = new ArrayList<Edge>();
+    private Vertex root;
+    private  Vertex[] vertices = new Vertex[54];
+    private List<Edge> edges = new ArrayList<Edge>();
 
     public Graph(Vertex root)throws RootNullException{
         this.root = root;
