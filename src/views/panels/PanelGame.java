@@ -96,7 +96,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 		drawDeckRessource();
 		drawInfoJoueur();
 		drawBank();
-		System.out.println("fgfff");
+
 
 	}
 
