@@ -24,6 +24,9 @@ import java.util.Set;
  */
 public class Partie {
 	private List<Joueur> listeJoueur;
+
+
+
 	private Des des;
 	private DeckRessource deckRessource;
 	private DeckDeveloppement deckDeveloppement;
@@ -35,6 +38,31 @@ public class Partie {
 	private Timer timer;
 	private List<Laser> listelaser;
 
+	private boolean deslances=false;
+	public boolean skip=false;
+
+
+
+	private boolean phaseCommerce=false;
+
+
+
+	private boolean phaseConstruction=false;
+
+	public boolean isPhaseCommerce() {
+		return phaseCommerce;
+	}
+
+	public void setPhaseCommerce(boolean phaseCommerce) {
+		this.phaseCommerce = phaseCommerce;
+	}
+	public boolean isPhaseConstruction() {
+		return phaseConstruction;
+	}
+
+	public void setPhaseConstruction(boolean phaseConstruction) {
+		this.phaseConstruction = phaseConstruction;
+	}
 	public Partie() {
 		setNbTour(0);
 		initListCouleur();
@@ -221,7 +249,40 @@ public class Partie {
 			}
 		}
 	}
+	public Des getDes() {
+		return des;
+	}
+	public boolean isDes() {
+		return deslances;
+	}
+	public void annuleDeslances(){
+		deslances=false;
+	}
+	public void lanceDes(){
+		deslances=true;
+	}
+	public boolean isSkip() {
+		return skip;
+	}
+	public void annuleSkip(){
+		skip=false;
+	}
+	public void skip(){
+		skip=true;
+	}
 
 
-
+	public void reinitOrdre() {
+		List<Joueur> joueurtmp=new ArrayList<Joueur>();
+		for (int i = listeJoueur.size()-1; i >=0; i--) {
+			joueurtmp.add(listeJoueur.get(i));
+		}
+		listeJoueur=joueurtmp;
+		joueurtmp=new ArrayList<Joueur>();
+		for (int i = 1; i <listeJoueur.size(); i++) {
+			joueurtmp.add(listeJoueur.get(i));
+		}
+		joueurtmp.add(listeJoueur.get(0));
+		listeJoueur=joueurtmp;
+	}
 }

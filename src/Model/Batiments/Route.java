@@ -7,5 +7,6 @@ import Model.Joueur;
 public class Route extends Batiment {
     public Route(Joueur joueur) {
         super(joueur);
+        this.name="Route";
     }
 }

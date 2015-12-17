@@ -10,6 +10,7 @@ import controllers.ClickListener;
 import views.ViewConstants;
 import java.awt.*;
 import java.awt.TexturePaint;
+import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -43,15 +44,30 @@ public class PanelGame extends JPanel implements ViewConstants {
 
 
 
+	private JButton des;
+	private JButton skip;
+
+
+
 
     public PanelGame(Partie partie) {
 
         initImage();
+		initButton();
 
         this.partie = partie;
     }
 
-    public void  initImage()
+	private void initButton() {
+		des=new JButton();
+		des.setBounds(100, 100, 100, 100);
+		skip=new JButton();
+		skip.setBounds(100, 600, 100, 100);
+		this.add(des);
+		this.add(skip);
+	}
+
+	public void  initImage()
     {
         try {
             desert = ImageIO.read(PanelGame.class.getResource("/assets/img/desert.png"));
@@ -85,7 +101,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 
     public void clear()
     {
-        g2.fillRect(0,0,WINDOW_WIDTH,WINDOW_HEIGHT);
+        g2.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
     public void drawBackground()
@@ -292,4 +308,14 @@ public class PanelGame extends JPanel implements ViewConstants {
         this.addMouseListener(listener);
         this.addMouseMotionListener(listener);
     }
+	public JButton getDes() {
+		return des;
+	}
+	public JButton getSkip(){
+		return skip;
+	}
+	public void setButtonController(ActionListener al){
+		des.addActionListener(al);
+		skip.addActionListener(al);
+	}
 }

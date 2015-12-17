@@ -22,45 +22,40 @@ public class ClickListener extends MainController implements MouseListener, Mous
     private Partie partie;
     private PanelGame panel;
     private boolean placecolo1;
-    private Vertex rout1;
-    private Vertex rout2;
-
+    private int X;
+    private int Y;
 
     public ClickListener(Partie partie){
         this.partie = partie;
         currentWindow.getPanel().setControler(this);
 
+
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        int X = e.getX();
-        int Y = e.getY();
-        Vertex v;
-        //int xu = v.getX();
-        //int xv = v.getY() ;
-        /*if(v.getBatiment() instanceof Colonie)
-        {
-            try {
-                partie.getPlateau().creerVille(v);
-            } catch (NoColonieException e1) {
-                e1.printStackTrace();
-            }
-        }
-        else
-        {
-            try {
-                partie.getPlateau().creerColonie(partie.getJoueurActif(), v);
-            } catch (ColoniePositionException e1) {
-                e1.printStackTrace();
-            }
-        }*/
+        X = e.getX();
+        Y = e.getY();
+        Vertex v=null;
+        Edge e1=null;
         try{
-            v = partie.getPlateau().getGraph().converstionXY(X,Y);
-            if (partie.getNbTour()<=partie.getNbJoueur()*2-1){
-                phaseinit(v);
+            e1=partie.getPlateau().getGraph().getEdgeFromPoint(X,Y);
+            if (!placecolo1) {
+                v = partie.getPlateau().getGraph().converstionXY(X, Y);
             }
             else {
-            //phasejeu();
+
+            }
+            if (partie.getNbTour()<=(partie.getNbJoueur())*2-1){
+
+                phaseinit(v, e1);
+
+            }
+            else{
+                //if (v!=null||e1!=null){
+                    phaseJeu(v,e1);
+
+                //}
+
             }
         }catch (PositionsInvalidesException exc){
 
@@ -112,42 +107,29 @@ public class ClickListener extends MainController implements MouseListener, Mous
         currentWindow.getPanel().repaint();
     }
 
-    public void phaseinit(Vertex v){
+    public void phaseinit(Vertex v,Edge e1){
         Joueur joueur;
-
 
         joueur=partie.getJoueurActif();
         if (placecolo1==true){
-            if (rout1!=null){
-                rout2=v;
                 try {
-                    partie.getPlateau().creerRoute(joueur, partie.getPlateau().getGraph().convertEdge(rout1, rout2),null);
-                    if (joueur.equals(partie.getListeJoueur().get(partie.getListeJoueur().size()-1))){
+                    partie.getPlateau().creerRoute(joueur, e1,null);
+                    if (joueur.equals(partie.getListeJoueur().get(partie.getListeJoueur().size()-1))&&partie.getNbTour()<(partie.getNbJoueur())*2-2){
                         partie.inversOrdre();
                     }
-
+                    else if(joueur.equals(partie.getListeJoueur().get(partie.getListeJoueur().size()-1))&&partie.getNbTour()==(partie.getNbJoueur())*2-2){
+                        partie.reinitOrdre();
+                    }
                     joueurSuivant();
                     placecolo1 = false;
-                    rout1=null;
-                    rout2=null;
-
-
                 }catch (RoutePositionException r){
-                    rout1=null;
-                    rout2=null;
+
                     r.getMessage();
                 }catch(NoRouteDispoException r){
-                    rout1=null;
-                    rout2=null;
                     r.getMessage();
                 } catch (RessourceIndisponibleException e) {
                     e.printStackTrace();
                 }
-            }
-            else {
-                rout1=v;
-            }
-
         }
         else {
             try {
@@ -157,8 +139,6 @@ public class ClickListener extends MainController implements MouseListener, Mous
                     partie.initMainJoueur(joueur);
                 }
                 placecolo1=true;
-
-
             } catch (ColoniePositionException  e) {
                 e.getMessage();
             }
@@ -172,12 +152,67 @@ public class ClickListener extends MainController implements MouseListener, Mous
 
 
     }
-    public void joueurSuivant(){
-        partie.setJoueurActif(partie.getListeJoueur().get((partie.getNbTour()+1)%partie.getNbJoueur()));
-        partie.setNbTour(partie.getNbTour()+1);
+    public void phaseJeu(Vertex v,Edge e1){
+        Joueur joueur;
+        joueur=partie.getJoueurActif();
+        if(!partie.isPhaseConstruction()) {
+        // if (!phaseCommerce) {
+        if (partie.isDes()) {
+            int result = partie.getDes().lancerDes();
+            try {
+                partie.getRessource(result);
+                partie.setPhaseConstruction(true);
+            } catch (NumberSevenException nb7) {
+                nb7.getMessage();
+            }
+        }
+
+         /* else{
 
 
+            }*/
+        }
+        else{
+            if (partie.isSkip()) {
+                partie.setPhaseConstruction(false);
+                partie.annuleDeslances();
+                partie.annuleSkip();
+                joueurSuivant();
+                return;
+            }
+            if (v!=null){
+
+                try {
+                    Batiment b=partie.getPlateau().creerColonie(joueur,v,null);
+                    joueur.placerColonie((Colonie) b);
+                } catch (ColoniePositionException  e) {
+                    e.getMessage();
+                }
+                catch (NoColonieDispoException e){
+                    e.getMessage();
+                } catch (RessourceIndisponibleException e) {
+                    e.getMessage();
+                }
+            }
+            else if (e1!=null){
+                try {
+                    partie.getPlateau().creerRoute(joueur, e1, null);
+                }catch (RoutePositionException r){
+
+                    r.getMessage();
+                }catch(NoRouteDispoException r){
+                    r.getMessage();
+                } catch (RessourceIndisponibleException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
     }
 
+    public void joueurSuivant() {
+        partie.setJoueurActif(partie.getListeJoueur().get((partie.getNbTour() + 1) % partie.getNbJoueur()));
 
+        partie.setNbTour(partie.getNbTour() + 1);
+    }
 }

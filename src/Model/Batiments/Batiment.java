@@ -7,9 +7,11 @@ import Model.Joueur;
  */
 public abstract class Batiment {
     protected Joueur joueur;
+    public static String name;
 
     public Batiment(Joueur joueur) {
         this.joueur = joueur;
+        this.name="Batiment";
     }
 
     public Joueur getJoueur() {

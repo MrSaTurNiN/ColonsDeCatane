@@ -9,5 +9,6 @@ import Model.graph.Vertex;
 public class Ville extends Colonie {
     public Ville(Joueur joueur, Vertex position) {
         super(joueur,position);
+        this.name="Ville";
     }
 }

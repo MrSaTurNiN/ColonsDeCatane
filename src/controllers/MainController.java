@@ -14,6 +14,7 @@ public class MainController {
 	private InitJoueurView initJoueurView;
 	private InitNbJoueurView initNbJoueurView;
 	private ClickListener click;
+	private ButtonListener button;
 	
 	public MainController(Partie partie){
 		this.partie = partie;
@@ -21,6 +22,7 @@ public class MainController {
 		initAllJoueur();
 		currentWindow = new MainWindow(this.partie, this);
         click=new ClickListener(partie);
+		button=new ButtonListener(partie);
 		currentWindow.setVisible(true);
 		partie.setOrdreJoueur();
         partie.setJoueurActif(partie.getListeJoueur().get(0));

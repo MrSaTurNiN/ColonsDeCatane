@@ -290,13 +290,14 @@ public class Graph implements ViewConstants{
     public Vertex converstionXY(int x,int y)throws PositionsInvalidesException {
         for(int i = 0; i < vertices.length; i++){
 
-            int decalage = 20 ;
+            int decalage = 15 ;
             Vertex v = vertices[i];
             if( x <= v.getX()+decalage && x >= v.getX()-decalage){
                 if(y <= v.getY()+decalage && y>=v.getY()-decalage){
                     return v;
                     }
             }
+
         }
         throw new PositionsInvalidesException();
     }
@@ -310,6 +311,20 @@ public class Graph implements ViewConstants{
 
         return null;
     }
+    public Edge getEdgeFromPoint(int x,int y){
+        Point p=null;
+        for (Edge e1:edges) {
+            p=e1.middleOfTheEdge();
+            if (Math.sqrt(Math.pow(x-p.getX(),2)+Math.pow(y-p.getY(),2))<20.0){
+                return e1;
+            }
+        }
 
+        return null;
+    }
+    public Boolean isHoverDes(int x, int y){
+        //if ((x>jsp||x<jsp)&&(y>jsp||y<jsp)){ }
+        return false;
+    }
 
 }
