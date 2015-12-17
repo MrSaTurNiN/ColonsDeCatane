@@ -189,7 +189,7 @@ public class Partie {
 	}
 	public void initListCouleur(){
 		listCouleur = new ArrayList<Color>();
-		listCouleur.add(Color.BLUE);
+		listCouleur.add(Color.cyan);
 		listCouleur.add(Color.GREEN);
 		listCouleur.add(Color.RED);
 		listCouleur.add(Color.YELLOW);

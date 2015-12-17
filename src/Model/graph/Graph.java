@@ -14,12 +14,12 @@ import java.util.List;
  */
 
 public class Graph implements ViewConstants{
-    static final int DECLALAGE_COTE = 60;
-    static final int PETIT_DECALAGE = 40;
-    static final int GRAND_DECALAGE = 100;
-    private Vertex root;
-    private  Vertex[] vertices = new Vertex[54];
-    private List<Edge> edges = new ArrayList<Edge>();
+    static final int DECLALAGE_COTE = 70;
+    static final int PETIT_DECALAGE = 50;
+    static final int GRAND_DECALAGE = 125;
+    Vertex root;
+    Vertex[] vertices = new Vertex[54];
+    List<Edge> edges = new ArrayList<Edge>();
 
     public Graph(Vertex root)throws RootNullException{
         this.root = root;
