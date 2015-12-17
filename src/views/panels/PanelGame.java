@@ -103,7 +103,7 @@ public class PanelGame extends JPanel implements ViewConstants {
             icone_gaz = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_gaz.png"));
             icone_minerai = ImageIO.read(PanelGame.class.getResource("/assets/img/minerai.png"));
             icone_supraconducteur = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_supraconducteur.png"));
-            icone_cristaux = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_icone_cristaux.png"));
+            icone_cristaux = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_cristaux.png"));
 
 
             colonie_bleu = ImageIO.read(PanelGame.class.getResource("/assets/img/colonie_bleu.png"));
@@ -314,7 +314,6 @@ public class PanelGame extends JPanel implements ViewConstants {
         int size = partie.getDeckDeveloppement().getCartDeveloppement().size();
         drawStringCenter("Développpement : " + size, XBANK , dispo + 75);
 
-	}
 
 	public void drawInfoJoueur() {
 		int x = 300;
