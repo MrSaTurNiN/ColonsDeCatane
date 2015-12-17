@@ -196,7 +196,6 @@ public class ClickListener extends MainController implements MouseListener, Mous
                 partie.setPhaseConstruction(false);
                 partie.annuleDeslances();
                 partie.annuleSkip();
-                joueurSuivant();
                 return;
             }
             if (v!=null){

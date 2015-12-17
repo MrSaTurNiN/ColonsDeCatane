@@ -26,7 +26,10 @@ public class ButtonListener extends MainController implements ActionListener {
         }
         if (e.getSource()==currentWindow.getPanel().getSkip()&&partie.getNbTour()>(partie.getNbJoueur())*2-1&&!partie.isSkip()){
             partie.skip();
+            joueurSuivant();
+            currentWindow.repaint();
         }
+
     }
     public void joueurSuivant(){
         partie.setJoueurActif(partie.getListeJoueur().get((partie.getNbTour() + 1) % partie.getNbJoueur()));
