@@ -41,16 +41,7 @@ public class Edge{
      */
     public boolean isLibreColonie(Vertex v)
     {
-        if(v == vertexA)
-        {
-            return vertexB.getBatiment() == null;
-        }
-        if(v == vertexB)
-        {
-            return vertexA.getBatiment() == null;
-        }
-        /* Il serait mieux de faire une exception */
-        return false;
+        return getOther(v).getBatiment() == null;
     }
 
     public Vertex getOther(Vertex v)
