@@ -158,6 +158,7 @@ public class ClickListener extends MainController implements MouseListener, Mous
         if(!partie.isPhaseConstruction()) {
         // if (!phaseCommerce) {
         if (partie.isDes()) {
+            System.out.println("yolo");
             int result = partie.getDes().lancerDes();
             try {
                 partie.getRessource(result);
@@ -181,17 +182,18 @@ public class ClickListener extends MainController implements MouseListener, Mous
                 return;
             }
             if (v!=null){
+                if (joueur.hasRessourceColonie()) {
+                    try {
 
-                try {
-                    Batiment b=partie.getPlateau().creerColonie(joueur,v,null);
-                    joueur.placerColonie((Colonie) b);
-                } catch (ColoniePositionException  e) {
-                    e.getMessage();
-                }
-                catch (NoColonieDispoException e){
-                    e.getMessage();
-                } catch (RessourceIndisponibleException e) {
-                    e.getMessage();
+                        Batiment b = partie.getPlateau().creerColonie(joueur, v, null);
+                        joueur.placerColonie((Colonie) b);
+                    } catch (ColoniePositionException e) {
+                        e.getMessage();
+                    } catch (NoColonieDispoException e) {
+                        e.getMessage();
+                    } catch (RessourceIndisponibleException e) {
+                        e.getMessage();
+                    }
                 }
             }
             else if (e1!=null){

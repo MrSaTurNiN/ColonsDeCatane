@@ -10,6 +10,7 @@ import controllers.ClickListener;
 import views.ViewConstants;
 import java.awt.*;
 import java.awt.TexturePaint;
+import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -51,11 +52,14 @@ public class PanelGame extends JPanel implements ViewConstants {
     private BufferedImage icone_minerai;
     private BufferedImage icone_cristaux;
     private BufferedImage icone_supraconducteur;
-
+    
     private BufferedImage colonie_rouge;
     private BufferedImage colonie_jaune;
     private BufferedImage colonie_vert;
     private BufferedImage colonie_bleu;
+    
+    private JButton des;
+	private JButton skip;
 
     private BufferedImage colonie_rouge_hover;
     private BufferedImage colonie_jaune_hover;
@@ -73,9 +77,19 @@ public class PanelGame extends JPanel implements ViewConstants {
     public PanelGame(Partie partie) {
 
         initImage();
+        initButton();
         initFont();
 
         this.partie = partie;
+    }
+
+    private void initButton() {
+        des=new JButton();
+        des.setBounds(100, 100, 100, 100);
+        skip=new JButton();
+        skip.setBounds(100, 600, 100, 100);
+        this.add(des);
+        this.add(skip);
     }
 
     public void  initImage()
@@ -142,7 +156,7 @@ public class PanelGame extends JPanel implements ViewConstants {
         drawBarUp();
 		drawDeckRessource();
 		drawInfoJoueur();
-		drawBank();
+        drawBank();
 
 	}
 
@@ -154,7 +168,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 
     public void clear()
     {
-        g2.fillRect(0,0,WINDOW_WIDTH,WINDOW_HEIGHT);
+        g2.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
     public void drawBackground()
@@ -172,7 +186,7 @@ public class PanelGame extends JPanel implements ViewConstants {
         g2.setComposite(AlphaComposite.getInstance(
                 AlphaComposite.SRC_OVER, 0.8f));
 		g2.setColor(Color.BLACK);
-		g2.fillOval(MAP_X, MAP_Y, MAP_WIDTH, MAP_HEIGHT);
+        g2.fillOval(MAP_X, MAP_Y, MAP_WIDTH, MAP_HEIGHT);
         g2.setComposite(AlphaComposite.getInstance(
                 AlphaComposite.SRC_OVER, 1));
 		Plateau plat = partie.getPlateau();
@@ -227,7 +241,7 @@ public class PanelGame extends JPanel implements ViewConstants {
                 g2.fillOval(v.getX()-TAILLEVERTEX/2,v.getY()-TAILLEVERTEX/2,TAILLEVERTEX,TAILLEVERTEX);
             }
 			else {
-				g2.setColor(v.getBatiment().getJoueur().getCouleurJoueur());
+                g2.setColor(v.getBatiment().getJoueur().getCouleurJoueur());
                 if(v.getBatiment() instanceof Ville)
 				{
 					g2.fillRect(v.getX()-TAILLEVERTEX/2,v.getY()-TAILLEVERTEX/2,TAILLEVERTEX,TAILLEVERTEX);
@@ -269,6 +283,11 @@ public class PanelGame extends JPanel implements ViewConstants {
 				}
             }
 
+            if(v.isHover())
+            {
+                g2.setColor(partie.getJoueurActif().getCouleurJoueur());
+                g2.drawOval(v.getX() - TAILLEVERTEX / 2 - 5, v.getY() - TAILLEVERTEX / 2 - 5, TAILLEVERTEX + 10, TAILLEVERTEX+10);
+            }
 
 
 
@@ -279,10 +298,10 @@ public class PanelGame extends JPanel implements ViewConstants {
 	public void drawBank() {
         g2.setColor(Color.WHITE);
 		g2.setColor(BLACK);
-        g2.drawImage(banque_fond, XBANK - 200, YBANK - 300, this );
+        g2.drawImage(banque_fond, XBANK - 200, YBANK - 300, this);
 		drawDeckRessource();
         g2.setFont(BanqueFontSize);
-		drawStringCenter("BANQUE", XBANK , YBANK - banque_fond.getHeight()/ 2 + 60);
+		drawStringCenter("BANQUE", XBANK, YBANK - banque_fond.getHeight() / 2 + 60);
 	}
 
 	public void drawDeckRessource() {
@@ -302,7 +321,7 @@ public class PanelGame extends JPanel implements ViewConstants {
         drawStringCenter("Villes disponibles : " + partie.getJoueurActif().getVilleDispo(), XBANK, dispo + 25);
         drawStringCenter("Routes disponibles : " + partie.getJoueurActif().getRouteDispo(), XBANK, dispo+50);
         int size = partie.getDeckDeveloppement().getCartDeveloppement().size();
-        drawStringCenter("Développement : " + size, XBANK , dispo + 75);
+        drawStringCenter("Développement : " + size, XBANK, dispo + 75);
 
 	}
 
@@ -312,7 +331,7 @@ public class PanelGame extends JPanel implements ViewConstants {
         g2.setColor(Color.WHITE);
         //g2.fillRect(JOUEUR_INFO_X, JOUEUR_INFO_Y, JOUEUR_INFO_WIDTH, JOUEUR_INFO_HEIGHT);
 
-		g2.setColor(partie.getJoueurActif().getCouleurJoueur());
+        g2.setColor(partie.getJoueurActif().getCouleurJoueur());
 		g2.drawString(partie.getJoueurActif().getNomJoueur(), x, y);
 		y+=40;
 
@@ -320,7 +339,7 @@ public class PanelGame extends JPanel implements ViewConstants {
         drawBulleJoueur();
 		
 		y+=20;
-		g2.setColor(Color.WHITE);
+        g2.setColor(Color.WHITE);
         g2.drawString("Vos ressources : ", 20, 25);
 		for (Entry<String, List<Ressource>> entry : partie.getListeJoueur().get(0).getMainRessource().entrySet()) {
 			String cle = entry.getKey();
@@ -431,5 +450,15 @@ public class PanelGame extends JPanel implements ViewConstants {
     {
         this.addMouseListener(listener);
         this.addMouseMotionListener(listener);
+    }
+    public JButton getDes() {
+        return des;
+    }
+    public JButton getSkip(){
+        return skip;
+    }
+    public void setButtonController(ActionListener al){
+        des.addActionListener(al);
+        skip.addActionListener(al);
     }
 }
