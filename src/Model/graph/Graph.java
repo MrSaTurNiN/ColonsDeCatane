@@ -311,7 +311,7 @@ public class Graph implements ViewConstants{
 
         return null;
     }
-    public Edge getEdgeFromPoint(int x,int y){
+    public Edge getEdgeFromPoint(int x,int y) throws PositionsInvalidesException {
         Point p=null;
         for (Edge e1:edges) {
             p=e1.middleOfTheEdge();
@@ -320,7 +320,7 @@ public class Graph implements ViewConstants{
             }
         }
 
-        return null;
+        throw new PositionsInvalidesException();
     }
     public Boolean isHoverDes(int x, int y){
         //if ((x>jsp||x<jsp)&&(y>jsp||y<jsp)){ }

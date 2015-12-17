@@ -12,6 +12,7 @@ import java.awt.geom.Point2D;
 public class Edge{
     Vertex vertexA;
     Vertex vertexB;
+    boolean isHover;
     Route route = null;
     public Edge(Vertex vertexA, Vertex vertexB) {
         this.vertexA = vertexA;
@@ -91,6 +92,20 @@ public class Edge{
         double y2 = vertexB.getY();
         p.setLocation((x1+x2)/2,(y1+y2)/2);
         return p;
+    }
+
+    public void setHoverTrue() {
+        isHover = true;
+    }
+
+    public void setHoverFalse()
+    {
+        isHover = false;
+    }
+
+    public boolean isHover()
+    {
+        return isHover;
     }
 
 }

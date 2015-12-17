@@ -37,13 +37,15 @@ public class ClickListener extends MainController implements MouseListener, Mous
         Y = e.getY();
         Vertex v=null;
         Edge e1=null;
+
         try{
-            e1=partie.getPlateau().getGraph().getEdgeFromPoint(X,Y);
+
             if (!placecolo1) {
                 v = partie.getPlateau().getGraph().converstionXY(X, Y);
+
             }
             else {
-
+                e1=partie.getPlateau().getGraph().getEdgeFromPoint(X,Y);
             }
             if (partie.getNbTour()<=(partie.getNbJoueur())*2-1){
 
@@ -95,15 +97,30 @@ public class ClickListener extends MainController implements MouseListener, Mous
         final int X = e.getX();
         final int Y = e.getY();
         Vertex v;
+        Edge e2;
         for (int i = 0; i < partie.getPlateau().getGraph().getVertices().length; i++) {
             partie.getPlateau().getGraph().getVertices()[i].setHoverFalse();
         }
        try {
             v =partie.getPlateau().getGraph().converstionXY(X,Y);
+
             v.setHoverTrue();
+
         } catch (PositionsInvalidesException e1) {
             //e1.printStackTrace();
         }
+
+        for (int i = 0; i < partie.getPlateau().getGraph().getEdges().size(); i++) {
+            partie.getPlateau().getGraph().getEdges().get(i).setHoverFalse();
+        }
+        try {
+            e2=partie.getPlateau().getGraph().getEdgeFromPoint(X,Y);
+            e2.setHoverTrue();
+        } catch (PositionsInvalidesException e1) {
+            //e1.printStackTrace();
+
+        }
+
         currentWindow.getPanel().repaint();
     }
 
@@ -132,6 +149,7 @@ public class ClickListener extends MainController implements MouseListener, Mous
                 }
         }
         else {
+            System.out.println("lol");
             try {
                 Batiment b=partie.getPlateau().creerColonie(joueur,v,null);
                 joueur.placerColonie((Colonie) b);

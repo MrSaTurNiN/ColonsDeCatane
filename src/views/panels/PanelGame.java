@@ -52,6 +52,7 @@ public class PanelGame extends JPanel implements ViewConstants {
     private BufferedImage icone_minerai;
     private BufferedImage icone_cristaux;
     private BufferedImage icone_supraconducteur;
+    private BufferedImage icone_de;
 
     private BufferedImage colonie_rouge;
     private BufferedImage colonie_jaune;
@@ -83,14 +84,7 @@ public class PanelGame extends JPanel implements ViewConstants {
         this.partie = partie;
     }
 
-    private void initButton() {
-        des=new JButton();
-        des.setBounds(100, 100, 100, 100);
-        skip=new JButton();
-        skip.setBounds(100, 600, 100, 100);
-        this.add(des);
-        this.add(skip);
-    }
+
 
     public void  initImage()
     {
@@ -114,6 +108,7 @@ public class PanelGame extends JPanel implements ViewConstants {
             icone_minerai = ImageIO.read(PanelGame.class.getResource("/assets/img/minerai.png"));
             icone_supraconducteur = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_supraconducteur.png"));
             icone_cristaux = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_cristaux.png"));
+            icone_de = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_de.png"));
 
 
             colonie_bleu = ImageIO.read(PanelGame.class.getResource("/assets/img/colonie_bleu.png"));
@@ -221,7 +216,16 @@ public class PanelGame extends JPanel implements ViewConstants {
 			else{
 				g2.setColor(e.getRoute().getJoueur().getCouleurJoueur());
 			}
-            g2.setStroke(new BasicStroke(3));
+
+
+            if(e.isHover())
+            {
+                g2.setStroke(new BasicStroke(5));
+            }
+            else
+            {
+                g2.setStroke(new BasicStroke(3));
+            }
 			g2.drawLine(e.getVertexA().getX(), e.getVertexA().getY(), e.getVertexB().getX(), e.getVertexB().getY());
 
 		}
@@ -393,6 +397,24 @@ public class PanelGame extends JPanel implements ViewConstants {
         g2.drawImage(rond_point, x-40, y-42, this);
         g2.drawImage(icone_de, x-40,y-40,this);
 
+    }
+
+    private void initButton() {
+        int x = WINDOW_WIDTH - 70;
+        int y = 325 ;
+        this.setLayout(null);
+        des=new JButton();
+        des.setBorder(BorderFactory.createEmptyBorder());
+        des.setContentAreaFilled(false);
+        des.setBounds( x-40, y-42, 80, 80);
+        skip=new JButton();
+        skip.setContentAreaFilled(false);
+        skip.setBorder(BorderFactory.createEmptyBorder());
+        x = WINDOW_WIDTH - 70;
+        y = 400 ;
+        skip.setBounds( x-40, y-42, 80, 80);
+        this.add(des);
+        this.add(skip);
     }
 
     public void drawSkip() {
