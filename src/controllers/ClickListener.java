@@ -132,7 +132,11 @@ public class ClickListener extends MainController implements MouseListener, Mous
                     rout2=null;
 
 
-                }catch (RoutePositionException | NoRouteDispoException r){
+                }catch (RoutePositionException r){
+                    rout1=null;
+                    rout2=null;
+                    r.getMessage();
+                }catch(NoRouteDispoException r){
                     rout1=null;
                     rout2=null;
                     r.getMessage();
@@ -153,7 +157,10 @@ public class ClickListener extends MainController implements MouseListener, Mous
                 placecolo1=true;
 
 
-            } catch (ColoniePositionException | NoColonieDispoException e) {
+            } catch (ColoniePositionException  e) {
+                e.getMessage();
+            }
+            catch (NoColonieDispoException e){
                 e.getMessage();
             }
 
