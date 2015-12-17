@@ -11,6 +11,9 @@ public class Des
     public Des()
     {
     }
+    public Des(Random random){
+        this.random = random;
+    }
 
     public int lancerDes()
     {

@@ -52,7 +52,7 @@ public class Partie {
 
 		deckRessource=new DeckRessource();
 		deckDeveloppement=new DeckDeveloppement();
-
+		des = new Des();
 		timer=new Timer(16, new GameTimer());
 	}
 	/*
