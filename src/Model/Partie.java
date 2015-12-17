@@ -1,10 +1,12 @@
 
 package Model;
 
+import Exceptions.NumberSevenException;
 import Exceptions.OutOfCardException;
 import Exceptions.RootNullException;
 import Exceptions.UnKnownRessource;
 import Model.Batiments.Colonie;
+import Model.Batiments.Ville;
 import Model.Tuile.*;
 import Model.graph.Vertex;
 import controllers.Timer.GameTimer;
@@ -179,6 +181,34 @@ public class Partie {
 	}
 	public void update(){
 
+	}
+	
+	public void getRessource(int de) throws NumberSevenException {
+		if(de==7){
+			throw new NumberSevenException();
+		}
+		Set<Tuile> tuiles = plateau.getTuile(de);
+		for (Tuile tuile : tuiles) {
+			for (Vertex vertex : tuile.getSommets()) {
+				if (vertex.getBatiment() instanceof Colonie)
+					try {
+						obtenirRessourceTuile(tuile, vertex.getBatiment().getJoueur());
+					} catch (OutOfCardException e) {
+						e.printStackTrace();
+					} catch (UnKnownRessource e) {
+						e.printStackTrace();
+					};
+					if (vertex.getBatiment() instanceof Ville)
+						try {
+							obtenirRessourceTuile(tuile, vertex.getBatiment().getJoueur());
+							obtenirRessourceTuile(tuile, vertex.getBatiment().getJoueur());
+						} catch (OutOfCardException e) {
+							e.printStackTrace();
+						} catch (UnKnownRessource e) {
+							e.printStackTrace();
+						};
+			}
+		}
 	}
 
 	public void deplaceVoleur(){
