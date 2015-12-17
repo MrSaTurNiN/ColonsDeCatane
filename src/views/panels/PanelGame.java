@@ -51,6 +51,8 @@ public class PanelGame extends JPanel implements ViewConstants {
     private BufferedImage icone_minerai;
     private BufferedImage icone_cristaux;
     private BufferedImage icone_supraconducteur;
+    private BufferedImage icone_de;
+
 
     private BufferedImage colonie_rouge;
     private BufferedImage colonie_jaune;
@@ -100,6 +102,7 @@ public class PanelGame extends JPanel implements ViewConstants {
             icone_minerai = ImageIO.read(PanelGame.class.getResource("/assets/img/minerai.png"));
             icone_supraconducteur = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_supraconducteur.png"));
             icone_cristaux = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_cristaux.png"));
+            icone_de = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_de.png"));
 
 
             colonie_bleu = ImageIO.read(PanelGame.class.getResource("/assets/img/colonie_bleu.png"));
@@ -143,6 +146,8 @@ public class PanelGame extends JPanel implements ViewConstants {
 		drawDeckRessource();
 		drawInfoJoueur();
 		drawBank();
+        drawDe();
+        drawSkip();
 
 	}
 
@@ -306,6 +311,8 @@ public class PanelGame extends JPanel implements ViewConstants {
 
 	}
 
+
+
 	public void drawInfoJoueur() {
 		int x = 300;
 		int y = JOUEUR_INFO_Y + 50;
@@ -362,6 +369,21 @@ public class PanelGame extends JPanel implements ViewConstants {
         g2.drawImage(rond_point, x-40, y-42, this);
         drawStringCenter(Integer.toString(partie.getListeJoueur().get(0).getPointJoueur()), x, y);
         g2.setFont(mainFontSize);
+    }
+
+    public void drawDe() {
+        int x = WINDOW_WIDTH - 70;
+        int y = 325 ;
+        g2.drawImage(rond_point, x-40, y-42, this);
+        g2.drawImage(icone_de, x-40,y-40,this);
+
+    }
+
+    public void drawSkip() {
+        int x = WINDOW_WIDTH - 70;
+        int y = 400 ;
+        g2.drawImage(rond_point, x-40, y-42, this);
+        drawStringCenter("->", x,y);
     }
 
 	public void drawBulleJoueur()
