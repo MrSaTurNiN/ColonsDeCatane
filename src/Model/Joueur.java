@@ -27,6 +27,7 @@ public class Joueur
         this.setCouleurJoueur(couleurJoueur);
         mainRessource = new HashMap<String,List<Ressource>>();
         mainDeveloppement=new ArrayList<Developpement>();
+        initMainRessource();
         setColonieDispo(5);
         setVilleDispo(4);
         setRouteDispo(15);
@@ -60,6 +61,14 @@ public class Joueur
             return tmp;
         }
         return null;
+    }
+    public void initMainRessource(){
+        this.mainRessource.put(Ressource.Argile.name(), new ArrayList<Ressource>());
+        this.mainRessource.put(Ressource.Bois.name(), new ArrayList<Ressource>());
+        this.mainRessource.put(Ressource.Ble.name(), new ArrayList<Ressource>());
+        this.mainRessource.put(Ressource.Laine.name(), new ArrayList<Ressource>());
+        this.mainRessource.put(Ressource.Minerai.name(), new ArrayList<Ressource>());
+
     }
     public int getPointJoueur() {
         return pointJoueur;

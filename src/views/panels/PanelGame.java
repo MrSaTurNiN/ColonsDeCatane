@@ -10,6 +10,7 @@ import controllers.ClickListener;
 import views.ViewConstants;
 import java.awt.*;
 import java.awt.TexturePaint;
+import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -51,13 +52,14 @@ public class PanelGame extends JPanel implements ViewConstants {
     private BufferedImage icone_minerai;
     private BufferedImage icone_cristaux;
     private BufferedImage icone_supraconducteur;
-    private BufferedImage icone_de;
-
 
     private BufferedImage colonie_rouge;
     private BufferedImage colonie_jaune;
     private BufferedImage colonie_vert;
     private BufferedImage colonie_bleu;
+    
+    private JButton des;
+	private JButton skip;
 
     private BufferedImage colonie_rouge_hover;
     private BufferedImage colonie_jaune_hover;
@@ -75,9 +77,19 @@ public class PanelGame extends JPanel implements ViewConstants {
     public PanelGame(Partie partie) {
 
         initImage();
+        initButton();
         initFont();
 
         this.partie = partie;
+    }
+
+    private void initButton() {
+        des=new JButton();
+        des.setBounds(100, 100, 100, 100);
+        skip=new JButton();
+        skip.setBounds(100, 600, 100, 100);
+        this.add(des);
+        this.add(skip);
     }
 
     public void  initImage()
@@ -102,7 +114,6 @@ public class PanelGame extends JPanel implements ViewConstants {
             icone_minerai = ImageIO.read(PanelGame.class.getResource("/assets/img/minerai.png"));
             icone_supraconducteur = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_supraconducteur.png"));
             icone_cristaux = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_cristaux.png"));
-            icone_de = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_de.png"));
 
 
             colonie_bleu = ImageIO.read(PanelGame.class.getResource("/assets/img/colonie_bleu.png"));
@@ -159,7 +170,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 
     public void clear()
     {
-        g2.fillRect(0,0,WINDOW_WIDTH,WINDOW_HEIGHT);
+        g2.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
     public void drawBackground()
@@ -177,7 +188,7 @@ public class PanelGame extends JPanel implements ViewConstants {
         g2.setComposite(AlphaComposite.getInstance(
                 AlphaComposite.SRC_OVER, 0.8f));
 		g2.setColor(Color.BLACK);
-		g2.fillOval(MAP_X, MAP_Y, MAP_WIDTH, MAP_HEIGHT);
+        g2.fillOval(MAP_X, MAP_Y, MAP_WIDTH, MAP_HEIGHT);
         g2.setComposite(AlphaComposite.getInstance(
                 AlphaComposite.SRC_OVER, 1));
 		Plateau plat = partie.getPlateau();
@@ -232,7 +243,7 @@ public class PanelGame extends JPanel implements ViewConstants {
                 g2.fillOval(v.getX()-TAILLEVERTEX/2,v.getY()-TAILLEVERTEX/2,TAILLEVERTEX,TAILLEVERTEX);
             }
 			else {
-				g2.setColor(v.getBatiment().getJoueur().getCouleurJoueur());
+                g2.setColor(v.getBatiment().getJoueur().getCouleurJoueur());
                 if(v.getBatiment() instanceof Ville)
 				{
 					g2.fillRect(v.getX()-TAILLEVERTEX/2,v.getY()-TAILLEVERTEX/2,TAILLEVERTEX,TAILLEVERTEX);
@@ -274,6 +285,11 @@ public class PanelGame extends JPanel implements ViewConstants {
 				}
             }
 
+            if(v.isHover())
+            {
+                g2.setColor(partie.getJoueurActif().getCouleurJoueur());
+                g2.drawOval(v.getX() - TAILLEVERTEX / 2 - 5, v.getY() - TAILLEVERTEX / 2 - 5, TAILLEVERTEX + 10, TAILLEVERTEX+10);
+            }
 
 
 
@@ -453,5 +469,15 @@ public class PanelGame extends JPanel implements ViewConstants {
     {
         this.addMouseListener(listener);
         this.addMouseMotionListener(listener);
+    }
+    public JButton getDes() {
+        return des;
+    }
+    public JButton getSkip(){
+        return skip;
+    }
+    public void setButtonController(ActionListener al){
+        des.addActionListener(al);
+        skip.addActionListener(al);
     }
 }
