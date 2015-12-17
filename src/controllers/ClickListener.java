@@ -121,7 +121,7 @@ public class ClickListener extends MainController implements MouseListener, Mous
             if (rout1!=null){
                 rout2=v;
                 try {
-                    partie.getPlateau().creerRoute(joueur, partie.getPlateau().getGraph().convertEdge(rout1, rout2));
+                    partie.getPlateau().creerRoute(joueur, partie.getPlateau().getGraph().convertEdge(rout1, rout2),null);
                     if (joueur.equals(partie.getListeJoueur().get(partie.getListeJoueur().size()-1))){
                         partie.inversOrdre();
                     }
@@ -140,6 +140,8 @@ public class ClickListener extends MainController implements MouseListener, Mous
                     rout1=null;
                     rout2=null;
                     r.getMessage();
+                } catch (RessourceIndisponibleException e) {
+                    e.printStackTrace();
                 }
             }
             else {
@@ -149,7 +151,7 @@ public class ClickListener extends MainController implements MouseListener, Mous
         }
         else {
             try {
-                Batiment b=partie.getPlateau().creerColonie(joueur,v);
+                Batiment b=partie.getPlateau().creerColonie(joueur,v,null);
                 joueur.placerColonie((Colonie) b);
                 if (partie.getNbTour()>partie.getNbJoueur()-1){
                     partie.initMainJoueur(joueur);
@@ -162,6 +164,8 @@ public class ClickListener extends MainController implements MouseListener, Mous
             }
             catch (NoColonieDispoException e){
                 e.getMessage();
+            } catch (RessourceIndisponibleException e) {
+                e.printStackTrace();
             }
 
         }

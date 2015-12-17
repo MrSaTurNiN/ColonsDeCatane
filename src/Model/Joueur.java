@@ -170,4 +170,67 @@ public class Joueur
             }
         }
     }
+
+    public boolean hasRessourceRoute(){
+        boolean hasArgile = false;
+        boolean hasBois = false;
+        if(mainRessource.get(Ressource.Argile.name()).size() >= 1){
+            hasArgile = true;
+        }
+        if(mainRessource.get(Ressource.Bois.name()).size() >= 1){
+            hasBois = true;
+        }
+        return hasBois && hasArgile;
+    }
+
+    public boolean hasRessourceVille(){
+        boolean hasBle = false;
+        boolean hasMinerai = false;
+        if(mainRessource.get(Ressource.Ble.name()).size() >= 2){
+            hasBle = true;
+        }
+        if(mainRessource.get(Ressource.Minerai.name()).size() >= 3){
+            hasMinerai = true;
+        }
+        return hasBle && hasMinerai;
+    }
+    public boolean hasRessourceColonie(){
+        boolean hasArgile = false;
+        boolean hasBois = false;
+        boolean hasLaine = false;
+        boolean hasBle = false;
+        if(mainRessource.get(Ressource.Argile.name()).size() >= 1){
+            hasArgile = true;
+        }
+        if(mainRessource.get(Ressource.Bois.name()).size() >= 1){
+            hasBois = true;
+        }
+        if(mainRessource.get(Ressource.Ble.name()).size() >= 1){
+            hasBle = true;
+        }
+        if(mainRessource.get(Ressource.Laine.name()).size() >= 1){
+            hasLaine= true;
+        }
+        return hasLaine && hasArgile && hasBle && hasBois;
+    }
+
+    public void retireRessourceColonie(DeckRessource deck) {
+        deck.obtenirRessource(retirerCarte(Ressource.Argile.name()));
+        deck.obtenirRessource(retirerCarte(Ressource.Bois.name()));
+        deck.obtenirRessource(retirerCarte(Ressource.Ble.name()));
+        deck.obtenirRessource(retirerCarte(Ressource.Laine.name()));
+    }
+
+    public void retireRessourceRoute(DeckRessource deck){
+        deck.obtenirRessource(retirerCarte(Ressource.Argile.name()));
+        deck.obtenirRessource(retirerCarte(Ressource.Bois.name()));
+    }
+
+    public void retireRessourceVille(DeckRessource deck){
+        deck.obtenirRessource(retirerCarte(Ressource.Ble.name()));
+        deck.obtenirRessource(retirerCarte(Ressource.Ble.name()));
+        deck.obtenirRessource(retirerCarte(Ressource.Minerai.name()));
+        deck.obtenirRessource(retirerCarte(Ressource.Minerai.name()));
+        deck.obtenirRessource(retirerCarte(Ressource.Minerai.name()));
+    }
 }
