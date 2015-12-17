@@ -211,6 +211,17 @@ public class Partie {
 		}
 	}
 
+	public void deplaceVoleur(){
+		//On déplace aléatoirement le voleur
+		plateau.deplaceVoleur();
+		//On retire la moitié des cartes ressources du joueur si il en possède plus de 7
+		for(Joueur j:listeJoueur){
+			if(j.nombreCarteRessource() >= 7){
+				j.retireRessource(deckRessource);
+			}
+		}
+	}
+
 
 
 }

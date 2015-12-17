@@ -220,6 +220,19 @@ public class Plateau {
     }
     
 
+    public void deplaceVoleur(){
+        Voleur v = null;
+        Random r = new Random();
+        for(int i=0;i<tuiles.length;i++){
+            if(tuiles[i].getVoleur() != null){
+                v = tuiles[i].getVoleur();
+                tuiles[i].setVoleur(null);
+            }
+        }
+        int i = r.nextInt(tuiles.length);
+        tuiles[i].setVoleur(v);
+    }
+
     public Graph getGraph() {
         return graph;
     }
