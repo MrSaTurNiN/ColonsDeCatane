@@ -36,7 +36,6 @@ public class Plateau {
         return b;
 
     }
-
     public void creerRoute(Joueur j,Edge e,DeckRessource deck)
             throws RoutePositionException, NoRouteDispoException, RessourceIndisponibleException
     {

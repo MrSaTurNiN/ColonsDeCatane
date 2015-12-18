@@ -45,6 +45,7 @@ public class PanelGame extends JPanel implements ViewConstants {
     private BufferedImage stormtrooper;
     private BufferedImage rond_point;
     private BufferedImage banque_fond;
+    private BufferedImage boba;
 
 
     private BufferedImage icone_cellule_energetique;
@@ -101,7 +102,7 @@ public class PanelGame extends JPanel implements ViewConstants {
             rond_point = ImageIO.read(PanelGame.class.getResource("/assets/img/rond_point.png"));
             stormtrooper = ImageIO.read(PanelGame.class.getResource("/assets/img/stormtrooper.png"));
             banque_fond = ImageIO.read(PanelGame.class.getResource("/assets/img/banque_fond.png"));
-
+            boba = ImageIO.read(PanelGame.class.getResource("/assets/img/boba.png"));
 
             icone_cellule_energetique = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_cellule_energetique.png"));
             icone_gaz = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_gaz.png"));
@@ -196,16 +197,18 @@ public class PanelGame extends JPanel implements ViewConstants {
 			//g2.setColor(getColorTuile(tuiles[i]));
 
 			//g2.fillPolygon(transformTuile(tuiles[i]));
-			g2.setColor(Color.BLACK);
+            g2.setFont(mainFontSize);
+			g2.setColor(Color.ORANGE);
 
 			Vertex v = tuiles[i].getSommets().get(0);
-			if(!(tuiles[i] instanceof Desert))g2.drawString(tuiles[i].getNumero()+"",v.getX()-10,v.getY()+40);
-			if (tuiles[i].getVoleur() != null)
-			{
-				g2.setColor(Color.RED);
-				g2.drawString("Voleur",v.getX()-5,v.getY()+60);
-			}
+
             drawImageTuile(tuiles[i]);
+            if(!(tuiles[i] instanceof Desert))g2.drawString(tuiles[i].getNumero()+"",v.getX()-10,v.getY()+100);
+            if (tuiles[i].getVoleur() != null)
+            {
+
+                g2.drawImage(boba,v.getX()-20,v.getY()+50,this);
+            }
 		}
 		//On déssine les Edges:
 		List<Edge> edges = plat.getGraph().getEdges();
@@ -318,7 +321,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 		for (Entry<String, List<Ressource>> entry : partie.getDeckRessource().getCarteRessource().entrySet()) {
 			String cle = entry.getKey();
 			List<Ressource> valeur = entry.getValue();
-			drawStringCenter(cle + " : " + valeur.size(), x, y);
+			drawStringCenter(Ressource.valueOf(cle).getNom() + " : " + valeur.size(), x, y);
 			y += 25;
 		}
 
