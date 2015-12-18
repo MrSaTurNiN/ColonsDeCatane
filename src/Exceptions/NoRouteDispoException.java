@@ -1,6 +1,6 @@
 package Exceptions;
 
-public class NoRouteDispoException extends Exception {
+public class NoRouteDispoException extends NoBatimentDispoException {
 	
 	@Override
 	public String getMessage() {

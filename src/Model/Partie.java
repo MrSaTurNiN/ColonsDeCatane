@@ -241,7 +241,7 @@ public class Partie {
 		}
 	}
 
-	public void deplaceVoleur(){
+	public void deplaceVoleur() throws OutOfCardException, UnKnownRessource {
 		//On déplace aléatoirement le voleur
 		plateau.deplaceVoleur();
 		//On retire la moitié des cartes ressources du joueur si il en possède plus de 7

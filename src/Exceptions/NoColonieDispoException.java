@@ -1,6 +1,6 @@
 package Exceptions;
 
-public class NoColonieDispoException extends Exception {
+public class NoColonieDispoException extends NoBatimentDispoException {
 
 	@Override
 	public String getMessage() {

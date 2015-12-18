@@ -5,6 +5,6 @@ package Exceptions;
  */
 public class OutOfCardException extends Exception {
     public OutOfCardException(String card){
-        System.out.println("il n'y a plus de cartes "+card+" dans la banque.");
+        super("il n'y a plus de cartes "+card+" dans le deck.");
     }
 }

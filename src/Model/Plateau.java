@@ -30,8 +30,9 @@ public class Plateau {
         if (!v.isFreeToBuild()) throw new ColoniePositionException();
         if(j.getColonieDispo()==0) throw new NoColonieDispoException();
         if(deck != null){
-            if(!j.hasRessourceColonie())throw new RessourceIndisponibleException();
-            j.retireRessourceColonie(deck);
+            //if(!j.hasRessourceColonie())throw new RessourceIndisponibleException();
+            //TODO corriger erreur (JP)
+            //j.retireRessourceColonie(deck);
         }
         Batiment b=v.nouveauBatiment(j);
         return b;
@@ -43,8 +44,9 @@ public class Plateau {
         if(e==null||!e.isLibreRoute(j))throw new RoutePositionException();
         if(j.getRouteDispo()==0) throw new NoRouteDispoException();
         if(deck != null){
-            if(!j.hasRessourceRoute())throw new RessourceIndisponibleException();
-            j.retireRessourceRoute(deck);
+            //if(!j.hasRessourceRoute())throw new RessourceIndisponibleException();
+            //TODO corriger erreur (JP)
+            //j.retireRessourceRoute(deck);
         }
         e.creerRoute(j);
         j.setRouteDispo(j.getRouteDispo()-1);
@@ -59,8 +61,9 @@ public class Plateau {
         Joueur j = v.getBatiment().getJoueur();
         if(j.getRouteDispo()==0) throw new NoVilleDispoException();
         if(deck != null){
-            if(!j.hasRessourceVille())throw new RessourceIndisponibleException();
-            j.retireRessourceVille(deck);
+            //if(!j.hasRessourceVille())throw new RessourceIndisponibleException();
+            //TODO corriger erreur (JP)
+            //j.retireRessourceVille(deck);
         }
         v.ameliorerBatiment(j);
         System.out.println(v.getBatiment() instanceof Ville);
