@@ -9,6 +9,9 @@ import Model.Batiments.Colonie;
 import Model.Batiments.Ville;
 import Model.Tuile.*;
 import Model.graph.Vertex;
+import Model.ressource.Banque;
+import Model.ressource.DeckRessource;
+import Model.ressource.Ressource;
 import controllers.Timer.GameTimer;
 
 import javax.swing.*;
@@ -70,7 +73,6 @@ public class Partie {
 		Vertex racine = new Vertex();
 		racine.setX(280);
 		racine.setY(130);
-
 		try {
 			plateau = new Plateau(racine);
 		} catch (RootNullException e) {
@@ -78,7 +80,7 @@ public class Partie {
 			System.exit(1);
 		}
 
-		deckRessource=new DeckRessource();
+		deckRessource=new Banque();
 		deckDeveloppement=new DeckDeveloppement();
 		des = new Des();
 		timer=new Timer(16, new GameTimer());

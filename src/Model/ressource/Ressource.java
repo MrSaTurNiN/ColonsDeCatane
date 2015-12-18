@@ -1,4 +1,4 @@
-package Model;
+package Model.ressource;
 
 /**
  * Created by jpabegg on 13/11/15.

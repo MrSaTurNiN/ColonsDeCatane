@@ -11,9 +11,7 @@ import views.ViewConstants;
 import java.awt.*;
 import java.awt.TexturePaint;
 import java.awt.event.ActionListener;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map.Entry;
@@ -23,7 +21,7 @@ import javax.swing.*;
 
 import Model.Developpement;
 import Model.Partie;
-import Model.Ressource;
+import Model.ressource.Ressource;
 import Model.Plateau;
 import Model.Tuile.*;
 
@@ -206,7 +204,6 @@ public class PanelGame extends JPanel implements ViewConstants {
             if(!(tuiles[i] instanceof Desert))g2.drawString(tuiles[i].getNumero()+"",v.getX()-10,v.getY()+100);
             if (tuiles[i].getVoleur() != null)
             {
-
                 g2.drawImage(boba,v.getX()-20,v.getY()+50,this);
             }
 		}

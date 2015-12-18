@@ -7,6 +7,7 @@ import Model.graph.Edge;
 import Model.graph.Graph;
 import Model.graph.Vertex;
 import Model.Tuile.*;
+import Model.ressource.DeckRessource;
 
 import java.util.*;
 

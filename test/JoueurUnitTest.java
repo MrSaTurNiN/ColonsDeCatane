@@ -1,5 +1,5 @@
 import Model.Joueur;
-import Model.Ressource;
+import Model.ressource.Ressource;
 import junit.framework.Assert;
 import org.junit.Test;
 

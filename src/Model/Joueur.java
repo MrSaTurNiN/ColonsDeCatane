@@ -1,7 +1,8 @@
 package Model;
 
 import Model.Batiments.Colonie;
-import sun.security.util.Resources_zh_CN;
+import Model.ressource.DeckRessource;
+import Model.ressource.Ressource;
 
 import java.awt.*;
 import java.util.*;

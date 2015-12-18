@@ -1,4 +1,4 @@
-package Model;
+package Model.ressource;
 
 import Exceptions.OutOfCardException;
 import Exceptions.UnKnownRessource;
@@ -28,15 +28,6 @@ public class DeckRessource {
         List<Ressource> ble=new ArrayList<Ressource>();
         List<Ressource> argile=new ArrayList<Ressource>();
         List<Ressource> minerai=new ArrayList<Ressource>();
-       
-
-        for (int i = 0; i < 19; i++) {
-            bois.add(Ressource.Bois);
-            laine.add(Ressource.Laine);
-            ble.add(Ressource.Ble);
-            argile.add(Ressource.Argile);
-            minerai.add(Ressource.Minerai);
-        }
         carteRessource.put(Ressource.Bois.name(), bois);
         carteRessource.put(Ressource.Laine.name(), laine);
         carteRessource.put(Ressource.Ble.name(), ble);
