@@ -1,7 +1,7 @@
 package Model.ressource;
 
-import Exceptions.OutOfCardException;
-import Exceptions.UnKnownRessource;
+import Exceptions.ressource.OutOfCardException;
+import Exceptions.ressource.UnKnownRessource;
 
 import java.util.*;
 

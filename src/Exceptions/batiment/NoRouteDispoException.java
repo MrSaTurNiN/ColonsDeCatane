@@ -1,4 +1,6 @@
-package Exceptions;
+package Exceptions.batiment;
+
+import Exceptions.batiment.NoBatimentDispoException;
 
 public class NoRouteDispoException extends NoBatimentDispoException {
 	

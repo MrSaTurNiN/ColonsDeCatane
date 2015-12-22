@@ -1,6 +1,10 @@
 package Model;
 
 import Exceptions.*;
+import Exceptions.batiment.*;
+import Exceptions.graph.RootNullException;
+import Exceptions.ressource.RessourceIndisponibleException;
+import Exceptions.ressource.SuperExceptionRessource;
 import Model.Batiments.Batiment;
 import Model.Batiments.Ville;
 import Model.graph.Edge;
@@ -26,34 +30,32 @@ public class Plateau {
     }
 
     public Batiment creerColonie(Joueur j,Vertex v,DeckRessource deck)
-            throws ColoniePositionException, NoColonieDispoException ,RessourceIndisponibleException{
+            throws ColoniePositionException, NoColonieDispoException,SuperExceptionRessource {
         if (!v.isFreeToBuild()) throw new ColoniePositionException();
         if(j.getColonieDispo()==0) throw new NoColonieDispoException();
         if(deck != null){
-            //if(!j.hasRessourceColonie())throw new RessourceIndisponibleException();
-            //TODO corriger erreur (JP)
-            //j.retireRessourceColonie(deck);
+            if(!j.hasRessourceColonie())throw new RessourceIndisponibleException();
+            j.retireRessourceColonie(deck);
         }
         Batiment b=v.nouveauBatiment(j);
         return b;
 
     }
     public void creerRoute(Joueur j,Edge e,DeckRessource deck)
-            throws RoutePositionException, NoRouteDispoException, RessourceIndisponibleException
+            throws RoutePositionException, NoRouteDispoException, SuperExceptionRessource
     {
         if(e==null||!e.isLibreRoute(j))throw new RoutePositionException();
         if(j.getRouteDispo()==0) throw new NoRouteDispoException();
         if(deck != null){
-            //if(!j.hasRessourceRoute())throw new RessourceIndisponibleException();
-            //TODO corriger erreur (JP)
-            //j.retireRessourceRoute(deck);
+            if(!j.hasRessourceRoute())throw new RessourceIndisponibleException();
+            j.retireRessourceRoute(deck);
         }
         e.creerRoute(j);
         j.setRouteDispo(j.getRouteDispo()-1);
     }
 
     public void creerVille(Vertex v,DeckRessource deck)
-            throws NoColonieException, NoVilleDispoException,RessourceIndisponibleException
+            throws SuperExceptionBatiment,SuperExceptionRessource
     {
         if(v.getBatiment() == null)throw new NoColonieException();
         
@@ -61,9 +63,8 @@ public class Plateau {
         Joueur j = v.getBatiment().getJoueur();
         if(j.getRouteDispo()==0) throw new NoVilleDispoException();
         if(deck != null){
-            //if(!j.hasRessourceVille())throw new RessourceIndisponibleException();
-            //TODO corriger erreur (JP)
-            //j.retireRessourceVille(deck);
+            if(!j.hasRessourceVille())throw new RessourceIndisponibleException();
+            j.retireRessourceVille(deck);
         }
         v.ameliorerBatiment(j);
         System.out.println(v.getBatiment() instanceof Ville);

@@ -1,16 +1,17 @@
 package controllers;
 
 import Exceptions.*;
+import Exceptions.batiment.*;
+import Exceptions.click.PositionsInvalidesException;
+import Exceptions.ressource.RessourceIndisponibleException;
+import Exceptions.ressource.SuperExceptionRessource;
 import Model.Batiments.Batiment;
-import Model.Batiments.Colonie;
 import Model.Batiments.Colonie;
 import Model.Joueur;
 import Model.Partie;
 import Model.graph.Edge;
 import Model.graph.Vertex;
-import com.sun.org.apache.xpath.internal.SourceTree;
 import views.panels.PanelGame;
-import controllers.MainController;
 
 import java.awt.event.*;
 
@@ -139,13 +140,11 @@ public class ClickListener extends MainController implements MouseListener, Mous
                     }
                     joueurSuivant();
                     placecolo1 = false;
-                }catch (RoutePositionException r){
+                }catch (SuperExceptionRessource r){
 
                     r.getMessage();
-                }catch(NoRouteDispoException r){
+                }catch(SuperExceptionBatiment r){
                     r.getMessage();
-                } catch (RessourceIndisponibleException e) {
-                    e.printStackTrace();
                 }
         }
         else {
@@ -157,13 +156,11 @@ public class ClickListener extends MainController implements MouseListener, Mous
                     partie.initMainJoueur(joueur);
                 }
                 placecolo1=true;
-            } catch (ColoniePositionException  e) {
+            } catch (SuperExceptionRessource e) {
                 e.getMessage();
             }
-            catch (NoColonieDispoException e){
+            catch (SuperExceptionBatiment e){
                 e.getMessage();
-            } catch (RessourceIndisponibleException e) {
-                e.printStackTrace();
             }
 
         }
@@ -204,11 +201,9 @@ public class ClickListener extends MainController implements MouseListener, Mous
 
                         Batiment b = partie.getPlateau().creerColonie(joueur, v, null);
                         joueur.placerColonie((Colonie) b);
-                    } catch (ColoniePositionException e) {
+                    } catch (SuperExceptionRessource e) {
                         e.getMessage();
-                    } catch (NoColonieDispoException e) {
-                        e.getMessage();
-                    } catch (RessourceIndisponibleException e) {
+                    } catch (SuperExceptionBatiment e) {
                         e.getMessage();
                     }
                 }
@@ -216,12 +211,9 @@ public class ClickListener extends MainController implements MouseListener, Mous
             else if (e1!=null){
                 try {
                     partie.getPlateau().creerRoute(joueur, e1, null);
-                }catch (RoutePositionException r){
-
+                }catch(SuperExceptionRessource r){
                     r.getMessage();
-                }catch(NoRouteDispoException r){
-                    r.getMessage();
-                } catch (RessourceIndisponibleException e) {
+                } catch (SuperExceptionBatiment e) {
                     e.printStackTrace();
                 }
 

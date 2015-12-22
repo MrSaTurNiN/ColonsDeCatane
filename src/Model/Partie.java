@@ -2,9 +2,9 @@
 package Model;
 
 import Exceptions.NumberSevenException;
-import Exceptions.OutOfCardException;
-import Exceptions.RootNullException;
-import Exceptions.UnKnownRessource;
+import Exceptions.ressource.OutOfCardException;
+import Exceptions.graph.RootNullException;
+import Exceptions.ressource.UnKnownRessource;
 import Model.Batiments.Colonie;
 import Model.Batiments.Ville;
 import Model.Tuile.*;

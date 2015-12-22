@@ -1,7 +1,7 @@
 package Model;
 
-import Exceptions.OutOfCardException;
-import Exceptions.UnKnownRessource;
+import Exceptions.ressource.OutOfCardException;
+import Exceptions.ressource.UnKnownRessource;
 import Model.Batiments.Colonie;
 import Model.ressource.DeckRessource;
 import Model.ressource.Ressource;
