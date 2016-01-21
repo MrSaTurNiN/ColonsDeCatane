@@ -22,7 +22,7 @@ public class MainController {
 		initAllJoueur();
 		currentWindow = new MainWindow(this.partie, this);
         click=new ClickListener(partie);
-		button=new ButtonListener(partie);
+		button=new ButtonListener(partie,click);
 		currentWindow.setVisible(true);
 		partie.setOrdreJoueur();
         partie.setJoueurActif(partie.getListeJoueur().get(0));

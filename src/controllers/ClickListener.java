@@ -17,11 +17,12 @@ import java.awt.event.*;
 /**
  * Created by jpabegg on 03/12/15.
  */
-public class ClickListener extends MainController implements MouseListener, MouseMotionListener {
+public class ClickListener extends MainController implements MouseListener, MouseMotionListener,ActionListener{
 
     private Partie partie;
     private PanelGame panel;
     private boolean placecolo1;
+
     private int X;
     private int Y;
 
@@ -173,10 +174,10 @@ public class ClickListener extends MainController implements MouseListener, Mous
     public void phaseJeu(Vertex v,Edge e1){
         Joueur joueur;
         joueur=partie.getJoueurActif();
-        if(!partie.isPhaseConstruction()) {
+       /* if(!partie.isPhaseConstruction()) {
         // if (!phaseCommerce) {
         if (partie.isDes()) {
-            System.out.println("yolo");
+            System.out.println("Le joueur a lancé les dés");
             int result = partie.getDes().lancerDes();
             try {
                 partie.getRessource(result);
@@ -185,17 +186,12 @@ public class ClickListener extends MainController implements MouseListener, Mous
                 nb7.getMessage();
             }
         }
+        } */
+        if (lancementDes()){
 
-         /* else{
-
-
-            }*/
         }
         else{
-            if (partie.isSkip()) {
-                partie.setPhaseConstruction(false);
-                partie.annuleDeslances();
-                partie.annuleSkip();
+            if (skiper()) {
                 return;
             }
             if (v!=null){
@@ -228,10 +224,53 @@ public class ClickListener extends MainController implements MouseListener, Mous
             }
         }
     }
+    public boolean lancementDes(){
+        if(!partie.isPhaseConstruction()) {
+            // if (!phaseCommerce) {
+            if (partie.isDes()) {
+                System.out.println("Le joueur a lancé les dés");
+                int result = partie.getDes().lancerDes();
+                try {
+                    partie.getRessource(result);
 
+                } catch (NumberSevenException nb7) {
+                    nb7.getMessage();
+                }
+                partie.setPhaseConstruction(true);
+            }
+            return true;
+        }
+            return false;
+    }
+    public boolean skiper(){
+        if (partie.isSkip()) {
+            System.out.println();
+            partie.setPhaseConstruction(false);
+            partie.annuleDeslances();
+            partie.annuleSkip();
+            return true;
+        }
+        return false;
+    }
     public void joueurSuivant() {
         partie.setJoueurActif(partie.getListeJoueur().get((partie.getNbTour() + 1) % partie.getNbJoueur()));
 
         partie.setNbTour(partie.getNbTour() + 1);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource()==currentWindow.getPanel().getDes()&&partie.getNbTour()>(partie.getNbJoueur())*2-1&&!partie.isDes()){
+            System.out.println("le joueur lance les dés");
+            partie.lanceDes();
+            lancementDes();
+        }
+        if (e.getSource()==currentWindow.getPanel().getSkip()&&partie.getNbTour()>(partie.getNbJoueur())*2-1&&!partie.isSkip()){
+            partie.skip();
+            skiper();
+            joueurSuivant();
+            currentWindow.repaint();
+        }
+
     }
 }

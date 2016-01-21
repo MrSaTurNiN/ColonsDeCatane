@@ -491,6 +491,8 @@ public class PanelGame extends JPanel implements ViewConstants {
     {
         this.addMouseListener(listener);
         this.addMouseMotionListener(listener);
+        des.addActionListener(listener);
+        skip.addActionListener(listener);
     }
     public JButton getDes() {
         return des;
@@ -499,7 +501,7 @@ public class PanelGame extends JPanel implements ViewConstants {
         return skip;
     }
     public void setButtonController(ActionListener al){
-        des.addActionListener(al);
-        skip.addActionListener(al);
+       // des.addActionListener(al);
+       // skip.addActionListener(al);
     }
 }
