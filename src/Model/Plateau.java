@@ -1,12 +1,17 @@
 package Model;
 
 import Exceptions.*;
+import Exceptions.batiment.*;
+import Exceptions.graph.RootNullException;
+import Exceptions.ressource.RessourceIndisponibleException;
+import Exceptions.ressource.SuperExceptionRessource;
 import Model.Batiments.Batiment;
 import Model.Batiments.Ville;
 import Model.graph.Edge;
 import Model.graph.Graph;
 import Model.graph.Vertex;
 import Model.Tuile.*;
+import Model.ressource.DeckRessource;
 
 import java.util.*;
 
@@ -25,7 +30,7 @@ public class Plateau {
     }
 
     public Batiment creerColonie(Joueur j,Vertex v,DeckRessource deck)
-            throws ColoniePositionException, NoColonieDispoException ,RessourceIndisponibleException{
+            throws ColoniePositionException, NoColonieDispoException,SuperExceptionRessource {
         if (!v.isFreeToBuild()) throw new ColoniePositionException();
         if(j.getColonieDispo()==0) throw new NoColonieDispoException();
         if(deck != null){
@@ -36,9 +41,8 @@ public class Plateau {
         return b;
 
     }
-
     public void creerRoute(Joueur j,Edge e,DeckRessource deck)
-            throws RoutePositionException, NoRouteDispoException, RessourceIndisponibleException
+            throws RoutePositionException, NoRouteDispoException, SuperExceptionRessource
     {
         if(e==null||!e.isLibreRoute(j))throw new RoutePositionException();
         if(j.getRouteDispo()==0) throw new NoRouteDispoException();
@@ -51,7 +55,7 @@ public class Plateau {
     }
 
     public void creerVille(Vertex v,DeckRessource deck)
-            throws NoColonieException, NoVilleDispoException,RessourceIndisponibleException
+            throws SuperExceptionBatiment,SuperExceptionRessource
     {
         if(v.getBatiment() == null)throw new NoColonieException();
         

@@ -1,9 +1,9 @@
-package Exceptions;
+package Exceptions.batiment;
 
 /**
  * Created by Victor on 12/13/2015.
  */
-public class nbBatimentTooHigh extends Exception {
+public class nbBatimentTooHigh extends SuperExceptionBatiment {
     public String name;
     public nbBatimentTooHigh(String name){
         this.name=name;

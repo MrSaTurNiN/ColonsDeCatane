@@ -1,4 +1,4 @@
-package Exceptions;
+package Exceptions.click;
 
 /**
  * Created by Jip on 13/12/2015.

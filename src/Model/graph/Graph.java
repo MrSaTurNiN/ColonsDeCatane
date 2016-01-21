@@ -1,7 +1,7 @@
 package Model.graph;
 
-import Exceptions.PositionsInvalidesException;
-import Exceptions.RootNullException;
+import Exceptions.click.PositionsInvalidesException;
+import Exceptions.graph.RootNullException;
 import Model.Batiments.Batiment;
 import views.ViewConstants;
 

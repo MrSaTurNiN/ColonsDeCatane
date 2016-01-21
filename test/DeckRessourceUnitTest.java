@@ -1,7 +1,7 @@
-import Exceptions.OutOfCardException;
-import Exceptions.UnKnownRessource;
-import Model.DeckRessource;
-import Model.Ressource;
+import Exceptions.ressource.OutOfCardException;
+import Exceptions.ressource.UnKnownRessource;
+import Model.ressource.DeckRessource;
+import Model.ressource.Ressource;
 import org.junit.Assert;
 import org.junit.Test;
 

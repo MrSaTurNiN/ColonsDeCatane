@@ -1,4 +1,4 @@
-package Exceptions;
+package Exceptions.graph;
 
 /**
  * Created by Jip on 22/11/2015.
