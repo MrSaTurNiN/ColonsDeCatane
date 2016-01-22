@@ -349,7 +349,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 		y+=20;
 		g2.setColor(Color.WHITE);
         g2.drawString("Vos ressources : ", 20, 25);
-		for (Entry<String, List<Ressource>> entry : partie.getListeJoueur().get(0).getMainRessource().entrySet()) {
+		for (Entry<String, List<Ressource>> entry : partie.getJoueurActif().getMainRessource().entrySet()) {
 			String cle = entry.getKey();
 			Ressource r = Ressource.valueOf(cle);
 			List<Ressource> valeur = entry.getValue();
