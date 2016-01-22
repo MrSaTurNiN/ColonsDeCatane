@@ -340,7 +340,7 @@ public class PanelGame extends JPanel implements ViewConstants {
         //g2.fillRect(JOUEUR_INFO_X, JOUEUR_INFO_Y, JOUEUR_INFO_WIDTH, JOUEUR_INFO_HEIGHT);
 
 		g2.setColor(partie.getJoueurActif().getCouleurJoueur());
-		g2.drawString(partie.getJoueurActif().getNomJoueur(), x, y);
+		g2.drawString(partie.getJoueurActif().getNomJoueur(), 825, 25);
 		y+=40;
 
         drawPointVictoire();
