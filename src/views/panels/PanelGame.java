@@ -74,6 +74,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 
 
 
+
     public PanelGame(Partie partie) {
 
         initImage();
@@ -81,6 +82,7 @@ public class PanelGame extends JPanel implements ViewConstants {
         initFont();
 
         this.partie = partie;
+
     }
 
 
@@ -151,8 +153,7 @@ public class PanelGame extends JPanel implements ViewConstants {
 		drawDeckRessource();
 		drawInfoJoueur();
 		drawBank();
-        drawDe();
-        drawSkip();
+        drawButton();
 
 	}
 
@@ -390,15 +391,29 @@ public class PanelGame extends JPanel implements ViewConstants {
         drawStringCenter(Integer.toString(partie.getListeJoueur().get(0).getPointJoueur()), x, y);
         g2.setFont(mainFontSize);
     }
-
-    public void drawDe() {
+    public void drawButton(){
         int x = WINDOW_WIDTH - 70;
         int y = 325 ;
-        g2.drawImage(rond_point, x-40, y-42, this);
-        g2.drawImage(icone_de, x-40,y-40,this);
-
+        if(!partie.isDes()){
+            g2.drawImage(rond_point, x-40, y-42, this);
+            g2.drawImage(icone_de, x-40,y-40,this);
+        }
+        else {
+            g2.drawImage(rond_point, x-40, y-42, this);
+            drawStringCenter("->", x,y);
+        }
     }
 
+    public void switchButton(){
+        if (partie.isDes()){
+            des.setVisible(false);
+            skip.setVisible(true);
+        }
+        else {
+            des.setVisible(true);
+            skip.setVisible(false);
+        }
+    }
     private void initButton() {
         int x = WINDOW_WIDTH - 70;
         int y = 325 ;
@@ -410,19 +425,15 @@ public class PanelGame extends JPanel implements ViewConstants {
         skip=new JButton();
         skip.setContentAreaFilled(false);
         skip.setBorder(BorderFactory.createEmptyBorder());
-        x = WINDOW_WIDTH - 70;
-        y = 400 ;
         skip.setBounds( x-40, y-42, 80, 80);
+
         this.add(des);
         this.add(skip);
+        des.setVisible(true);
+        skip.setVisible(false);
     }
 
-    public void drawSkip() {
-        int x = WINDOW_WIDTH - 70;
-        int y = 400 ;
-        g2.drawImage(rond_point, x-40, y-42, this);
-        drawStringCenter("->", x,y);
-    }
+
 
 	public void drawBulleJoueur()
 	{

@@ -1,16 +1,18 @@
 package controllers;
 
-import java.awt.Color;
+import java.awt.*;
 
 import Model.Partie;
 import views.InitJoueurView;
 import views.InitNbJoueurView;
 import views.MainWindow;
+import views.panels.PanelGame;
 
 public class MainController {
 
 	protected static MainWindow currentWindow;
 	protected static Partie partie;
+	private PanelGame panel;
 	private InitJoueurView initJoueurView;
 	private InitNbJoueurView initNbJoueurView;
 	private ClickListener click;
@@ -21,8 +23,9 @@ public class MainController {
 		initNbJoueur();
 		initAllJoueur();
 		currentWindow = new MainWindow(this.partie, this);
-        click=new ClickListener(partie);
-		button=new ButtonListener(partie,click);
+		panel=currentWindow.getPanel();
+        click=new ClickListener(this.partie,panel);
+		button=new ButtonListener(this.partie,click);
 		currentWindow.setVisible(true);
 		partie.setOrdreJoueur();
         partie.setJoueurActif(partie.getListeJoueur().get(0));

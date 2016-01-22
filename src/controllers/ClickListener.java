@@ -21,13 +21,12 @@ import java.awt.event.*;
 public class ClickListener extends MainController implements MouseListener, MouseMotionListener,ActionListener{
 
     private Partie partie;
-    private PanelGame panel;
     private boolean placecolo1;
 
     private int X;
     private int Y;
 
-    public ClickListener(Partie partie){
+    public ClickListener(Partie partie,PanelGame Panel){
         this.partie = partie;
         currentWindow.getPanel().setControler(this);
 
@@ -256,10 +255,12 @@ public class ClickListener extends MainController implements MouseListener, Mous
             System.out.println("le joueur lance les dés");
             partie.lanceDes();
             lancementDes();
+            currentWindow.getPanel().switchButton();
         }
         if (e.getSource()==currentWindow.getPanel().getSkip()&&partie.getNbTour()>(partie.getNbJoueur())*2-1&&!partie.isSkip()){
             partie.skip();
             skiper();
+            currentWindow.getPanel().switchButton();
             joueurSuivant();
             currentWindow.repaint();
         }
