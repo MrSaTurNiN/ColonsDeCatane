@@ -1,6 +1,19 @@
 package views.panels;
 
 
+/*
+Minerai => Duracier (Géonosis)
+Bois => Supraconducteur (Hoth)
+Laine => Cristaux (Dagobah)
+Blé => Cellule Energetique (Kamino)
+Argile => Gas Tibanna (Naboo)
+
+Carte développement = 1 Duracier 1 Cristal 1 Cellule Energetique 1 Gas
+Colonie => Vaisseau Coloniale = 1 Cellule Energétique 1 Cristal 1 Supraconducteur
+Ville => Station orbitale = 3 Duraciers 2 Cellules Energétiques
+Route => Portail Liaison SuperLumière (PLS) = 1 Gas Tibanna 1 Supra Conducteur
+*/
+
 
 import Model.Batiments.Colonie;
 import Model.Batiments.Ville;
