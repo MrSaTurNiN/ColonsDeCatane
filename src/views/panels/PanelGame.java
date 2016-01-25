@@ -20,6 +20,7 @@ import Model.Batiments.Ville;
 import Model.graph.Edge;
 import Model.graph.Vertex;
 import controllers.ClickListener;
+import views.DrawingFunction;
 import views.ViewConstants;
 import java.awt.*;
 import java.awt.TexturePaint;
@@ -37,6 +38,7 @@ import Model.Partie;
 import Model.ressource.Ressource;
 import Model.Plateau;
 import Model.Tuile.*;
+import views.modules.ModuleBank;
 
 public class PanelGame extends JPanel implements ViewConstants {
 	public Color seaColor;
@@ -55,7 +57,7 @@ public class PanelGame extends JPanel implements ViewConstants {
     private BufferedImage barUpRight;
     private BufferedImage stormtrooper;
     private BufferedImage rond_point;
-    private BufferedImage banque_fond;
+
     private BufferedImage boba;
 
 
@@ -79,22 +81,24 @@ public class PanelGame extends JPanel implements ViewConstants {
     private BufferedImage colonie_vert_hover;
     private BufferedImage colonie_bleu_hover;
 
+    public static Font mainFont;
+    public static Font mainFontSize;
 
-	private Font mainFont;
-    private Font mainFontSize;
-    private Font BanqueFontSize;
     private Font fontPointVictoireSize;
+
+    private ModuleBank bank;
 
 
 
 
     public PanelGame(Partie partie) {
-
+        this.partie = partie;
         initImage();
         initButton();
         initFont();
 
-        this.partie = partie;
+
+
 
     }
 
@@ -114,7 +118,6 @@ public class PanelGame extends JPanel implements ViewConstants {
             barUpRight = ImageIO.read(PanelGame.class.getResource("/assets/img/bar_up_right.png"));
             rond_point = ImageIO.read(PanelGame.class.getResource("/assets/img/rond_point.png"));
             stormtrooper = ImageIO.read(PanelGame.class.getResource("/assets/img/stormtrooper.png"));
-            banque_fond = ImageIO.read(PanelGame.class.getResource("/assets/img/banque_fond.png"));
             boba = ImageIO.read(PanelGame.class.getResource("/assets/img/boba.png"));
 
             icone_cellule_energetique = ImageIO.read(PanelGame.class.getResource("/assets/img/icone_cellule_energetique.png"));
@@ -145,7 +148,6 @@ public class PanelGame extends JPanel implements ViewConstants {
 			Font mainFont = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"));
 			mainFontSize = mainFont.deriveFont(24f);
             fontPointVictoireSize = mainFont.deriveFont(40f);
-            BanqueFontSize = mainFont.deriveFont(40f);
 		} catch (FontFormatException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -163,18 +165,13 @@ public class PanelGame extends JPanel implements ViewConstants {
         drawBackground();
 		drawMap();
         drawBarUp();
-		drawDeckRessource();
+        bank = new ModuleBank(partie, g2, this);
+
 		drawInfoJoueur();
-		drawBank();
+        bank.drawBank();
         drawButton();
 
 	}
-
-    public void drawStringCenter(String s, int x, int y) {
-        FontMetrics fm = g2.getFontMetrics();
-
-        g2.drawString(s, x - (fm.stringWidth(s) / 2), y + (fm.getDescent() + fm.getAscent()) / 4);
-    }
 
     public void clear()
     {
@@ -315,38 +312,6 @@ public class PanelGame extends JPanel implements ViewConstants {
 
 	}
 
-	public void drawBank() {
-        g2.setColor(Color.WHITE);
-		g2.setColor(BLACK);
-        g2.drawImage(banque_fond, XBANK - 200, YBANK - 300, this );
-		drawDeckRessource();
-        g2.setFont(BanqueFontSize);
-		drawStringCenter("BANQUE", XBANK , YBANK - banque_fond.getHeight()/ 2 + 60);
-	}
-
-	public void drawDeckRessource() {
-		int x = XBANK;
-		int y = YBANK - banque_fond.getHeight()/ 2 + 250;
-        g2.setFont(mainFontSize);
-        g2.setColor(Color.white);
-		for (Entry<String, List<Ressource>> entry : partie.getDeckRessource().getCarteRessource().entrySet()) {
-			String cle = entry.getKey();
-			List<Ressource> valeur = entry.getValue();
-			drawStringCenter(Ressource.valueOf(cle).getNom() + " : " + valeur.size(), x, y);
-			y += 25;
-		}
-
-        int dispo = YBANK - banque_fond.getHeight()/ 2 + 125;
-        drawStringCenter("Colonies disponibles  : " + partie.getJoueurActif().getColonieDispo(), XBANK,dispo);
-        drawStringCenter("Villes disponibles : " + partie.getJoueurActif().getVilleDispo(), XBANK, dispo + 25);
-        drawStringCenter("Routes disponibles : " + partie.getJoueurActif().getRouteDispo(), XBANK, dispo+50);
-        int size = partie.getDeckDeveloppement().getCartDeveloppement().size();
-        drawStringCenter("Développement : " + size, XBANK , dispo + 75);
-
-	}
-
-
-
 	public void drawInfoJoueur() {
 		int x = 300;
 		int y = JOUEUR_INFO_Y + 50;
@@ -401,7 +366,7 @@ public class PanelGame extends JPanel implements ViewConstants {
         g2.setFont(fontPointVictoireSize);
 
         g2.drawImage(rond_point, x-40, y-42, this);
-        drawStringCenter(Integer.toString(partie.getListeJoueur().get(0).getPointJoueur()), x, y);
+        DrawingFunction.drawStringCenter(Integer.toString(partie.getListeJoueur().get(0).getPointJoueur()), x, y, g2);
         g2.setFont(mainFontSize);
     }
     public void drawButton(){
@@ -413,7 +378,7 @@ public class PanelGame extends JPanel implements ViewConstants {
         }
         else {
             g2.drawImage(rond_point, x-40, y-42, this);
-            drawStringCenter("->", x,y);
+            DrawingFunction.drawStringCenter("->", x,y,g2);
         }
     }
 

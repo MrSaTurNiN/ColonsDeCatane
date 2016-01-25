@@ -1,6 +1,6 @@
 package views;
 
-import java.awt.Color;
+import java.awt.*;
 
 public interface ViewConstants {
 	final int WINDOW_WIDTH=1280;
