@@ -18,7 +18,7 @@ import java.util.*;
  */
 public class ModuleBank implements ViewConstants {
 
-    public boolean isSelected = false;
+    public boolean isSelected;
     private Font BanqueFontSize;
     private Graphics2D g2;
     private ImageObserver imageObserver;
@@ -26,12 +26,12 @@ public class ModuleBank implements ViewConstants {
     private BufferedImage banque_fond;
 
 
-    public ModuleBank(Partie partie, Graphics2D g2, ImageObserver i){
+    public ModuleBank(Partie p, Graphics2D g2, ImageObserver i){
         initFont();
         initImage();
         this.g2 = g2;
         this.imageObserver = i;
-        this.partie = partie;
+        this.partie = p;
 
     }
 
