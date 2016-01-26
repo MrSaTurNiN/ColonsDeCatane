@@ -11,7 +11,7 @@ import Model.Joueur;
 import Model.Partie;
 import Model.graph.Edge;
 import Model.graph.Vertex;
-import views.panels.PanelGame;
+import views.panels.PanelGameFx;
 
 import java.awt.event.*;
 
@@ -26,7 +26,7 @@ public class ClickListener extends MainController implements MouseListener, Mous
     private int X;
     private int Y;
 
-    public ClickListener(Partie partie,PanelGame Panel){
+    public ClickListener(Partie partie,PanelGameFx Panel){
         this.partie = partie;
         currentWindow.getPanel().setControler(this);
 
@@ -64,7 +64,7 @@ public class ClickListener extends MainController implements MouseListener, Mous
 
         }
 
-        currentWindow.getPanel().repaint();
+
     }
 
     @Override
@@ -122,7 +122,7 @@ public class ClickListener extends MainController implements MouseListener, Mous
 
         }
 
-        currentWindow.getPanel().repaint();
+
     }
 
     public void phaseinit(Vertex v,Edge e1){
@@ -251,7 +251,7 @@ public class ClickListener extends MainController implements MouseListener, Mous
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==currentWindow.getPanel().getDes()&&partie.getNbTour()>(partie.getNbJoueur())*2-1&&!partie.isDes()){
+        /*if (e.getSource()==currentWindow.getPanel().getDes()&&partie.getNbTour()>(partie.getNbJoueur())*2-1&&!partie.isDes()){
             System.out.println("le joueur lance les dés");
             partie.lanceDes();
             lancementDes();
@@ -263,7 +263,7 @@ public class ClickListener extends MainController implements MouseListener, Mous
             currentWindow.getPanel().switchButton();
             joueurSuivant();
             currentWindow.repaint();
-        }
+        }*/
 
     }
 }

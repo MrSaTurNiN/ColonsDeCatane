@@ -1,7 +1,7 @@
 package controllers;
 
 import Model.Partie;
-import views.panels.PanelGame;
+import views.panels.PanelGameFx;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 public class ButtonListener extends MainController implements ActionListener {
 
     private Partie partie;
-    private PanelGame panel;
+    private PanelGameFx panel;
     private ClickListener click;
 
 

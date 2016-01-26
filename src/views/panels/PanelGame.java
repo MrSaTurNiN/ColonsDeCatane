@@ -12,7 +12,7 @@ Carte développement = 1 Duracier 1 Cristal 1 Cellule Energetique 1 Gas
 Colonie => Vaisseau Coloniale = 1 Cellule Energétique 1 Cristal 1 Supraconducteur
 Ville => Station orbitale = 3 Duraciers 2 Cellules Energétiques
 Route => Portail Liaison SuperLumière (PLS) = 1 Gas Tibanna 1 Supra Conducteur
-*/
+
 
 
 import Model.Batiments.Colonie;
@@ -20,17 +20,26 @@ import Model.Batiments.Ville;
 import Model.graph.Edge;
 import Model.graph.Vertex;
 import controllers.ClickListener;
+import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.canvas.*;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.paint.ImagePattern;
+
+import javafx.scene.shape.*;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import views.DrawingTools;
 import views.ViewConstants;
 import java.awt.*;
-import java.awt.TexturePaint;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
+import javafx.scene.image.Image;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
+import javafx.scene.image.Image;
 
 import Model.Partie;
 import Model.Plateau;
@@ -38,11 +47,11 @@ import Model.Tuile.*;
 import views.modules.ModuleBank;
 import views.modules.ModuleInfoJoueur;
 
-public class PanelGame extends JPanel implements ViewConstants {
+public class PanelGame extends Application implements ViewConstants {
 	public Color seaColor;
 	public Color deckRessourceColor;
 	private Partie partie;
-	private Graphics2D g2;
+
 
     private BufferedImage desert;
     private BufferedImage paturage;
@@ -50,7 +59,7 @@ public class PanelGame extends JPanel implements ViewConstants {
     private BufferedImage terreCultivable;
     private BufferedImage colline;
     private BufferedImage foret;
-    private BufferedImage fond;
+    private Image fond;
     private BufferedImage stormtrooper;
     private BufferedImage rond_point;
 
@@ -82,6 +91,8 @@ public class PanelGame extends JPanel implements ViewConstants {
 
 
 
+
+
     public PanelGame(Partie partie) {
         this.partie = partie;
         initImage();
@@ -98,7 +109,7 @@ public class PanelGame extends JPanel implements ViewConstants {
             colline = ImageIO.read(PanelGame.class.getResource("/assets/img/colline.png"));
             foret = ImageIO.read(PanelGame.class.getResource("/assets/img/foret.png"));
             paturage = ImageIO.read(PanelGame.class.getResource("/assets/img/paturage.png"));
-            fond = ImageIO.read(PanelGame.class.getResource("/assets/img/background.png"));
+            fond = new Image("../assets/img/background.png");
             rond_point = ImageIO.read(PanelGame.class.getResource("/assets/img/rond_point.png"));
             stormtrooper = ImageIO.read(PanelGame.class.getResource("/assets/img/stormtrooper.png"));
             boba = ImageIO.read(PanelGame.class.getResource("/assets/img/boba.png"));
@@ -132,43 +143,44 @@ public class PanelGame extends JPanel implements ViewConstants {
 		}
 	}
 
-	@Override
-	public void paintComponent(Graphics g) {
-		g2 = (Graphics2D) g;
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        this.setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
-        this.setLayout(null);
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+
+        Canvas canvas = new Canvas(WINDOW_WIDTH,WINDOW_HEIGHT);
+        gc = canvas.getGraphicsContext2D();
+        primaryStage.setWidth(WINDOW_WIDTH);
+        primaryStage.setHeight(WINDOW_HEIGHT);
         clear();
         drawBackground();
-		drawMap();
+        drawMap();
 
-        bank = new ModuleBank(partie, g2, this);
-        infoJoueur = new ModuleInfoJoueur(partie,g2,this);
 
-        bank.drawBank();
-        infoJoueur.drawInfoJoueur();
+
         drawPointVictoire();
         drawButton();
-
-	}
+    }
 
     public void clear()
     {
-        g2.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+        gc.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
     public void drawBackground()
     {
 
-        Rectangle r = new Rectangle(0, 0, 402, 402);
+         javafx.scene.shape.Rectangle rekt = new Rectangle(0,0, WINDOW_WIDTH, WINDOW_HEIGHT );
+
+        ImagePattern imagePattern = new ImagePattern(fond);
+        rekt.setFill(imagePattern);
+
         g2.setPaint(new TexturePaint(fond, r));
         Rectangle rect = new Rectangle(0,0,WINDOW_WIDTH,WINDOW_HEIGHT);
         g2.fill(rect);
     }
 
 	public void drawMap() {
-
-		g2.setColor(SEA);
+        g2.setColor(SEA);
         g2.setComposite(AlphaComposite.getInstance(
                 AlphaComposite.SRC_OVER, 0.8f));
 		g2.setColor(Color.BLACK);
@@ -194,7 +206,7 @@ public class PanelGame extends JPanel implements ViewConstants {
             if(!(tuiles[i] instanceof Desert))g2.drawString(tuiles[i].getNumero()+"",v.getX()-10,v.getY()+100);
             if (tuiles[i].getVoleur() != null)
             {
-                g2.drawImage(boba,v.getX()-20,v.getY()+50,this);
+                gc.drawImage(boba,v.getX()-20,v.getY()+50);
             }
 		}
 		//On déssine les Edges:
@@ -354,6 +366,8 @@ public class PanelGame extends JPanel implements ViewConstants {
 	/*
 		Transforme la Tuile donnée en paramètre en un Polygon qu'on peut dessiner avec l'objet Graphics
 	 */
+
+    /*
 	public Polygon transformTuile(Tuile t)
 	{
 		List<Vertex> sommets = t.getSommets();
@@ -416,4 +430,7 @@ public class PanelGame extends JPanel implements ViewConstants {
        // des.addActionListener(al);
        // skip.addActionListener(al);
     }
+
+
 }
+*/

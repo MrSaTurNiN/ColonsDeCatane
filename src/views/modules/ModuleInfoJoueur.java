@@ -1,11 +1,11 @@
-package views.modules;
+/*package views.modules;
 
 import Model.Developpement;
 import Model.Partie;
 import Model.ressource.Ressource;
 import views.DrawingTools;
 import views.ViewConstants;
-import views.panels.PanelGame;
+import views.panels.PanelGameFx;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -14,9 +14,7 @@ import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.util.*;
 
-/**
- * Created by Mahel Sif on 25/01/2016.
- */
+
 public class ModuleInfoJoueur extends DrawingTools implements ViewConstants {
 
     public boolean isChecked;
@@ -121,3 +119,4 @@ public class ModuleInfoJoueur extends DrawingTools implements ViewConstants {
 
     }
 }
+*/

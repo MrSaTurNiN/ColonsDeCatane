@@ -6,13 +6,14 @@ import Model.Partie;
 import views.InitJoueurView;
 import views.InitNbJoueurView;
 import views.MainWindow;
-import views.panels.PanelGame;
+import views.panels.PanelGameFx;
+import views.panels.PanelGameFx;
 
 public class MainController {
 
 	protected static MainWindow currentWindow;
 	protected static Partie partie;
-	private PanelGame panel;
+	private PanelGameFx panel;
 	private InitJoueurView initJoueurView;
 	private InitNbJoueurView initNbJoueurView;
 	private ClickListener click;
@@ -24,9 +25,8 @@ public class MainController {
 		initAllJoueur();
 		currentWindow = new MainWindow(this.partie, this);
 		panel=currentWindow.getPanel();
-        click=new ClickListener(this.partie,panel);
+        //click=new ClickListener(this.partie,panel);
 		button=new ButtonListener(this.partie,click);
-		currentWindow.setVisible(true);
 		partie.setOrdreJoueur();
         partie.setJoueurActif(partie.getListeJoueur().get(0));
 		partie.setLaunched();
@@ -47,7 +47,7 @@ public class MainController {
 	}
 	
 	public void initJoueur(){
-		initJoueurView = new InitJoueurView(this, currentWindow);
+		initJoueurView = new InitJoueurView(this, panel);
 		initJoueurView.setVisible(true);
 	}
 	

@@ -17,23 +17,23 @@ import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 
+import Model.Partie;
 import controllers.MainController;
 
-public class InitJoueurView extends JDialog  {
+public class InitJoueurView extends DrawingTools {
 	private JTextField nomJoueur;
 	private JComboBox<Color> colorJoueur;
 	private JButton valide;
 	private MainController mainControl;
+	private boolean isVisible;
 
 
-	public InitJoueurView(MainController mainControl, JFrame parent ) {
-		super(parent);
-		setModal(true);
-		this.mainControl=mainControl;
-		setSize(400, 400);
+	public InitJoueurView(Partie partie) {
+
+
 		nomJoueur = new JTextField(20);
 		colorJoueur = new JComboBox<Color>();
-		for (Color c : mainControl.getPartie().getListCouleur()) {
+		for (Color c : partie.getListCouleur()) {
 			colorJoueur.addItem(c);
 		}
 		
@@ -46,10 +46,10 @@ public class InitJoueurView extends JDialog  {
 				
 			}
 		});
-		getContentPane().setLayout(new FlowLayout());
-		getContentPane().add(nomJoueur);
-		getContentPane().add(colorJoueur);
-		getContentPane().add(valide);
+		setLayout(new FlowLayout());
+		add(nomJoueur);
+		add(colorJoueur);
+		add(valide);
 
 		Renderer renderer = new Renderer();
 
@@ -81,7 +81,6 @@ public class InitJoueurView extends JDialog  {
 	
 	public void valideActionPerform(){
 		mainControl.creerJoueur(nomJoueur.getText(), (Color) colorJoueur.getSelectedItem());
-		setVisible(false);
-		
+
 	}
 }

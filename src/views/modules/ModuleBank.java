@@ -1,10 +1,10 @@
-package views.modules;
+/*package views.modules;
 
 import Model.Partie;
 import Model.ressource.Ressource;
 import views.DrawingTools;
 import views.ViewConstants;
-import views.panels.PanelGame;
+import views.panels.PanelGameFx;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -13,9 +13,7 @@ import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.util.*;
 
-/**
- * Created by Mahel Sif on 25/01/2016.
- */
+
 public class ModuleBank extends DrawingTools implements ViewConstants  {
 
     public boolean isSelected;
@@ -68,7 +66,7 @@ public class ModuleBank extends DrawingTools implements ViewConstants  {
     public void drawDeckRessource(Graphics2D g2) {
         int x = XBANK;
         int y = YBANK - banque_fond.getHeight()/ 2 + 250;
-        g2.setFont(PanelGame.mainFontSize);
+        //g2.setFont(PanelGameFx.mainFontSize);
         g2.setColor(Color.white);
         for (Map.Entry<String, java.util.List<Ressource>> entry : partie.getDeckRessource().getCarteRessource().entrySet()) {
             String cle = entry.getKey();
@@ -86,4 +84,4 @@ public class ModuleBank extends DrawingTools implements ViewConstants  {
 
     }
 
-}
+}*/

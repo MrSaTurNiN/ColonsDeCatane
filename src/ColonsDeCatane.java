@@ -8,7 +8,7 @@ public class ColonsDeCatane {
 	public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-               Partie model = new Partie();
+                Partie model = new Partie();
                 MainController mainControl = new MainController(model);
             }
         });
