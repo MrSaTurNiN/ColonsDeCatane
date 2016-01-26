@@ -3,12 +3,12 @@ package views.modules;
 import Model.Developpement;
 import Model.Partie;
 import Model.ressource.Ressource;
+import views.DrawingTools;
 import views.ViewConstants;
 import views.panels.PanelGame;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.List;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
@@ -17,7 +17,7 @@ import java.util.*;
 /**
  * Created by Mahel Sif on 25/01/2016.
  */
-public class ModuleInfoJoueur implements ViewConstants {
+public class ModuleInfoJoueur extends DrawingTools implements ViewConstants {
 
     public boolean isChecked;
     public Partie partie;
@@ -30,7 +30,6 @@ public class ModuleInfoJoueur implements ViewConstants {
     private BufferedImage icone_cristaux;
     private BufferedImage icone_supraconducteur;
 
-    private Font mainFontSize;
     private BufferedImage barUp;
     private BufferedImage barUpRight;
 
@@ -43,19 +42,6 @@ public class ModuleInfoJoueur implements ViewConstants {
 
         initImage();
         drawBarUp();
-        initFont();
-    }
-
-    public void initFont()
-    {
-        try {
-            Font mainFont = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"));
-            mainFontSize = mainFont.deriveFont(24f);
-        } catch (FontFormatException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void  initImage()

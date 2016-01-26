@@ -20,7 +20,7 @@ import Model.Batiments.Ville;
 import Model.graph.Edge;
 import Model.graph.Vertex;
 import controllers.ClickListener;
-import views.DrawingFunction;
+import views.DrawingTools;
 import views.ViewConstants;
 import java.awt.*;
 import java.awt.TexturePaint;
@@ -28,14 +28,11 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map.Entry;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import Model.Developpement;
 import Model.Partie;
-import Model.ressource.Ressource;
 import Model.Plateau;
 import Model.Tuile.*;
 import views.modules.ModuleBank;
@@ -90,10 +87,6 @@ public class PanelGame extends JPanel implements ViewConstants {
         initImage();
         initButton();
         initFont();
-
-
-
-
     }
 
     public void  initImage()
@@ -305,7 +298,7 @@ public class PanelGame extends JPanel implements ViewConstants {
         g2.setFont(fontPointVictoireSize);
 
         g2.drawImage(rond_point, x-40, y-42, this);
-        DrawingFunction.drawStringCenter(Integer.toString(partie.getListeJoueur().get(0).getPointJoueur()), x, y, g2);
+        DrawingTools.drawStringCenter(Integer.toString(partie.getListeJoueur().get(0).getPointJoueur()), x, y, g2);
         g2.setFont(mainFontSize);
     }
 
@@ -318,7 +311,7 @@ public class PanelGame extends JPanel implements ViewConstants {
         }
         else {
             g2.drawImage(rond_point, x-40, y-42, this);
-            DrawingFunction.drawStringCenter("->", x,y,g2);
+            DrawingTools.drawStringCenter("->", x,y,g2);
         }
     }
 

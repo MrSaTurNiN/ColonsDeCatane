@@ -2,8 +2,8 @@ package views.modules;
 
 import Model.Partie;
 import Model.ressource.Ressource;
+import views.DrawingTools;
 import views.ViewConstants;
-import views.DrawingFunction;
 import views.panels.PanelGame;
 
 import javax.imageio.ImageIO;
@@ -16,7 +16,7 @@ import java.util.*;
 /**
  * Created by Mahel Sif on 25/01/2016.
  */
-public class ModuleBank implements ViewConstants {
+public class ModuleBank extends DrawingTools implements ViewConstants  {
 
     public boolean isSelected;
     private Font BanqueFontSize;
@@ -62,7 +62,7 @@ public class ModuleBank implements ViewConstants {
         g2.drawImage(banque_fond, XBANK - 200, YBANK - 300, imageObserver);
         drawDeckRessource(g2);
         g2.setFont(BanqueFontSize);
-        DrawingFunction.drawStringCenter("BANQUE", XBANK , YBANK - banque_fond.getHeight()/ 2 + 60,g2);
+        drawStringCenter("BANQUE", XBANK , YBANK - banque_fond.getHeight()/ 2 + 60,g2);
     }
 
     public void drawDeckRessource(Graphics2D g2) {
@@ -73,16 +73,16 @@ public class ModuleBank implements ViewConstants {
         for (Map.Entry<String, java.util.List<Ressource>> entry : partie.getDeckRessource().getCarteRessource().entrySet()) {
             String cle = entry.getKey();
             java.util.List<Ressource> valeur = entry.getValue();
-            DrawingFunction.drawStringCenter(Ressource.valueOf(cle).getNom() + " : " + valeur.size(), x, y,g2);
+            drawStringCenter(Ressource.valueOf(cle).getNom() + " : " + valeur.size(), x, y,g2);
             y += 25;
         }
 
         int dispo = YBANK - banque_fond.getHeight()/ 2 + 125;
-        DrawingFunction.drawStringCenter("Colonies disponibles  : " + partie.getJoueurActif().getColonieDispo(), XBANK,dispo,g2);
-        DrawingFunction.drawStringCenter("Villes disponibles : " + partie.getJoueurActif().getVilleDispo(), XBANK, dispo + 25,g2);
-        DrawingFunction.drawStringCenter("Routes disponibles : " + partie.getJoueurActif().getRouteDispo(), XBANK, dispo+50,g2);
+        drawStringCenter("Colonies disponibles  : " + partie.getJoueurActif().getColonieDispo(), XBANK,dispo,g2);
+        drawStringCenter("Villes disponibles : " + partie.getJoueurActif().getVilleDispo(), XBANK, dispo + 25,g2);
+        drawStringCenter("Routes disponibles : " + partie.getJoueurActif().getRouteDispo(), XBANK, dispo+50,g2);
         int size = partie.getDeckDeveloppement().getCartDeveloppement().size();
-        DrawingFunction.drawStringCenter("Développement : " + size, XBANK , dispo + 75,g2);
+        drawStringCenter("Développement : " + size, XBANK , dispo + 75,g2);
 
     }
 

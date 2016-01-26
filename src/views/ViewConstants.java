@@ -21,4 +21,8 @@ public interface ViewConstants {
 	final Color SEA = new Color(0, 0, 255);
 	final int TAILLEVERTEX = 10;
 
+
+
 }
+
+
