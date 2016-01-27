@@ -7,12 +7,14 @@ import views.InitJoueurView;
 import views.InitNbJoueurView;
 import views.MainWindow;
 import views.panels.PanelGame;
+import views.panels.PanelMenu;
 
 public class MainController {
 
 	protected static MainWindow currentWindow;
 	protected static Partie partie;
 	private PanelGame panel;
+	private PanelMenu menuPanel;
 	private InitJoueurView initJoueurView;
 	private InitNbJoueurView initNbJoueurView;
 	private ClickListener click;
@@ -20,22 +22,29 @@ public class MainController {
 	
 	public MainController(Partie partie){
 		this.partie = partie;
-		initNbJoueur();
-		initAllJoueur();
 		currentWindow = new MainWindow(this.partie, this);
-		panel=currentWindow.getPanel();
-        click=new ClickListener(this.partie,panel);
-		button=new ButtonListener(this.partie,click);
 		currentWindow.setVisible(true);
-		partie.setOrdreJoueur();
-        partie.setJoueurActif(partie.getListeJoueur().get(0));
-		partie.setLaunched();
+		
 
 	}
 
     public MainController() {
+    	
     }
 
+    public void nouvellePartie(){
+    	
+		initNbJoueur();
+		initAllJoueur();
+		
+		panel=currentWindow.getPanel();
+        click=new ClickListener(this.partie,panel);
+		button=new ButtonListener(this.partie,click);
+		currentWindow.displayGamePanel();
+		partie.setOrdreJoueur();
+        partie.setJoueurActif(partie.getListeJoueur().get(0));
+		partie.setLaunched();
+    }
     public void creerJoueur(String nomJoueur, Color colorJoueur){
 		partie.creerJoueur(nomJoueur, colorJoueur);
 		partie.getListCouleur().remove(partie.getJoueurActif().getCouleurJoueur());
