@@ -31,6 +31,8 @@ public class PanelGameFx extends Application implements ViewConstants {
 
     private Image fond;
 
+    private Stage primaryStage;
+
 
     public PanelGameFx(Partie partie){
         this.partie = partie;
@@ -50,8 +52,8 @@ public class PanelGameFx extends Application implements ViewConstants {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-
+    public void start(Stage p) throws Exception {
+        this.primaryStage = p;
         initImage();
         Circle circ = new Circle(40, 40, 30);
         Group root = new Group(circ);
@@ -93,6 +95,10 @@ public class PanelGameFx extends Application implements ViewConstants {
     public void setButtonController(ActionListener al){
         // des.addActionListener(al);
         // skip.addActionListener(al);
+    }
+
+    public Stage getStage(){
+        return primaryStage;
     }
 
     public JButton getDes() {

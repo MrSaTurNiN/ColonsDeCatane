@@ -47,7 +47,7 @@ public class MainController {
 	}
 	
 	public void initJoueur(){
-		initJoueurView = new InitJoueurView(this, panel);
+		initJoueurView = new InitJoueurView(this, currentWindow.getStage());
 		initJoueurView.setVisible(true);
 	}
 	

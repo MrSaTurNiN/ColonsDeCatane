@@ -1,20 +1,22 @@
 package views;
 
-import javax.swing.JFrame;
-import javax.swing.WindowConstants;
 
 import controllers.MainController;
 import Model.Partie;
-import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import views.panels.PanelGameFx;
 
 
-public class MainWindow implements ViewConstants {
+public class MainWindow extends Stage implements ViewConstants {
 	private PanelGameFx game;
 	private InitJoueurView initJoueurView;
 	private MainController mainControl;
 
 	public MainWindow(Partie partie, MainController mainControl) {
+		this.setTitle("Catane");
+		this.setAlwaysOnTop(true);
+		this.setResizable(false);
+
 		this.mainControl=mainControl;
 		game = new PanelGameFx(partie);
 

@@ -19,6 +19,10 @@ import javax.swing.ListCellRenderer;
 
 import Model.Partie;
 import controllers.MainController;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class InitJoueurView extends DrawingTools {
 	private JTextField nomJoueur;
@@ -28,9 +32,20 @@ public class InitJoueurView extends DrawingTools {
 	private boolean isVisible;
 
 
-	public InitJoueurView(Partie partie) {
+	public InitJoueurView(Partie partie, Stage primaryStage) {
 
 
+		Stage stage = new Stage();
+		stage.setTitle("Title");
+		stage.setResizable(false);
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.initOwner(primaryStage);
+		stage.initStyle(StageStyle.UTILITY);
+
+
+
+		Scene scene = new Scene();
+		stage.setScene(scene);
 		nomJoueur = new JTextField(20);
 		colorJoueur = new JComboBox<Color>();
 		for (Color c : partie.getListCouleur()) {
