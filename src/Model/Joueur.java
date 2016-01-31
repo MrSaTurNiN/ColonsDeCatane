@@ -167,22 +167,26 @@ public class Joueur
     }
 
     public void retireRessourceColonie(DeckRessource deck) throws OutOfCardException, UnKnownRessource {
-        deck.obtenirRessource(retirerCarte(Ressource.Argile.name()));
-        deck.obtenirRessource(retirerCarte(Ressource.Bois.name()));
-        deck.obtenirRessource(retirerCarte(Ressource.Ble.name()));
-        deck.obtenirRessource(retirerCarte(Ressource.Laine.name()));
+       mainRessource.piocherRessource(Ressource.Argile.name());
+        mainRessource.piocherRessource(Ressource.Bois.name());
+        mainRessource.piocherRessource(Ressource.Ble.name());
+        mainRessource.piocherRessource(Ressource.Laine.name());
+
     }
 
     public void retireRessourceRoute(DeckRessource deck)throws OutOfCardException, UnKnownRessource{
-        deck.obtenirRessource(retirerCarte(Ressource.Argile.name()));
-        deck.obtenirRessource(retirerCarte(Ressource.Bois.name()));
+        System.out.println("je retire les ressources dans la route");
+        mainRessource.piocherRessource(Ressource.Argile.name());
+        mainRessource.piocherRessource(Ressource.Bois.name());
+
     }
 
     public void retireRessourceVille(DeckRessource deck)throws OutOfCardException, UnKnownRessource{
-        deck.obtenirRessource(retirerCarte(Ressource.Ble.name()));
-        deck.obtenirRessource(retirerCarte(Ressource.Ble.name()));
-        deck.obtenirRessource(retirerCarte(Ressource.Minerai.name()));
-        deck.obtenirRessource(retirerCarte(Ressource.Minerai.name()));
-        deck.obtenirRessource(retirerCarte(Ressource.Minerai.name()));
+        mainRessource.piocherRessource(Ressource.Ble.name());
+        mainRessource.piocherRessource(Ressource.Ble.name());
+        mainRessource.piocherRessource(Ressource.Minerai.name());
+        mainRessource.piocherRessource(Ressource.Minerai.name());
+        mainRessource.piocherRessource(Ressource.Minerai.name());
+
     }
 }

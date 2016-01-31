@@ -14,6 +14,7 @@ import Model.graph.Vertex;
 import views.panels.PanelGame;
 
 import java.awt.event.*;
+import java.sql.SQLOutput;
 
 /**
  * Created by jpabegg on 03/12/15.
@@ -26,7 +27,7 @@ public class ClickListener extends MainController implements MouseListener, Mous
     private int X;
     private int Y;
 
-    public ClickListener(Partie partie,PanelGame Panel){
+    public ClickListener(Partie partie){
         this.partie = partie;
         currentWindow.getPanel().setControler(this);
 
@@ -41,11 +42,11 @@ public class ClickListener extends MainController implements MouseListener, Mous
 
         try{
 
-            if (!placecolo1) {
+            if (!placecolo1 && partie.getNbTour()<=(partie.getNbJoueur())*2-1) {
                 v = partie.getPlateau().getGraph().converstionXY(X, Y);
 
             }
-            else {
+            else if(partie.getNbTour()<=(partie.getNbJoueur())*2-1) {
                 e1=partie.getPlateau().getGraph().getEdgeFromPoint(X,Y);
             }
             if (partie.getNbTour()<=(partie.getNbJoueur())*2-1){
@@ -53,17 +54,24 @@ public class ClickListener extends MainController implements MouseListener, Mous
                 phaseinit(v, e1);
 
             }
-            else{
-                //if (v!=null||e1!=null){
-                    phaseJeu(v,e1);
-
-                //}
-
-            }
         }catch (PositionsInvalidesException exc){
-
+            System.out.println(exc.getMessage());
         }
 
+            if (partie.getNbTour()>(partie.getNbJoueur())*2-1){
+                try {
+                    v = partie.getPlateau().getGraph().converstionXY(X, Y);
+                }
+                catch (Exceptions.click.PositionsInvalidesException exc){
+                   // System.out.println(exc.getMessage());
+                }
+                try {
+                    e1 = partie.getPlateau().getGraph().getEdgeFromPoint(X, Y);
+                }catch (Exceptions.click.PositionsInvalidesException exc){
+                    System.out.println(exc.getMessage()+"     qqq");
+                }
+                phaseJeu(v, e1);
+            }
         currentWindow.getPanel().repaint();
     }
 
@@ -148,7 +156,6 @@ public class ClickListener extends MainController implements MouseListener, Mous
                 }
         }
         else {
-            System.out.println("lol");
             try {
                 Batiment b=partie.getPlateau().creerColonie(joueur,v,null);
                 joueur.placerColonie((Colonie) b);
@@ -170,56 +177,54 @@ public class ClickListener extends MainController implements MouseListener, Mous
     public void phaseJeu(Vertex v,Edge e1){
         Joueur joueur;
         joueur=partie.getJoueurActif();
-       /* if(!partie.isPhaseConstruction()) {
-        // if (!phaseCommerce) {
-        if (partie.isDes()) {
-            System.out.println("Le joueur a lancé les dés");
-            int result = partie.getDes().lancerDes();
-            try {
-                partie.getRessource(result);
-                partie.setPhaseConstruction(true);
-            } catch (NumberSevenException nb7) {
-                nb7.getMessage();
-            }
-        }
-        } */
         if (lancementDes()){
-
         }
         else{
             if (skiper()) {
                 return;
             }
             if (v!=null){
-                if (joueur.hasRessourceColonie()) {
+                System.out.println("yolo");
+                if (v.getBatiment()!=null && v.getBatiment().getJoueur()==joueur){
+                    try {
+                        v.ameliorerBatiment(joueur);
+                    } catch (SuperExceptionRessource e) {
+                        System.out.println(e.getMessage());
+                        e.getMessage();
+                    }
+                }
+                else {
                     try {
 
-                        Batiment b = partie.getPlateau().creerColonie(joueur, v, null);
+                        Batiment b = partie.getPlateau().creerColonie(joueur, v, joueur.getMainRessource());
                         joueur.placerColonie((Colonie) b);
                     } catch (SuperExceptionRessource e) {
+                        System.out.println(e.getMessage());
                         e.getMessage();
                     } catch (SuperExceptionBatiment e) {
+                        System.out.println(e.getMessage());
                         e.getMessage();
                     }
                 }
             }
             else if (e1!=null){
                 try {
-                    partie.getPlateau().creerRoute(joueur, e1, null);
+                    System.out.println("je vais creer une route: ");
+                    partie.getPlateau().creerRoute(joueur, e1, joueur.getMainRessource());
                 }catch(SuperExceptionRessource r){
                     r.getMessage();
                 } catch (SuperExceptionBatiment e) {
                     e.printStackTrace();
                 }
-
             }
         }
+        currentWindow.repaint();
+
     }
     public boolean lancementDes(){
         if(!partie.isPhaseConstruction()) {
             // if (!phaseCommerce) {
             if (partie.isDes()) {
-                System.out.println("Le joueur a lancé les dés");
                 int result = partie.getDes().lancerDes();
                 try {
                     partie.getRessource(result);
@@ -252,7 +257,6 @@ public class ClickListener extends MainController implements MouseListener, Mous
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==currentWindow.getPanel().getDes()&&partie.getNbTour()>(partie.getNbJoueur())*2-1&&!partie.isDes()){
-            System.out.println("le joueur lance les dés");
             partie.lanceDes();
             lancementDes();
             currentWindow.getPanel().switchButton();

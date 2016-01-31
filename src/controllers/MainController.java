@@ -18,48 +18,47 @@ public class MainController {
 	private InitJoueurView initJoueurView;
 	private InitNbJoueurView initNbJoueurView;
 	private ClickListener click;
-	private ButtonListener button;
-	
+
 	public MainController(Partie partie){
 		this.partie = partie;
 		currentWindow = new MainWindow(this.partie, this);
 		currentWindow.setVisible(true);
-		
+
 
 	}
 
-    public MainController() {
-    	
-    }
+	public MainController() {
 
-    public void nouvellePartie(){
-    	
+	}
+
+	public void nouvellePartie(){
+
 		initNbJoueur();
 		initAllJoueur();
-		
+
 		panel=currentWindow.getPanel();
-        click=new ClickListener(this.partie,panel);
-		button=new ButtonListener(this.partie,click);
+		click=new ClickListener(this.partie);
+
 		currentWindow.displayGamePanel();
 		partie.setOrdreJoueur();
-        partie.setJoueurActif(partie.getListeJoueur().get(0));
+		partie.setJoueurActif(partie.getListeJoueur().get(0));
 		partie.setLaunched();
-    }
-    public void creerJoueur(String nomJoueur, Color colorJoueur){
+	}
+	public void creerJoueur(String nomJoueur, Color colorJoueur){
 		partie.creerJoueur(nomJoueur, colorJoueur);
 		partie.getListCouleur().remove(partie.getJoueurActif().getCouleurJoueur());
-		
+
 	}
-	
+
 	public void setNbJoueur(int nbJoueur){
 		partie.setNbJoueur(nbJoueur);
 	}
-	
+
 	public void initJoueur(){
 		initJoueurView = new InitJoueurView(this, currentWindow);
 		initJoueurView.setVisible(true);
 	}
-	
+
 	public void initNbJoueur(){
 		initNbJoueurView = new InitNbJoueurView(this, currentWindow);
 		initNbJoueurView.setVisible(true);
@@ -67,7 +66,7 @@ public class MainController {
 	public void initAllJoueur(){
 		for (int i = 0; i < partie.getNbJoueur(); i++) {
 			initJoueur();
-            partie.initFicheConstruct(partie.getListeJoueur().get(i));
+			partie.initFicheConstruct(partie.getListeJoueur().get(i));
 		}
 	}
 

@@ -47,6 +47,7 @@ public class Plateau {
         if(e==null||!e.isLibreRoute(j))throw new RoutePositionException();
         if(j.getRouteDispo()==0) throw new NoRouteDispoException();
         if(deck != null){
+            System.out.println("je suis dans creerRoute je cree la route");
             if(!j.hasRessourceRoute())throw new RessourceIndisponibleException();
             j.retireRessourceRoute(deck);
         }

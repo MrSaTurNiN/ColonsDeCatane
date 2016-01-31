@@ -39,7 +39,9 @@ public class DeckRessource {
         if (carteRessource.containsKey(clef)){
             if (carteRessource.get(clef).size()!=0){
                 carte =carteRessource.get(clef).get(carteRessource.get(clef).size()-1);
-                carteRessource.get(clef).remove(carteRessource.get(clef).size()-1);
+                System.out.println(carteRessource.get(clef));
+                carteRessource.get(clef).remove(carteRessource.get(clef).size() - 1);
+                System.out.println(carteRessource.get(clef));
                 return carte;
             }
             else {

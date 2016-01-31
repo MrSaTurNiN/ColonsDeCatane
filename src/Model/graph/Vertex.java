@@ -1,5 +1,7 @@
 package Model.graph;
 
+import Exceptions.ressource.OutOfCardException;
+import Exceptions.ressource.UnKnownRessource;
 import Model.Joueur;
 import Model.Batiments.Batiment;
 import Model.Batiments.Colonie;
@@ -130,9 +132,10 @@ public class Vertex {
         j.setColonieDispo(j.getColonieDispo()-1);
         return batiment;
     }
-    public void ameliorerBatiment(Joueur j)
-    {
+    public void ameliorerBatiment(Joueur j) throws OutOfCardException, UnKnownRessource {
         batiment = new Ville(j,this);
+
+        j.retireRessourceVille(j.getMainRessource());
         j.setColonieDispo(j.getColonieDispo()+1);
         j.setVilleDispo(j.getVilleDispo()-1);
     }
