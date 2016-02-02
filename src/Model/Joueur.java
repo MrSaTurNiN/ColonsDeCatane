@@ -7,13 +7,14 @@ import Model.ressource.DeckRessource;
 import Model.ressource.Ressource;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.*;
 import java.util.List;
 
 /**
  * Created by jpabegg on 13/11/15.
  */
-public class Joueur
+public class Joueur implements Serializable
 {
     private Color couleurJoueur;
     private String nomJoueur;

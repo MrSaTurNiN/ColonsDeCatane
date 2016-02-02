@@ -5,11 +5,12 @@ import Model.Batiments.Route;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 
 /**
  * Created by Jip on 22/11/2015.
  */
-public class Edge{
+public class Edge implements Serializable{
     Vertex vertexA;
     Vertex vertexB;
     boolean isHover;

@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -7,7 +8,7 @@ import java.util.Random;
 /**
  * Created by jpabegg on 13/11/15.
  */
-public class DeckDeveloppement
+public class DeckDeveloppement implements Serializable
 {
     private static Random random = new Random();
 

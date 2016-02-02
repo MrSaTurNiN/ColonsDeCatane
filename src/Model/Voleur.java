@@ -1,7 +1,9 @@
 package Model;
 
+import java.io.Serializable;
+
 /**
  * Created by jpabegg on 25/11/15.
  */
-public class Voleur {
+public class Voleur implements Serializable{
 }

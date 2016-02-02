@@ -13,12 +13,13 @@ import Model.graph.Vertex;
 import Model.Tuile.*;
 import Model.ressource.DeckRessource;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Created by jpabegg on 25/11/15.
  */
-public class Plateau {
+public class Plateau implements Serializable{
     private Graph graph;
     private Tuile[] tuiles = new Tuile[19];
 

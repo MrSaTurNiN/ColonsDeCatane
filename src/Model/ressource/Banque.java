@@ -1,5 +1,7 @@
 package Model.ressource;
 
+import java.io.Serializable;
+
 /**
  * Created by jpabegg on 18/12/15.
  */

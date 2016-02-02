@@ -1,5 +1,9 @@
 package Server;
 
+import Model.Joueur;
+import Model.Partie;
+
+import java.awt.*;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -29,5 +33,16 @@ public class ServerCatane {
                 e.printStackTrace();
             }
         }
+        initJoueur();
+    }
+
+    private void initJoueur() {
+        List<Joueur> list = new ArrayList<Joueur>();
+        for(int i = 0;i<listSocket.size();i++){
+            Joueur j = new Joueur("test"+(i+1), Color.BLUE);
+            list.add(j);
+        }
+        Partie p = new Partie(list);
+
     }
 }

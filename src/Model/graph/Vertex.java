@@ -7,10 +7,12 @@ import Model.Batiments.Batiment;
 import Model.Batiments.Colonie;
 import Model.Batiments.Ville;
 
+import java.io.Serializable;
+
 /**
  * Created by Jip on 22/11/2015.
  */
-public class Vertex {
+public class Vertex implements Serializable{
     private Batiment batiment = null;
     private Edge upEdge = null;
     private Edge leftEdge = null;

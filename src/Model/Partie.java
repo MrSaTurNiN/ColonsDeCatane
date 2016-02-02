@@ -17,6 +17,7 @@ import controllers.Timer.GameTimer;
 import javax.swing.*;
 import java.awt.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -25,7 +26,7 @@ import java.util.Set;
 /**
  * Created by jpabegg on 13/11/15.
  */
-public class Partie {
+public class Partie implements Serializable{
 	private List<Joueur> listeJoueur;
 
 
@@ -84,6 +85,11 @@ public class Partie {
 		deckDeveloppement=new DeckDeveloppement();
 		des = new Des();
 		timer=new Timer(16, new GameTimer());
+	}
+
+	public Partie(List<Joueur> listeJoueur){
+		this();
+		this.listeJoueur = listeJoueur;
 	}
 	/*
 		Initialise les ressources du joueur j à partir des Colonies qu'il possède.

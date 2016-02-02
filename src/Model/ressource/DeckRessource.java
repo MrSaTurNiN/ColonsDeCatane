@@ -3,12 +3,13 @@ package Model.ressource;
 import Exceptions.ressource.OutOfCardException;
 import Exceptions.ressource.UnKnownRessource;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Created by jpabegg on 13/11/15.
  */
-public class DeckRessource {
+public class DeckRessource implements Serializable{
 
     private Map<String,List<Ressource>> carteRessource;
 

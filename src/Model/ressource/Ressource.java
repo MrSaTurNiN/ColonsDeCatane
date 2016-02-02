@@ -1,9 +1,11 @@
 package Model.ressource;
 
+import java.io.Serializable;
+
 /**
  * Created by jpabegg on 13/11/15.
  */
-public enum Ressource
+public enum Ressource implements Serializable
 {
 
     Bois("Supraconducteur"),

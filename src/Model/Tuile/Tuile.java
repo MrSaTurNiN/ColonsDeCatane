@@ -3,6 +3,7 @@ package Model.Tuile;
 import Model.graph.Vertex;
 import Model.Voleur;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.Set;
 /**
  * Created by jpabegg on 25/11/15.
  */
-public class Tuile {
+public class Tuile implements Serializable{
     protected Voleur voleur = null;
     protected List<Vertex> sommets = new ArrayList<Vertex>();
     protected int numero;

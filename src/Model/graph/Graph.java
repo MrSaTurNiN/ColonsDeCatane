@@ -6,6 +6,7 @@ import Model.Batiments.Batiment;
 import views.ViewConstants;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * Created by Jip on 22/11/2015.
  */
 
-public class Graph implements ViewConstants{
+public class Graph implements ViewConstants,Serializable{
     static final int DECLALAGE_COTE = 70;
     static final int PETIT_DECALAGE = 50;
     static final int GRAND_DECALAGE = 125;
