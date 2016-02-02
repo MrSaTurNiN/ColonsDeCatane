@@ -1,9 +1,9 @@
 package Model.graph;
 
-import Model.Joueur;
 import Model.Batiments.Batiment;
 import Model.Batiments.Colonie;
 import Model.Batiments.Ville;
+import Model.Joueur;
 
 /**
  * Created by Jip on 22/11/2015.

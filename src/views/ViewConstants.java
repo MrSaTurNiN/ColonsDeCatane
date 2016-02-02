@@ -3,10 +3,10 @@ package views;
 import java.awt.*;
 
 public interface ViewConstants {
-	final int WINDOW_WIDTH=1280;
-	final int WINDOW_HEIGHT=1000;
-	final int XBANK= WINDOW_WIDTH - 225;
-	final int YBANK= WINDOW_HEIGHT - 250;
+	double WINDOW_WIDTH=1280;
+	double WINDOW_HEIGHT=1000;
+	final double XBANK= WINDOW_WIDTH - 225;
+	final double YBANK= WINDOW_HEIGHT - 250;
 	final int BANK_WIDTH=300;
 	final int BANK_HEIGHT=300;
 	final int JOUEUR_INFO_X=900;

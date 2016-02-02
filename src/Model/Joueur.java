@@ -7,7 +7,7 @@ import Model.ressource.DeckRessource;
 import Model.ressource.Ressource;
 
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -173,12 +173,12 @@ public class Joueur
         deck.obtenirRessource(retirerCarte(Ressource.Laine.name()));
     }
 
-    public void retireRessourceRoute(DeckRessource deck)throws OutOfCardException, UnKnownRessource{
+    public void retireRessourceRoute(DeckRessource deck)throws OutOfCardException, UnKnownRessource {
         deck.obtenirRessource(retirerCarte(Ressource.Argile.name()));
         deck.obtenirRessource(retirerCarte(Ressource.Bois.name()));
     }
 
-    public void retireRessourceVille(DeckRessource deck)throws OutOfCardException, UnKnownRessource{
+    public void retireRessourceVille(DeckRessource deck)throws OutOfCardException, UnKnownRessource {
         deck.obtenirRessource(retirerCarte(Ressource.Ble.name()));
         deck.obtenirRessource(retirerCarte(Ressource.Ble.name()));
         deck.obtenirRessource(retirerCarte(Ressource.Minerai.name()));

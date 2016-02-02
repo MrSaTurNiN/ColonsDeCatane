@@ -2,8 +2,8 @@
 package Model;
 
 import Exceptions.NumberSevenException;
-import Exceptions.ressource.OutOfCardException;
 import Exceptions.graph.RootNullException;
+import Exceptions.ressource.OutOfCardException;
 import Exceptions.ressource.UnKnownRessource;
 import Model.Batiments.Colonie;
 import Model.Batiments.Ville;
@@ -16,7 +16,6 @@ import controllers.Timer.GameTimer;
 
 import javax.swing.*;
 import java.awt.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -73,6 +72,7 @@ public class Partie {
 		Vertex racine = new Vertex();
 		racine.setX(280);
 		racine.setY(130);
+		timer = new Timer(16, new GameTimer());
 		try {
 			plateau = new Plateau(racine);
 		} catch (RootNullException e) {
@@ -113,7 +113,7 @@ public class Partie {
 	/*
 		Ajoute les ressources au joueur j en fonction du type de la tuile t
 	 */
-	public void obtenirRessourceTuile (Tuile t,Joueur j) throws OutOfCardException, UnKnownRessource{
+	public void obtenirRessourceTuile (Tuile t,Joueur j) throws OutOfCardException, UnKnownRessource {
 		Ressource r = null;
 		if (t instanceof Colline) {
 			r = deckRessource.piocherRessource(Ressource.Argile.name());

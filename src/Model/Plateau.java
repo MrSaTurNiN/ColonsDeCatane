@@ -1,16 +1,16 @@
 package Model;
 
-import Exceptions.*;
+import Exceptions.NumberSevenException;
 import Exceptions.batiment.*;
 import Exceptions.graph.RootNullException;
 import Exceptions.ressource.RessourceIndisponibleException;
 import Exceptions.ressource.SuperExceptionRessource;
 import Model.Batiments.Batiment;
 import Model.Batiments.Ville;
+import Model.Tuile.*;
 import Model.graph.Edge;
 import Model.graph.Graph;
 import Model.graph.Vertex;
-import Model.Tuile.*;
 import Model.ressource.DeckRessource;
 
 import java.util.*;

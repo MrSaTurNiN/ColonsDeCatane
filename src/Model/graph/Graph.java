@@ -21,7 +21,7 @@ public class Graph implements ViewConstants{
     Vertex[] vertices = new Vertex[54];
     List<Edge> edges = new ArrayList<Edge>();
 
-    public Graph(Vertex root)throws RootNullException{
+    public Graph(Vertex root)throws RootNullException {
         this.root = root;
         if(root == null)throw new RootNullException();
         initVerticesAndEdges();
@@ -287,7 +287,7 @@ public class Graph implements ViewConstants{
         vertices[index].setBatiment(batiment);
     }
 
-    public Vertex converstionXY(int x,int y)throws PositionsInvalidesException {
+    public Vertex converstionXY(double x,double y)throws PositionsInvalidesException {
         for(int i = 0; i < vertices.length; i++){
 
             int decalage = 15 ;
@@ -311,7 +311,7 @@ public class Graph implements ViewConstants{
 
         return null;
     }
-    public Edge getEdgeFromPoint(int x,int y) throws PositionsInvalidesException {
+    public Edge getEdgeFromPoint(double x,double y) throws PositionsInvalidesException {
         Point p=null;
         for (Edge e1:edges) {
             p=e1.middleOfTheEdge();

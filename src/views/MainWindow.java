@@ -1,31 +1,53 @@
 package views;
 
-
-import controllers.MainController;
-import Model.Partie;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
-import views.panels.PanelGameFx;
+import Model.MainModel;
+import views.panels.PanelGame;
+import views.panels.PanelMenu;
 
 
-public class MainWindow extends Stage implements ViewConstants {
-	private PanelGameFx game;
-	private InitJoueurView initJoueurView;
-	private MainController mainControl;
+/**
+ * Created by Mahel Sif on 30/01/2016.
+ */
+public class MainWindow extends Stage implements ViewConstants{
 
-	public MainWindow(Partie partie, MainController mainControl) {
-		this.setTitle("Catane");
-		this.setAlwaysOnTop(true);
-		this.setResizable(false);
+    private final PanelMenu menu;
+    private final PanelGame game;
 
-		this.mainControl=mainControl;
-		game = new PanelGameFx(partie);
+    public MainWindow(MainModel model){
+        this.setTitle("Colons de Catanes");
+        this.setAlwaysOnTop(true);
+        this.setHeight(WINDOW_HEIGHT);
+        this.setWidth(WINDOW_WIDTH);
 
+        Group root = new Group();
+        Group root2 = new Group();
 
-	}
+        this.menu = new PanelMenu(root,root, this);
+        this.game = new PanelGame(root2, root2, this, model);
 
-    public PanelGameFx getPanel()
-    {
-        return this.game;
+        this.setScene(menu);
+        this.show();
     }
+
+    public PanelMenu getMenuPanel()
+    {
+        return menu;
+    }
+
+    public PanelGame getGamePanel()
+    {
+        return game;
+    }
+
+    public Stage getStage() { return this;}
+
+    public void switchPanel(Scene s) {
+        this.setScene(s);
+    }
+
+
 
 }
