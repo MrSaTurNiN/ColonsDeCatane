@@ -11,8 +11,6 @@ import Model.graph.Vertex;
 import controllers.ControlGame;
 import javafx.animation.AnimationTimer;
 import javafx.beans.NamedArg;
-import javafx.beans.property.LongProperty;
-import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -20,7 +18,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
@@ -97,7 +94,7 @@ public class PanelGame extends Scene implements ViewConstants {
     public void initEdges(){
         int test = 0;
         for(LineEdge e : edge){
-            edge = new Line(edges[0].getVertexA().getX(), e.getVertexA().getY(), e.getVertexB().getX(), e.getVertexB().getY());
+            edge = new LineEdge(new Line(edges.get(test).getVertexA().getX(), edges.get(test).getVertexA().getY(), edges.get(test).getVertexB().getX(), edges.get(test).getVertexB().getY()), edges.get(test));
             test++;
             System.out.println("lol");
         }
