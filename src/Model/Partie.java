@@ -65,6 +65,8 @@ public class Partie {
 	public void setPhaseConstruction(boolean phaseConstruction) {
 		this.phaseConstruction = phaseConstruction;
 	}
+
+
 	public Partie() {
 		setNbTour(0);
 		initListCouleur();
@@ -72,7 +74,6 @@ public class Partie {
 		Vertex racine = new Vertex();
 		racine.setX(280);
 		racine.setY(130);
-		timer = new Timer(16, new GameTimer());
 		try {
 			plateau = new Plateau(racine);
 		} catch (RootNullException e) {
@@ -92,6 +93,7 @@ public class Partie {
 	public void setLaunched(){
 		timer.start();
 	}
+
 	public void initMainJoueur(Joueur j)
 	{
 		List<Colonie> listDeColonie =  j.getListeDeColonie();

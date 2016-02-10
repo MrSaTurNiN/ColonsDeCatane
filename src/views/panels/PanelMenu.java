@@ -44,8 +44,7 @@ public class PanelMenu extends Scene implements ViewConstants {
 
     public void drawBackground()
     {
-        Image background  = new Image(getClass()
-                .getResourceAsStream("background.png"));
+        Image background  = new Image(getClass().getResourceAsStream("background.png"));
         Rectangle r = new Rectangle(0,0,stage.getWidth(), stage.getHeight());
         r.setFill(new ImagePattern(background, 0, 0, background.getWidth(), background.getHeight(), false));
         root.getChildren().add(r);

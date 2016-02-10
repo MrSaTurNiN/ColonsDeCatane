@@ -9,7 +9,6 @@ import Model.Tuile.*;
 import Model.graph.Edge;
 import Model.graph.Vertex;
 import controllers.ControlGame;
-import javafx.animation.AnimationTimer;
 import javafx.beans.NamedArg;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Group;
@@ -20,7 +19,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import views.ViewConstants;
@@ -64,7 +62,6 @@ public class PanelGame extends Scene implements ViewConstants {
     private Image colonie_vert_hover;
     private Image colonie_bleu_hover;
 
-    LineEdge edge[] = new LineEdge[72];
     java.util.List<Edge> edges;
     Plateau plat;
 
@@ -80,7 +77,7 @@ public class PanelGame extends Scene implements ViewConstants {
         plat.getGraph().getEdges().size();
 
 
-        initEdges();
+
         initImage();
         initFont();
         drawBackground();
@@ -90,16 +87,6 @@ public class PanelGame extends Scene implements ViewConstants {
 
 
     }
-
-    public void initEdges(){
-        int test = 0;
-        for(LineEdge e : edge){
-            edge = new LineEdge(new Line(edges.get(test).getVertexA().getX(), edges.get(test).getVertexA().getY(), edges.get(test).getVertexB().getX(), edges.get(test).getVertexB().getY()), edges.get(test));
-            test++;
-            System.out.println("lol");
-        }
-    }
-
 
 
     public void initFont()
@@ -152,10 +139,10 @@ public class PanelGame extends Scene implements ViewConstants {
 
 
         root.getChildren().remove(canvas);
-
         drawBackground();
-        root.getChildren().add(canvas);
+
         drawMap();
+        root.getChildren().add(canvas);
 
 
 
@@ -208,24 +195,24 @@ public class PanelGame extends Scene implements ViewConstants {
         int test = 0;
 
         for(Edge e : edges){
-            root.getChildren().remove(edge[test]);
             if(e.getRoute() == null) {
-                edge[test].setStroke(colorToPaint(java.awt.Color.GRAY));
+                gc.setFill(colorToPaint(java.awt.Color.GRAY));
             }
             else{
-                edge[test].setStroke(colorToPaint(e.getRoute().getJoueur().getCouleurJoueur()));
+                gc.setFill(colorToPaint(e.getRoute().getJoueur().getCouleurJoueur()));
             }
             
             if(e.isHover())
             {
-                edge[test].setStrokeWidth(5);
+                //gc.setStroke(3);
             }
             else
             {
-                edge[test].setStrokeWidth(3);
+                //edge[test].setStrokeWidth(3);
             }
 
-            root.getChildren().add(edge[test]);
+            gc.strokeLine(edges.get(test).getVertexA().getX(), edges.get(test).getVertexA().getY(), edges.get(test).getVertexB().getX(), edges.get(test).getVertexB().getY());
+
             test++;
 
         }

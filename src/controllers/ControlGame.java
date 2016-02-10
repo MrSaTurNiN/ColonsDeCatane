@@ -54,8 +54,8 @@ public class ControlGame extends MainControl implements ChangeListener<Number>, 
             //e1.printStackTrace();
 
         }
-
         actualWindow.getGamePanel().draw();
+
     }
 
 
