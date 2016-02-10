@@ -19,6 +19,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import views.ViewConstants;
@@ -31,6 +32,7 @@ import java.io.IOException;
 public class PanelGame extends Scene implements ViewConstants {
 
     Group root;
+    Group surface;
     Stage stage;
     Canvas canvas;
     Partie partie;
@@ -39,7 +41,10 @@ public class PanelGame extends Scene implements ViewConstants {
     Font mainFontSize;
     Font fontPointVictoireSize;
 
-    Image background;
+    private Image background;
+
+    private Rectangle backgroundN;
+    private Line LineEdges[] = new Line[72];
 
     private Image desert;
     private Image paturage;
@@ -77,7 +82,7 @@ public class PanelGame extends Scene implements ViewConstants {
         plat.getGraph().getEdges().size();
 
 
-
+        initNodes();
         initImage();
         initFont();
         drawBackground();
@@ -85,6 +90,12 @@ public class PanelGame extends Scene implements ViewConstants {
         drawMap();
 
 
+
+    }
+
+    public void initNodes()
+    {
+        backgroundN = new Rectangle(0,0,stage.getWidth(), stage.getHeight());
 
     }
 
@@ -138,11 +149,19 @@ public class PanelGame extends Scene implements ViewConstants {
     {
 
 
-        root.getChildren().remove(canvas);
+        root.getChildren().removeAll(canvas);
+        root.getChildren().removeAll(backgroundN);
+        root.getChildren().removeAll(LineEdges);
         drawBackground();
 
         drawMap();
+
+        root.getChildren().add(backgroundN);
+
         root.getChildren().add(canvas);
+        root.getChildren().addAll(LineEdges);
+
+
 
 
 
@@ -150,9 +169,7 @@ public class PanelGame extends Scene implements ViewConstants {
 
     public void drawBackground()
     {
-        Rectangle r = new Rectangle(0,0,stage.getWidth(), stage.getHeight());
-        r.setFill(new ImagePattern(background, 0, 0, background.getWidth(), background.getHeight(), false));
-        root.getChildren().add(r);
+        backgroundN.setFill(new ImagePattern(background, 0, 0, background.getWidth(), background.getHeight(), false));
     }
 
     public void setGameController(ControlGame listener)
@@ -190,31 +207,30 @@ public class PanelGame extends Scene implements ViewConstants {
                 gc.drawImage(boba,v.getX()-20,v.getY()+50);
             }
         }
-        //On déssine les Edges:
+        //On dessine les Edges:
 
         int test = 0;
-
         for(Edge e : edges){
-            if(e.getRoute() == null) {
-                gc.setFill(colorToPaint(java.awt.Color.GRAY));
-            }
-            else{
-                gc.setFill(colorToPaint(e.getRoute().getJoueur().getCouleurJoueur()));
-            }
-            
-            if(e.isHover())
+            LineEdges[test] = new Line(edges.get(test).getVertexA().getX(), edges.get(test).getVertexA().getY(), edges.get(test).getVertexB().getX(), edges.get(test).getVertexB().getY());
+
+            if(e.getRoute() == null)
             {
-                //gc.setStroke(3);
+                LineEdges[test].setStroke(Color.GREY);
             }
             else
             {
-                //edge[test].setStrokeWidth(3);
+                LineEdges[test].setStroke(colorToPaint(e.getRoute().getJoueur().getCouleurJoueur()));
             }
 
-            gc.strokeLine(edges.get(test).getVertexA().getX(), edges.get(test).getVertexA().getY(), edges.get(test).getVertexB().getX(), edges.get(test).getVertexB().getY());
-
+            if(e.isHover())
+            {
+                LineEdges[test].setStrokeWidth(5);
+            }
+            else
+            {
+                LineEdges[test].setStrokeWidth(3);
+            }
             test++;
-
         }
 
         //On déssine les points
