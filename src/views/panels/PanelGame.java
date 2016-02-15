@@ -180,6 +180,7 @@ public class PanelGame extends Scene implements ViewConstants {
     public void setGameController(ControlGame listener)
     {
         this.widthProperty().addListener((ChangeListener<? super Number>) listener);
+        this.setOnMouseClicked(listener);
         //this.addMouseListener(listener);
         this.setOnMouseMoved(listener);
         //des.addActionListener(listener);

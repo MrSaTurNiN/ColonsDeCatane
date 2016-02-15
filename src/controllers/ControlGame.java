@@ -7,6 +7,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
 
@@ -17,7 +18,7 @@ public class ControlGame extends MainControl implements ChangeListener<Number>, 
 
 
     public ControlGame() { actualWindow.getGamePanel().setGameController(this);}
-
+    private boolean placecolo1;
 
 
     @Override
@@ -26,10 +27,54 @@ public class ControlGame extends MainControl implements ChangeListener<Number>, 
     }
 
 
+
+
+
     @Override
     public void handle(MouseEvent e) {
         final double X = e.getX();
         final double Y = e.getY();
+
+        if(e.getEventType() == MouseEvent.MOUSE_CLICKED)
+        {
+
+            Vertex v=null;
+            Edge e1=null;
+
+            try{
+
+                if (!placecolo1 && actualModel.getPartie().getNbTour()<=(actualModel.getPartie().getNbJoueur())*2-1) {
+                    v = actualModel.getPartie().getPlateau().getGraph().converstionXY(X, Y);
+
+                }
+                else if(actualModel.getPartie().getNbTour()<=(actualModel.getPartie().getNbJoueur())*2-1) {
+                    e1=actualModel.getPartie().getPlateau().getGraph().getEdgeFromPoint(X,Y);
+                }
+                if (actualModel.getPartie().getNbTour()<=(actualModel.getPartie().getNbJoueur())*2-1){
+
+                    phaseinit(v, e1);
+
+                }
+            }catch (PositionsInvalidesException exc){
+                System.out.println(exc.getMessage());
+            }
+
+            if (actualModel.getPartie().getNbTour()>(actualModel.getPartie().getNbJoueur())*2-1){
+                try {
+                    v = actualModel.getPartie().getPlateau().getGraph().converstionXY(X, Y);
+                }
+                catch (Exceptions.click.PositionsInvalidesException exc){
+                    // System.out.println(exc.getMessage());
+                }
+                try {
+                    e1 = actualModel.getPartie().getPlateau().getGraph().getEdgeFromPoint(X, Y);
+                }catch (Exceptions.click.PositionsInvalidesException exc){
+                    System.out.println(exc.getMessage()+"     qqq");
+                }
+                phaseJeu(v, e1);
+            }
+        }
+
         Vertex v;
         Edge e2;
         for (int i = 0; i < actualModel.getPartie().getPlateau().getGraph().getVertices().length; i++) {
