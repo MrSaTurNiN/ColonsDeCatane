@@ -19,7 +19,7 @@ public interface ViewConstants {
 	final int MAP_HEIGHT=800;
 	final Color BLACK = new Color(0,0,0);
 	final Color SEA = new Color(0, 0, 255);
-	final int TAILLEVERTEX = 10;
+	final int TAILLEVERTEX = 8;
 
 
 

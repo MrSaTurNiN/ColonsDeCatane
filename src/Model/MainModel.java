@@ -17,7 +17,7 @@ public class MainModel {
 
     public void nouvellePartie(){
         setNbJoueur(3);
-        creerJoueur("dsgsg",Color.black);
+        creerJoueur("dsgsg",Color.YELLOW);
         creerJoueur("ghsdfh",Color.blue);
         creerJoueur("ffgd",Color.red);
 

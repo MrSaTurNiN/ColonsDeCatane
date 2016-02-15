@@ -8,6 +8,7 @@ import Model.Plateau;
 import Model.Tuile.*;
 import Model.graph.Edge;
 import Model.graph.Vertex;
+import com.sun.javafx.geom.Point2D;
 import controllers.ControlGame;
 import javafx.beans.NamedArg;
 import javafx.beans.value.ChangeListener;
@@ -19,6 +20,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -45,6 +47,7 @@ public class PanelGame extends Scene implements ViewConstants {
 
     private Rectangle backgroundN;
     private Line LineEdges[] = new Line[72];
+    private Circle PointVertices[] = new Circle[54];
 
     private Image desert;
     private Image paturage;
@@ -152,6 +155,7 @@ public class PanelGame extends Scene implements ViewConstants {
         root.getChildren().removeAll(canvas);
         root.getChildren().removeAll(backgroundN);
         root.getChildren().removeAll(LineEdges);
+        root.getChildren().removeAll(PointVertices);
         drawBackground();
 
         drawMap();
@@ -160,6 +164,7 @@ public class PanelGame extends Scene implements ViewConstants {
 
         root.getChildren().add(canvas);
         root.getChildren().addAll(LineEdges);
+        root.getChildren().addAll(PointVertices);
 
 
 
@@ -209,46 +214,43 @@ public class PanelGame extends Scene implements ViewConstants {
         }
         //On dessine les Edges:
 
-        int test = 0;
+        int compteur = 0;
         for(Edge e : edges){
-            LineEdges[test] = new Line(edges.get(test).getVertexA().getX(), edges.get(test).getVertexA().getY(), edges.get(test).getVertexB().getX(), edges.get(test).getVertexB().getY());
+            LineEdges[compteur] = new Line(edges.get(compteur).getVertexA().getX(), edges.get(compteur).getVertexA().getY(), edges.get(compteur).getVertexB().getX(), edges.get(compteur).getVertexB().getY());
 
             if(e.getRoute() == null)
             {
-                LineEdges[test].setStroke(Color.GREY);
+                LineEdges[compteur].setStroke(Color.GREY);
             }
             else
             {
-                LineEdges[test].setStroke(colorToPaint(e.getRoute().getJoueur().getCouleurJoueur()));
+                LineEdges[compteur].setStroke(colorToPaint(e.getRoute().getJoueur().getCouleurJoueur()));
             }
 
             if(e.isHover())
             {
-                LineEdges[test].setStrokeWidth(5);
+                LineEdges[compteur].setStrokeWidth(5);
             }
             else
             {
-                LineEdges[test].setStrokeWidth(3);
+                LineEdges[compteur].setStrokeWidth(3);
             }
-            test++;
+            compteur++;
         }
 
         //On déssine les points
         Vertex[] vertices = plat.getGraph().getVertices();
-        for (int i = 0; i < vertices.length; i++) {
-            Vertex v = vertices[i];
-
-        }
         for(int i =0;i<vertices.length;i++){
             Vertex v = vertices[i];
 
-            if(v.isHover()) {
-                gc.setFill(colorToPaint(partie.getJoueurActif().getCouleurJoueur()));
-                gc.strokeOval(v.getX()-TAILLEVERTEX/2-5,v.getY()-TAILLEVERTEX/2-5,TAILLEVERTEX+10,TAILLEVERTEX+10);
-            }
+
             if(v.getBatiment() == null){
-                gc.setFill(colorToPaint(java.awt.Color.GRAY));
-                gc.fillOval(v.getX()-TAILLEVERTEX/2,v.getY()-TAILLEVERTEX/2,TAILLEVERTEX,TAILLEVERTEX);
+                if(v.isHover()) {
+                    PointVertices[i]= new Circle(v.getX(),v.getY(),TAILLEVERTEX+2,colorToPaint(partie.getJoueurActif().getCouleurJoueur()));
+                }else {
+                    PointVertices[i]= new Circle(v.getX(),v.getY(),TAILLEVERTEX,Color.GREY);
+                }
+
             }
             else {
                 gc.setFill(colorToPaint(v.getBatiment().getJoueur().getCouleurJoueur()));

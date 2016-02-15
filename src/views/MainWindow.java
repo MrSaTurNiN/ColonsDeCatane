@@ -27,8 +27,8 @@ public class MainWindow extends Stage implements ViewConstants{
 
         this.menu = new PanelMenu(root,root, this);
         this.game = new PanelGame(root2, root2, this, model);
-
-        this.setScene(menu);
+        model.nouvellePartie();
+        this.setScene(game);
         this.show();
     }
 
