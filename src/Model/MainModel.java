@@ -16,9 +16,10 @@ public class MainModel {
     }
 
     public void nouvellePartie(){
+        System.out.println("lol");
         setNbJoueur(3);
-        creerJoueur("dsgsg",Color.YELLOW);
-        creerJoueur("ghsdfh",Color.blue);
+        creerJoueur("dsgsg",Color.green);
+        creerJoueur("ghsdfh",Color.cyan);
         creerJoueur("ffgd",Color.red);
 
         partie.setOrdreJoueur();

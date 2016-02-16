@@ -23,9 +23,12 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.*;
 import javafx.stage.Stage;
+import views.Modules.ModuleInfoJoueur;
 import views.ViewConstants;
 import java.awt.*;
+import java.awt.Font;
 import java.io.IOException;
 
 /**
@@ -73,6 +76,8 @@ public class PanelGame extends Scene implements ViewConstants {
     java.util.List<Edge> edges;
     Plateau plat;
 
+    ModuleInfoJoueur infoJoueur;
+
     public PanelGame(@NamedArg("root") Parent r, Group root, Stage stage, MainModel model) {
         super(r);
         this.root = root;
@@ -85,12 +90,16 @@ public class PanelGame extends Scene implements ViewConstants {
         plat.getGraph().getEdges().size();
 
 
+
+
         initNodes();
         initImage();
         initFont();
         drawBackground();
         root.getChildren().add(canvas);
         drawMap();
+
+        infoJoueur = new ModuleInfoJoueur(partie, root);
 
 
 
@@ -150,8 +159,6 @@ public class PanelGame extends Scene implements ViewConstants {
 
     public void draw()
     {
-
-
         root.getChildren().removeAll(canvas);
         root.getChildren().removeAll(backgroundN);
         root.getChildren().removeAll(LineEdges);
@@ -160,14 +167,15 @@ public class PanelGame extends Scene implements ViewConstants {
 
         drawMap();
 
+
+
         root.getChildren().add(backgroundN);
 
         root.getChildren().add(canvas);
         root.getChildren().addAll(LineEdges);
         root.getChildren().addAll(PointVertices);
 
-
-
+        infoJoueur.draw();
 
 
     }
