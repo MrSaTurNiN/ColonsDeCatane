@@ -44,8 +44,8 @@ public class ModuleInfoJoueur extends DrawingTools implements ViewConstants {
     private Image barUp;
     private Image barUpRight;
 
-    private ImageView[] img_ressource = new ImageView[4];
-    private Text[] text_ressource = new Text[4];
+    private ImageView[] img_ressource = new ImageView[5];
+    private Text[] text_ressource = new Text[5];
 
     Text ressource;
     Rectangle barUpR;
@@ -74,15 +74,15 @@ public class ModuleInfoJoueur extends DrawingTools implements ViewConstants {
         drawInfoJoueur();
 
 
-        root.getChildren().addAll(text_ressource);
-        root.getChildren().addAll(img_ressource);
         root.getChildren().add(barUpR);
         root.getChildren().add(i);
         root.getChildren().add(ressource);
+        root.getChildren().addAll(text_ressource);
+        root.getChildren().addAll(img_ressource);
 
     }
 
-    public void  initImage()
+    public void initImage()
     {
             barUp = new Image(getClass().getResourceAsStream("/assets/img/bar_up.png"));
             barUpRight = new Image(getClass().getResourceAsStream("/assets/img/bar_up_right.png"));
@@ -121,32 +121,73 @@ public class ModuleInfoJoueur extends DrawingTools implements ViewConstants {
             Ressource r = Ressource.valueOf(cle);
             java.util.List<Ressource> valeur = entry.getValue();
             if (cle == "Bois") {
+                img_ressource[0] = new ImageView();
                 img_ressource[0].setImage(icone_supraconducteur);
                 img_ressource[0].setX(x - 25);
                 img_ressource[0].setY(0);
+                text_ressource[0] = new Text();
                 text_ressource[0].setText(" -> " + valeur.size());
                 text_ressource[0].setX(x + 5);
                 text_ressource[0].setY(28);
             } else if (cle == "Laine") {
+                img_ressource[1] = new ImageView();
+                img_ressource[1].setImage(icone_cristaux);
+                img_ressource[1].setX(x - 25);
+                img_ressource[1].setY(0);
+                text_ressource[1] = new Text();
+                text_ressource[1].setText(" -> " + valeur.size());
+                text_ressource[1].setX(x + 5);
+                text_ressource[1].setY(28);
                 //gc.drawImage(icone_cristaux, x-25, 0, imageObserver);
                 //gc.drawString(" -> " + valeur.size(), x + 5, 28);
             } else if (cle == "Ble") {
+                img_ressource[2] = new ImageView();
+                img_ressource[2].setImage(icone_cellule_energetique);
+                img_ressource[2].setX(x - 25);
+                img_ressource[2].setY(0);
+                text_ressource[2] = new Text();
+                text_ressource[2].setText(" -> " + valeur.size());
+                text_ressource[2].setX(x + 5);
+                text_ressource[2].setY(28);
+
+
                 // gc.drawImage(icone_cellule_energetique, x - 25, 0,imageObserver);
                 //gc.drawString(" -> " + valeur.size(), x + 5, 28);
             }//cellule energetique
             else if (cle == "Argile") {
+                img_ressource[3] = new ImageView();
+                img_ressource[3].setImage(icone_gaz);
+                img_ressource[3].setX(x - 25);
+                img_ressource[3].setY(0);
+                text_ressource[3] = new Text();
+                text_ressource[3].setText(" -> " + valeur.size());
+                text_ressource[3].setX(x + 5);
+                text_ressource[3].setY(28);
                 //gc.drawImage(icone_gaz, x-25, 0, imageObserver);
                 //gc.drawString(" -> " + valeur.size(), x + 5, 28);
             } else if (cle == "Minerai") {
+                img_ressource[4] = new ImageView();
+                img_ressource[4].setImage(icone_minerai);
+                img_ressource[4].setX(x - 25);
+                img_ressource[4].setY(0);
+                text_ressource[4] = new Text();
+                text_ressource[4].setText(" -> " + valeur.size());
+                text_ressource[4].setX(x + 5);
+                text_ressource[4].setY(28);
                 //gc.drawImage(icone_minerai, x-25, 0, imageObserver);
                 //gc.drawString(" -> " + valeur.size(), x + 5, 28);}
-
-                x += 100;
             }
+
+            x += 100;
 
 
         }
 
+        for (int j = 0; j < text_ressource.length; j++) {
+            text_ressource[j].setFill(Color.WHITE);
+            text_ressource[j].setFont(mainFont);
+            text_ressource[j].setEffect(shadowText);
+        }
 
   /*  public void drawInfoJoueur() {
         gc.setFont(mainFontSize);

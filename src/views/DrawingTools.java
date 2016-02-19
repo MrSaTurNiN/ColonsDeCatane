@@ -19,12 +19,15 @@ import java.io.IOException;
 public class DrawingTools {
 
     public static Font mainFont;
+    public static Font banqueFont;
     public static DropShadow shadowText;
 
     public DrawingTools()
     {
             mainFont = new Font(24f);
+            banqueFont = new Font(40f);
             mainFont.loadFont(this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"), 10);
+            banqueFont.loadFont(this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"), 10);
 
             DropShadow ds = new DropShadow();
             ds.setOffsetY(0.0f);
@@ -32,10 +35,21 @@ public class DrawingTools {
 
     }
 
-    public static void drawStringCenter(String s, int x, int y, Graphics2D g2) {
-        FontMetrics fm = g2.getFontMetrics();
+    public static void drawStringCenter(Text t, double x, double y)
+    {
+        double width = t.getLayoutBounds().getWidth();
+        double height = t.getLayoutBounds().getHeight();
 
-        g2.drawString(s, x - (fm.stringWidth(s) / 2), y + (fm.getDescent() + fm.getAscent()) / 4);
+        t.setX(x-(width/2));
+        t.setY(y-height/2);
+    }
+
+    public static void drawString(Text t, String txt, double x, double y, Color c, Font f) {
+        t.setText(txt);
+        t.setEffect(shadowText);
+        drawStringCenter(t, x, y);
+        t.setFill(c);
+        t.setFont(f);
     }
 
 }

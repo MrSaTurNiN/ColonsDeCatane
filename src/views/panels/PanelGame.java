@@ -25,6 +25,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
+import views.Modules.ModuleBank;
 import views.Modules.ModuleInfoJoueur;
 import views.ViewConstants;
 import java.awt.*;
@@ -37,14 +38,10 @@ import java.io.IOException;
 public class PanelGame extends Scene implements ViewConstants {
 
     Group root;
-    Group surface;
     Stage stage;
     Canvas canvas;
     Partie partie;
     GraphicsContext gc;
-
-    Font mainFontSize;
-    Font fontPointVictoireSize;
 
     private Image background;
 
@@ -77,6 +74,7 @@ public class PanelGame extends Scene implements ViewConstants {
     Plateau plat;
 
     ModuleInfoJoueur infoJoueur;
+    ModuleBank banque;
 
     public PanelGame(@NamedArg("root") Parent r, Group root, Stage stage, MainModel model) {
         super(r);
@@ -89,17 +87,14 @@ public class PanelGame extends Scene implements ViewConstants {
         edges = plat.getGraph().getEdges();
         plat.getGraph().getEdges().size();
 
-
-
-
         initNodes();
         initImage();
-        initFont();
         drawBackground();
         root.getChildren().add(canvas);
         drawMap();
 
         infoJoueur = new ModuleInfoJoueur(partie, root);
+        banque = new ModuleBank(partie, root);
 
 
 
@@ -112,18 +107,6 @@ public class PanelGame extends Scene implements ViewConstants {
     }
 
 
-    public void initFont()
-    {
-        try {
-            Font mainFont = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"));
-            mainFontSize = mainFont.deriveFont(24f);
-            fontPointVictoireSize = mainFont.deriveFont(40f);
-        } catch (FontFormatException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void initImage()
     {
@@ -163,6 +146,7 @@ public class PanelGame extends Scene implements ViewConstants {
         root.getChildren().removeAll(backgroundN);
         root.getChildren().removeAll(LineEdges);
         root.getChildren().removeAll(PointVertices);
+        initNodes();
         drawBackground();
 
         drawMap();
@@ -176,6 +160,7 @@ public class PanelGame extends Scene implements ViewConstants {
         root.getChildren().addAll(PointVertices);
 
         infoJoueur.draw();
+        banque.draw();
 
 
     }
@@ -206,10 +191,6 @@ public class PanelGame extends Scene implements ViewConstants {
         //On dessine les Tuile
         for (int i =0; i < index; i++)
         {
-            //g2.setColor(getColorTuile(tuiles[i]));
-
-            //g2.fillPolygon(transformTuile(tuiles[i]));
-
             gc.setFill(colorToPaint(java.awt.Color.ORANGE));
 
             Vertex v = tuiles[i].getSommets().get(0);
@@ -333,8 +314,8 @@ public class PanelGame extends Scene implements ViewConstants {
         Vertex v1 = t.getSommets().get(0);
         Vertex v2 = t.getSommets().get(3);
 
-        int x = v1.getX()+((v2.getX() - v1.getX())/2);
-        int y = v1.getY()+((v2.getY() - v1.getY())/2);
+        double x = v1.getX()+((v2.getX() - v1.getX())/2);
+        double y = v1.getY()+((v2.getY() - v1.getY())/2);
 
         if (t instanceof Desert) gc.drawImage(desert, x - 60, y - 60);
         else if (t instanceof Foret) gc.drawImage(foret, x - 60, y - 60);

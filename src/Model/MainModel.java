@@ -12,6 +12,7 @@ public class MainModel {
 
     public MainModel() {
         partie = new Partie();
+        nouvellePartie();
 
     }
 

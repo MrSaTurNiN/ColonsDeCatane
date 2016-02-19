@@ -14,9 +14,10 @@ import java.util.List;
  */
 
 public class Graph implements ViewConstants{
-    static final int DECLALAGE_COTE = 70;
-    static final int PETIT_DECALAGE = 50;
-    static final int GRAND_DECALAGE = 125;
+    static final double MULTIPLICATEUR = 8;
+    static final double DECLALAGE_COTE = 7 * MULTIPLICATEUR;
+    static final double PETIT_DECALAGE = 5 * MULTIPLICATEUR;
+    static final double GRAND_DECALAGE = 12.5 * MULTIPLICATEUR;
     Vertex root;
     Vertex[] vertices = new Vertex[54];
     List<Edge> edges = new ArrayList<Edge>();
@@ -233,8 +234,8 @@ public class Graph implements ViewConstants{
             4
      */
     private void setXYVertices(Vertex top,Vertex[] toDo) {
-        int xO = top.getX();
-        int yO = top.getY();
+        double xO = top.getX();
+        double yO = top.getY();
         for(int i=0;i<toDo.length;i++) {
             Vertex v = toDo[i];
             switch (i) {
