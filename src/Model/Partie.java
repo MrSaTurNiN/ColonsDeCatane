@@ -4,6 +4,7 @@ package Model;
 import Exceptions.NumberSevenException;
 import Exceptions.ressource.OutOfCardException;
 import Exceptions.graph.RootNullException;
+import Exceptions.ressource.OutOfCardException;
 import Exceptions.ressource.UnKnownRessource;
 import Model.Batiments.Colonie;
 import Model.Batiments.Ville;
@@ -67,6 +68,8 @@ public class Partie implements Serializable{
 	public void setPhaseConstruction(boolean phaseConstruction) {
 		this.phaseConstruction = phaseConstruction;
 	}
+
+
 	public Partie() {
 		setNbTour(0);
 		initListCouleur();
@@ -98,6 +101,7 @@ public class Partie implements Serializable{
 	public void setLaunched(){
 		timer.start();
 	}
+
 	public void initMainJoueur(Joueur j)
 	{
 		List<Colonie> listDeColonie =  j.getListeDeColonie();
@@ -119,7 +123,7 @@ public class Partie implements Serializable{
 	/*
 		Ajoute les ressources au joueur j en fonction du type de la tuile t
 	 */
-	public void obtenirRessourceTuile (Tuile t,Joueur j) throws OutOfCardException, UnKnownRessource{
+	public void obtenirRessourceTuile (Tuile t,Joueur j) throws OutOfCardException, UnKnownRessource {
 		Ressource r = null;
 		if (t instanceof Colline) {
 			r = deckRessource.piocherRessource(Ressource.Argile.name());

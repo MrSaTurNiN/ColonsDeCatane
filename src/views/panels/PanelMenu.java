@@ -1,107 +1,61 @@
 package views.panels;
 
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.TexturePaint;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-
-import controllers.MainController;
+import controllers.ControlMenu;
+import javafx.beans.NamedArg;
+import javafx.beans.value.ChangeListener;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import views.ViewConstants;
-import views.modules.ModuleBank;
-import views.modules.ModuleInfoJoueur;
 
-public class PanelMenu extends JPanel implements ViewConstants {
-	private BufferedImage fond;
-	private MainController mainController;
-	private JButton launch;
-	private JButton load;
-	private JButton help;
-	public static Font mainFont;
-	public static Font mainFontSize;
+/**
+ * Created by Mahel Sif on 30/01/2016.
+ */
+public class PanelMenu extends Scene implements ViewConstants {
+    Button b;
+    Group root;
+    Stage stage;
 
-	private Graphics2D g2;
+    public PanelMenu(@NamedArg("root") Parent r, Group root, Stage stage) {
+        super(r);
+        this.setFill(Color.RED);
+        this.root = root;
+        this.stage = stage;
+        draw();
+        b = new Button("dfgsdgs");
+        b.setId("1");
+        root.getChildren().add(b);
 
-	public PanelMenu(MainController mainController) {
-		this.mainController = mainController;
-		initImage();
-		initButton();
+    }
 
-	}
+    public void draw()
+    {
+        drawBackground();
+    }
 
-	public void initButton() {
+    public void drawBackground()
+    {
+        Image background  = new Image(getClass().getResourceAsStream("background.png"));
+        Rectangle r = new Rectangle(0,0,stage.getWidth(), stage.getHeight());
+        r.setFill(new ImagePattern(background, 0, 0, background.getWidth(), background.getHeight(), false));
+        root.getChildren().add(r);
+    }
 
-		launch = new JButton("Nouvelle partie");
-		launch.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				mainController.nouvellePartie();
-			}
-		});
-		add(launch);
-		launch.setVisible(true);
-		
-		load = new JButton("Charger une partie");
-		add(load);
-		help = new JButton("help");
-		add(help);
 
-	}
 
-	public void initImage() {
-		try {
-			fond = ImageIO.read(PanelGame.class.getResource("/assets/img/background.png"));
-		} catch (IOException e) {
-			// TODO: handle exception
-		}
-	}
-
-	@Override
-	public void paintComponent(Graphics g) {
-		g2 = (Graphics2D) g;
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		this.setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
-		this.setLayout(null);
-		clear();
-		drawBackground();
-
-	}
-
-	public void clear() {
-		g2.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-	}
-
-	public void drawBackground() {
-
-		Rectangle r = new Rectangle(0, 0, 402, 402);
-		g2.setPaint(new TexturePaint(fond, r));
-		Rectangle rect = new Rectangle(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-		g2.fill(rect);
-	}
-
-	public void initFont() {
-		try {
-			Font mainFont = Font.createFont(Font.TRUETYPE_FONT,
-					this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"));
-			mainFontSize = mainFont.deriveFont(24f);
-			
-		} catch (FontFormatException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+   public void setMenuController(ControlMenu listener)
+    {
+        b.setOnAction(listener);
+        this.widthProperty().addListener((ChangeListener<? super Number>) listener);
+    }
 }

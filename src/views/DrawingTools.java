@@ -1,30 +1,59 @@
 package views;
 
-import java.awt.*;
-import java.io.IOException;
+
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.*;
+import javafx.scene.text.Font;
+
+
+
 
 /**
  * Created by Mahel Sif on 26/01/2016.
  */
 public class DrawingTools {
 
-    public java.awt.Font mainFontSize;
+    public static Font mainFont;
+    public static Font banqueFont;
+    public static DropShadow shadowText;
 
     public DrawingTools()
     {
-        try {
-            java.awt.Font mainFont = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT, this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"));
-            mainFontSize = mainFont.deriveFont(24f);
-        } catch (FontFormatException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            mainFont = new Font(24f);
+            banqueFont = new Font(40f);
+            mainFont.loadFont(this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"), 10);
+            banqueFont.loadFont(this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"), 10);
+
+            DropShadow ds = new DropShadow();
+            ds.setOffsetY(0.0f);
+            ds.setColor(javafx.scene.paint.Color.BLACK);
+
     }
 
-    public static void drawStringCenter(String s, int x, int y, Graphics2D g2) {
-        FontMetrics fm = g2.getFontMetrics();
+    public static void drawStringCenter(Text t, double x, double y)
+    {
+        double width = t.getLayoutBounds().getWidth();
+        double height = t.getLayoutBounds().getHeight();
 
-        g2.drawString(s, x - (fm.stringWidth(s) / 2), y + (fm.getDescent() + fm.getAscent()) / 4);
+        t.setX(x-(width/2));
+        t.setY(y-(height/2));
     }
+
+    public static void drawString(Text t, String txt, double x, double y, Color c, Font f) {
+        t.setText(txt);
+        t.setEffect(shadowText);
+        t.setFill(c);
+        t.setFont(f);
+        drawStringCenter(t, x, y);
+    }
+
+    public static void drawImage(ImageView Iv, javafx.scene.image.Image i, double x, double y)
+    {
+        Iv.setImage(i);
+        Iv.setX(x);
+        Iv.setY(y);
+    }
+
 }

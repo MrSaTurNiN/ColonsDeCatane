@@ -1,13 +1,11 @@
 package Model.Tuile;
 
-import Model.graph.Vertex;
 import Model.Voleur;
+import Model.graph.Vertex;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by jpabegg on 25/11/15.

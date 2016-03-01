@@ -1,16 +1,30 @@
-import Model.*;
-import controllers.MainController;
+import controllers.MainControl;
+import javafx.application.Application;
+import javafx.stage.Stage;
+import Model.MainModel;
+
 
 /**
- * Created by FRANCOIS on 14/11/15.
+ * Created by Mahel Sif on 30/01/2016.
  */
-public class ColonsDeCatane {
-	public static void main(String[] args) {
+public class ColonsDeCatane extends Application{
+
+    public static void main(String[] args){
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-               Partie model = new Partie();
-                MainController mainControl = new MainController(model);
+
+                ColonsDeCatane.launch(ColonsDeCatane.class);
             }
+
         });
     }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        System.out.println(";;");
+        MainModel model = new MainModel();
+        MainControl.initControl(model);
+    }
+
+
 }

@@ -14,15 +14,16 @@ import java.util.List;
  * Created by Jip on 22/11/2015.
  */
 
-public class Graph implements ViewConstants,Serializable{
-    static final int DECLALAGE_COTE = 70;
-    static final int PETIT_DECALAGE = 50;
-    static final int GRAND_DECALAGE = 125;
+public class Graph implements ViewConstants, Serializable{
+    static final double MULTIPLICATEUR = 10;
+    static final double DECLALAGE_COTE = 7 * MULTIPLICATEUR;
+    static final double PETIT_DECALAGE = 5 * MULTIPLICATEUR;
+    static final double GRAND_DECALAGE = 12.5 * MULTIPLICATEUR;
     Vertex root;
     Vertex[] vertices = new Vertex[54];
     List<Edge> edges = new ArrayList<Edge>();
 
-    public Graph(Vertex root)throws RootNullException{
+    public Graph(Vertex root)throws RootNullException {
         this.root = root;
         if(root == null)throw new RootNullException();
         initVerticesAndEdges();
@@ -288,7 +289,7 @@ public class Graph implements ViewConstants,Serializable{
         vertices[index].setBatiment(batiment);
     }
 
-    public Vertex converstionXY(int x,int y)throws PositionsInvalidesException {
+    public Vertex converstionXY(double x,double y)throws PositionsInvalidesException {
         for(int i = 0; i < vertices.length; i++){
 
             int decalage = 15 ;
@@ -312,7 +313,7 @@ public class Graph implements ViewConstants,Serializable{
 
         return null;
     }
-    public Edge getEdgeFromPoint(int x,int y) throws PositionsInvalidesException {
+    public Edge getEdgeFromPoint(double x,double y) throws PositionsInvalidesException {
         Point p=null;
         for (Edge e1:edges) {
             p=e1.middleOfTheEdge();

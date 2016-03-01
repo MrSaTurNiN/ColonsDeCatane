@@ -6,6 +6,7 @@ import Model.Joueur;
 import Model.Batiments.Batiment;
 import Model.Batiments.Colonie;
 import Model.Batiments.Ville;
+import Model.Joueur;
 
 import java.io.Serializable;
 
@@ -18,8 +19,8 @@ public class Vertex implements Serializable{
     private Edge leftEdge = null;
     private Edge rightEdge = null;
     boolean isHover;
-    private int x;
-    private int y;
+    private double x;
+    private double y;
     public Vertex()
     {
         isHover=false;
@@ -101,19 +102,19 @@ public class Vertex implements Serializable{
         return left && right  && up && center;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 

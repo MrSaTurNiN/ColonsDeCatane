@@ -1,7 +1,7 @@
 package Model.graph;
 
-import Model.Joueur;
 import Model.Batiments.Route;
+import Model.Joueur;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

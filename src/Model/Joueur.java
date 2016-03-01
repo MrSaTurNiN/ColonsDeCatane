@@ -7,8 +7,7 @@ import Model.ressource.DeckRessource;
 import Model.ressource.Ressource;
 
 import java.awt.*;
-import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -168,7 +167,7 @@ public class Joueur implements Serializable
     }
 
     public void retireRessourceColonie(DeckRessource deck) throws OutOfCardException, UnKnownRessource {
-       mainRessource.piocherRessource(Ressource.Argile.name());
+        mainRessource.piocherRessource(Ressource.Argile.name());
         mainRessource.piocherRessource(Ressource.Bois.name());
         mainRessource.piocherRessource(Ressource.Ble.name());
         mainRessource.piocherRessource(Ressource.Laine.name());

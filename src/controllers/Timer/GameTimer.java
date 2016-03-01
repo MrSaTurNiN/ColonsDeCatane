@@ -1,21 +1,22 @@
 package controllers.Timer;
 
-import controllers.MainController;
+import controllers.MainControl;
+import lib.GameTickCounter;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GameTimer extends MainController implements ActionListener {
+public class GameTimer extends MainControl implements ActionListener {
+    private final GameTickCounter beforeEnd;
 
-//PROJET POUR ANIMATION LASER
+
     public GameTimer() {
-
+        this.beforeEnd = new GameTickCounter(15);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-            partie.update();
-        currentWindow.repaint();
+        actualWindow.getGamePanel().draw();
     }
 }

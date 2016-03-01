@@ -1,37 +1,54 @@
 package views;
 
-import javax.swing.JFrame;
-import javax.swing.WindowConstants;
-
-import controllers.MainController;
-import Model.Partie;
-import javafx.scene.layout.Pane;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import Model.MainModel;
 import views.panels.PanelGame;
 import views.panels.PanelMenu;
 
-public class MainWindow extends JFrame implements ViewConstants {
-	private PanelGame game;
-	private PanelMenu menu;
-	private InitJoueurView initJoueurView;
-	private MainController mainControl;
 
-	public MainWindow(Partie partie, MainController mainControl) {
-		this.mainControl=mainControl;
-		menu = new PanelMenu(mainControl);
-		game = new PanelGame(partie);
-		game.initImage();
-		setContentPane(menu);
-		setTitle("Catane");
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		
+/**
+ * Created by Mahel Sif on 30/01/2016.
+ */
+public class MainWindow extends Stage implements ViewConstants{
 
-	}
+    private final PanelMenu menu;
+    private final PanelGame game;
 
-    public PanelGame getPanel()
-    {
-        return this.game;
+    public MainWindow(MainModel model){
+        this.setTitle("Colons de Catanes");
+        this.setAlwaysOnTop(true);
+        this.setHeight(WINDOW_HEIGHT);
+        this.setWidth(WINDOW_WIDTH);
+
+        Group root = new Group();
+        Group root2 = new Group();
+
+        this.menu = new PanelMenu(root,root, this);
+        this.game = new PanelGame(root2, root2, this, model);
+
+        this.setScene(game);
+        this.show();
     }
+
+    public PanelMenu getMenuPanel()
+    {
+        return menu;
+    }
+
+    public PanelGame getGamePanel()
+    {
+        return game;
+    }
+
+    public Stage getStage() { return this;}
+
+    public void switchPanel(Scene s) {
+        this.setScene(s);
+    }
+
+
 
     public void displayGamePanel(){
     	setContentPane(game);
@@ -39,5 +56,5 @@ public class MainWindow extends JFrame implements ViewConstants {
     	repaint();
     	revalidate();
     }
-    
+
 }
