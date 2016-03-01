@@ -3,7 +3,9 @@ package controllers;
 import Exceptions.NumberSevenException;
 import Exceptions.batiment.SuperExceptionBatiment;
 import Exceptions.click.PositionsInvalidesException;
+import Exceptions.ressource.OutOfCardException;
 import Exceptions.ressource.SuperExceptionRessource;
+import Exceptions.ressource.UnKnownRessource;
 import Model.Batiments.Batiment;
 import Model.Batiments.Colonie;
 import Model.Joueur;
@@ -74,7 +76,13 @@ public class ControlGame extends MainControl implements ChangeListener<Number>, 
                 }catch (Exceptions.click.PositionsInvalidesException exc){
                     System.out.println(exc.getMessage()+"     qqq");
                 }
-                phaseJeu(v, e1);
+                try {
+                    phaseJeu(v, e1);
+                } catch (OutOfCardException e2) {
+                    e2.printStackTrace();
+                } catch (UnKnownRessource unKnownRessource) {
+                    unKnownRessource.printStackTrace();
+                }
             }
         }
 
@@ -147,7 +155,7 @@ public class ControlGame extends MainControl implements ChangeListener<Number>, 
 
 
     }
-    public void phaseJeu(Vertex v,Edge e1){
+    public void phaseJeu(Vertex v,Edge e1) throws OutOfCardException, UnKnownRessource {
         Joueur joueur;
         joueur=actualModel.getPartie().getJoueurActif();
         if (lancementDes()){

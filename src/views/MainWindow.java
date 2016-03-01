@@ -50,11 +50,5 @@ public class MainWindow extends Stage implements ViewConstants{
 
 
 
-    public void displayGamePanel(){
-    	setContentPane(game);
-    	game.setVisible(true);
-    	repaint();
-    	revalidate();
-    }
 
 }

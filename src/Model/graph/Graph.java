@@ -235,8 +235,8 @@ public class Graph implements ViewConstants, Serializable{
             4
      */
     private void setXYVertices(Vertex top,Vertex[] toDo) {
-        int xO = top.getX();
-        int yO = top.getY();
+        double xO = top.getX();
+        double yO = top.getY();
         for(int i=0;i<toDo.length;i++) {
             Vertex v = toDo[i];
             switch (i) {
