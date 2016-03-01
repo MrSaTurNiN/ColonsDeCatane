@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 public class Graph implements ViewConstants{
-    static final double MULTIPLICATEUR = 8;
+    static final double MULTIPLICATEUR = 10;
     static final double DECLALAGE_COTE = 7 * MULTIPLICATEUR;
     static final double PETIT_DECALAGE = 5 * MULTIPLICATEUR;
     static final double GRAND_DECALAGE = 12.5 * MULTIPLICATEUR;

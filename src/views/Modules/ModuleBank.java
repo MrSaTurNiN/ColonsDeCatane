@@ -5,17 +5,11 @@ import Model.ressource.Ressource;
 import javafx.scene.Group;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
-import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import views.DrawingTools;
 import views.ViewConstants;
-import views.panels.PanelGame;
 
-import java.awt.*;
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -24,8 +18,6 @@ import java.util.*;
 public class ModuleBank extends DrawingTools implements ViewConstants  {
 
     public boolean isSelected;
-    private Font BanqueFontSize;
-    private Graphics2D g2;
     private Partie partie;
     private Image banque_fond;
     private Group root;
@@ -33,34 +25,41 @@ public class ModuleBank extends DrawingTools implements ViewConstants  {
     private ImageView banque_fond_view;
     private Text banque_title;
 
-    private double xcenter_banque;
-    private double ycenter_banque;
-    private double XBANK;
-    private double YBANK;
+    private double XCenterModule;
+    private double YCenterModule;
+    private double XModule;
+    private double YModule;
 
-    private Text [] banque_info = new Text[5];
+    private Text [] banque_ressources = new Text[5];
 
-    public ModuleBank(Partie p, Group root){
+    private Text [] banque_pions = new Text[4];
+
+    public ModuleBank(Partie p, Group r){
         initImage();
-        this.root = root;
+        this.root = r;
         this.partie = p;
-
-        XBANK = WINDOW_WIDTH - banque_fond.getWidth() - 40;
-        YBANK = WINDOW_HEIGHT - banque_fond.getHeight() - 40;
-        xcenter_banque = XBANK + (banque_fond.getWidth()/2)-20;
-        ycenter_banque = YBANK + (banque_fond.getHeight()/2)-20;
+        this.isSelected = true;
+        XModule = WINDOW_WIDTH - banque_fond.getWidth() - 60;
+        YModule = WINDOW_HEIGHT - banque_fond.getHeight() - 60;
+        XCenterModule = XModule + (banque_fond.getWidth()/2);
+        YCenterModule = YModule + (banque_fond.getHeight()/2);
         draw();
     }
     
     public void draw(){
-        root.getChildren().remove(banque_fond_view);
-        root.getChildren().remove(banque_title);
-        root.getChildren().removeAll(banque_info);
-        drawDeckRessource();
-        drawBank();
-        root.getChildren().add(banque_fond_view);
-        root.getChildren().addAll(banque_info);
-        root.getChildren().add(banque_title);
+        if(isSelected)
+        {
+            root.getChildren().remove(banque_fond_view);
+            root.getChildren().remove(banque_title);
+            root.getChildren().removeAll(banque_ressources);
+            root.getChildren().removeAll(banque_pions);
+            drawDeckRessource();
+            drawBank();
+            root.getChildren().add(banque_fond_view);
+            root.getChildren().addAll(banque_ressources);
+            root.getChildren().addAll(banque_pions);
+            root.getChildren().add(banque_title);
+        }
     }
 
     public void  initImage() {
@@ -70,33 +69,42 @@ public class ModuleBank extends DrawingTools implements ViewConstants  {
     public void drawBank() {
         banque_fond_view = new ImageView();
         banque_fond_view.setImage(banque_fond);
-        banque_fond_view.setX(XBANK);
-        banque_fond_view.setY(YBANK);
+        banque_fond_view.setX(XModule);
+        banque_fond_view.setY(YModule);
         //drawDeckRessource(g2);
         banque_title = new Text();
-        drawString(banque_title, "BANQUE", xcenter_banque, ycenter_banque-160, javafx.scene.paint.Color.WHITE, mainFont);
+        drawString(banque_title, "BANQUE", XCenterModule, YCenterModule -180, javafx.scene.paint.Color.WHITE, mainFont);
 
     }
 
     public void drawDeckRessource() {
-        double x = xcenter_banque;
-        double y = ycenter_banque;
+        double y = YCenterModule - 110;
         int i = 0;
         for (Map.Entry<String, java.util.List<Ressource>> entry : partie.getDeckRessource().getCarteRessource().entrySet()) {
             String cle = entry.getKey();
             java.util.List<Ressource> valeur = entry.getValue();
-            banque_info[i] = new Text();
-            drawString(banque_info[i], Ressource.valueOf(cle).getNom() + " : " + valeur.size(), x, y, javafx.scene.paint.Color.WHITE, mainFont);
+            banque_ressources[i] = new Text();
+            drawString(banque_ressources[i], Ressource.valueOf(cle).getNom() + " : " + valeur.size(), XCenterModule, y, javafx.scene.paint.Color.WHITE, mainFont);
             y += 30;
             i++;
         }
 
-       /* int dispo = YBANK - banque_fond.getHeight()/ 2 + 125;
-        drawStringCenter("Colonies disponibles  : " + partie.getJoueurActif().getColonieDispo(), XBANK,dispo,g2);
-        drawStringCenter("Villes disponibles : " + partie.getJoueurActif().getVilleDispo(), XBANK, dispo + 25,g2);
-        drawStringCenter("Routes disponibles : " + partie.getJoueurActif().getRouteDispo(), XBANK, dispo+50,g2);
+        y = YCenterModule + 110;
+        banque_pions[0] = new Text();
+        drawString(banque_pions[0], "Colonies disponibles  : " + partie.getJoueurActif().getColonieDispo(), XCenterModule, y, Color.WHITE, mainFont);
+        banque_pions[1] = new Text();
+        drawString(banque_pions[1], "Villes disponibles : " + partie.getJoueurActif().getVilleDispo(), XCenterModule, y+=30, Color.WHITE, mainFont);
+        banque_pions[2] = new Text();
+        drawString(banque_pions[2], "Routes disponibles : " + partie.getJoueurActif().getRouteDispo(), XCenterModule, y+=30, Color.WHITE, mainFont);
+        banque_pions[3] = new Text();
+        drawString(banque_pions[3], "Développement : " + partie.getDeckDeveloppement().getCartDeveloppement().size(), XCenterModule, y+=30, Color.WHITE, mainFont);
+
+       /* int dispo = YModule - banque_fond.getHeight()/ 2 + 125;
+        drawStringCenter("Colonies disponibles  : " + partie.getJoueurActif().getColonieDispo(), XModule,dispo,g2);
+        drawStringCenter("Villes disponibles : " + partie.getJoueurActif().getVilleDispo(), XModule, dispo + 25,g2);
+        drawStringCenter("Routes disponibles : " + partie.getJoueurActif().getRouteDispo(), XModule, dispo+50,g2);
         int size = partie.getDeckDeveloppement().getCartDeveloppement().size();
-        drawStringCenter("Développement : " + size, XBANK , dispo + 75,g2);*/
+        drawStringCenter("Développement : " + size, XModule , dispo + 75,g2);*/
 
     }
 

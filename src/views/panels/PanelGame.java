@@ -8,7 +8,6 @@ import Model.Plateau;
 import Model.Tuile.*;
 import Model.graph.Edge;
 import Model.graph.Vertex;
-import com.sun.javafx.geom.Point2D;
 import controllers.ControlGame;
 import javafx.beans.NamedArg;
 import javafx.beans.value.ChangeListener;
@@ -23,14 +22,11 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.*;
 import javafx.stage.Stage;
 import views.Modules.ModuleBank;
+import views.Modules.ModuleBarRaccourcis;
 import views.Modules.ModuleInfoJoueur;
 import views.ViewConstants;
-import java.awt.*;
-import java.awt.Font;
-import java.io.IOException;
 
 /**
  * Created by Mahel Sif on 30/01/2016.
@@ -75,11 +71,12 @@ public class PanelGame extends Scene implements ViewConstants {
 
     ModuleInfoJoueur infoJoueur;
     ModuleBank banque;
+    ModuleBarRaccourcis barRaccourcis;
 
-    public PanelGame(@NamedArg("root") Parent r, Group root, Stage stage, MainModel model) {
+    public PanelGame(@NamedArg("root") Parent r, Group root, Stage s, MainModel model) {
         super(r);
         this.root = root;
-        this.stage = stage;
+        this.stage = s;
         this.partie = model.getPartie();
         this.canvas = new Canvas(stage.getWidth(), stage.getHeight());
         gc = canvas.getGraphicsContext2D();
@@ -95,6 +92,7 @@ public class PanelGame extends Scene implements ViewConstants {
 
         infoJoueur = new ModuleInfoJoueur(partie, root);
         banque = new ModuleBank(partie, root);
+        barRaccourcis = new ModuleBarRaccourcis(partie, root, stage);
 
 
 
@@ -103,7 +101,6 @@ public class PanelGame extends Scene implements ViewConstants {
     public void initNodes()
     {
         backgroundN = new Rectangle(0,0,stage.getWidth(), stage.getHeight());
-
     }
 
 
@@ -117,7 +114,7 @@ public class PanelGame extends Scene implements ViewConstants {
             colline = new Image(getClass().getResourceAsStream("/assets/img/colline.png"));
             foret =new Image(getClass().getResourceAsStream("/assets/img/foret.png"));
             paturage =new Image(getClass().getResourceAsStream("/assets/img/paturage.png"));
-            rond_point =new Image(getClass().getResourceAsStream("/assets/img/rond_point.png"));
+            rond_point =new Image(getClass().getResourceAsStream("/img/background_bouton.png"));
             stormtrooper = new Image(getClass().getResourceAsStream("/assets/img/stormtrooper.png"));
             boba = new Image(getClass().getResourceAsStream("/assets/img/boba.png"));
 
@@ -161,6 +158,7 @@ public class PanelGame extends Scene implements ViewConstants {
 
         infoJoueur.draw();
         banque.draw();
+        barRaccourcis.draw();
 
 
     }
@@ -290,8 +288,6 @@ public class PanelGame extends Scene implements ViewConstants {
                 gc.setFill(colorToPaint(partie.getJoueurActif().getCouleurJoueur()));
                 gc.fillOval(v.getX() - TAILLEVERTEX / 2 - 5, v.getY() - TAILLEVERTEX / 2 - 5, TAILLEVERTEX + 10, TAILLEVERTEX+10);
             }
-
-
 
         }
 
