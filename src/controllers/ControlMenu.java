@@ -13,6 +13,8 @@ import java.util.TimerTask;
  */
 public class ControlMenu extends MainControl implements ChangeListener<Number>, EventHandler {
 
+    Button btn;
+
     public ControlMenu(){
         actualWindow.getMenuPanel().setMenuController(this);
     }
@@ -23,7 +25,7 @@ public class ControlMenu extends MainControl implements ChangeListener<Number>, 
 
     @Override
     public void handle(Event event) {
-        Button btn = (Button) event.getSource();
+        btn = (Button) event.getSource();
         switch (btn.getId())
         {
             case ("1"):

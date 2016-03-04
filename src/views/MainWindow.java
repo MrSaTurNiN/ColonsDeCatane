@@ -4,6 +4,10 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import Model.MainModel;
+import views.Modules.ModuleBanque;
+import views.Modules.ModuleBarRaccourcis;
+import views.Modules.ModuleDe;
+import views.Modules.ModuleInfoJoueur;
 import views.panels.PanelGame;
 import views.panels.PanelMenu;
 
@@ -26,6 +30,7 @@ public class MainWindow extends Stage implements ViewConstants{
         Group root2 = new Group();
 
         this.menu = new PanelMenu(root,root, this);
+
         this.game = new PanelGame(root2, root2, this, model);
 
         this.setScene(game);

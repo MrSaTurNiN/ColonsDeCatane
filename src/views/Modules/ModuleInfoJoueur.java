@@ -1,36 +1,23 @@
 package views.Modules;
 
-import Model.Developpement;
 import Model.Partie;
 import Model.ressource.Ressource;
 import javafx.scene.Group;
-import javafx.scene.canvas.*;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import views.DrawingTools;
+import views.Module;
 import views.ViewConstants;
-import views.panels.PanelGame;
 
-import javax.imageio.ImageIO;
-
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.*;
 
 /**
  * Created by Mahel Sif on 25/01/2016.
  */
-public class ModuleInfoJoueur extends DrawingTools implements ViewConstants {
+public class ModuleInfoJoueur extends Module implements ViewConstants {
 
     public boolean isChecked;
     public Partie partie;

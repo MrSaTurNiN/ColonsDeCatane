@@ -23,8 +23,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import views.Modules.ModuleBank;
+import views.Module;
+import views.Modules.ModuleBanque;
 import views.Modules.ModuleBarRaccourcis;
+import views.Modules.ModuleDe;
 import views.Modules.ModuleInfoJoueur;
 import views.ViewConstants;
 
@@ -70,8 +72,9 @@ public class PanelGame extends Scene implements ViewConstants {
     Plateau plat;
 
     ModuleInfoJoueur infoJoueur;
-    ModuleBank banque;
+    ModuleBanque banque;
     ModuleBarRaccourcis barRaccourcis;
+    ModuleDe de;
 
     public PanelGame(@NamedArg("root") Parent r, Group root, Stage s, MainModel model) {
         super(r);
@@ -91,11 +94,19 @@ public class PanelGame extends Scene implements ViewConstants {
         drawMap();
 
         infoJoueur = new ModuleInfoJoueur(partie, root);
-        banque = new ModuleBank(partie, root);
+        banque = new ModuleBanque(partie, root);
         barRaccourcis = new ModuleBarRaccourcis(partie, root, stage);
+        de = new ModuleDe(partie, root, stage);
 
 
+    }
 
+    public Module getModule(String module) {
+        if(module == "ModuleBarRaccourcis")
+        {
+            return barRaccourcis;
+        }
+        return null;
     }
 
     public void initNodes()
@@ -159,6 +170,7 @@ public class PanelGame extends Scene implements ViewConstants {
         infoJoueur.draw();
         banque.draw();
         barRaccourcis.draw();
+        de.draw();
 
 
     }
@@ -172,10 +184,7 @@ public class PanelGame extends Scene implements ViewConstants {
     {
         this.widthProperty().addListener((ChangeListener<? super Number>) listener);
         this.setOnMouseClicked(listener);
-        //this.addMouseListener(listener);
         this.setOnMouseMoved(listener);
-        //des.addActionListener(listener);
-        //skip.addActionListener(listener);
     }
 
     public void drawMap()

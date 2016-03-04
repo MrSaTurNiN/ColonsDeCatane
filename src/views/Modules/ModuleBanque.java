@@ -7,7 +7,7 @@ import javafx.scene.image.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import views.DrawingTools;
+import views.Module;
 import views.ViewConstants;
 
 import java.util.*;
@@ -15,7 +15,7 @@ import java.util.*;
 /**
  * Created by Mahel Sif on 25/01/2016.
  */
-public class ModuleBank extends DrawingTools implements ViewConstants  {
+public class ModuleBanque extends Module implements ViewConstants  {
 
     public boolean isSelected;
     private Partie partie;
@@ -34,7 +34,7 @@ public class ModuleBank extends DrawingTools implements ViewConstants  {
 
     private Text [] banque_pions = new Text[4];
 
-    public ModuleBank(Partie p, Group r){
+    public ModuleBanque(Partie p, Group r){
         initImage();
         this.root = r;
         this.partie = p;

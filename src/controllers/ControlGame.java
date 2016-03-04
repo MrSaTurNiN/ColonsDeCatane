@@ -15,9 +15,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
-import javafx.scene.control.Tab;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import views.panels.PanelGame;
 
 /**
  * Created by Mahel Sif on 31/01/2016.
@@ -25,9 +26,15 @@ import javafx.scene.input.MouseEvent;
 public class ControlGame extends MainControl implements ChangeListener<Number>, EventHandler<MouseEvent>{
 
 
-    public ControlGame() { actualWindow.getGamePanel().setGameController(this);}
+    public ControlGame() {
+        actualWindow.getGamePanel().setGameController(this);
+        actualWindow.getGamePanel().getModule("ModuleBarRaccourcis").setModuleController(this);
+
+    }
+
     private boolean placecolo1;
 
+    private Button btn;
 
     @Override
     public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -35,13 +42,37 @@ public class ControlGame extends MainControl implements ChangeListener<Number>, 
     }
 
 
+
+
     @Override
     public void handle(MouseEvent e) {
+
         final double X = e.getX();
         final double Y = e.getY();
 
+        System.out.println(e.getSource().getClass());
+
+
+
+
+        PanelGame pa = (PanelGame) e.getSource();
+
+
+       //if ( instanceof Button){
+           System.out.println("gfd");
+            //Button btn = (Button) e.getSource();
+            /*switch (btn.getId())
+            {
+                case ("Button_Banque"):
+                    System.out.println("fgfsdgdg");
+            }*/
+        //}
+
+
         if(e.getEventType() == MouseEvent.MOUSE_CLICKED)
         {
+
+
 
             Vertex v=null;
             Edge e1=null;
@@ -227,7 +258,6 @@ public class ControlGame extends MainControl implements ChangeListener<Number>, 
 
         actualModel.getPartie().setNbTour(actualModel.getPartie().getNbTour() + 1);
     }
-
 
 
 

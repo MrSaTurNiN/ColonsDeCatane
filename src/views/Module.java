@@ -1,6 +1,7 @@
 package views;
 
 
+import controllers.ControlGame;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.*;
 import javafx.scene.paint.Color;
@@ -13,13 +14,13 @@ import javafx.scene.text.Font;
 /**
  * Created by Mahel Sif on 26/01/2016.
  */
-public class DrawingTools {
+public class Module {
 
     public static Font mainFont;
     public static Font banqueFont;
     public static DropShadow shadowText;
 
-    public DrawingTools()
+    public Module()
     {
             mainFont = new Font(24f);
             banqueFont = new Font(40f);
@@ -54,6 +55,10 @@ public class DrawingTools {
         Iv.setImage(i);
         Iv.setX(x);
         Iv.setY(y);
+    }
+
+    public void setModuleController(ControlGame listener){
+
     }
 
 }
