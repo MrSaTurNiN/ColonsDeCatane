@@ -70,12 +70,6 @@ public class ModuleBarRaccourcis extends Module implements ViewConstants {
 
     }
 
-    @Override
-    public void setModuleController(ControlGameButton listener)
-    {
-        btn.setOnAction(listener);
-    }
-
     public Button getBtn() {
         return btn;
     }

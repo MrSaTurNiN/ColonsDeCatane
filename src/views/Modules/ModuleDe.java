@@ -2,7 +2,9 @@ package views.Modules;
 
 import Model.Partie;
 import controllers.ControlGame;
+import controllers.ControlGameButton;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
@@ -47,6 +49,7 @@ public class ModuleDe extends Module implements ViewConstants {
     Text ressource;
     Rectangle barUpR;
     ImageView i;
+    Button btn;
 
     private Group root;
 
@@ -62,18 +65,22 @@ public class ModuleDe extends Module implements ViewConstants {
 
         initImage();
         drawDe();
+        btn=new Button("",background_boutonsView);
+        btn.setId("Button_De");
+        btn.setLayoutX(stage.getWidth()-150);
+        btn.setLayoutY(stage.getHeight() - 450);
 
     }
 
     public void draw(){
 
-        root.getChildren().remove(background_boutonsView);
+        root.getChildren().remove(btn);
         root.getChildren().remove(imageDeView);
 
         drawDe();
 
 
-        root.getChildren().add(background_boutonsView);
+        root.getChildren().add(btn);
         root.getChildren().add(imageDeView);
 
 
@@ -95,12 +102,6 @@ public class ModuleDe extends Module implements ViewConstants {
 
         imageDeView = new ImageView();
         drawImage(imageDeView, imageDe, XPositionBoutons, stage.getHeight() - 400);
-
-    }
-
-    public void setModuleController()
-    {
-        background_boutonsView.setId("Button_De");
 
     }
 }

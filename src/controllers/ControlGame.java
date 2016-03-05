@@ -132,7 +132,7 @@ public class ControlGame extends MainControl implements EventHandler<Event>{
                 } else if (joueur.equals(actualModel.getPartie().getListeJoueur().get(actualModel.getPartie().getListeJoueur().size() - 1)) && actualModel.getPartie().getNbTour() == (actualModel.getPartie().getNbJoueur()) * 2 - 2) {
                     actualModel.getPartie().reinitOrdre();
                 }
-                joueurSuivant();
+                actualModel.getPartie().joueurSuivant();
                 placecolo1 = false;
             } catch (SuperExceptionRessource r) {
 
@@ -162,13 +162,8 @@ public class ControlGame extends MainControl implements EventHandler<Event>{
     public void phaseJeu(Vertex v, Edge e1) throws OutOfCardException, UnKnownRessource {
         Joueur joueur;
         joueur = actualModel.getPartie().getJoueurActif();
-        if (lancementDes()) {
-        } else {
-            if (skiper()) {
-                return;
-            }
+        if (actualModel.getPartie().isPhaseConstruction() &&!actualModel.getPartie().isSkip()) {
             if (v != null) {
-                System.out.println("yolo");
                 if (v.getBatiment() != null && v.getBatiment().getJoueur() == joueur) {
                     v.ameliorerBatiment(joueur);
                 } else {
@@ -197,41 +192,5 @@ public class ControlGame extends MainControl implements EventHandler<Event>{
         }
 
     }
-
-    public boolean lancementDes() {
-        if (!actualModel.getPartie().isPhaseConstruction()) {
-            // if (!phaseCommerce) {
-            if (actualModel.getPartie().isDes()) {
-                int result = actualModel.getPartie().getDes().lancerDes();
-                try {
-                    actualModel.getPartie().getRessource(result);
-
-                } catch (NumberSevenException nb7) {
-                    nb7.getMessage();
-                }
-                actualModel.getPartie().setPhaseConstruction(true);
-            }
-            return true;
-        }
-        return false;
-    }
-
-    public boolean skiper() {
-        if (actualModel.getPartie().isSkip()) {
-            actualModel.getPartie().setPhaseConstruction(false);
-            actualModel.getPartie().annuleDeslances();
-            actualModel.getPartie().annuleSkip();
-            return true;
-        }
-        return false;
-    }
-
-    public void joueurSuivant() {
-        actualModel.getPartie().setJoueurActif(actualModel.getPartie().getListeJoueur().get((actualModel.getPartie().getNbTour() + 1) % actualModel.getPartie().getNbJoueur()));
-
-        actualModel.getPartie().setNbTour(actualModel.getPartie().getNbTour() + 1);
-    }
-
-
 
 }

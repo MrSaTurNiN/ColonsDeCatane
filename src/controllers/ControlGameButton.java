@@ -40,6 +40,42 @@ public class ControlGameButton extends MainControl implements EventHandler<Actio
         if (bt.getId()=="Ilove" ) {
             System.out.println("Btn");
         }
+        if(bt.getId()=="Button_De"){
+            System.out.println("Dé");
+            lancementDes();
+        }
+        if(bt.getId()=="Button_skip"){
+            System.out.println("skip");
+            skiper();
+        }
         event.consume();
+    }
+
+
+    public void lancementDes() {
+        if (!actualModel.getPartie().isPhaseConstruction() && actualModel.getPartie().getNbTour()>(actualModel.getPartie().getNbJoueur())*2-1) {
+            // if (!phaseCommerce) {
+            if (!actualModel.getPartie().isDes()) {
+
+                int result = actualModel.getPartie().getDes().lancerDes();
+                try {
+                    actualModel.getPartie().getRessource(result);
+
+                } catch (NumberSevenException nb7) {
+                    nb7.getMessage();
+                }
+                actualModel.getPartie().setPhaseConstruction(true);
+                actualModel.getPartie().lanceDes();
+            }
+        }
+    }
+
+    public void skiper() {
+        if (actualModel.getPartie().isPhaseConstruction() && actualModel.getPartie().getNbTour()>(actualModel.getPartie().getNbJoueur())*2-1) {
+            actualModel.getPartie().setPhaseConstruction(false);
+            actualModel.getPartie().annuleDeslances();
+            actualModel.getPartie().joueurSuivant();
+        }
+
     }
 }

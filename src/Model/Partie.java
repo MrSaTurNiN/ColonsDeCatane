@@ -297,4 +297,9 @@ public class Partie implements Serializable{
 		joueurtmp.add(listeJoueur.get(0));
 		listeJoueur=joueurtmp;
 	}
+
+	public void joueurSuivant() {
+		setJoueurActif(getListeJoueur().get((getNbTour() + 1) % getNbJoueur()));
+		setNbTour(getNbTour() + 1);
+	}
 }
