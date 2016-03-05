@@ -1,9 +1,12 @@
 package views;
 
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import Model.MainModel;
+import javafx.stage.WindowEvent;
 import views.Modules.ModuleBanque;
 import views.Modules.ModuleBarRaccourcis;
 import views.Modules.ModuleDe;
@@ -35,6 +38,13 @@ public class MainWindow extends Stage implements ViewConstants{
 
         this.setScene(game);
         this.show();
+        this.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
     }
 
     public PanelMenu getMenuPanel()

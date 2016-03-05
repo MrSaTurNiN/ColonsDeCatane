@@ -2,6 +2,7 @@ package views;
 
 
 import controllers.ControlGame;
+import controllers.ControlGameButton;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.*;
 import javafx.scene.paint.Color;
@@ -57,8 +58,11 @@ public class Module {
         Iv.setY(y);
     }
 
-    public void setModuleController(ControlGame listener){
+    public void setModuleController(ControlGameButton listener){
 
     }
 
+    public void setModuleController(ControlGame listener){
+
+    }
 }

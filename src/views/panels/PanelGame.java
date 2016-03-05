@@ -9,14 +9,18 @@ import Model.Tuile.*;
 import Model.graph.Edge;
 import Model.graph.Vertex;
 import controllers.ControlGame;
+import controllers.ControlGameButton;
 import javafx.beans.NamedArg;
 import javafx.beans.value.ChangeListener;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -75,6 +79,7 @@ public class PanelGame extends Scene implements ViewConstants {
     ModuleBanque banque;
     ModuleBarRaccourcis barRaccourcis;
     ModuleDe de;
+    Button btn;
 
     public PanelGame(@NamedArg("root") Parent r, Group root, Stage s, MainModel model) {
         super(r);
@@ -93,20 +98,20 @@ public class PanelGame extends Scene implements ViewConstants {
         root.getChildren().add(canvas);
         drawMap();
 
+
         infoJoueur = new ModuleInfoJoueur(partie, root);
         banque = new ModuleBanque(partie, root);
         barRaccourcis = new ModuleBarRaccourcis(partie, root, stage);
         de = new ModuleDe(partie, root, stage);
 
+        draw();
+
 
     }
 
     public Module getModule(String module) {
-        if(module == "ModuleBarRaccourcis")
-        {
-            return barRaccourcis;
-        }
-        return null;
+
+        return barRaccourcis;
     }
 
     public void initNodes()
@@ -161,6 +166,7 @@ public class PanelGame extends Scene implements ViewConstants {
 
 
 
+
         root.getChildren().add(backgroundN);
 
         root.getChildren().add(canvas);
@@ -172,7 +178,6 @@ public class PanelGame extends Scene implements ViewConstants {
         barRaccourcis.draw();
         de.draw();
 
-
     }
 
     public void drawBackground()
@@ -182,9 +187,9 @@ public class PanelGame extends Scene implements ViewConstants {
 
     public void setGameController(ControlGame listener)
     {
-        this.widthProperty().addListener((ChangeListener<? super Number>) listener);
         this.setOnMouseClicked(listener);
         this.setOnMouseMoved(listener);
+
     }
 
     public void drawMap()

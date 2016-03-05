@@ -13,6 +13,7 @@ import Model.graph.Edge;
 import Model.graph.Vertex;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -20,92 +21,73 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import views.panels.PanelGame;
 
+import javax.xml.stream.EventFilter;
+import javax.xml.stream.events.XMLEvent;
+
 /**
  * Created by Mahel Sif on 31/01/2016.
  */
-public class ControlGame extends MainControl implements ChangeListener<Number>, EventHandler<MouseEvent>{
+public class ControlGame extends MainControl implements EventHandler<Event>{
 
 
     public ControlGame() {
+
         actualWindow.getGamePanel().setGameController(this);
-        actualWindow.getGamePanel().getModule("ModuleBarRaccourcis").setModuleController(this);
+
+
 
     }
 
     private boolean placecolo1;
 
-    private Button btn;
-
-    @Override
-    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-        actualWindow.getGamePanel().draw();
-    }
-
-
 
 
     @Override
-    public void handle(MouseEvent e) {
-
-        final double X = e.getX();
-        final double Y = e.getY();
-
-        System.out.println(e.getSource().getClass());
+    public void handle(Event e) {
+        MouseEvent em = (MouseEvent) e;
+        final double X = em.getX();
+        final double Y = em.getY();
 
 
 
 
-        PanelGame pa = (PanelGame) e.getSource();
 
-
-       //if ( instanceof Button){
-           System.out.println("gfd");
-            //Button btn = (Button) e.getSource();
-            /*switch (btn.getId())
-            {
-                case ("Button_Banque"):
-                    System.out.println("fgfsdgdg");
-            }*/
-        //}
-
-
-        if(e.getEventType() == MouseEvent.MOUSE_CLICKED)
-        {
+        if (e.getSource() instanceof Button){
+            System.out.println("lol");
+        }
 
 
 
-            Vertex v=null;
-            Edge e1=null;
+        if (e.getEventType() == MouseEvent.MOUSE_CLICKED) {
+            Vertex v = null;
+            Edge e1 = null;
+            try {
 
-            try{
-
-                if (!placecolo1 && actualModel.getPartie().getNbTour()<=(actualModel.getPartie().getNbJoueur())*2-1) {
+                if (!placecolo1 && actualModel.getPartie().getNbTour() <= (actualModel.getPartie().getNbJoueur()) * 2 - 1) {
                     v = actualModel.getPartie().getPlateau().getGraph().converstionXY(X, Y);
 
+                } else if (actualModel.getPartie().getNbTour() <= (actualModel.getPartie().getNbJoueur()) * 2 - 1) {
+                    e1 = actualModel.getPartie().getPlateau().getGraph().getEdgeFromPoint(X, Y);
                 }
-                else if(actualModel.getPartie().getNbTour()<=(actualModel.getPartie().getNbJoueur())*2-1) {
-                    e1=actualModel.getPartie().getPlateau().getGraph().getEdgeFromPoint(X,Y);
-                }
-                if (actualModel.getPartie().getNbTour()<=(actualModel.getPartie().getNbJoueur())*2-1){
+                if (actualModel.getPartie().getNbTour() <= (actualModel.getPartie().getNbJoueur()) * 2 - 1) {
 
                     phaseinit(v, e1);
 
                 }
-            }catch (PositionsInvalidesException exc){
+            } catch (PositionsInvalidesException exc) {
                 System.out.println(exc.getMessage());
             }
 
-            if (actualModel.getPartie().getNbTour()>(actualModel.getPartie().getNbJoueur())*2-1){
+            if (actualModel.getPartie().getNbTour() > (actualModel.getPartie().getNbJoueur()) * 2 - 1) {
                 try {
                     v = actualModel.getPartie().getPlateau().getGraph().converstionXY(X, Y);
-                }
-                catch (Exceptions.click.PositionsInvalidesException exc){
+                } catch (Exceptions.click.PositionsInvalidesException exc) {
                     // System.out.println(exc.getMessage());
                 }
                 try {
                     e1 = actualModel.getPartie().getPlateau().getGraph().getEdgeFromPoint(X, Y);
-                }catch (Exceptions.click.PositionsInvalidesException exc){
-                    System.out.println(exc.getMessage()+"     qqq");
+                } catch (Exceptions.click.PositionsInvalidesException exc) {
+                    System.out.println(exc.getMessage() + "     qqq");
                 }
                 try {
                     phaseJeu(v, e1);
@@ -123,7 +105,7 @@ public class ControlGame extends MainControl implements ChangeListener<Number>, 
             actualModel.getPartie().getPlateau().getGraph().getVertices()[i].setHoverFalse();
         }
         try {
-            v =actualModel.getPartie().getPlateau().getGraph().converstionXY(X,Y);
+            v = actualModel.getPartie().getPlateau().getGraph().converstionXY(X, Y);
 
             v.setHoverTrue();
 
@@ -135,7 +117,7 @@ public class ControlGame extends MainControl implements ChangeListener<Number>, 
             actualModel.getPartie().getPlateau().getGraph().getEdges().get(i).setHoverFalse();
         }
         try {
-            e2=actualModel.getPartie().getPlateau().getGraph().getEdgeFromPoint(X,Y);
+            e2 = actualModel.getPartie().getPlateau().getGraph().getEdgeFromPoint(X, Y);
             e2.setHoverTrue();
         } catch (PositionsInvalidesException e1) {
             //e1.printStackTrace();
@@ -145,40 +127,37 @@ public class ControlGame extends MainControl implements ChangeListener<Number>, 
 
     }
 
-    public void phaseinit(Vertex v,Edge e1){
+    public void phaseinit(Vertex v, Edge e1) {
         Joueur joueur;
 
-        joueur=actualModel.getPartie().getJoueurActif();
-        if (placecolo1==true){
+        joueur = actualModel.getPartie().getJoueurActif();
+        if (placecolo1 == true) {
             try {
-                actualModel.getPartie().getPlateau().creerRoute(joueur, e1,null);
-                if (joueur.equals(actualModel.getPartie().getListeJoueur().get(actualModel.getPartie().getListeJoueur().size()-1))&&actualModel.getPartie().getNbTour()<(actualModel.getPartie().getNbJoueur())*2-2){
+                actualModel.getPartie().getPlateau().creerRoute(joueur, e1, null);
+                if (joueur.equals(actualModel.getPartie().getListeJoueur().get(actualModel.getPartie().getListeJoueur().size() - 1)) && actualModel.getPartie().getNbTour() < (actualModel.getPartie().getNbJoueur()) * 2 - 2) {
                     actualModel.getPartie().inversOrdre();
-                }
-                else if(joueur.equals(actualModel.getPartie().getListeJoueur().get(actualModel.getPartie().getListeJoueur().size()-1))&&actualModel.getPartie().getNbTour()==(actualModel.getPartie().getNbJoueur())*2-2){
+                } else if (joueur.equals(actualModel.getPartie().getListeJoueur().get(actualModel.getPartie().getListeJoueur().size() - 1)) && actualModel.getPartie().getNbTour() == (actualModel.getPartie().getNbJoueur()) * 2 - 2) {
                     actualModel.getPartie().reinitOrdre();
                 }
                 joueurSuivant();
                 placecolo1 = false;
-            }catch (SuperExceptionRessource r){
+            } catch (SuperExceptionRessource r) {
 
                 r.getMessage();
-            }catch(SuperExceptionBatiment r){
+            } catch (SuperExceptionBatiment r) {
                 r.getMessage();
             }
-        }
-        else {
+        } else {
             try {
-                Batiment b=actualModel.getPartie().getPlateau().creerColonie(joueur,v,null);
+                Batiment b = actualModel.getPartie().getPlateau().creerColonie(joueur, v, null);
                 joueur.placerColonie((Colonie) b);
-                if (actualModel.getPartie().getNbTour()>actualModel.getPartie().getNbJoueur()-1){
+                if (actualModel.getPartie().getNbTour() > actualModel.getPartie().getNbJoueur() - 1) {
                     actualModel.getPartie().initMainJoueur(joueur);
                 }
-                placecolo1=true;
+                placecolo1 = true;
             } catch (SuperExceptionRessource e) {
                 e.getMessage();
-            }
-            catch (SuperExceptionBatiment e){
+            } catch (SuperExceptionBatiment e) {
                 e.getMessage();
             }
 
@@ -186,21 +165,20 @@ public class ControlGame extends MainControl implements ChangeListener<Number>, 
 
 
     }
-    public void phaseJeu(Vertex v,Edge e1) throws OutOfCardException, UnKnownRessource {
+
+    public void phaseJeu(Vertex v, Edge e1) throws OutOfCardException, UnKnownRessource {
         Joueur joueur;
-        joueur=actualModel.getPartie().getJoueurActif();
-        if (lancementDes()){
-        }
-        else{
+        joueur = actualModel.getPartie().getJoueurActif();
+        if (lancementDes()) {
+        } else {
             if (skiper()) {
                 return;
             }
-            if (v!=null){
+            if (v != null) {
                 System.out.println("yolo");
-                if (v.getBatiment()!=null && v.getBatiment().getJoueur()==joueur){
+                if (v.getBatiment() != null && v.getBatiment().getJoueur() == joueur) {
                     v.ameliorerBatiment(joueur);
-                }
-                else {
+                } else {
                     try {
 
                         Batiment b = actualModel.getPartie().getPlateau().creerColonie(joueur, v, joueur.getMainRessource());
@@ -213,12 +191,11 @@ public class ControlGame extends MainControl implements ChangeListener<Number>, 
                         e.getMessage();
                     }
                 }
-            }
-            else if (e1!=null){
+            } else if (e1 != null) {
                 try {
                     System.out.println("je vais creer une route: ");
                     actualModel.getPartie().getPlateau().creerRoute(joueur, e1, joueur.getMainRessource());
-                }catch(SuperExceptionRessource r){
+                } catch (SuperExceptionRessource r) {
                     r.getMessage();
                 } catch (SuperExceptionBatiment e) {
                     e.printStackTrace();
@@ -227,8 +204,9 @@ public class ControlGame extends MainControl implements ChangeListener<Number>, 
         }
 
     }
-    public boolean lancementDes(){
-        if(!actualModel.getPartie().isPhaseConstruction()) {
+
+    public boolean lancementDes() {
+        if (!actualModel.getPartie().isPhaseConstruction()) {
             // if (!phaseCommerce) {
             if (actualModel.getPartie().isDes()) {
                 int result = actualModel.getPartie().getDes().lancerDes();
@@ -244,7 +222,8 @@ public class ControlGame extends MainControl implements ChangeListener<Number>, 
         }
         return false;
     }
-    public boolean skiper(){
+
+    public boolean skiper() {
         if (actualModel.getPartie().isSkip()) {
             actualModel.getPartie().setPhaseConstruction(false);
             actualModel.getPartie().annuleDeslances();
@@ -253,6 +232,7 @@ public class ControlGame extends MainControl implements ChangeListener<Number>, 
         }
         return false;
     }
+
     public void joueurSuivant() {
         actualModel.getPartie().setJoueurActif(actualModel.getPartie().getListeJoueur().get((actualModel.getPartie().getNbTour() + 1) % actualModel.getPartie().getNbJoueur()));
 

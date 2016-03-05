@@ -2,11 +2,14 @@ package views.Modules;
 
 import Model.Partie;
 import controllers.ControlGame;
+import controllers.ControlGameButton;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import views.Module;
 import views.ViewConstants;
@@ -39,9 +42,7 @@ public class ModuleBarRaccourcis extends Module implements ViewConstants {
         this.root = r;
         this.stage = s;
 
-        XPositionBoutons = s.getWidth() - 100;
-        YPositionBoutons = s.getHeight() - 100;
-
+        XPositionBoutons = s.getWidth() - 150;
         draw();
     }
 
@@ -65,15 +66,13 @@ public class ModuleBarRaccourcis extends Module implements ViewConstants {
         btn = new Button("i love",background_boutons[0]);
         btn.setLayoutX(XPositionBoutons);
         btn.setLayoutY(stage.getHeight() - 150);
+
     }
 
     @Override
-    public void setModuleController(ControlGame listener)
+    public void setModuleController(ControlGameButton listener)
     {
-       /* background_boutons[0].setId("Button_Banque");
-        background_boutons[0].setOnMouseReleased(listener);*/
-        btn.setId("Button_Banque");
-        btn.setOnMouseClicked(listener);
+        btn.setOnAction(listener);
     }
 
 

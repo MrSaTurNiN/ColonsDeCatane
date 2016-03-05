@@ -98,10 +98,10 @@ public class ModuleDe extends Module implements ViewConstants {
 
     }
 
-    public void setModuleController(ControlGame listener)
+    public void setModuleController()
     {
         background_boutonsView.setId("Button_De");
-        background_boutonsView.setOnMouseReleased(listener);
+
     }
 }
 

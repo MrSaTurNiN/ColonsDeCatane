@@ -16,6 +16,9 @@ public class MainControl {
         actualWindow = new MainWindow(model);
         new ControlMenu();
         new ControlGame();
+        new ControlGameButton();
+
+
 
     }
 }
