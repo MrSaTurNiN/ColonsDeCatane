@@ -30,7 +30,7 @@ public class ModuleBarRaccourcis extends Module implements ViewConstants {
     private double YModule;
 
     private Image background_bouton;
-    Button btn;
+    public Button btn;
     ImageView l;
 
     private ImageView background_boutons[] = new ImageView[1];
@@ -66,6 +66,7 @@ public class ModuleBarRaccourcis extends Module implements ViewConstants {
         btn = new Button("i love",background_boutons[0]);
         btn.setLayoutX(XPositionBoutons);
         btn.setLayoutY(stage.getHeight() - 150);
+        btn.setId("Ilove");
 
     }
 
@@ -75,6 +76,7 @@ public class ModuleBarRaccourcis extends Module implements ViewConstants {
         btn.setOnAction(listener);
     }
 
-
-
+    public Button getBtn() {
+        return btn;
+    }
 }

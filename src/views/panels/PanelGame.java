@@ -12,6 +12,7 @@ import controllers.ControlGame;
 import controllers.ControlGameButton;
 import javafx.beans.NamedArg;
 import javafx.beans.value.ChangeListener;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -187,9 +188,13 @@ public class PanelGame extends Scene implements ViewConstants {
 
     public void setGameController(ControlGame listener)
     {
+       this.addEventHandler(MouseEvent.MOUSE_CLICKED,listener);
+        this.addEventHandler(MouseEvent.MOUSE_MOVED,listener);
         this.setOnMouseClicked(listener);
         this.setOnMouseMoved(listener);
-
+    }
+    public void setGameButtonController(ControlGameButton listener){
+        this.addEventFilter(ActionEvent.ACTION,listener);
     }
 
     public void drawMap()

@@ -33,7 +33,7 @@ public class ControlGame extends MainControl implements EventHandler<Event>{
     public ControlGame() {
 
         actualWindow.getGamePanel().setGameController(this);
-
+       // actualWindow.getGamePanel().getModule("ModuleBarRaccourcis").setModuleController(this);
 
 
     }
@@ -44,17 +44,10 @@ public class ControlGame extends MainControl implements EventHandler<Event>{
 
     @Override
     public void handle(Event e) {
+        System.out.println(e.getEventType());
         MouseEvent em = (MouseEvent) e;
         final double X = em.getX();
         final double Y = em.getY();
-
-
-
-
-
-        if (e.getSource() instanceof Button){
-            System.out.println("lol");
-        }
 
 
 

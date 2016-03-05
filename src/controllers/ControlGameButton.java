@@ -19,20 +19,27 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import views.Modules.ModuleBarRaccourcis;
 import views.panels.PanelGame;
 
 /**
  * Created by Mahel Sif on 31/01/2016.
  */
 public class ControlGameButton extends MainControl implements EventHandler<ActionEvent>{
-
+    private Button btn;
 
     public ControlGameButton() {
-        actualWindow.getGamePanel().getModule("ModuleBarRaccourcis").setModuleController(this);
+        actualWindow.getGamePanel().setGameButtonController(this);
+        ModuleBarRaccourcis moduleBar= (ModuleBarRaccourcis) actualWindow.getGamePanel().getModule("ModuleBarRaccourcis");
+        btn=moduleBar.getBtn();
     }
 
     @Override
     public void handle(ActionEvent event) {
-        System.out.println("test");
+        Button bt= (Button) event.getTarget();
+        if (bt.getId()=="Ilove" ) {
+            System.out.println("Btn");
+        }
+        event.consume();
     }
 }
