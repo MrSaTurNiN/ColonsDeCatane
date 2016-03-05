@@ -136,7 +136,7 @@ public class PanelGame extends Scene implements ViewConstants {
             boba = new Image(getClass().getResourceAsStream("/assets/img/boba.png"));
 
             colonie_bleu = new Image(getClass().getResourceAsStream("/assets/img/colonie_bleu.png"));
-            colonie_rouge = new Image(getClass().getResourceAsStream("/assets/img/colonie_bleu.png"));
+            colonie_rouge = new Image(getClass().getResourceAsStream("/assets/img/colonie_rouge.png"));
             colonie_jaune = new Image(getClass().getResourceAsStream("/assets/img/colonie_jaune.png"));
             colonie_vert = new Image(getClass().getResourceAsStream("/assets/img/colonie_vert.png"));
 

@@ -5,7 +5,6 @@ import Exceptions.ressource.UnKnownRessource;
 import Model.Batiments.Colonie;
 import Model.ressource.DeckRessource;
 import Model.ressource.Ressource;
-
 import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
