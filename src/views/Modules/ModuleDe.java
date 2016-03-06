@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -51,6 +52,9 @@ public class ModuleDe extends Module implements ViewConstants {
     ImageView i;
     Button btn;
 
+    private ImageView background_boutons[] = new ImageView[1];
+    private ImageView icone_de[] = new ImageView[1];
+
     private Group root;
 
     public ModuleDe(Partie p, Group root, Stage s)
@@ -74,17 +78,16 @@ public class ModuleDe extends Module implements ViewConstants {
 
     public void draw(){
 
-        root.getChildren().remove(btn);
-        root.getChildren().remove(imageDeView);
+        //root.getChildren().remove(btn);
+        root.getChildren().removeAll(icone_de);
+        root.getChildren().removeAll(background_boutons);
 
         drawDe();
 
 
-        root.getChildren().add(btn);
-        root.getChildren().add(imageDeView);
-
-
-
+       // root.getChildren().add(btn);
+        root.getChildren().addAll(background_boutons);
+        root.getChildren().addAll(icone_de);
 
     }
 
@@ -97,12 +100,12 @@ public class ModuleDe extends Module implements ViewConstants {
 
     public void drawDe()
     {
-        background_boutonsView = new ImageView();
-        drawImage(background_boutonsView, background_bouton, XPositionBoutons, stage.getHeight() - 400);
-
-        imageDeView = new ImageView();
-        drawImage(imageDeView, imageDe, XPositionBoutons, stage.getHeight() - 400);
+        icone_de[0] = new ImageView();
+        background_boutons[0] = new ImageView();
+        drawButtonCenter(background_boutons[0], icone_de[0], background_bouton, imageDe, stage.getWidth()- 80, stage.getHeight() - 400, "button_de");
 
     }
+
+
 }
 

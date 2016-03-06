@@ -108,4 +108,14 @@ public class ModuleBanque extends Module implements ViewConstants  {
 
     }
 
+    public void changeSelected(){
+        if(isSelected == true)
+        {
+            isSelected = false;
+        }
+        else{
+            isSelected = true;
+        }
+    }
+
 }

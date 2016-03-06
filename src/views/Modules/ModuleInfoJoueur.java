@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import views.Module;
 import views.ViewConstants;
 
@@ -21,6 +22,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
 
     public boolean isChecked;
     public Partie partie;
+    private Stage stage;
 
     private Image icone_cellule_energetique;
     private Image icone_gaz;
@@ -30,25 +32,29 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
 
     private Image barUp;
     private Image barUpRight;
+    private Image background_bouton;
 
+    private ImageView backgroundPoint;
     private ImageView[] img_ressource = new ImageView[5];
     private Text[] text_ressource = new Text[5];
 
+    Text text_point;
     Text ressource;
     Rectangle barUpR;
     ImageView i;
 
     private Group root;
 
-    public ModuleInfoJoueur(Partie p, Group root)
+    public ModuleInfoJoueur(Partie p, Group root, Stage s)
     {
         this.root = root;
         this.partie = p;
+        this.stage = s;
         isChecked = false;
 
         initImage();
         drawBarUp();
-        drawInfoJoueur();
+        drawInfoRessource();
     }
 
     public void draw(){
@@ -56,14 +62,19 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
         root.getChildren().remove(ressource);
         root.getChildren().remove(barUpR);
         root.getChildren().remove(i);
+        root.getChildren().remove(backgroundPoint);
+        root.getChildren().remove(text_point);
 
         drawBarUp();
-        drawInfoJoueur();
+        drawInfoRessource();
+        drawPoint();
 
 
         root.getChildren().add(barUpR);
         root.getChildren().add(i);
         root.getChildren().add(ressource);
+        root.getChildren().add(backgroundPoint);
+        root.getChildren().add(text_point);
         root.getChildren().addAll(text_ressource);
         root.getChildren().addAll(img_ressource);
 
@@ -73,6 +84,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
     {
             barUp = new Image(getClass().getResourceAsStream("/assets/img/bar_up.png"));
             barUpRight = new Image(getClass().getResourceAsStream("/assets/img/bar_up_right.png"));
+            background_bouton = new Image(getClass().getResourceAsStream("/assets/img/background_bouton.png"));
 
             icone_cellule_energetique = new Image(getClass().getResourceAsStream("/assets/img/icone_cellule_energetique.png"));
             icone_gaz = new Image(getClass().getResourceAsStream("/assets/img/icone_gaz.png"));
@@ -91,7 +103,16 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
         i.setY(0);
     }
 
-    public void drawInfoJoueur() {
+    public void drawPoint(){
+        double x = stage.getWidth() - 80;
+        double y = stage.getHeight() - 480;
+        backgroundPoint = new ImageView();
+        text_point = new Text();
+        drawImageCenter(backgroundPoint, background_bouton, x, y);
+        drawString(text_point, String.valueOf(partie.getJoueurActif().getPointJoueur()), x, y, colorToPaint(partie.getJoueurActif().getCouleurJoueur()), banqueFont);
+    }
+
+    public void drawInfoRessource() {
         root.getChildren().remove(ressource);
         ressource = new Text();
         ressource.setText("Vos ressources :");
@@ -125,8 +146,6 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
                 text_ressource[1].setText(" -> " + valeur.size());
                 text_ressource[1].setX(x + 5);
                 text_ressource[1].setY(28);
-                //gc.drawImage(icone_cristaux, x-25, 0, imageObserver);
-                //gc.drawString(" -> " + valeur.size(), x + 5, 28);
             } else if (cle == "Ble") {
                 img_ressource[2] = new ImageView();
                 img_ressource[2].setImage(icone_cellule_energetique);
@@ -136,11 +155,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
                 text_ressource[2].setText(" -> " + valeur.size());
                 text_ressource[2].setX(x + 5);
                 text_ressource[2].setY(28);
-
-
-                // gc.drawImage(icone_cellule_energetique, x - 25, 0,imageObserver);
-                //gc.drawString(" -> " + valeur.size(), x + 5, 28);
-            }//cellule energetique
+            }
             else if (cle == "Argile") {
                 img_ressource[3] = new ImageView();
                 img_ressource[3].setImage(icone_gaz);
@@ -150,8 +165,6 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
                 text_ressource[3].setText(" -> " + valeur.size());
                 text_ressource[3].setX(x + 5);
                 text_ressource[3].setY(28);
-                //gc.drawImage(icone_gaz, x-25, 0, imageObserver);
-                //gc.drawString(" -> " + valeur.size(), x + 5, 28);
             } else if (cle == "Minerai") {
                 img_ressource[4] = new ImageView();
                 img_ressource[4].setImage(icone_minerai);
@@ -161,8 +174,6 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
                 text_ressource[4].setText(" -> " + valeur.size());
                 text_ressource[4].setX(x + 5);
                 text_ressource[4].setY(28);
-                //gc.drawImage(icone_minerai, x-25, 0, imageObserver);
-                //gc.drawString(" -> " + valeur.size(), x + 5, 28);}
             }
 
             x += 100;
@@ -176,51 +187,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
             text_ressource[j].setEffect(shadowText);
         }
 
-  /*  public void drawInfoJoueur() {
-        gc.setFont(mainFontSize);
-        int x = 300;
-        int y = JOUEUR_INFO_Y + 50;
-        gc.setColor(Color.WHITE);
-        //gc.fillRect(JOUEUR_INFO_X, JOUEUR_INFO_Y, JOUEUR_INFO_WIDTH, JOUEUR_INFO_HEIGHT);
 
-        gc.setColor(partie.getJoueurActif().getCouleurJoueur());
-        gc.drawString(partie.getJoueurActif().getNomJoueur(), 825, 25);
-        y+=40;
-
-
-        y+=20;
-        gc.setColor(Color.WHITE);
-        gc.drawString("Vos ressources : ", 20, 25);
-        for (Map.Entry<String, java.util.List<Ressource>> entry : partie.getJoueurActif().getMainRessource().entrySet()) {
-            String cle = entry.getKey();
-            Ressource r = Ressource.valueOf(cle);
-            java.util.List<Ressource> valeur = entry.getValue();
-            if(cle == "Bois") {
-                gc.drawImage(icone_supraconducteur, x-25, 0, imageObserver);
-                gc.drawString(" -> " + valeur.size(), x + 5, 28);}
-            else if(cle == "Laine") {
-                gc.drawImage(icone_cristaux, x-25, 0, imageObserver);
-                gc.drawString(" -> " + valeur.size(), x + 5, 28);}
-            else if(cle == "Ble") {
-                gc.drawImage(icone_cellule_energetique, x - 25, 0,imageObserver);
-                gc.drawString(" -> " + valeur.size(), x + 5, 28);
-            }//cellule energetique
-            else if(cle == "Argile") {
-                gc.drawImage(icone_gaz, x-25, 0, imageObserver);
-                gc.drawString(" -> " + valeur.size(), x + 5, 28);}
-            else if(cle == "Minerai") {
-                gc.drawImage(icone_minerai, x-25, 0, imageObserver);
-                gc.drawString(" -> " + valeur.size(), x + 5, 28);}
-
-            x += 100;
-        }
-
-        for (Developpement d : partie.getJoueurActif().getMainDeveloppement()) {
-            gc.drawString(d.name(), x+50, y+50);
-        }
-
-
-    }*/
 
     }
 }

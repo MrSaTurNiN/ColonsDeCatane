@@ -24,16 +24,13 @@ public class ModuleBarRaccourcis extends Module implements ViewConstants {
     private Group root;
     private Stage stage;
 
-    private double XPositionBoutons;
-    private double YPositionBoutons;
-    private double XModule;
-    private double YModule;
-
     private Image background_bouton;
+    private Image icone_banque;
+
     public Button btn;
-    ImageView l;
 
     private ImageView background_boutons[] = new ImageView[1];
+    private ImageView icones[] = new ImageView[1];
 
     public ModuleBarRaccourcis(Partie p, Group r, Stage s)
     {
@@ -42,35 +39,42 @@ public class ModuleBarRaccourcis extends Module implements ViewConstants {
         this.root = r;
         this.stage = s;
 
-        XPositionBoutons = s.getWidth() - 150;
         draw();
     }
 
     public void  initImage() {
         background_bouton = new Image(getClass().getResourceAsStream("/assets/img/background_bouton.png"));
+        icone_banque = new Image(getClass().getResourceAsStream("/assets/img/icone_banque.png"));
+
     }
 
     public void draw()
     {
-        root.getChildren().remove(btn);
+
+        root.getChildren().remove(background_boutons[0]);
+        root.getChildren().remove(icones[0]);
         drawBoutons();
-        root.getChildren().add(btn);
+        root.getChildren().add(background_boutons[0]);
+        root.getChildren().add(icones[0]);
     }
 
     public void drawBoutons()
     {
-
         background_boutons[0] = new ImageView();
-        //drawImage(background_boutons[0], background_bouton, XPositionBoutons, stage.getHeight() - 150);
-        background_boutons[0].setImage(background_bouton);
-        btn = new Button("i love",background_boutons[0]);
-        btn.setLayoutX(XPositionBoutons);
-        btn.setLayoutY(stage.getHeight() - 150);
-        btn.setId("Ilove");
+        icones[0] = new ImageView();
+        drawButtonCenter(background_boutons[0], icones[0], background_bouton, icone_banque, stage.getWidth()- 80, stage.getHeight() - 100, "button_bank");
 
+
+        //btn.setStyle("-fx-background-color: transparent;");
     }
 
-    public Button getBtn() {
-        return btn;
+    public void changeSelected(){
+        if(isSelected == true)
+        {
+            isSelected = false;
+        }
+        else{
+            isSelected = true;
+        }
     }
 }

@@ -27,31 +27,38 @@ import javax.xml.stream.events.XMLEvent;
 /**
  * Created by Mahel Sif on 31/01/2016.
  */
-public class ControlGame extends MainControl implements EventHandler<Event>{
+public class ControlGame extends MainControl implements EventHandler<MouseEvent> {
 
 
     public ControlGame() {
-
         actualWindow.getGamePanel().setGameController(this);
-       // actualWindow.getGamePanel().getModule("ModuleBarRaccourcis").setModuleController(this);
-
-
     }
 
     private boolean placecolo1;
 
-
-
     @Override
-    public void handle(Event e) {
-        System.out.println(e.getEventType());
-        MouseEvent em = (MouseEvent) e;
-        final double X = em.getX();
-        final double Y = em.getY();
+    public void handle(MouseEvent e) {
+        final double X = e.getX();
+        final double Y = e.getY();
+
 
 
 
         if (e.getEventType() == MouseEvent.MOUSE_CLICKED) {
+            if(e.getTarget() instanceof ImageView)
+            {
+                ImageView Iv = (ImageView) e.getTarget();
+                if(Iv.getId() == "button_de")
+                {
+                    System.out.println("Dé");
+                    lancementDes();
+                }
+                if(Iv.getId() == "button_bank"){
+                    actualWindow.getGamePanel().getBanque().changeSelected();
+                }
+
+            }
+
             Vertex v = null;
             Edge e1 = null;
             try {
@@ -118,6 +125,24 @@ public class ControlGame extends MainControl implements EventHandler<Event>{
         }
         actualWindow.getGamePanel().draw();
 
+    }
+
+    public void lancementDes() {
+        if (!actualModel.getPartie().isPhaseConstruction() && actualModel.getPartie().getNbTour()>(actualModel.getPartie().getNbJoueur())*2-1) {
+            // if (!phaseCommerce) {
+            if (!actualModel.getPartie().isDes()) {
+
+                int result = actualModel.getPartie().getDes().lancerDes();
+                try {
+                    actualModel.getPartie().getRessource(result);
+
+                } catch (NumberSevenException nb7) {
+                    nb7.getMessage();
+                }
+                actualModel.getPartie().setPhaseConstruction(true);
+                actualModel.getPartie().lanceDes();
+            }
+        }
     }
 
     public void phaseinit(Vertex v, Edge e1) {

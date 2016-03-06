@@ -100,7 +100,8 @@ public class PanelGame extends Scene implements ViewConstants {
         drawMap();
 
 
-        infoJoueur = new ModuleInfoJoueur(partie, root);
+
+        infoJoueur = new ModuleInfoJoueur(partie, root, stage);
         banque = new ModuleBanque(partie, root);
         barRaccourcis = new ModuleBarRaccourcis(partie, root, stage);
         de = new ModuleDe(partie, root, stage);
@@ -110,9 +111,14 @@ public class PanelGame extends Scene implements ViewConstants {
 
     }
 
-    public Module getModule(String module) {
+    public ModuleBarRaccourcis getBarRaccourcis() {
 
         return barRaccourcis;
+    }
+
+    public ModuleBanque getBanque()
+    {
+        return banque;
     }
 
     public void initNodes()
@@ -188,11 +194,11 @@ public class PanelGame extends Scene implements ViewConstants {
 
     public void setGameController(ControlGame listener)
     {
-       this.addEventHandler(MouseEvent.MOUSE_CLICKED,listener);
+        this.addEventHandler(MouseEvent.MOUSE_CLICKED,listener);
         this.addEventHandler(MouseEvent.MOUSE_MOVED,listener);
-        this.setOnMouseClicked(listener);
-        this.setOnMouseMoved(listener);
+
     }
+
     public void setGameButtonController(ControlGameButton listener){
         this.addEventFilter(ActionEvent.ACTION,listener);
     }
