@@ -71,8 +71,12 @@ public class ModuleDe extends Module implements ViewConstants {
         drawDe();
         btn=new Button("",background_boutonsView);
         btn.setId("Button_De");
-        btn.setLayoutX(stage.getWidth()-150);
-        btn.setLayoutY(stage.getHeight() - 450);
+        btn.setPrefWidth(47.0);
+        btn.setPrefHeight(47.0);
+        btn.setLayoutX(setLayoutXCenter(btn,stage.getWidth()-150));
+        btn.setLayoutY(setLayoutYCenter(btn,stage.getHeight()-450));
+       //btn.setLayoutX(stage.getWidth()-150);
+        //btn.setLayoutY(stage.getHeight() - 450);
 
     }
 

@@ -3,11 +3,8 @@ package views;
 
 import controllers.ControlGame;
 import controllers.ControlGameButton;
-import javafx.geometry.VPos;
-import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.*;
-import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import javafx.scene.text.Font;
@@ -22,17 +19,14 @@ public class Module {
 
     public static Font mainFont;
     public static Font banqueFont;
-    public static Font pointFont;
     public static DropShadow shadowText;
 
     public Module()
     {
             mainFont = new Font(24f);
             banqueFont = new Font(40f);
-            pointFont = new Font(45f);
             mainFont.loadFont(this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"), 10);
             banqueFont.loadFont(this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"), 10);
-            pointFont.loadFont(this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"), 10);
 
             DropShadow ds = new DropShadow();
             ds.setOffsetY(0.0f);
@@ -42,7 +36,6 @@ public class Module {
 
     public static void drawStringCenter(Text t, double x, double y)
     {
-
         double width = t.getLayoutBounds().getWidth();
         double height = t.getBoundsInLocal().getHeight()/2;
         t.setLayoutX(x - (width/2));
@@ -91,4 +84,11 @@ public class Module {
         return Color.rgb(r, g, b, opacity);
     }
 
+    public double setLayoutXCenter(Button btn,double x){
+        return x-btn.getPrefWidth()/2;
+    }
+
+    public double setLayoutYCenter(Button btn, double y){
+        return  y-btn.getPrefHeight()/2;
+    }
 }
