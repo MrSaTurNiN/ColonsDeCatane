@@ -3,6 +3,7 @@ package views;
 
 import controllers.ControlGame;
 import controllers.ControlGameButton;
+import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.*;
 import javafx.scene.paint.Color;
@@ -40,7 +41,6 @@ public class Module {
         double height = t.getBoundsInLocal().getHeight()/2;
         t.setLayoutX(x - (width/2));
         t.setLayoutY(y +(height/2));
-        System.out.println(height);
     }
 
     public static void drawString(Text t, String txt, double x, double y, Color c, Font f) {
@@ -84,7 +84,7 @@ public class Module {
         return Color.rgb(r, g, b, opacity);
     }
 
-    public double setLayoutXCenter(Button btn,double x){
+    public double setLayoutXCenter(Button btn, double x){
         return x-btn.getPrefWidth()/2;
     }
 

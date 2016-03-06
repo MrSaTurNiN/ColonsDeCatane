@@ -25,29 +25,29 @@ import views.panels.PanelGame;
 /**
  * Created by Mahel Sif on 31/01/2016.
  */
-public class ControlGameButton extends MainControl implements EventHandler<ActionEvent>{
-    private Button btn;
+public class ControlGameButton extends MainControl implements EventHandler<ActionEvent> {
 
     public ControlGameButton() {
         actualWindow.getGamePanel().setGameButtonController(this);
-        ModuleBarRaccourcis moduleBar= (ModuleBarRaccourcis) actualWindow.getGamePanel().getModule("ModuleBarRaccourcis");
-        btn=moduleBar.getBtn();
+
     }
 
     @Override
     public void handle(ActionEvent event) {
-        Button bt= (Button) event.getTarget();
-        if (bt.getId()=="bouton_banque" ) {
+        Button bt = (Button) event.getTarget();
+        System.out.println(bt.getId());
+        if (bt.getId() == "bouton_banque") {
             actualWindow.getGamePanel().getBanque().changeSelected();
             actualWindow.getGamePanel().draw();
-        if (bt.getId()=="Ilove" ) {
+        }
+        if (bt.getId() == "Ilove") {
             System.out.println("Btn");
         }
-        if(bt.getId()=="Button_De"){
+        if (bt.getId() == "bouton_de") {
             System.out.println("Dé");
             actualModel.getPartie().lancementDes();
         }
-        if(bt.getId()=="Button_skip"){
+        if (bt.getId() == "Button_skip") {
             System.out.println("skip");
             actualModel.getPartie().skiper();
         }
@@ -55,10 +55,15 @@ public class ControlGameButton extends MainControl implements EventHandler<Actio
     }
 
 
+
+
     public void lancementDes() {
         if (!actualModel.getPartie().isPhaseConstruction() && actualModel.getPartie().getNbTour()>(actualModel.getPartie().getNbJoueur())*2-1) {
             // if (!phaseCommerce) {
             if (!actualModel.getPartie().isDes()) {
+            }
+        }
+    }
 
 
     public void skiper() {

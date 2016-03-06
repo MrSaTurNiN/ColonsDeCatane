@@ -83,14 +83,17 @@ public class ModuleDe extends Module implements ViewConstants {
     public void draw(){
 
         //root.getChildren().remove(btn);
-        root.getChildren().removeAll(icone_de);
-        root.getChildren().removeAll(background_boutons);
+       root.getChildren().removeAll(icone_de);
+      //  root.getChildren().removeAll(background_boutons);
+        root.getChildren().remove(btn);
 
         drawDe();
 
 
        // root.getChildren().add(btn);
-        root.getChildren().addAll(background_boutons);
+        //root.getChildren().addAll(background_boutons);
+
+        root.getChildren().add(btn);
         root.getChildren().addAll(icone_de);
 
     }
@@ -100,13 +103,22 @@ public class ModuleDe extends Module implements ViewConstants {
         imageDe = new Image(getClass().getResourceAsStream("/assets/img/icone_de.png"));
 
 
+
     }
 
     public void drawDe()
     {
         icone_de[0] = new ImageView();
-        background_boutons[0] = new ImageView();
-        drawButtonCenter(background_boutons[0], icone_de[0], background_bouton, imageDe, stage.getWidth()- 80, stage.getHeight() - 400, "button_de");
+        background_boutons[0] = new ImageView(background_bouton);
+        //drawButtonCenter(background_boutons[0], icone_de[0], background_bouton, imageDe, stage.getWidth()- 80, stage.getHeight() - 400, "button_de");
+        drawImageCenter(icone_de[0], imageDe, stage.getWidth()- 80, stage.getHeight() - 400);
+        btn = new Button("",background_boutons[0]);
+        btn.setPrefWidth(imageDe.getWidth());
+        btn.setPrefHeight(imageDe.getHeight());
+        System.out.println(btn.getMaxHeight());
+        btn.setLayoutX( setLayoutXCenter(btn, stage.getWidth()- 80));
+        btn.setLayoutY( setLayoutYCenter(btn, stage.getHeight() - 400));
+        btn.setId("bouton_de");
 
     }
 
