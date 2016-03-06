@@ -43,8 +43,9 @@ public class Partie implements Serializable{
 	private Timer timer;
 	private List<Laser> listelaser;
 
+	private int deValue;
+
 	private boolean deslances=false;
-	public boolean skip=false;
 
 
 
@@ -300,9 +301,9 @@ public class Partie implements Serializable{
 			if (!isDes()) {
 
 				int result = getDes().lancerDes();
+                setDeValue(result);
 				try {
 					getRessource(result);
-
 				} catch (NumberSevenException nb7) {
 					nb7.getMessage();
 				}
@@ -318,5 +319,16 @@ public class Partie implements Serializable{
 			joueurSuivant();
 		}
 
+	}
+
+
+	public void setDeValue(int i)
+	{
+		deValue = i;
+	}
+
+	public int getDeValue()
+	{
+		return deValue;
 	}
 }

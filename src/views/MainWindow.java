@@ -25,7 +25,6 @@ public class MainWindow extends Stage implements ViewConstants{
 
     public MainWindow(MainModel model){
         this.setTitle("Colons de Catanes");
-        this.setAlwaysOnTop(true);
         this.setHeight(WINDOW_HEIGHT);
         this.setWidth(WINDOW_WIDTH);
 

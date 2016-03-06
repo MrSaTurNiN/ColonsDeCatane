@@ -51,7 +51,7 @@ public class ControlGame extends MainControl implements EventHandler<MouseEvent>
                 if(Iv.getId() == "button_de")
                 {
                     System.out.println("Dé");
-                    lancementDes();
+                    actualModel.getPartie().lancementDes();
                 }
                 if(Iv.getId() == "button_bank"){
                     actualWindow.getGamePanel().getBanque().changeSelected();
@@ -127,23 +127,6 @@ public class ControlGame extends MainControl implements EventHandler<MouseEvent>
 
     }
 
-    public void lancementDes() {
-        if (!actualModel.getPartie().isPhaseConstruction() && actualModel.getPartie().getNbTour()>(actualModel.getPartie().getNbJoueur())*2-1) {
-            // if (!phaseCommerce) {
-            if (!actualModel.getPartie().isDes()) {
-
-                int result = actualModel.getPartie().getDes().lancerDes();
-                try {
-                    actualModel.getPartie().getRessource(result);
-
-                } catch (NumberSevenException nb7) {
-                    nb7.getMessage();
-                }
-                actualModel.getPartie().setPhaseConstruction(true);
-                actualModel.getPartie().lanceDes();
-            }
-        }
-    }
 
     public void phaseinit(Vertex v, Edge e1) {
         Joueur joueur;

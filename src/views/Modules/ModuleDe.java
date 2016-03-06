@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -52,6 +53,8 @@ public class ModuleDe extends Module implements ViewConstants {
     ImageView i;
     Button btn;
 
+    private Text deValue;
+
     private ImageView background_boutons[] = new ImageView[1];
     private ImageView icone_de[] = new ImageView[1];
 
@@ -77,6 +80,8 @@ public class ModuleDe extends Module implements ViewConstants {
        // root.getChildren().remove(btn);
        root.getChildren().removeAll(icone_de);
         root.getChildren().removeAll(background_boutons);
+        root.getChildren().remove(deValue);
+
 
         drawDe();
 
@@ -84,6 +89,7 @@ public class ModuleDe extends Module implements ViewConstants {
        //root.getChildren().add(btn);
         root.getChildren().addAll(background_boutons);
         root.getChildren().addAll(icone_de);
+        root.getChildren().add(deValue);
 
     }
 
@@ -101,6 +107,9 @@ public class ModuleDe extends Module implements ViewConstants {
         background_boutons[0] = new ImageView(background_bouton);
         drawButtonCenter(background_boutons[0], icone_de[0], background_bouton, imageDe, stage.getWidth()- 80, stage.getHeight() - 400, "button_de");
         drawImageCenter(icone_de[0], imageDe, stage.getWidth()- 80, stage.getHeight() - 400);
+
+        deValue = new Text();
+        drawString(deValue, String.valueOf(partie.getDeValue()), stage.getWidth() - 150, stage.getHeight() - 400, Color.WHITE, banqueFont);
         /*btn = new Button("",background_boutons[0]);
         btn.setPrefWidth(imageDe.getWidth());
         btn.setPrefHeight(imageDe.getHeight());

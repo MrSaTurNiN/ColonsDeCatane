@@ -9,6 +9,7 @@ import java.util.Random;
 public class Des implements Serializable
 {
     private static Random random = new Random();
+    private int deValue;
     public Des()
     {
     }
