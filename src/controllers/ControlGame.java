@@ -162,35 +162,32 @@ public class ControlGame extends MainControl implements EventHandler<Event>{
     public void phaseJeu(Vertex v, Edge e1) throws OutOfCardException, UnKnownRessource {
         Joueur joueur;
         joueur = actualModel.getPartie().getJoueurActif();
-        if (actualModel.getPartie().isPhaseConstruction() &&!actualModel.getPartie().isSkip()) {
-            if (v != null) {
-                if (v.getBatiment() != null && v.getBatiment().getJoueur() == joueur) {
-                    v.ameliorerBatiment(joueur);
-                } else {
-                    try {
-
-                        Batiment b = actualModel.getPartie().getPlateau().creerColonie(joueur, v, joueur.getMainRessource());
-                        joueur.placerColonie((Colonie) b);
-                    } catch (SuperExceptionRessource e) {
-                        System.out.println(e.getMessage());
-                        e.getMessage();
-                    } catch (SuperExceptionBatiment e) {
-                        System.out.println(e.getMessage());
-                        e.getMessage();
-                    }
-                }
-            } else if (e1 != null) {
+        if (v != null) {
+            if (v.getBatiment() != null && v.getBatiment().getJoueur() == joueur) {
+                v.ameliorerBatiment(joueur);
+            } else {
                 try {
-                    System.out.println("je vais creer une route: ");
-                    actualModel.getPartie().getPlateau().creerRoute(joueur, e1, joueur.getMainRessource());
-                } catch (SuperExceptionRessource r) {
-                    r.getMessage();
+
+                    Batiment b = actualModel.getPartie().getPlateau().creerColonie(joueur, v, joueur.getMainRessource());
+                    joueur.placerColonie((Colonie) b);
+                } catch (SuperExceptionRessource e) {
+                    System.out.println(e.getMessage());
+                    e.getMessage();
                 } catch (SuperExceptionBatiment e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
+                    e.getMessage();
                 }
             }
+        } else if (e1 != null) {
+            try {
+                System.out.println("je vais creer une route: ");
+                actualModel.getPartie().getPlateau().creerRoute(joueur, e1, joueur.getMainRessource());
+            } catch (SuperExceptionRessource r) {
+                r.getMessage();
+            } catch (SuperExceptionBatiment e) {
+                e.printStackTrace();
+            }
         }
-
     }
 
 }

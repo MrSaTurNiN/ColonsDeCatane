@@ -273,15 +273,6 @@ public class Partie implements Serializable{
 	public void lanceDes(){
 		deslances=true;
 	}
-	public boolean isSkip() {
-		return skip;
-	}
-	public void annuleSkip(){
-		skip=false;
-	}
-	public void skip(){
-		skip=true;
-	}
 
 
 	public void reinitOrdre() {
@@ -301,5 +292,31 @@ public class Partie implements Serializable{
 	public void joueurSuivant() {
 		setJoueurActif(getListeJoueur().get((getNbTour() + 1) % getNbJoueur()));
 		setNbTour(getNbTour() + 1);
+	}
+
+	public void lancementDes() {
+		if (getNbTour()>(getNbJoueur())*2-1) {
+			// if (!phaseCommerce) {
+			if (!isDes()) {
+
+				int result = getDes().lancerDes();
+				try {
+					getRessource(result);
+
+				} catch (NumberSevenException nb7) {
+					nb7.getMessage();
+				}
+				setPhaseConstruction(true);
+				lanceDes();
+			}
+		}
+	}
+
+	public void skiper() {
+		if (isDes() && getNbTour()>(getNbJoueur())*2-1) {
+			annuleDeslances();
+			joueurSuivant();
+		}
+
 	}
 }

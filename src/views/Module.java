@@ -3,6 +3,7 @@ package views;
 
 import controllers.ControlGame;
 import controllers.ControlGameButton;
+import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.*;
 import javafx.scene.paint.Color;
@@ -64,5 +65,13 @@ public class Module {
 
     public void setModuleController(ControlGame listener){
 
+    }
+
+    public double setLayoutXCenter(Button btn,double x){
+        return x-btn.getPrefWidth()/2;
+    }
+
+    public double setLayoutYCenter(Button btn, double y){
+        return  y-btn.getPrefHeight()/2;
     }
 }
