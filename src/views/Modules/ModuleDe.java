@@ -1,8 +1,6 @@
 package views.Modules;
 
 import Model.Partie;
-import controllers.ControlGame;
-import controllers.ControlGameButton;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -39,6 +37,7 @@ public class ModuleDe extends Module implements ViewConstants {
 
     private Image background_bouton;
     private Image imageDe;
+    private Image imageSkip;
 
     private ImageView background_boutonsView;
     private ImageView imageDeView;
@@ -52,13 +51,17 @@ public class ModuleDe extends Module implements ViewConstants {
     Rectangle barUpR;
     ImageView i;
     Button btn;
+    Button skip;
 
     private Text deValue;
 
     private ImageView background_boutons[] = new ImageView[1];
     private ImageView icone_de[] = new ImageView[1];
+    private ImageView icone_skip[]=new ImageView[1];
 
     private Group root;
+
+    public boolean De=false;
 
     public ModuleDe(Partie p, Group root, Stage s)
     {
@@ -78,7 +81,7 @@ public class ModuleDe extends Module implements ViewConstants {
     public void draw(){
 
        // root.getChildren().remove(btn);
-       root.getChildren().removeAll(icone_de);
+        root.getChildren().removeAll(!De ? icone_de : icone_skip);
         root.getChildren().removeAll(background_boutons);
         root.getChildren().remove(deValue);
 
@@ -86,9 +89,9 @@ public class ModuleDe extends Module implements ViewConstants {
         drawDe();
 
 
-       //root.getChildren().add(btn);
+        //root.getChildren().add(btn);
         root.getChildren().addAll(background_boutons);
-        root.getChildren().addAll(icone_de);
+        root.getChildren().addAll(!De ? icone_de : icone_skip);
         root.getChildren().add(deValue);
 
     }
@@ -96,6 +99,8 @@ public class ModuleDe extends Module implements ViewConstants {
     public void  initImage() {
         background_bouton = new Image(getClass().getResourceAsStream("/assets/img/background_bouton.png"));
         imageDe = new Image(getClass().getResourceAsStream("/assets/img/icone_de.png"));
+        //imageSkip = new Image(getClass().getResourceAsStream("/assets/img/icone_de.png"));
+        imageSkip = new Image(getClass().getResourceAsStream("/assets/img/colline.png"));
 
 
 
@@ -104,12 +109,20 @@ public class ModuleDe extends Module implements ViewConstants {
     public void drawDe()
     {
         icone_de[0] = new ImageView();
+        icone_skip[0]= new ImageView();
         background_boutons[0] = new ImageView(background_bouton);
-        drawButtonCenter(background_boutons[0], icone_de[0], background_bouton, imageDe, stage.getWidth()- 80, stage.getHeight() - 400, "button_de");
-        drawImageCenter(icone_de[0], imageDe, stage.getWidth()- 80, stage.getHeight() - 400);
+        if (!De) {
+            drawButtonCenter(background_boutons[0], icone_de[0], background_bouton, imageDe, stage.getWidth() - 80, stage.getHeight() - 400, "button_de");
+            drawImageCenter(icone_de[0], imageDe, stage.getWidth() - 80, stage.getHeight() - 400);
+        }
+        else {
+            drawButtonCenter(background_boutons[0], icone_skip[0], background_bouton, imageSkip, stage.getWidth() - 80, stage.getHeight() - 400, "skip_button");
+            drawImageCenter(icone_de[0], imageSkip, stage.getWidth() - 80, stage.getHeight() - 400);
+        }
 
         deValue = new Text();
         drawString(deValue, String.valueOf(partie.getDeValue()), stage.getWidth() - 150, stage.getHeight() - 400, Color.WHITE, banqueFont);
+        
         /*btn = new Button("",background_boutons[0]);
         btn.setPrefWidth(imageDe.getWidth());
         btn.setPrefHeight(imageDe.getHeight());

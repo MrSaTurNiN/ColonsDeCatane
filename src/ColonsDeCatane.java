@@ -21,7 +21,6 @@ public class ColonsDeCatane extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        System.out.println(";;");
         MainModel model = new MainModel();
         MainControl.initControl(model);
     }

@@ -17,7 +17,6 @@ public class MainModel {
     }
 
     public void nouvellePartie(){
-        System.out.println("lol");
         setNbJoueur(3);
         creerJoueur("dsgsg",Color.green);
         creerJoueur("ghsdfh",Color.cyan);

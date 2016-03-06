@@ -79,6 +79,9 @@ public class PanelGame extends Scene implements ViewConstants {
     ModuleBanque banque;
     ModuleMap map;
     ModuleBarRaccourcis barRaccourcis;
+
+
+
     ModuleDe de;
     Button btn;
 
@@ -110,6 +113,10 @@ public class PanelGame extends Scene implements ViewConstants {
         draw();
 
 
+    }
+
+    public ModuleDe getDe() {
+        return de;
     }
 
     public ModuleBarRaccourcis getBarRaccourcis() {
