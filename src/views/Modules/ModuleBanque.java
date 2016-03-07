@@ -7,7 +7,6 @@ import javafx.scene.image.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import views.Module;
 import views.ViewConstants;
 
 import java.util.*;

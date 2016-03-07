@@ -1,17 +1,11 @@
 package views.Modules;
 
 import Model.Partie;
-import controllers.ControlGame;
-import controllers.ControlGameButton;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import views.Module;
 import views.ViewConstants;
 
 /**

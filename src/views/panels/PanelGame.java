@@ -1,7 +1,5 @@
 package views.panels;
 
-import Model.Batiments.Colonie;
-import Model.Batiments.Ville;
 import Model.MainModel;
 import Model.Partie;
 import Model.Plateau;
@@ -11,26 +9,20 @@ import Model.graph.Vertex;
 import controllers.ControlGame;
 import controllers.ControlGameButton;
 import javafx.beans.NamedArg;
-import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import views.Module;
 import views.Modules.*;
 import views.ViewConstants;
 

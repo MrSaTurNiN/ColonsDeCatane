@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import Model.MainModel;
 import javafx.stage.WindowEvent;
@@ -25,6 +26,7 @@ public class MainWindow extends Stage implements ViewConstants{
 
     public MainWindow(MainModel model){
         this.setTitle("Colons de Catanes");
+        this.getIcons().add(new Image(getClass().getResourceAsStream("/assets/img/stormtrooper.png")));
         this.setHeight(WINDOW_HEIGHT);
         this.setWidth(WINDOW_WIDTH);
 

@@ -1,28 +1,22 @@
 package views.Modules;
 
 import Model.Batiments.Colonie;
-import Model.Batiments.Ville;
 import Model.Partie;
 import Model.Plateau;
 import Model.Tuile.*;
 import Model.graph.Edge;
 import Model.graph.Vertex;
-import com.sun.corba.se.pept.transport.ContactInfoList;
-import controllers.ControlGame;
-import controllers.ControlGameButton;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import views.Module;
 import views.ViewConstants;
 
 /**
