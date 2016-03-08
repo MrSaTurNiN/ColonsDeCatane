@@ -131,7 +131,10 @@ public class PanelGame extends Scene implements ViewConstants {
         backgroundN = new Rectangle(0,0,stage.getWidth(), stage.getHeight());
     }
 
-
+    public ModuleInfoJoueur getInfoJoueur()
+    {
+        return infoJoueur;
+    }
 
     public void initImage()
     {
@@ -194,6 +197,7 @@ public class PanelGame extends Scene implements ViewConstants {
     {
         this.addEventHandler(MouseEvent.MOUSE_CLICKED,listener);
         this.addEventHandler(MouseEvent.MOUSE_MOVED,listener);
+        this.addEventHandler(MouseEvent.MOUSE_ENTERED,listener);
 
     }
 

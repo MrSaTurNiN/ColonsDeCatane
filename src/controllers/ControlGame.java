@@ -51,6 +51,10 @@ public class ControlGame extends MainControl implements EventHandler<MouseEvent>
                 if(Iv.getId() == "button_bank"){
                     actualWindow.getGamePanel().getBanque().changeSelected();
                 }
+                if(Iv.getId() == "bois"){
+                    System.out.println("test");
+                    actualWindow.getGamePanel().getInfoJoueur().changeTextAideHover();
+                }
 
             }
 
@@ -93,6 +97,20 @@ public class ControlGame extends MainControl implements EventHandler<MouseEvent>
                 }
             }
         }
+
+        /*if(e.getEventType() == MouseEvent.Mou && e.getTarget() instanceof ImageView){
+            System.out.println("lol");
+            if(e.getTarget() instanceof ImageView)
+            {
+                System.out.println("dgsg");
+                ImageView Iv = (ImageView) e.getTarget();
+                if(Iv.getId() == "bois"){
+                    System.out.println("test");
+                    actualWindow.getGamePanel().getInfoJoueur().changeTextAideHover();
+                }
+
+            }
+        }*/
 
         Vertex v;
         Edge e2;
