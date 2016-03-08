@@ -8,6 +8,7 @@ import Model.graph.Edge;
 import Model.graph.Vertex;
 import controllers.ControlGame;
 import controllers.ControlGameButton;
+import controllers.ControlHover;
 import javafx.beans.NamedArg;
 import javafx.event.ActionEvent;
 import javafx.scene.Group;
@@ -132,7 +133,6 @@ public class PanelGame extends Scene implements ViewConstants {
     }
 
 
-
     public void initImage()
     {
         try {
@@ -194,27 +194,15 @@ public class PanelGame extends Scene implements ViewConstants {
     {
         this.addEventHandler(MouseEvent.MOUSE_CLICKED,listener);
         this.addEventHandler(MouseEvent.MOUSE_MOVED,listener);
-
     }
 
     public void setGameButtonController(ControlGameButton listener){
         this.addEventFilter(ActionEvent.ACTION,listener);
     }
 
-    public void drawImageTuile(Tuile t)
+    public void setGameHoverController(ControlHover listener)
     {
-        Vertex v1 = t.getSommets().get(0);
-        Vertex v2 = t.getSommets().get(3);
-
-        double x = v1.getX()+((v2.getX() - v1.getX())/2);
-        double y = v1.getY()+((v2.getY() - v1.getY())/2);
-
-        if (t instanceof Desert) gc.drawImage(desert, x - 60, y - 60);
-        else if (t instanceof Foret) gc.drawImage(foret, x - 60, y - 60);
-        else if (t instanceof Paturage) gc.drawImage(paturage, x - 60, y - 60);
-        else if (t instanceof TerreCultivable) gc.drawImage(terreCultivable, x - 60, y - 60);
-        else if (t instanceof Montagne) gc.drawImage(montagne, x - 60, y - 60);
-        else if (t instanceof Colline) gc.drawImage(colline, x - 60, y - 60);
+       this.addEventFilter(MouseEvent.MOUSE_MOVED,listener);
     }
 
 

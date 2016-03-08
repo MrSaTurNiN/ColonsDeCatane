@@ -20,6 +20,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class ControlGame extends MainControl implements EventHandler<MouseEvent> {
 
+    ImageView Iv;
 
     public ControlGame() {
         actualWindow.getGamePanel().setGameController(this);
@@ -32,11 +33,42 @@ public class ControlGame extends MainControl implements EventHandler<MouseEvent>
         final double X = e.getX();
         final double Y = e.getY();
 
+        if(e.getEventType()==MouseEvent.MOUSE_MOVED){
+            if(e.getTarget() instanceof ImageView) {
+                Iv = (ImageView) e.getTarget();
+                if(Iv.getId() == "icone_bois")
+                {
+                    System.out.println("icone_bois");
+                    actualWindow.getGamePanel().getInfoJoueur().setTextAideHover(true, 0);
+                }
+                else if(Iv.getId() == "icone_laine"){
+                    actualWindow.getGamePanel().getInfoJoueur().setTextAideHover(true, 1);
+                }
+                else if(Iv.getId() == "icone_ble"){
+                    actualWindow.getGamePanel().getInfoJoueur().setTextAideHover(true, 2);
+                }
+                else if(Iv.getId() == "icone_argile"){
+                    actualWindow.getGamePanel().getInfoJoueur().setTextAideHover(true, 3);
+                }
+                else if(Iv.getId() == "icone_minerai"){
+                    actualWindow.getGamePanel().getInfoJoueur().setTextAideHover(true, 4);
+                }
+
+            }
+
+        }
+
+        if(!(e.getTarget() instanceof ImageView)) {
+            for (int i = 0; i < 5; i++) {
+                actualWindow.getGamePanel().getInfoJoueur().setTextAideHover(false, i);
+            }
+        }
+
 
         if (e.getEventType() == MouseEvent.MOUSE_CLICKED) {
             if(e.getTarget() instanceof ImageView)
             {
-                ImageView Iv = (ImageView) e.getTarget();
+                Iv = (ImageView) e.getTarget();
                 if(Iv.getId() == "button_de" && actualModel.getPartie().getNbTour()>(actualModel.getPartie().getNbJoueur())*2-1)
                 {
                     System.out.println("Dé");
@@ -51,7 +83,6 @@ public class ControlGame extends MainControl implements EventHandler<MouseEvent>
                 if(Iv.getId() == "button_bank"){
                     actualWindow.getGamePanel().getBanque().changeSelected();
                 }
-
             }
 
             Vertex v = null;
@@ -94,6 +125,20 @@ public class ControlGame extends MainControl implements EventHandler<MouseEvent>
             }
         }
 
+        /*if(e.getEventType() == MouseEvent.Mou && e.getTarget() instanceof ImageView){
+            System.out.println("lol");
+            if(e.getTarget() instanceof ImageView)
+            {
+                System.out.println("dgsg");
+                ImageView Iv = (ImageView) e.getTarget();
+                if(Iv.getId() == "bois"){
+                    System.out.println("test");
+                    actualWindow.getGamePanel().getInfoJoueur().changeTextAideHover();
+                }
+
+            }
+        }*/
+
         Vertex v;
         Edge e2;
         for (int i = 0; i < actualModel.getPartie().getPlateau().getGraph().getVertices().length; i++) {
@@ -120,24 +165,6 @@ public class ControlGame extends MainControl implements EventHandler<MouseEvent>
         }
         actualWindow.getGamePanel().draw();
 
-    }
-
-    public void lancementDes() {
-        if (!actualModel.getPartie().isPhaseConstruction() && actualModel.getPartie().getNbTour()>(actualModel.getPartie().getNbJoueur())*2-1) {
-            // if (!phaseCommerce) {
-            if (!actualModel.getPartie().isDes()) {
-
-                int result = actualModel.getPartie().getDes().lancerDes();
-                try {
-                    actualModel.getPartie().getRessource(result);
-
-                } catch (NumberSevenException nb7) {
-                    nb7.getMessage();
-                }
-                actualModel.getPartie().setPhaseConstruction(true);
-                actualModel.getPartie().lanceDes();
-            }
-        }
     }
 
     public void phaseinit(Vertex v, Edge e1) {

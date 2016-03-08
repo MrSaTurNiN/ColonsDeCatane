@@ -13,18 +13,11 @@ public class ControlHover extends MainControl implements EventHandler<MouseEvent
     double y;
 
     public ControlHover() {
-        actualWindow.getGamePanel().getInfoJoueur().setControlHover(this);
+        actualWindow.getGamePanel().setGameHoverController(this);
     }
 
     @Override
-    public void handle(MouseEvent event) {
-        if(event.getEventType()==MouseEvent.MOUSE_ENTERED){
-            iv= (ImageView)event.getTarget();
-            x=event.getX();
-            y=event.getY();
-            System.out.println(iv.getId()+" x="+x+"  y="+y);
-            event.consume();
+    public void handle(MouseEvent e) {
 
-        }
     }
 }
