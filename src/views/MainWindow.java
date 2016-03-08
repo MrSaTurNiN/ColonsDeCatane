@@ -33,12 +33,12 @@ public class MainWindow extends Stage implements ViewConstants{
         Group root = new Group();
         Group root2 = new Group();
 
-        this.menu = new PanelMenu(root,root, this);
+        menu = new PanelMenu(root,root, this);
 
-        this.game = new PanelGame(root2, root2, this, model);
+        game = new PanelGame(root2, root2, this, model);
 
-        this.setScene(game);
-        this.show();
+        setScene(menu);
+        show();
         this.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
@@ -62,6 +62,10 @@ public class MainWindow extends Stage implements ViewConstants{
 
     public void switchPanel(Scene s) {
         this.setScene(s);
+    }
+
+    public void setPanel(Scene panel){
+        this.setScene(panel);
     }
 
 

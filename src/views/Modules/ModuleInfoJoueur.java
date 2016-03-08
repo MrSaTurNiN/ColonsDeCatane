@@ -57,8 +57,8 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
 
         initImage();
         initRessource();
-        drawBarUp();
-        drawInfoRessource();
+       // drawBarUp();
+        //drawInfoRessource();
     }
 
     public void draw(){

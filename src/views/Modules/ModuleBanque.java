@@ -42,7 +42,7 @@ public class ModuleBanque extends Module implements ViewConstants  {
         YModule = WINDOW_HEIGHT - banque_fond.getHeight() - 60;
         XCenterModule = XModule + (banque_fond.getWidth()/2);
         YCenterModule = YModule + (banque_fond.getHeight()/2);
-        draw();
+      //  draw();
     }
     
     public void draw(){
