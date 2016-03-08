@@ -29,6 +29,7 @@ public class ControlMenu extends MainControl implements ChangeListener<Number>, 
         switch (btn.getId())
         {
             case ("newPartie"):
+
                 actualModel.nouvellePartie();
                 actualWindow.switchPanel(actualWindow.getGamePanel());
         }
