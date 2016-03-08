@@ -130,7 +130,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants, EventTarg
 
     public void drawPoint(){
         double x = stage.getWidth() - 80;
-        double y = stage.getHeight() - 480;
+        double y = stage.getHeight() - 780;
         backgroundPoint = new ImageView();
         text_point = new Text();
         drawImageCenter(backgroundPoint, background_bouton, x, y);
@@ -166,7 +166,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants, EventTarg
 
 
                 text_ressource_aide[0] = new Text();
-                drawString(text_ressource_aide[0], "Bois", x, 50, Color.WHITE, mainFont);
+                drawString(text_ressource_aide[0], "Supraconducteur", x, 50, Color.WHITE, mainFont);
             } else if (cle == "Laine") {
                 img_ressource[1] = new ImageView();
                 img_ressource[1].setImage(icone_cristaux);
@@ -179,7 +179,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants, EventTarg
                 img_ressource[1].setId("icone_laine");
 
                 text_ressource_aide[1] = new Text();
-                drawString(text_ressource_aide[1], "Laine", x, 50, Color.WHITE, mainFont);
+                drawString(text_ressource_aide[1], "Cristaux", x, 50, Color.WHITE, mainFont);
             } else if (cle == "Ble") {
                 img_ressource[2] = new ImageView();
                 img_ressource[2].setImage(icone_cellule_energetique);
@@ -192,7 +192,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants, EventTarg
                 img_ressource[2].setId("icone_ble");
 
                 text_ressource_aide[2] = new Text();
-                drawString(text_ressource_aide[2], "Ble", x, 50, Color.WHITE, mainFont);
+                drawString(text_ressource_aide[2], "Cellule", x, 50, Color.WHITE, mainFont);
             } else if (cle == "Argile") {
                 img_ressource[3] = new ImageView();
                 img_ressource[3].setImage(icone_gaz);
@@ -205,7 +205,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants, EventTarg
                 img_ressource[3].setId("icone_argile");
 
                 text_ressource_aide[3] = new Text();
-                drawString(text_ressource_aide[3], "Argile", x, 50, Color.WHITE, mainFont);
+                drawString(text_ressource_aide[3], "Gaz", x, 50, Color.WHITE, mainFont);
             } else if (cle == "Minerai") {
                 img_ressource[4] = new ImageView();
                 img_ressource[4].setImage(icone_minerai);
