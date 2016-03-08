@@ -33,7 +33,7 @@ public class ModuleBarRaccourcis extends Module implements ViewConstants {
         this.root = r;
         this.stage = s;
 
-        draw();
+       // draw();
     }
 
     public void  initImage() {

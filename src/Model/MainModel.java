@@ -17,13 +17,13 @@ public class MainModel {
     }
 
     public void nouvellePartie(){
-        setNbJoueur(3);
-        creerJoueur("dsgsg",Color.green);
-        creerJoueur("ghsdfh",Color.cyan);
-        creerJoueur("ffgd",Color.red);
+       setNbJoueur(3);
+       creerJoueur("Jean",Color.green);
+       creerJoueur("Jacques",Color.cyan);
+        creerJoueur("Yolo",Color.red);
 
-        partie.setOrdreJoueur();
-        partie.setJoueurActif(partie.getListeJoueur().get(0));
+       partie.setOrdreJoueur();
+       partie.setJoueurActif(partie.getListeJoueur().get(0));
         partie.setLaunched();
     }
     public void creerJoueur(String nomJoueur, Color colorJoueur){

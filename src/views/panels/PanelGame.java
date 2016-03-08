@@ -91,7 +91,7 @@ public class PanelGame extends Scene implements ViewConstants {
 
         initNodes();
         initImage();
-        drawBackground();
+       // drawBackground();
         root.getChildren().add(canvas);
 
 
@@ -103,7 +103,7 @@ public class PanelGame extends Scene implements ViewConstants {
         de = new ModuleDe(partie, root, stage);
         map = new ModuleMap(partie,root,stage);
 
-        draw();
+       // draw();
 
 
     }

@@ -72,7 +72,7 @@ public class ModuleDe extends Module implements ViewConstants {
         YPositionBoutons = s.getHeight() - 100;
 
         initImage();
-        drawDe();
+       // drawDe();
 
     }
 
@@ -113,13 +113,6 @@ public class ModuleDe extends Module implements ViewConstants {
 
         deValue = new Text();
         drawString(deValue, String.valueOf(partie.getDeValue()), stage.getWidth() - 150, stage.getHeight() - 650, Color.WHITE, banqueFont);
-        
-        /*btn = new Button("",background_boutons[0]);
-        btn.setPrefWidth(imageDe.getWidth());
-        btn.setPrefHeight(imageDe.getHeight());
-        btn.setLayoutX( setLayoutXCenter(btn, stage.getWidth()/2));
-        btn.setLayoutY( setLayoutYCenter(btn, stage.getHeight()/2));
-        btn.setId("bouton_de");*/
     }
 
 

@@ -21,7 +21,7 @@ import views.ViewConstants;
  * Created by Mahel Sif on 30/01/2016.
  */
 public class PanelMenu extends Scene implements ViewConstants {
-    Button b;
+    Button newPart;
     Group root;
     Stage stage;
 
@@ -31,9 +31,9 @@ public class PanelMenu extends Scene implements ViewConstants {
         this.root = root;
         this.stage = stage;
         draw();
-        b = new Button("dfgsdgs");
-        b.setId("1");
-        root.getChildren().add(b);
+        newPart = new Button("Nouvelle partie");
+        newPart.setId("newPartie");
+        root.getChildren().add(newPart);
 
     }
 
@@ -55,7 +55,7 @@ public class PanelMenu extends Scene implements ViewConstants {
 
    public void setMenuController(ControlMenu listener)
     {
-        b.setOnAction(listener);
-        this.widthProperty().addListener((ChangeListener<? super Number>) listener);
+        newPart.setOnAction(listener);
+        this.widthProperty().addListener(listener);
     }
 }
