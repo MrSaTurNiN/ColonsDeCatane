@@ -55,7 +55,6 @@ public class ControlGame extends MainControl implements EventHandler<MouseEvent>
                     System.out.println("test");
                     actualWindow.getGamePanel().getInfoJoueur().changeTextAideHover();
                 }
-
             }
 
             Vertex v = null;
