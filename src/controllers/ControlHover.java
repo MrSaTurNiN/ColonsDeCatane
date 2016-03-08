@@ -7,12 +7,12 @@ import javafx.scene.input.MouseEvent;
 /**
  * Created by Victor on 08/03/2016.
  */
-public class blal extends MainControl implements EventHandler<MouseEvent> {
+public class ControlHover extends MainControl implements EventHandler<MouseEvent> {
     ImageView iv;
     double x;
     double y;
 
-    public blal() {
+    public ControlHover() {
         actualWindow.getGamePanel().getInfoJoueur().setControlHover(this);
     }
 
