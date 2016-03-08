@@ -3,6 +3,7 @@ package views.Modules;
 import Model.Partie;
 import Model.ressource.Ressource;
 import controllers.ControlGame;
+import controllers.ControlHover;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
@@ -55,6 +56,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
         isChecked = false;
 
         initImage();
+        initRessource();
         drawBarUp();
         drawInfoRessource();
     }
@@ -66,6 +68,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
         root.getChildren().remove(i);
         root.getChildren().remove(backgroundPoint);
         root.getChildren().remove(text_point);
+        root.getChildren().removeAll(img_ressource);
 
         drawBarUp();
         drawInfoRessource();
@@ -113,7 +116,18 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
         drawImageCenter(backgroundPoint, background_bouton, x, y);
         drawString(text_point, String.valueOf(partie.getJoueurActif().getPointJoueur()), x, y, colorToPaint(partie.getJoueurActif().getCouleurJoueur()), banqueFont);
     }
-
+    public void initRessource(){
+        img_ressource[0] = new ImageView();
+        img_ressource[0].setId("supraconducteur");
+        img_ressource[1] = new ImageView();
+        img_ressource[1].setId("cristaux");
+        img_ressource[2] = new ImageView();
+        img_ressource[2].setId("cellule_energetique");
+        img_ressource[3] = new ImageView();
+        img_ressource[3].setId("gaz");
+        img_ressource[4] = new ImageView();
+        img_ressource[4].setId("minerai");
+    }
     public void drawInfoRessource() {
         root.getChildren().remove(ressource);
         ressource = new Text();
@@ -131,7 +145,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
             Ressource r = Ressource.valueOf(cle);
             java.util.List<Ressource> valeur = entry.getValue();
             if (cle == "Bois") {
-                img_ressource[0] = new ImageView();
+
                 img_ressource[0].setImage(icone_supraconducteur);
                 img_ressource[0].setX(x - 25);
                 img_ressource[0].setY(0);
@@ -140,7 +154,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
                 text_ressource[0].setX(x + 5);
                 text_ressource[0].setY(28);
             } else if (cle == "Laine") {
-                img_ressource[1] = new ImageView();
+
                 img_ressource[1].setImage(icone_cristaux);
                 img_ressource[1].setX(x - 25);
                 img_ressource[1].setY(0);
@@ -149,7 +163,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
                 text_ressource[1].setX(x + 5);
                 text_ressource[1].setY(28);
             } else if (cle == "Ble") {
-                img_ressource[2] = new ImageView();
+
                 img_ressource[2].setImage(icone_cellule_energetique);
                 img_ressource[2].setX(x - 25);
                 img_ressource[2].setY(0);
@@ -159,7 +173,6 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
                 text_ressource[2].setY(28);
             }
             else if (cle == "Argile") {
-                img_ressource[3] = new ImageView();
                 img_ressource[3].setImage(icone_gaz);
                 img_ressource[3].setX(x - 25);
                 img_ressource[3].setY(0);
@@ -168,7 +181,6 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
                 text_ressource[3].setX(x + 5);
                 text_ressource[3].setY(28);
             } else if (cle == "Minerai") {
-                img_ressource[4] = new ImageView();
                 img_ressource[4].setImage(icone_minerai);
                 img_ressource[4].setX(x - 25);
                 img_ressource[4].setY(0);
@@ -191,5 +203,13 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
 
 
 
+    }
+
+    public void setControlHover(ControlHover listener){
+        img_ressource[0].addEventFilter(MouseEvent.MOUSE_ENTERED,listener);
+        img_ressource[1].addEventFilter(MouseEvent.MOUSE_ENTERED,listener);
+        img_ressource[2].addEventFilter(MouseEvent.MOUSE_ENTERED,listener);
+        img_ressource[3].addEventFilter(MouseEvent.MOUSE_ENTERED,listener);
+        img_ressource[4].addEventFilter(MouseEvent.MOUSE_ENTERED,listener);
     }
 }

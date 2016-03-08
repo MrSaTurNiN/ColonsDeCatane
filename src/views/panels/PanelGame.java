@@ -78,6 +78,7 @@ public class PanelGame extends Scene implements ViewConstants {
     Button btn;
 
     public PanelGame(@NamedArg("root") Parent r, Group root, Stage s, MainModel model) {
+
         super(r);
         this.root = root;
         this.stage = s;
