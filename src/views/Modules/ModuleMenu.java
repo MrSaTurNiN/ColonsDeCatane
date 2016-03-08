@@ -63,8 +63,8 @@ public class ModuleMenu extends Module {
     }
 
     public void drawMenu(){
-        buttonGroup[0].setLayoutX();
-        drawString(deValue, String.valueOf(partie.getDeValue()), stage.getWidth() - 150, stage.getHeight() - 650, Color.WHITE, banqueFont);
+       // buttonGroup[0].setLayoutX();
+        //drawString(deValue, String.valueOf(partie.getDeValue()), stage.getWidth() - 150, stage.getHeight() - 650, Color.WHITE, banqueFont);
     }
 
 
