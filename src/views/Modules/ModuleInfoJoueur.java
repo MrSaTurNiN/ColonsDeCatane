@@ -2,9 +2,7 @@ package views.Modules;
 
 import Model.Partie;
 import Model.ressource.Ressource;
-import controllers.ControlGame;
-import controllers.ControlHover;
-import javafx.event.EventHandler;
+import controllers.blal;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -205,7 +203,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
 
     }
 
-    public void setControlHover(ControlHover listener){
+    public void setControlHover(blal listener){
         img_ressource[0].addEventFilter(MouseEvent.MOUSE_ENTERED,listener);
         img_ressource[1].addEventFilter(MouseEvent.MOUSE_ENTERED,listener);
         img_ressource[2].addEventFilter(MouseEvent.MOUSE_ENTERED,listener);

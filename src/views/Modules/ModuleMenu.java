@@ -1,20 +1,10 @@
 package views.Modules;
 
 import Model.Partie;
-import Model.ressource.Ressource;
-import controllers.ControlHover;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.util.Map;
 
 /**
  * Created by Victor on 08/03/2016.
