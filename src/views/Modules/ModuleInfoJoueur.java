@@ -2,6 +2,8 @@ package views.Modules;
 
 import Model.Partie;
 import Model.ressource.Ressource;
+import javafx.event.EventDispatchChain;
+import javafx.event.EventTarget;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,10 +19,10 @@ import java.util.*;
 /**
  * Created by Mahel Sif on 25/01/2016.
  */
-public class ModuleInfoJoueur extends Module implements ViewConstants {
+public class ModuleInfoJoueur extends Module implements ViewConstants, EventTarget {
 
     public boolean isChecked;
-    public boolean text_ressource_hover;
+
     public Partie partie;
     private Stage stage;
 
@@ -38,7 +40,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
     private ImageView[] img_ressource = new ImageView[5];
     private Text[] text_ressource = new Text[5];
     private Text[] text_ressource_aide = new Text[5];
-
+    public boolean text_ressource_hover[] = new boolean[5];
 
     Text text_point;
     Text ressource;
@@ -58,6 +60,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
         drawBarUp();
         drawInfoRessource();
     }
+
 
     public void draw(){
 
@@ -80,9 +83,25 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
         root.getChildren().add(text_point);
         root.getChildren().addAll(text_ressource);
         root.getChildren().addAll(img_ressource);
-        if(text_ressource_hover)
+        if(text_ressource_hover[0])
         {
-            root.getChildren().addAll(text_ressource_aide);
+            root.getChildren().add(text_ressource_aide[0]);
+        }
+        else if(text_ressource_hover[1])
+        {
+            root.getChildren().add(text_ressource_aide[1]);
+        }
+        else if(text_ressource_hover[2])
+        {
+            root.getChildren().add(text_ressource_aide[2]);
+        }
+        else if(text_ressource_hover[3])
+        {
+            root.getChildren().add(text_ressource_aide[3]);
+        }
+        else if(text_ressource_hover[4])
+        {
+            root.getChildren().add(text_ressource_aide[4]);
         }
     }
 
@@ -145,6 +164,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
                 text_ressource[0].setX(x + 5);
                 text_ressource[0].setY(28);
 
+
                 text_ressource_aide[0] = new Text();
                 drawString(text_ressource_aide[0], "Bois", x, 50, Color.WHITE, mainFont);
             } else if (cle == "Laine") {
@@ -156,6 +176,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
                 text_ressource[1].setText(" -> " + valeur.size());
                 text_ressource[1].setX(x + 5);
                 text_ressource[1].setY(28);
+                img_ressource[1].setId("icone_laine");
 
                 text_ressource_aide[1] = new Text();
                 drawString(text_ressource_aide[1], "Laine", x, 50, Color.WHITE, mainFont);
@@ -168,6 +189,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
                 text_ressource[2].setText(" -> " + valeur.size());
                 text_ressource[2].setX(x + 5);
                 text_ressource[2].setY(28);
+                img_ressource[2].setId("icone_ble");
 
                 text_ressource_aide[2] = new Text();
                 drawString(text_ressource_aide[2], "Ble", x, 50, Color.WHITE, mainFont);
@@ -180,6 +202,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
                 text_ressource[3].setText(" -> " + valeur.size());
                 text_ressource[3].setX(x + 5);
                 text_ressource[3].setY(28);
+                img_ressource[3].setId("icone_argile");
 
                 text_ressource_aide[3] = new Text();
                 drawString(text_ressource_aide[3], "Argile", x, 50, Color.WHITE, mainFont);
@@ -192,6 +215,9 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
                 text_ressource[4].setText(" -> " + valeur.size());
                 text_ressource[4].setX(x + 5);
                 text_ressource[4].setY(28);
+                img_ressource[4].setId("icone_minerai");
+
+
 
                 text_ressource_aide[4] = new Text();
                 drawString(text_ressource_aide[4], "Minerai", x, 50, Color.WHITE, mainFont);
@@ -209,16 +235,19 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
         }
     }
 
-    public void changeTextAideHover() {
-        if(text_ressource_hover == true){
-            text_ressource_hover = false;
-        }
-        else
-        {
-            text_ressource_hover = true;
-        }
+    public ImageView[] getImg_ressource()
+    {
+        return  img_ressource;
+    }
 
 
 
+    public void setTextAideHover(boolean b, int i) {
+       text_ressource_hover[i] =  b;
+    }
+
+    @Override
+    public EventDispatchChain buildEventDispatchChain(EventDispatchChain tail) {
+        return null;
     }
 }

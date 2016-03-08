@@ -39,6 +39,7 @@ public class PanelMenu extends Scene implements ViewConstants {
 
     public void draw()
     {
+
         drawBackground();
     }
 
