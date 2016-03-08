@@ -11,18 +11,9 @@ import Model.Batiments.Colonie;
 import Model.Joueur;
 import Model.graph.Edge;
 import Model.graph.Vertex;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import views.panels.PanelGame;
-
-import javax.xml.stream.EventFilter;
-import javax.xml.stream.events.XMLEvent;
 
 /**
  * Created by Mahel Sif on 31/01/2016.
@@ -42,19 +33,17 @@ public class ControlGame extends MainControl implements EventHandler<MouseEvent>
         final double Y = e.getY();
 
 
-
-
         if (e.getEventType() == MouseEvent.MOUSE_CLICKED) {
             if(e.getTarget() instanceof ImageView)
             {
                 ImageView Iv = (ImageView) e.getTarget();
-                if(Iv.getId() == "button_de")
+                if(Iv.getId() == "button_de" && actualModel.getPartie().getNbTour()>(actualModel.getPartie().getNbJoueur())*2-1)
                 {
                     System.out.println("Dé");
                     actualModel.getPartie().lancementDes();
                     actualWindow.getGamePanel().getDe().De=true;
                 }
-                if(Iv.getId()=="skip_button"){
+                if(Iv.getId()=="skip_button" && actualModel.getPartie().getNbTour()>(actualModel.getPartie().getNbJoueur())*2-1){
                     System.out.println("Skip");
                     actualModel.getPartie().skiper();
                     actualWindow.getGamePanel().getDe().De=false;

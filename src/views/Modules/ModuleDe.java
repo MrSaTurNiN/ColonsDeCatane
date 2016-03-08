@@ -97,8 +97,7 @@ public class ModuleDe extends Module implements ViewConstants {
     public void  initImage() {
         background_bouton = new Image(getClass().getResourceAsStream("/assets/img/background_bouton.png"));
         imageDe = new Image(getClass().getResourceAsStream("/assets/img/icone_de.png"));
-        //imageSkip = new Image(getClass().getResourceAsStream("/assets/img/icone_de.png"));
-        imageSkip = new Image(getClass().getResourceAsStream("/assets/img/colline.png"));
+        imageSkip = new Image(getClass().getResourceAsStream("/assets/img/forward-arrow.png"));
 
 
 
@@ -109,17 +108,11 @@ public class ModuleDe extends Module implements ViewConstants {
         icone_de[0] = new ImageView();
         icone_skip[0]= new ImageView();
         background_boutons[0] = new ImageView(background_bouton);
-        if (!De) {
-            drawButtonCenter(background_boutons[0], icone_de[0], background_bouton, imageDe, stage.getWidth() - 80, stage.getHeight() - 400, "button_de");
-            drawImageCenter(icone_de[0], imageDe, stage.getWidth() - 80, stage.getHeight() - 400);
-        }
-        else {
-            drawButtonCenter(background_boutons[0], icone_skip[0], background_bouton, imageSkip, stage.getWidth() - 80, stage.getHeight() - 400, "skip_button");
-            drawImageCenter(icone_de[0], imageSkip, stage.getWidth() - 80, stage.getHeight() - 400);
-        }
+        drawButtonCenter(background_boutons[0], De?icone_skip[0] : icone_de[0], background_bouton, De?imageSkip : imageDe, stage.getWidth() - 80, stage.getHeight() - 650, De?"skip_button" : "button_de");
+        drawImageCenter(icone_de[0], De?imageSkip : imageDe, stage.getWidth() - 80, stage.getHeight() - 650);
 
         deValue = new Text();
-        drawString(deValue, String.valueOf(partie.getDeValue()), stage.getWidth() - 150, stage.getHeight() - 400, Color.WHITE, banqueFont);
+        drawString(deValue, String.valueOf(partie.getDeValue()), stage.getWidth() - 150, stage.getHeight() - 650, Color.WHITE, banqueFont);
         
         /*btn = new Button("",background_boutons[0]);
         btn.setPrefWidth(imageDe.getWidth());

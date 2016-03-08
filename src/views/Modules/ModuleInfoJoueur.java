@@ -2,9 +2,12 @@ package views.Modules;
 
 import Model.Partie;
 import Model.ressource.Ressource;
+import controllers.ControlGame;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -104,7 +107,7 @@ public class ModuleInfoJoueur extends Module implements ViewConstants {
 
     public void drawPoint(){
         double x = stage.getWidth() - 80;
-        double y = stage.getHeight() - 480;
+        double y = stage.getHeight() - 800;
         backgroundPoint = new ImageView();
         text_point = new Text();
         drawImageCenter(backgroundPoint, background_bouton, x, y);

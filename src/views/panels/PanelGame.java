@@ -121,6 +121,10 @@ public class PanelGame extends Scene implements ViewConstants {
         return banque;
     }
 
+    public ModuleInfoJoueur getInfoJoueur() {
+        return infoJoueur;
+    }
+
     public void initNodes()
     {
         backgroundN = new Rectangle(0,0,stage.getWidth(), stage.getHeight());
