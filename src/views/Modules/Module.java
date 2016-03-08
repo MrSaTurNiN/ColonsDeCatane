@@ -18,16 +18,25 @@ import javafx.scene.text.Font;
  */
 public class Module {
 
-    public static Font mainFont;
-    public static Font banqueFont;
+    public  Font mainFont;
+    public  Font banqueFont;
+    public  Font titleFont;
+    public  Font subtitleFont;
     public static DropShadow shadowText;
 
     public Module()
     {
             mainFont = new Font(24f);
             banqueFont = new Font(40f);
-            mainFont.loadFont(this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"), 10);
-            banqueFont.loadFont(this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"), 10);
+            titleFont = new Font(200f);
+            subtitleFont = new Font(75f);
+
+
+            mainFont=Font.loadFont(this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"), 26);
+            banqueFont=Font.loadFont(this.getClass().getResourceAsStream("/assets/font/radiospace.ttf"), 40);
+            titleFont=Font.loadFont(this.getClass().getResourceAsStream("/assets/font/STJEDISE.TTF"), 100);
+            subtitleFont=Font.loadFont(this.getClass().getResourceAsStream("/assets/font/STJEDISE.TTF"), 75);
+
 
             DropShadow ds = new DropShadow();
             ds.setOffsetY(0.0f);
@@ -39,8 +48,8 @@ public class Module {
     {
         double width = t.getLayoutBounds().getWidth();
         double height = t.getBoundsInLocal().getHeight()/2;
-        t.setLayoutX(x - (width/2));
-        t.setLayoutY(y +(height/2));
+        t.setLayoutX(x - (width / 2));
+        t.setLayoutY(y + (height / 2));
     }
 
     public static void drawString(Text t, String txt, double x, double y, Color c, Font f) {
@@ -51,6 +60,12 @@ public class Module {
         drawStringCenter(t, x, y);
     }
 
+    public static void drawString(Text t, double x, double y, Color c, Font f) {
+        t.setEffect(shadowText);
+        t.setFill(c);
+        t.setFont(f);
+        drawStringCenter(t, x, y);
+    }
 
 
     public static void drawImageCenter(ImageView Iv, javafx.scene.image.Image i, double x, double y)

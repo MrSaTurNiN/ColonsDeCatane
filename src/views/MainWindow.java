@@ -30,14 +30,17 @@ public class MainWindow extends Stage implements ViewConstants{
         this.setHeight(WINDOW_HEIGHT);
         this.setWidth(WINDOW_WIDTH);
 
+
         Group root = new Group();
         Group root2 = new Group();
 
-        menu = new PanelMenu(root,root, this);
-
+        menu = new PanelMenu(root,root, this, model);
         game = new PanelGame(root2, root2, this, model);
 
         setScene(menu);
+        System.out.println(this.getClass());
+        String css = this.getClass().getResource("/views/css/css.css").toExternalForm();
+        this.getScene().getStylesheets().add(css);
         show();
         this.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
@@ -46,6 +49,7 @@ public class MainWindow extends Stage implements ViewConstants{
                 System.exit(0);
             }
         });
+        menu.draw();
     }
 
     public PanelMenu getMenuPanel()
@@ -62,6 +66,12 @@ public class MainWindow extends Stage implements ViewConstants{
 
     public void switchPanel(Scene s) {
         this.setScene(s);
+        if (s instanceof PanelMenu){
+            menu.draw();
+        }
+        else {
+            game.draw();
+        }
     }
 
     public void setPanel(Scene panel){

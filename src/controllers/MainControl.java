@@ -14,6 +14,7 @@ public class MainControl {
     public static void initControl(MainModel model) {
         actualModel = model;
         actualWindow = new MainWindow(model);
+
         new ControlMenu();
         new ControlGame();
         new ControlHover();
