@@ -37,7 +37,7 @@ public class ModuleBanque extends Module implements ViewConstants  {
         initImage();
         this.root = r;
         this.partie = p;
-        this.isSelected = true;
+        this.isSelected = false;
         XModule = WINDOW_WIDTH - banque_fond.getWidth() - 60;
         YModule = WINDOW_HEIGHT - banque_fond.getHeight() - 60;
         XCenterModule = XModule + (banque_fond.getWidth()/2);

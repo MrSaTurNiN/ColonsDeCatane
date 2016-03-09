@@ -83,6 +83,9 @@ public class ControlGame extends MainControl implements EventHandler<MouseEvent>
                 if(Iv.getId() == "button_bank"){
                     actualWindow.getGamePanel().getBanque().changeSelected();
                 }
+                if(Iv.getId() == "button_trade"){
+                    actualWindow.getGamePanel().getCommerce().changeSelected();
+                }
             }
 
             Vertex v = null;

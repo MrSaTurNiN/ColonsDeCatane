@@ -33,7 +33,7 @@ public class ModuleCommerce extends Module implements ViewConstants {
         initImage();
         this.root = r;
         this.partie = p;
-        this.isSelected = true;
+        this.isSelected = false;
         XModule = WINDOW_WIDTH - banque_fond.getWidth() - 60;
         YModule = WINDOW_HEIGHT - banque_fond.getHeight() - 60;
         XCenterModule = XModule + (banque_fond.getWidth()/2);
@@ -46,11 +46,13 @@ public class ModuleCommerce extends Module implements ViewConstants {
     }
 
     public void draw(){
-        root.getChildren().remove(banque_fond_view);
-        root.getChildren().remove(commerce_title);
-        drawCommerce();
-        root.getChildren().add(banque_fond_view);
-        root.getChildren().add(commerce_title);
+        if(isSelected) {
+            root.getChildren().remove(banque_fond_view);
+            root.getChildren().remove(commerce_title);
+            drawCommerce();
+            root.getChildren().add(banque_fond_view);
+            root.getChildren().add(commerce_title);
+        }
     }
 
     public void drawCommerce() {
