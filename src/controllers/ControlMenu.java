@@ -4,6 +4,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.*;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -11,9 +13,9 @@ import java.util.TimerTask;
 /**
  * Created by Mahel Sif on 30/01/2016.
  */
-public class ControlMenu extends MainControl implements ChangeListener<Number>, EventHandler {
+public class ControlMenu extends MainControl implements EventHandler<MouseEvent> {
 
-    Button btn;
+    Text txt;
 
     public ControlMenu(){
         actualWindow.getMenuPanel().setMenuController(this);
@@ -24,14 +26,16 @@ public class ControlMenu extends MainControl implements ChangeListener<Number>, 
     final long delayTime = 200; //
 
     @Override
-    public void handle(Event event) {
-        btn = (Button) event.getSource();
-        switch (btn.getId())
-        {
-            case ("newPartie"):
+    public void handle(MouseEvent event) {
+        txt = (Text) event.getTarget();
+        if (event.getEventType()==MouseEvent.MOUSE_ENTERED){
 
+        }
+        if (event.getEventType()==MouseEvent.MOUSE_CLICKED){
+            if (txt!=null && txt.getId()=="newPart"){
                 actualModel.nouvellePartie();
                 actualWindow.switchPanel(actualWindow.getGamePanel());
+            }
         }
 
        /* event.getSource().setOnAction(new EventHandler<javafx.event.ActionEvent>() {
@@ -43,9 +47,4 @@ public class ControlMenu extends MainControl implements ChangeListener<Number>, 
 
     }
 
-
-    @Override
-    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-        actualWindow.getMenuPanel().draw();
-    }
 }

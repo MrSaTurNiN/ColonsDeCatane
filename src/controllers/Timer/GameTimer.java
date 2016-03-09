@@ -17,6 +17,6 @@ public class GameTimer extends MainControl implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        actualWindow.getGamePanel().draw();
+        //actualWindow.getGamePanel().draw();
     }
 }
