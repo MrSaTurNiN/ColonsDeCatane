@@ -30,6 +30,8 @@ public class PanelMenu extends Scene implements ViewConstants {
     Canvas canvas;
     GraphicsContext gc;
 
+
+
     public PanelMenu(@NamedArg("root") Parent r, Group root, Stage stage, MainModel model) {
 
         super(r);
@@ -46,6 +48,10 @@ public class PanelMenu extends Scene implements ViewConstants {
 
         //newPart = new Button("Nouvelle partie");
         //newPart.setId("newPartie");
+    }
+
+    public ModuleMenu getModuleMenu() {
+        return moduleMenu;
     }
 
     public void draw()

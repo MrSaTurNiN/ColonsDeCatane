@@ -8,12 +8,14 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.effect.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
 
 
 /**
@@ -28,6 +30,13 @@ public class ModuleMenu extends Module {
     private double Y;
     private Group g;
     private Blend blend;
+    private Timeline timelineanim;
+    private Timeline timelinenaimreverse;
+    private Blend blendanim;
+    private Timeline Timeline2;
+    private KeyValue kv;
+    private KeyValue kv1;
+    private KeyFrame kf;
 
     public ModuleMenu(Partie p, Group root, Stage s)
     {
@@ -38,6 +47,7 @@ public class ModuleMenu extends Module {
         text_menu=new Text[4];
         initText();
         Y=s.getHeight();
+
 
         initTimeline(text_menu, 1500, 300, (-(s.getHeight() - 300)), Interpolator.EASE_OUT, timeline);
         timeline.play();
@@ -126,6 +136,47 @@ public class ModuleMenu extends Module {
         blend1.setTopInput(blend2);
 
         blend.setTopInput(blend1);
+
+        blendanim = new Blend();
+        blendanim.setMode(BlendMode.MULTIPLY);
+
+        DropShadow dss = new DropShadow();
+        dss.setColor(Color.rgb(254, 235, 66, 0.3));
+        dss.setOffsetX(5);
+        dss.setOffsetY(5);
+        dss.setRadius(5);
+        dss.setSpread(0.2);
+
+        blendanim.setBottomInput(dss);
+
+        DropShadow dss1 = new DropShadow();
+        dss1.setColor(Color.web("#feeb42"));
+        dss1.setRadius(7);
+        dss1.setSpread(0.5);
+
+        Blend blendd2 = new Blend();
+        blendd2.setMode(BlendMode.MULTIPLY);
+
+        InnerShadow iss = new InnerShadow();
+        iss.setColor(Color.web("#f13a00"));
+        iss.setRadius(9);
+        iss.setChoke(0.8);
+        blendd2.setBottomInput(iss);
+
+        InnerShadow iss1 = new InnerShadow();
+        iss1.setColor(Color.web("#feeb42"));
+        iss1.setRadius(5);
+        iss1.setChoke(0.4);
+        blendd2.setTopInput(iss1);
+
+        Blend blendd1 = new Blend();
+        blendd1.setMode(BlendMode.MULTIPLY);
+        blendd1.setBottomInput(dss1);
+        blendd1.setTopInput(blendd2);
+
+        blendanim.setTopInput(blendd1);
+
+
     }
 
     public void drawMenu(){
@@ -146,8 +197,43 @@ public class ModuleMenu extends Module {
         for (Text t:text_menu){
             t.addEventHandler(MouseEvent.MOUSE_CLICKED,listener);
             t.addEventHandler(MouseEvent.MOUSE_ENTERED,listener);
+            t.addEventHandler(MouseEvent.MOUSE_EXITED,listener);
         }
     }
 
+    public void unHover(Text t){
+       // timelineanim.;
+       // t.setEffect(blend);
+       // t.setFill(Paint.valueOf("yellow"));
+     /*   Timeline2=new Timeline();
+        KeyValue kv;
+        KeyFrame kf;
+        kv = new KeyValue(t.translateYProperty(),-5, Interpolator.EASE_BOTH);
+        kf = new KeyFrame(Duration.millis(200), kv);
+        Timeline2.getKeyFrames().add(kf);*/
 
+            //timelineanim.setAutoReverse(false);
+        if (!t.getId().equals("colons")) {
+            timelineanim.jumpTo(Duration.millis(0));
+            timelineanim.stop();
+        }
+           // timelineanim.setCycleCount(0);
+
+    }
+
+
+    public void drawHover(Text t) {
+
+        if (!t.getId().equals("colons")){
+            timelineanim=new Timeline();
+            kv = new KeyValue(t.translateYProperty(),8, Interpolator.EASE_OUT);
+            kv1 = new KeyValue(t.scaleYProperty(),0.98, Interpolator.EASE_OUT);
+            kf = new KeyFrame(Duration.millis(300), kv,kv1);
+            timelineanim.getKeyFrames().add(kf);
+            timelineanim.setAutoReverse(true);
+            timelineanim.setCycleCount(Animation.INDEFINITE);
+            timelineanim.play();
+            System.out.println(t.getId());
+        }
+    }
 }

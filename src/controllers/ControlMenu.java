@@ -29,7 +29,10 @@ public class ControlMenu extends MainControl implements EventHandler<MouseEvent>
     public void handle(MouseEvent event) {
         txt = (Text) event.getTarget();
         if (event.getEventType()==MouseEvent.MOUSE_ENTERED){
-
+            actualWindow.getMenuPanel().getModuleMenu().drawHover(txt);
+        }
+        if (event.getEventType()==MouseEvent.MOUSE_EXITED){
+            actualWindow.getMenuPanel().getModuleMenu().unHover(txt);
         }
         if (event.getEventType()==MouseEvent.MOUSE_CLICKED){
             if (txt!=null && txt.getId()=="newPart"){
