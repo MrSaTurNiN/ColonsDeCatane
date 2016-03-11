@@ -29,9 +29,11 @@ public class ControlMenu extends MainControl implements EventHandler<MouseEvent>
     public void handle(MouseEvent event) {
         txt = (Text) event.getTarget();
         if (event.getEventType()==MouseEvent.MOUSE_ENTERED){
+            actualWindow.setCursor(actualWindow.cursorHover);
             actualWindow.getMenuPanel().getModuleMenu().drawHover(txt);
         }
         if (event.getEventType()==MouseEvent.MOUSE_EXITED){
+            actualWindow.setCursor(actualWindow.cursor);
             actualWindow.getMenuPanel().getModuleMenu().unHover(txt);
         }
         if (event.getEventType()==MouseEvent.MOUSE_CLICKED){
@@ -40,14 +42,5 @@ public class ControlMenu extends MainControl implements EventHandler<MouseEvent>
                 actualWindow.switchPanel(actualWindow.getGamePanel());
             }
         }
-
-       /* event.getSource().setOnAction(new EventHandler<javafx.event.ActionEvent>() {
-            @Override
-            public void handle(javafx.event.ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });*/
-
     }
-
 }

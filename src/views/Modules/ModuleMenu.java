@@ -32,11 +32,15 @@ public class ModuleMenu extends Module {
     private Blend blend;
     private Timeline timelineanim;
     private Timeline timelinenaimreverse;
+    private Blend blendCircle;
+    private Timeline timelineCircle;
     private Blend blendanim;
+
     private Timeline Timeline2;
     private KeyValue kv;
     private KeyValue kv1;
     private KeyFrame kf;
+    private Boolean draw=true;
 
     public ModuleMenu(Partie p, Group root, Stage s)
     {
@@ -78,9 +82,11 @@ public class ModuleMenu extends Module {
 
         root.getChildren().removeAll(text_menu);
 
-        drawMenu();
+        if (draw) {
+            drawMenu();
 
-        root.getChildren().addAll(text_menu);
+            root.getChildren().addAll(text_menu);
+        }
 
     }
 
@@ -235,5 +241,8 @@ public class ModuleMenu extends Module {
             timelineanim.play();
             System.out.println(t.getId());
         }
+    }
+    public void setDraw(Boolean bool){
+        draw=bool;
     }
 }

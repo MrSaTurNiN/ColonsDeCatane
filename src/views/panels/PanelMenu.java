@@ -14,6 +14,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import views.Modules.Module;
+import views.Modules.ModuleInitPlay;
 import views.Modules.ModuleMenu;
 import views.ViewConstants;
 
@@ -29,6 +31,8 @@ public class PanelMenu extends Scene implements ViewConstants {
     Rectangle rectangle;
     Canvas canvas;
     GraphicsContext gc;
+    ModuleInitPlay moduleInitPlay;
+
 
 
 
@@ -43,6 +47,7 @@ public class PanelMenu extends Scene implements ViewConstants {
         gc = canvas.getGraphicsContext2D();
         partie=model.getPartie();
         moduleMenu =new ModuleMenu(partie,root,stage);
+        moduleInitPlay =new ModuleInitPlay(partie,root,stage);
         background = new Image(getClass().getResourceAsStream("/assets/img/background.png"));
         this.rectangle=new Rectangle(0,0,stage.getWidth(), stage.getHeight());
 
@@ -72,5 +77,12 @@ public class PanelMenu extends Scene implements ViewConstants {
    public void setMenuController(ControlMenu listener)
     {
         moduleMenu.setMenuController(listener);
+        moduleInitPlay.setMenuController(listener);
+    }
+    public ModuleMenu getMenuModule(){
+        return moduleMenu;
+    }
+    public ModuleInitPlay getModuleInitPlay(){
+        return moduleInitPlay;
     }
 }

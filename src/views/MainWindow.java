@@ -2,7 +2,9 @@ package views;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -16,6 +18,7 @@ import views.panels.PanelGame;
 import views.panels.PanelMenu;
 
 
+
 /**
  * Created by Mahel Sif on 30/01/2016.
  */
@@ -23,8 +26,12 @@ public class MainWindow extends Stage implements ViewConstants{
 
     private final PanelMenu menu;
     private final PanelGame game;
+    public ImageCursor cursor;
+    public ImageCursor cursorHover;
 
     public MainWindow(MainModel model){
+        cursor=new ImageCursor(new Image(getClass().getResourceAsStream("/assets/img/cursor.png")));
+        cursorHover=new ImageCursor(new Image(getClass().getResourceAsStream("/assets/img/cursorhover.png")));
         this.setTitle("Colons de Catanes");
         this.getIcons().add(new Image(getClass().getResourceAsStream("/assets/img/stormtrooper.png")));
         this.setHeight(WINDOW_HEIGHT);
@@ -33,9 +40,10 @@ public class MainWindow extends Stage implements ViewConstants{
 
         Group root = new Group();
         Group root2 = new Group();
-
         menu = new PanelMenu(root,root, this, model);
         game = new PanelGame(root2, root2, this, model);
+        game.setCursor(cursor);
+        menu.setCursor(cursor);
 
         setScene(menu);
         System.out.println(this.getClass());
@@ -72,6 +80,9 @@ public class MainWindow extends Stage implements ViewConstants{
         else {
             game.draw();
         }
+    }
+    public void setCursor(Cursor c){
+        getScene().setCursor(c);
     }
 
     public void setPanel(Scene panel){
