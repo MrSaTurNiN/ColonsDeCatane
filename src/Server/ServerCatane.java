@@ -39,8 +39,7 @@ public class ServerCatane {
     private void initJoueur() {
         List<Joueur> list = new ArrayList<Joueur>();
         for(int i = 0;i<listSocket.size();i++){
-            Joueur j = new Joueur("test"+(i+1), Color.BLUE);
-            list.add(j);
+
         }
         Partie p = new Partie(list);
 

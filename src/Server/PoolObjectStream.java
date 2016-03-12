@@ -12,4 +12,12 @@ public class PoolObjectStream {
     public PoolObjectStream() {
         pool = new HashMap<Integer, ObjectOutputStream>();
     }
+
+    public synchronized void addStream(int id,ObjectOutputStream stream){
+        pool.put(id,stream);
+    }
+
+    public synchronized void removeStream(int id){
+        pool.remove(id);
+    }
 }
