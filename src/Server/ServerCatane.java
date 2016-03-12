@@ -17,10 +17,13 @@ public class ServerCatane {
     private List<Socket> listSocket;
     private int nombreJoueur;
     private ServerSocket socketConn;
+    private PoolObjectStream pool;
 
     public ServerCatane(int port, int nombreJoueur) throws IOException {
         this.nombreJoueur = nombreJoueur;
+        pool = new PoolObjectStream();
         socketConn = new ServerSocket(port);
+
     }
 
     public void connLoop(){
@@ -39,9 +42,8 @@ public class ServerCatane {
     private void initJoueur() {
         List<Joueur> list = new ArrayList<Joueur>();
         for(int i = 0;i<listSocket.size();i++){
-
+            Thread t = new ThreadClient(listSocket.get(i),pool,i);
+            t.start();
         }
-        Partie p = new Partie(list);
-
     }
 }

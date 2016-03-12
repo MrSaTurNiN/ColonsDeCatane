@@ -7,7 +7,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 
-public class ThreadClient {
+public class ThreadClient extends Thread{
     private Socket socket;
     private ObjectOutputStream oos;
     private ObjectInputStream ois;
