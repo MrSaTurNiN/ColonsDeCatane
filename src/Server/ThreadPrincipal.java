@@ -5,9 +5,6 @@ import Model.Partie;
 
 import java.util.List;
 
-/**
- * Created by jpabegg on 02/02/16.
- */
 public class ThreadPrincipal extends Thread {
 
     private List<Joueur> list;
