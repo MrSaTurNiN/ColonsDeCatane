@@ -19,8 +19,17 @@ public class ThreadClient extends Thread{
         this.socket = socket;
         this.pool = pool;
         this.numJoueur = numJoueur;
+
+        try {
+            oos = new ObjectOutputStream(socket.getOutputStream());
+            ois = new ObjectInputStream(socket.getInputStream());
+            pool.addStream(numJoueur,oos);
+        } catch (IOException e) {
+            System.exit(1);
+        }
+
     }
-    public void handshake(){
+    public synchronized void handshake(){
         try {
             oos.writeInt(numJoueur);
             oos.flush();
@@ -34,14 +43,5 @@ public class ThreadClient extends Thread{
     }
 
     public void run(){
-        try {
-            oos = new ObjectOutputStream(socket.getOutputStream());
-            ois = new ObjectInputStream(socket.getInputStream());
-            pool.addStream(numJoueur,oos);
-            handshake();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
     }
 }

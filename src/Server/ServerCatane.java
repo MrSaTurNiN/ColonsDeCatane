@@ -41,9 +41,14 @@ public class ServerCatane {
 
     private void initJoueur() {
         List<Joueur> list = new ArrayList<Joueur>();
+        List<Thread> threads = new ArrayList<Thread>();
         for(int i = 0;i<listSocket.size();i++){
             Thread t = new ThreadClient(listSocket.get(i),pool,i);
-            t.start();
+            threads.add(t);
+        }
+        for(int i = 0;i<listSocket.size();i++){
+            ThreadClient t = (ThreadClient)threads.get(i);
+            t.handshake();
         }
     }
 }
