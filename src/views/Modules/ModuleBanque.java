@@ -7,6 +7,7 @@ import javafx.scene.image.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import views.ViewConstants;
 
 import java.util.*;
@@ -20,7 +21,7 @@ public class ModuleBanque extends Module implements ViewConstants  {
     private Partie partie;
     private Image banque_fond;
     private Group root;
-    
+    private Stage stage;
     private ImageView banque_fond_view;
     private Text banque_title;
 
@@ -33,19 +34,24 @@ public class ModuleBanque extends Module implements ViewConstants  {
 
     private Text [] banque_pions = new Text[4];
 
-    public ModuleBanque(Partie p, Group r){
+    public ModuleBanque(Partie p, Group r, Stage stage){
         initImage();
         this.root = r;
+        this.stage = stage;
         this.partie = p;
         this.isSelected = false;
-        XModule = WINDOW_WIDTH - banque_fond.getWidth() - 60;
-        YModule = WINDOW_HEIGHT - banque_fond.getHeight() - 60;
+        XModule = stage.getWidth() - banque_fond.getWidth() - 60;
+        YModule = stage.getHeight()  - banque_fond.getHeight() - 60;
         XCenterModule = XModule + (banque_fond.getWidth()/2);
         YCenterModule = YModule + (banque_fond.getHeight()/2);
       //  draw();
     }
     
     public void draw(){
+        XModule = stage.getWidth() - banque_fond.getWidth() - 60;
+        YModule = stage.getHeight()  - banque_fond.getHeight() - 60;
+        XCenterModule = XModule + (banque_fond.getWidth()/2);
+        YCenterModule = YModule + (banque_fond.getHeight()/2);
         if(isSelected)
         {
             root.getChildren().remove(banque_fond_view);
@@ -73,7 +79,6 @@ public class ModuleBanque extends Module implements ViewConstants  {
         //drawDeckRessource(g2);
         banque_title = new Text();
         drawString(banque_title, "BANQUE", XCenterModule, YCenterModule -180, javafx.scene.paint.Color.WHITE, mainFont);
-
     }
 
     public void drawDeckRessource() {

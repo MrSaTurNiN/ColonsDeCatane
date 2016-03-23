@@ -100,11 +100,13 @@ public class PanelGame extends Scene implements ViewConstants {
 
 
         infoJoueur = new ModuleInfoJoueur(partie, root, stage);
-        banque = new ModuleBanque(partie, root);
-        commerce = new ModuleCommerce(partie,root);
+
+
         barRaccourcis = new ModuleBarRaccourcis(partie, root, stage);
         de = new ModuleDe(partie, root, stage);
         map = new ModuleMap(partie,root,stage);
+        banque = new ModuleBanque(partie, root, stage);
+        commerce = new ModuleCommerce(partie,root, stage);
 
        // draw();
 
@@ -179,14 +181,13 @@ public class PanelGame extends Scene implements ViewConstants {
         root.getChildren().add(backgroundN);
 
        // root.getChildren().add(canvas);
-
-
         infoJoueur.draw();
-        banque.draw();
-        commerce.draw();
+
         barRaccourcis.draw();
         de.draw();
         map.draw();
+        banque.draw();
+        commerce.draw();
 
     }
 
@@ -198,6 +199,9 @@ public class PanelGame extends Scene implements ViewConstants {
     public void setGameController(ControlGame listener)
     {
         this.addEventHandler(MouseEvent.MOUSE_CLICKED,listener);
+
+
+
         this.addEventHandler(MouseEvent.MOUSE_MOVED,listener);
     }
 
