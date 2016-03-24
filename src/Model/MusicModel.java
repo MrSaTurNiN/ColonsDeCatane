@@ -23,12 +23,11 @@ public class MusicModel {
     }
 
     public void initMusic(){
-        //musicPrincipal= new AudioClip(Paths.get("").toUri().toString()+"src/assets/music/principal.mp3");
         musicGame=new Media(Paths.get("").toUri().toString()+"src/assets/music/starwars.wav");
         setMediaPlayer(new MediaPlayer(musicGame));
 
 //			soundClic= new AudioClip(Paths.get("").toUri().toString()+"src/assets/music/clic.mp3");
-//			musicMenu= new AudioClip(Paths.get("").toUri().toString()+"src/assets/music/menu.mp3");
+        musicMenu= new AudioClip(Paths.get("").toUri().toString()+"src/assets/music/starwarsTheme.mp3");
 //			soundDe= new AudioClip(Paths.get("").toUri().toString()+"src/assets/music/de.mp3");
 
 
