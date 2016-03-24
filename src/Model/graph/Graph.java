@@ -235,30 +235,34 @@ public class Graph implements ViewConstants, Serializable{
             4
      */
     private void setXYVertices(Vertex top,Vertex[] toDo) {
+        setXYVertices(top,toDo,DECLALAGE_COTE,PETIT_DECALAGE,GRAND_DECALAGE);
+    }
+
+    private void setXYVertices(Vertex top,Vertex[] toDo,double decalCote,double petitDecalage,double grandDecalage) {
         double xO = top.getX();
         double yO = top.getY();
-        for(int i=0;i<toDo.length;i++) {
+        for (int i = 0; i < toDo.length; i++) {
             Vertex v = toDo[i];
             switch (i) {
                 case 0:
-                    v.setX(xO - DECLALAGE_COTE);
-                    v.setY(yO + PETIT_DECALAGE);
+                    v.setX(xO - decalCote);
+                    v.setY(yO + petitDecalage);
                     break;
                 case 1:
-                    v.setX(xO + DECLALAGE_COTE);
-                    v.setY(yO + PETIT_DECALAGE);
+                    v.setX(xO + decalCote);
+                    v.setY(yO + petitDecalage);
                     break;
                 case 2:
-                    v.setX(xO - DECLALAGE_COTE);
-                    v.setY(yO + GRAND_DECALAGE);
+                    v.setX(xO - decalCote);
+                    v.setY(yO + grandDecalage);
                     break;
                 case 3:
-                    v.setX(xO + DECLALAGE_COTE);
-                    v.setY(yO + GRAND_DECALAGE);
+                    v.setX(xO + decalCote);
+                    v.setY(yO + grandDecalage);
                     break;
                 case 4:
                     v.setX(xO);
-                    v.setY(yO +PETIT_DECALAGE + GRAND_DECALAGE);
+                    v.setY(yO + petitDecalage + grandDecalage);
                     break;
                 default:
                     break;

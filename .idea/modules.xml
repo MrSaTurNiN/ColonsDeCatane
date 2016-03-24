@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/projetcolons.iml" filepath="$PROJECT_DIR$/.idea/projetcolons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ColonsDeCatane.iml" filepath="$PROJECT_DIR$/ColonsDeCatane.iml" />
     </modules>
   </component>
 </project>
