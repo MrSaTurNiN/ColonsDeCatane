@@ -18,7 +18,10 @@ public class ControlMenu extends MainControl implements EventHandler<MouseEvent>
     Text txt;
 
     public ControlMenu(){
+
         actualWindow.getMenuPanel().setMenuController(this);
+        actualWindow.getMenuPanel().setMenuController(this);
+        // actualModel.getMusic().getMusicMenu().play();
     }
 
     final Timer timer = new Timer(); // uses a timer to call your resize method
@@ -38,8 +41,10 @@ public class ControlMenu extends MainControl implements EventHandler<MouseEvent>
         }
         if (event.getEventType()==MouseEvent.MOUSE_CLICKED){
             if (txt!=null && txt.getId()=="newPart"){
+                //actualModel.getMusic().getMusicMenu().stop();
                 actualModel.nouvellePartie();
                 actualWindow.switchPanel(actualWindow.getGamePanel());
+                actualModel.getMusic().playLoop();
             }
         }
     }

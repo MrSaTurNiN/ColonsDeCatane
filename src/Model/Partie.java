@@ -202,7 +202,7 @@ public class Partie implements Serializable{
 	}
 	public void initListCouleur(){
 		listCouleur = new ArrayList<Color>();
-		listCouleur.add(Color.cyan);
+		listCouleur.add(Color.CYAN);
 		listCouleur.add(Color.GREEN);
 		listCouleur.add(Color.RED);
 		listCouleur.add(Color.YELLOW);
