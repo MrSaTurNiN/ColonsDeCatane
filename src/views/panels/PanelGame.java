@@ -148,7 +148,7 @@ public class PanelGame extends Scene implements ViewConstants {
             colline = new Image(getClass().getResourceAsStream("/assets/img/colline.png"));
             foret =new Image(getClass().getResourceAsStream("/assets/img/foret.png"));
             paturage =new Image(getClass().getResourceAsStream("/assets/img/paturage.png"));
-            rond_point =new Image(getClass().getResourceAsStream("/img/background_bouton.png"));
+            rond_point =new Image(getClass().getResourceAsStream("/assets/img/background_bouton.png"));
             stormtrooper = new Image(getClass().getResourceAsStream("/assets/img/stormtrooper.png"));
             boba = new Image(getClass().getResourceAsStream("/assets/img/boba.png"));
 
