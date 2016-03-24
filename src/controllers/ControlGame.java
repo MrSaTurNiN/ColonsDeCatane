@@ -86,6 +86,9 @@ public class ControlGame extends MainControl implements EventHandler<MouseEvent>
                 if(Iv.getId() == "button_trade"){
                     actualWindow.getGamePanel().getCommerce().changeSelected();
                 }
+                if(Iv.getId() == "button_infos_buildings"){
+                    actualWindow.getGamePanel().getInfoConstructions().changeSelected();
+                }
             }
 
             Vertex v = null;

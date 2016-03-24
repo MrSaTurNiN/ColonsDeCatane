@@ -73,6 +73,7 @@ public class PanelGame extends Scene implements ViewConstants {
     ModuleMap map;
     ModuleBarRaccourcis barRaccourcis;
     ModuleCommerce commerce;
+    ModuleInfoConstruction infoConstructions;
 
 
 
@@ -107,6 +108,7 @@ public class PanelGame extends Scene implements ViewConstants {
         map = new ModuleMap(partie,root,stage);
         banque = new ModuleBanque(partie, root, stage);
         commerce = new ModuleCommerce(partie,root, stage);
+        infoConstructions = new ModuleInfoConstruction(partie,root,stage);
 
        // draw();
 
@@ -128,6 +130,8 @@ public class PanelGame extends Scene implements ViewConstants {
     }
 
     public ModuleCommerce getCommerce() { return commerce; }
+
+    public ModuleInfoConstruction getInfoConstructions(){ return infoConstructions; }
 
     public ModuleInfoJoueur getInfoJoueur() {
         return infoJoueur;
@@ -188,6 +192,7 @@ public class PanelGame extends Scene implements ViewConstants {
         map.draw();
         banque.draw();
         commerce.draw();
+        infoConstructions.draw();
 
     }
 

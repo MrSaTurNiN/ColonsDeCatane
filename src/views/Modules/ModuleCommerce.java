@@ -70,7 +70,7 @@ public class ModuleCommerce extends Module implements ViewConstants {
         banque_fond_view.setY(YModule);
         //drawDeckRessource(g2);
         commerce_title = new Text();
-        drawString(commerce_title, "Commerce", XCenterModule, YCenterModule - 180, javafx.scene.paint.Color.WHITE, mainFont);
+        drawString(commerce_title, "COMMERCE", XCenterModule, YCenterModule - 180, javafx.scene.paint.Color.WHITE, mainFont);
 
     }
 

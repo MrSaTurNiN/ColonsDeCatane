@@ -65,7 +65,7 @@ public class ModuleBarRaccourcis extends Module implements ViewConstants {
         icones[2] = new ImageView();
         drawButtonCenter(background_boutons[0], icones[0], background_bouton, icone_banque, stage.getWidth()- 80, stage.getHeight() - 100, "button_bank");
         drawButtonCenter(background_boutons[1], icones[1], background_bouton, icone_commerce, stage.getWidth()- 160, stage.getHeight() - 100, "button_trade");
-        drawButtonCenter(background_boutons[2], icones[2], background_bouton, icone_info_contruction, stage.getWidth()- 240, stage.getHeight() - 100, "button_trade");
+        drawButtonCenter(background_boutons[2], icones[2], background_bouton, icone_info_contruction, stage.getWidth()- 240, stage.getHeight() - 100, "button_infos_buildings");
 
 
         //btn.setStyle("-fx-background-color: transparent;");
