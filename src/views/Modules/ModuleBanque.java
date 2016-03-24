@@ -48,8 +48,8 @@ public class ModuleBanque extends Module implements ViewConstants  {
     }
     
     public void draw(){
-        XModule = stage.getWidth() - banque_fond.getWidth() - 60;
-        YModule = stage.getHeight()  - banque_fond.getHeight() - 60;
+        XModule = stage.getWidth() - banque_fond.getWidth() - 40;
+        YModule = stage.getHeight()  - banque_fond.getHeight() - 100;
         XCenterModule = XModule + (banque_fond.getWidth()/2);
         YCenterModule = YModule + (banque_fond.getHeight()/2);
         if(isSelected)

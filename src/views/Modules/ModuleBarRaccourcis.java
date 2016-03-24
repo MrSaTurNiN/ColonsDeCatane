@@ -25,8 +25,8 @@ public class ModuleBarRaccourcis extends Module implements ViewConstants {
 
     public Button btn;
 
-    private ImageView background_boutons[] = new ImageView[2];
-    private ImageView icones[] = new ImageView[2];
+    private ImageView background_boutons[] = new ImageView[3];
+    private ImageView icones[] = new ImageView[3];
 
     public ModuleBarRaccourcis(Partie p, Group r, Stage s)
     {
@@ -42,7 +42,7 @@ public class ModuleBarRaccourcis extends Module implements ViewConstants {
         background_bouton = new Image(getClass().getResourceAsStream("/assets/img/background_bouton.png"));
         icone_banque = new Image(getClass().getResourceAsStream("/assets/img/icone_banque.png"));
         icone_commerce = new Image(getClass().getResourceAsStream("/assets/img/icone_commerce.png"));
-        icone_info_contruction = new Image(getClass().getResourceAsStream("/assets/img/icone_commerce.png"));
+        icone_info_contruction = new Image(getClass().getResourceAsStream("/assets/img/background_bouton.png"));
     }
 
     public void draw()
@@ -65,7 +65,7 @@ public class ModuleBarRaccourcis extends Module implements ViewConstants {
         icones[2] = new ImageView();
         drawButtonCenter(background_boutons[0], icones[0], background_bouton, icone_banque, stage.getWidth()- 80, stage.getHeight() - 100, "button_bank");
         drawButtonCenter(background_boutons[1], icones[1], background_bouton, icone_commerce, stage.getWidth()- 160, stage.getHeight() - 100, "button_trade");
-        drawButtonCenter(background_boutons[2], icones[2], background_bouton, icone_commerce, stage.getWidth()- 240, stage.getHeight() - 100, "button_trade");
+        drawButtonCenter(background_boutons[2], icones[2], background_bouton, icone_info_contruction, stage.getWidth()- 240, stage.getHeight() - 100, "button_trade");
 
 
         //btn.setStyle("-fx-background-color: transparent;");
