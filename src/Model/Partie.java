@@ -301,6 +301,7 @@ public class Partie implements Serializable{
 			if (!isDes()) {
 
 				int result = getDes().lancerDes();
+				if (result == 7) getPlateau().deplaceVoleur();
                 setDeValue(result);
 				try {
 					getRessource(result);

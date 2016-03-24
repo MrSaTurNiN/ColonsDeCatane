@@ -35,6 +35,7 @@ public class ModuleInfoConstruction extends Module implements ViewConstants {
     private double YModule;
 
     private Text [] constructions_ressources = new Text[3];
+    private ImageView[] img_ressource = new ImageView[8];
 
 
     public ModuleInfoConstruction(Partie p, Group r, Stage stage){
@@ -51,6 +52,12 @@ public class ModuleInfoConstruction extends Module implements ViewConstants {
 
     public void  initImage() {
         banque_fond = new Image(getClass().getResourceAsStream("/assets/img/banque_fond.png"));
+
+        icone_cellule_energetique = new Image(getClass().getResourceAsStream("/assets/img/icone_cellule_energetique.png"));
+        icone_gaz = new Image(getClass().getResourceAsStream("/assets/img/icone_gaz.png"));
+        icone_minerai = new Image(getClass().getResourceAsStream("/assets/img/minerai.png"));
+        icone_supraconducteur = new Image(getClass().getResourceAsStream("/assets/img/icone_supraconducteur.png"));
+        icone_cristaux = new Image(getClass().getResourceAsStream("/assets/img/icone_cristaux.png"));
     }
 
     public void draw(){
@@ -62,11 +69,14 @@ public class ModuleInfoConstruction extends Module implements ViewConstants {
             root.getChildren().remove(banque_fond_view);
             root.getChildren().remove(constructions_title);
             root.getChildren().removeAll(constructions_ressources);
+            root.getChildren().removeAll(img_ressource);
             drawInfos();
             drawConstructions();
             root.getChildren().add(banque_fond_view);
             root.getChildren().addAll(constructions_ressources);
+            root.getChildren().addAll(img_ressource);
             root.getChildren().add(constructions_title);
+
 
         }
     }
@@ -85,15 +95,55 @@ public class ModuleInfoConstruction extends Module implements ViewConstants {
         double y = YCenterModule - 110;
         int i = 0;
 
+        //récupération des icones
+        img_ressource[0] = new ImageView();
+        img_ressource[0].setImage(icone_cellule_energetique);
+        img_ressource[0].setX(XCenterModule-30);
+        img_ressource[0].setY(y-23);
+
+        img_ressource[1] = new ImageView();
+        img_ressource[1].setImage(icone_cristaux);
+        img_ressource[1].setX(XCenterModule + 23);
+        img_ressource[1].setY(y-23);
+
+        img_ressource[2] = new ImageView();
+        img_ressource[2].setImage(icone_supraconducteur);
+        img_ressource[2].setX(XCenterModule + 73);
+        img_ressource[2].setY(y -23);
+
+        img_ressource[3] = new ImageView();
+        img_ressource[3].setImage(icone_gaz);
+        img_ressource[3].setX(XCenterModule + 123);
+        img_ressource[3].setY(y -23);
+
+        img_ressource[4] = new ImageView();
+        img_ressource[4].setImage(icone_gaz);
+        img_ressource[4].setX(XCenterModule+20);
+        img_ressource[4].setY(y+27);
+
+        img_ressource[5] = new ImageView();
+        img_ressource[5].setImage(icone_supraconducteur);
+        img_ressource[5].setX(XCenterModule+75);
+        img_ressource[5].setY(y+27);
+
+        img_ressource[6] = new ImageView();
+        img_ressource[6].setImage(icone_minerai);
+        img_ressource[6].setX(XCenterModule+17);
+        img_ressource[6].setY(y+80);
+
+        img_ressource[7] = new ImageView();
+        img_ressource[7].setImage(icone_cellule_energetique);
+        img_ressource[7].setX(XCenterModule+73);
+        img_ressource[7].setY(y+80);
+
         constructions_ressources[0] = new Text();
-        drawString(constructions_ressources[0], "Colonies : 1 Cellule 1 Cristal 1 Supraconducteur 1 Gas" , XCenterModule, y, javafx.scene.paint.Color.WHITE, mainFont);
+        drawString(constructions_ressources[0], "Colonie : 1     1     1     1" , XCenterModule-20, y, javafx.scene.paint.Color.WHITE, mainFont);
 
         constructions_ressources[1] = new Text();
-        drawString(constructions_ressources[1], "Route : 1 Gas Tibanna 1 Supra Conducteur" , XCenterModule, y += 30, javafx.scene.paint.Color.WHITE, mainFont);
+        drawString(constructions_ressources[1], "Route : 1     1  " , XCenterModule, y += 50, javafx.scene.paint.Color.WHITE, mainFont);
 
         constructions_ressources[2] = new Text();
-        drawString(constructions_ressources[2], "Colonies : 3 Duraciers 2 Cellules" , XCenterModule, y += 30, javafx.scene.paint.Color.WHITE, mainFont);
-
+        drawString(constructions_ressources[2], "Ville : 3     2 " , XCenterModule, y += 50, javafx.scene.paint.Color.WHITE, mainFont);
 
     }
 
